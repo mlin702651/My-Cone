@@ -57,6 +57,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d5e5a51-b8b1-469a-a566-c365b87f69c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8b37344-1901-41d0-95dc-d1b36cf74919"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -114,6 +130,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""SwitchWeaponLess"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b94f941e-dc4e-42d6-8ab2-16c8cab3ae30"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c16e5c9b-fa80-4c89-a95f-82a05078c2f6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -127,6 +165,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_player_Shoot = m_player.FindAction("Shoot", throwIfNotFound: true);
         m_player_SwitchWeaponPlus = m_player.FindAction("SwitchWeaponPlus", throwIfNotFound: true);
         m_player_SwitchWeaponLess = m_player.FindAction("SwitchWeaponLess", throwIfNotFound: true);
+        m_player_Grab = m_player.FindAction("Grab", throwIfNotFound: true);
+        m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -181,6 +221,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_player_Shoot;
     private readonly InputAction m_player_SwitchWeaponPlus;
     private readonly InputAction m_player_SwitchWeaponLess;
+    private readonly InputAction m_player_Grab;
+    private readonly InputAction m_player_Jump;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -190,6 +232,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_player_Shoot;
         public InputAction @SwitchWeaponPlus => m_Wrapper.m_player_SwitchWeaponPlus;
         public InputAction @SwitchWeaponLess => m_Wrapper.m_player_SwitchWeaponLess;
+        public InputAction @Grab => m_Wrapper.m_player_Grab;
+        public InputAction @Jump => m_Wrapper.m_player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,6 +258,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SwitchWeaponLess.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
                 @SwitchWeaponLess.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
                 @SwitchWeaponLess.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
+                @Grab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -233,6 +283,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SwitchWeaponLess.started += instance.OnSwitchWeaponLess;
                 @SwitchWeaponLess.performed += instance.OnSwitchWeaponLess;
                 @SwitchWeaponLess.canceled += instance.OnSwitchWeaponLess;
+                @Grab.started += instance.OnGrab;
+                @Grab.performed += instance.OnGrab;
+                @Grab.canceled += instance.OnGrab;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -244,5 +300,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnSwitchWeaponPlus(InputAction.CallbackContext context);
         void OnSwitchWeaponLess(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

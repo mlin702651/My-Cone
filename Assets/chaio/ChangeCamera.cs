@@ -6,6 +6,7 @@ public class ChangeCamera : MonoBehaviour
 {
     public GameObject mainCamera;
     public GameObject aimCamera;
+    public GameObject aimReticle;
     //public GameObject aimReticle;
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,13 @@ public class ChangeCamera : MonoBehaviour
         {
             mainCamera.SetActive(false);
             aimCamera.SetActive(true);
+            aimReticle.SetActive(true);
         }
         else
         {
             mainCamera.SetActive(true);
             aimCamera.SetActive(false);
-
+            aimReticle.SetActive(false);
         }
     }
 }

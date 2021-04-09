@@ -60,6 +60,30 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Charge",
+                    "type": "Button",
+                    "id": "8ecf1c1a-9863-4381-889a-9cfbe33eeb7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CameraMove",
+                    "type": "Value",
+                    "id": "eb3815d8-55f8-4cbe-8206-a3d4d55e81f1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "7a6dfe32-bdfa-4007-8232-bc26b69b9559",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -77,7 +101,7 @@
                 {
                     "name": "",
                     "id": "bb196511-a76d-4669-bf85-c9d031721788",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -120,6 +144,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c16e5c9b-fa80-4c89-a95f-82a05078c2f6",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b94f941e-dc4e-42d6-8ab2-16c8cab3ae30",
                     "path": "",
                     "interactions": "",
@@ -131,12 +166,61 @@
                 },
                 {
                     "name": "",
-                    "id": "c16e5c9b-fa80-4c89-a95f-82a05078c2f6",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "5c0e1c00-6f4a-42b6-a961-924ad11932b4",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Charge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fa19468-fe8e-49e8-ad29-8244ef6fd271",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96ec73c1-e58c-4e31-878e-d18d0e6dacc2",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "New action map",
+            "id": "e37b3e86-f6a3-449c-a5e3-b717fee99975",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "10fe930a-28be-4382-8071-1914223276cb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "37baa78c-38d3-4aa3-9585-eda95dc7b4fe",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

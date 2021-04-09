@@ -73,6 +73,30 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Charge"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ecf1c1a-9863-4381-889a-9cfbe33eeb7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CameraMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""eb3815d8-55f8-4cbe-8206-a3d4d55e81f1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a6dfe32-bdfa-4007-8232-bc26b69b9559"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -90,7 +114,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bb196511-a76d-4669-bf85-c9d031721788"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -133,6 +157,17 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""c16e5c9b-fa80-4c89-a95f-82a05078c2f6"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b94f941e-dc4e-42d6-8ab2-16c8cab3ae30"",
                     ""path"": """",
                     ""interactions"": """",
@@ -144,12 +179,61 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c16e5c9b-fa80-4c89-a95f-82a05078c2f6"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""5c0e1c00-6f4a-42b6-a961-924ad11932b4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Charge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fa19468-fe8e-49e8-ad29-8244ef6fd271"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96ec73c1-e58c-4e31-878e-d18d0e6dacc2"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""New action map"",
+            ""id"": ""e37b3e86-f6a3-449c-a5e3-b717fee99975"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""10fe930a-28be-4382-8071-1914223276cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""37baa78c-38d3-4aa3-9585-eda95dc7b4fe"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -167,6 +251,12 @@ public class @Controls : IInputActionCollection, IDisposable
         m_player_SwitchWeaponLess = m_player.FindAction("SwitchWeaponLess", throwIfNotFound: true);
         m_player_Grab = m_player.FindAction("Grab", throwIfNotFound: true);
         m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
+        m_player_Charge = m_player.FindAction("Charge", throwIfNotFound: true);
+        m_player_CameraMove = m_player.FindAction("CameraMove", throwIfNotFound: true);
+        m_player_Aim = m_player.FindAction("Aim", throwIfNotFound: true);
+        // New action map
+        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
+        m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -223,6 +313,9 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_player_SwitchWeaponLess;
     private readonly InputAction m_player_Grab;
     private readonly InputAction m_player_Jump;
+    private readonly InputAction m_player_Charge;
+    private readonly InputAction m_player_CameraMove;
+    private readonly InputAction m_player_Aim;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -234,6 +327,9 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @SwitchWeaponLess => m_Wrapper.m_player_SwitchWeaponLess;
         public InputAction @Grab => m_Wrapper.m_player_Grab;
         public InputAction @Jump => m_Wrapper.m_player_Jump;
+        public InputAction @Charge => m_Wrapper.m_player_Charge;
+        public InputAction @CameraMove => m_Wrapper.m_player_CameraMove;
+        public InputAction @Aim => m_Wrapper.m_player_Aim;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +360,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Charge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCharge;
+                @Charge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCharge;
+                @Charge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCharge;
+                @CameraMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
+                @CameraMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
+                @CameraMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
+                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -289,10 +394,52 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Charge.started += instance.OnCharge;
+                @Charge.performed += instance.OnCharge;
+                @Charge.canceled += instance.OnCharge;
+                @CameraMove.started += instance.OnCameraMove;
+                @CameraMove.performed += instance.OnCameraMove;
+                @CameraMove.canceled += instance.OnCameraMove;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
     public PlayerActions @player => new PlayerActions(this);
+
+    // New action map
+    private readonly InputActionMap m_Newactionmap;
+    private INewactionmapActions m_NewactionmapActionsCallbackInterface;
+    private readonly InputAction m_Newactionmap_Newaction;
+    public struct NewactionmapActions
+    {
+        private @Controls m_Wrapper;
+        public NewactionmapActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Newactionmap_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
+        public void SetCallbacks(INewactionmapActions instance)
+        {
+            if (m_Wrapper.m_NewactionmapActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_NewactionmapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -302,5 +449,12 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSwitchWeaponLess(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCharge(InputAction.CallbackContext context);
+        void OnCameraMove(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+    }
+    public interface INewactionmapActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

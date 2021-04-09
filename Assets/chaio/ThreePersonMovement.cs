@@ -37,11 +37,7 @@ public class ThreePersonMovement : MonoBehaviour
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
             Debug.Log("mouseX"+ mouseX);
             Debug.Log("mouseY" + mouseY);
-            //xRotation -= mouseY;
-            //xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-            //aimCam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-            //targetAim.transform.position += new Vector3(0, mouseY, 0);
+            
             controller.transform.Rotate(Vector3.up * mouseX);
 
             Vector3 move = transform.right * horizontal + transform.forward * vertical;
@@ -59,8 +55,5 @@ public class ThreePersonMovement : MonoBehaviour
             }
         }
         
-
-
-
     }
 }

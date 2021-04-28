@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public static Vector2 getRotate;
     public static bool pressDown = false;
     int weaponNum = 1;
-
+    public static int cameraChange = 1;
     //腳色動作有關的變數
     public CharacterController controller;
     public Transform mainCam;
@@ -42,7 +42,9 @@ public class PlayerController : MonoBehaviour
             //開槍
         controls.player.Shoot.started += ctx => ShootStart();
         controls.player.Shoot.canceled += ctx => ShootCanceled();
-
+            //換視角   
+        controls.player.Aim.performed += ctx => AimStart();
+        controls.player.Aim.canceled += ctx => AimCanceled();
     }
     //切換武器
     void SwitchWeaponPlus()
@@ -65,10 +67,21 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("fire");
         pressDown = true;
+       
     }
     void ShootCanceled()
     {
         pressDown = false;
+    }
+    void AimStart()
+    {
+        cameraChange = 2;
+        
+    }
+    void AimCanceled()
+    {
+        cameraChange = 1;
+        
     }
     void OnEnable()
     {
@@ -95,7 +108,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(getMove.x, 0f, getMove.y).normalized;
         Debug.Log(getMove.x);
         //瞄準相機的移動
-        if (Input.GetKey("space"))
+        if (cameraChange == 2)
         {
             float camMoveSpeedX = getCamMove.x * Sensitivity * Time.deltaTime;
             float camMoveSpeedY = getCamMove.y * Sensitivity * Time.deltaTime;

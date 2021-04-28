@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ChangeCamera : MonoBehaviour
 {
     public GameObject mainCamera;
@@ -17,7 +18,7 @@ public class ChangeCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("space"))
+        if (PlayerController.cameraChange==2)
         {
             mainCamera.SetActive(false);
             aimCamera.SetActive(true);

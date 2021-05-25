@@ -7,7 +7,7 @@ using Lean.Pool;
 public class bulletcontroller : MonoBehaviour
 {
     public GameObject firePoint;
-    float timer = 0;
+    float timer = 10;
     float flyTime = 2;
     //續力
     public GameObject flashEffect01;
@@ -21,12 +21,18 @@ public class bulletcontroller : MonoBehaviour
     public GameObject flashEffect02;
     public Rigidbody bullet02;
     public float bulletSpeed02 = 10.0f;
-    
 
+    //炸半
+    public GameObject smoke;
+    public GameObject bomb;
+    float exploTimer=0;
+    bool exploFlag = false;
+    float bombTimer = 10;
     void Update()
     {
         magic01();
         magic02();
+        magic03();
     }
 
     void magic01()
@@ -65,9 +71,9 @@ public class bulletcontroller : MonoBehaviour
 
     void magic02()
     {
-        if (Input.GetKey("w"))
+        if (Input.GetKey("e"))
         {
-            Debug.Log(timer);
+            
             if (timer > 0.5f)
             {
                 Debug.Log(timer);
@@ -79,9 +85,48 @@ public class bulletcontroller : MonoBehaviour
                 clonebullet.velocity = transform.TransformDirection(Vector3.left * bulletSpeed02);//讓子彈飛
                 Lean.Pool.LeanPool.Despawn(clonebullet, 1);
                 timer = 0;
+                
             }
             else timer += Time.deltaTime;         
         }    
+    }
+
+    void magic03()
+    {
+       
+        if (Input.GetKeyDown("r"))
+        {
+            Debug.Log(bombTimer);
+            if (bombTimer > 10f)
+            {
+                Debug.Log(bombTimer);
+                //炸彈
+                GameObject cloneBomb;
+                cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position, Quaternion.identity);
+                Lean.Pool.LeanPool.Despawn(cloneBomb, 6);
+
+                exploTimer = 0;
+                timer = 0;
+                exploFlag = true;
+            }
+            Debug.Log(exploTimer);
+           
+        }
+        else
+        {
+            exploTimer += Time.deltaTime;
+            bombTimer += Time.deltaTime;
+        }
+        if (exploTimer > 4 && exploFlag)
+        {
+            Debug.Log("in");
+            exploFlag = false;
+            //煙
+            GameObject cloneSmoke;
+            cloneSmoke = Lean.Pool.LeanPool.Spawn(smoke, transform.position, Quaternion.identity);
+            Lean.Pool.LeanPool.Despawn(cloneSmoke, 2);
+            exploTimer = 0;
+        }
     }
 }
 

@@ -10,12 +10,16 @@ public class bulletcontroller : MonoBehaviour
     float timer = 10;
     float flyTime = 2;
     //續力
+    public GameObject startEffect01;
+    GameObject cloneStart;
     public GameObject flashEffect01;
     public Rigidbody bullet01;
     public float bulletSpeed01=10.0f;
-
+    bool accumulateSuccess = true;
     bool Flag = false;
-    float pressTime=0;
+    float pressTime = 0;
+    float calculatePressToFly = 0;
+
 
     //泡泡
     public GameObject flashEffect02;
@@ -37,23 +41,44 @@ public class bulletcontroller : MonoBehaviour
 
     void magic01()
     {
-     
-        if (Input.GetKey("q")&& pressTime<=1.0f)
+        Debug.Log(accumulateSuccess);
+        if (Input.GetKeyDown("q"))
+        {
+            pressTime = 0;
+            Debug.Log("in");          
+            cloneStart = Lean.Pool.LeanPool.Spawn(startEffect01, transform.position, Quaternion.identity);
+            accumulateSuccess = true;
+        }
+        //開始記錄續力時間 
+        if (Input.GetKey("q"))
         {
             pressTime += Time.deltaTime;
-           
+            calculatePressToFly = pressTime;
+            if (pressTime >= 2.5f)
+            {
+                Lean.Pool.LeanPool.Despawn(cloneStart);
+                accumulateSuccess = false;
+              
+            }
+            else if (pressTime >= 1.0f)
+            {
+                calculatePressToFly = 1;
+            }    
         }
-        if (pressTime < 0.3f)
+        Debug.Log(pressTime);
+        if (calculatePressToFly < 0.3f)
         {
             flyTime = 0.2f;
         }
         else
         {
-            flyTime = Mathf.Pow(2, pressTime) - 1.0f;
+            flyTime = Mathf.Pow(2, calculatePressToFly) - 1.0f;
         }
        
-        if (Input.GetKeyUp("q"))
+        if (Input.GetKeyUp("q")&& accumulateSuccess)
         {
+            Lean.Pool.LeanPool.Despawn(cloneStart);
+
             Flag = true;
             GameObject cloneFlash;
             cloneFlash = Lean.Pool.LeanPool.Spawn(flashEffect01, transform.position, Quaternion.identity);
@@ -64,8 +89,7 @@ public class bulletcontroller : MonoBehaviour
             clonebullet.velocity = transform.TransformDirection(Vector3.left * bulletSpeed01);//讓子彈飛
             Lean.Pool.LeanPool.Despawn(clonebullet, flyTime);
 
-            pressTime = 0;
-                     
+            pressTime = 0;                 
         }
     }
 
@@ -76,7 +100,7 @@ public class bulletcontroller : MonoBehaviour
             
             if (timer > 0.5f)
             {
-                Debug.Log(timer);
+              
                 GameObject cloneFlash;
                 cloneFlash = Lean.Pool.LeanPool.Spawn(flashEffect02, transform.position, Quaternion.identity);
                 Lean.Pool.LeanPool.Despawn(cloneFlash, 1);
@@ -96,10 +120,9 @@ public class bulletcontroller : MonoBehaviour
        
         if (Input.GetKeyDown("r"))
         {
-            Debug.Log(bombTimer);
+            
             if (bombTimer > 10f)
             {
-                Debug.Log(bombTimer);
                 //炸彈
                 GameObject cloneBomb;
                 cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position, Quaternion.identity);
@@ -108,9 +131,7 @@ public class bulletcontroller : MonoBehaviour
                 exploTimer = 0;
                 timer = 0;
                 exploFlag = true;
-            }
-            Debug.Log(exploTimer);
-           
+            }        
         }
         else
         {
@@ -119,7 +140,6 @@ public class bulletcontroller : MonoBehaviour
         }
         if (exploTimer > 4 && exploFlag)
         {
-            Debug.Log("in");
             exploFlag = false;
             //煙
             GameObject cloneSmoke;

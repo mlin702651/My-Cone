@@ -105,6 +105,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Talk"",
+                    ""type"": ""Button"",
+                    ""id"": ""37255d8c-35c3-4979-9472-4feebece740b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -228,6 +236,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d885e44e-4b53-4a94-a46a-d9d839e14507"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Talk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -274,6 +293,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_player_CameraMove = m_player.FindAction("CameraMove", throwIfNotFound: true);
         m_player_Aim = m_player.FindAction("Aim", throwIfNotFound: true);
         m_player_Dash = m_player.FindAction("Dash", throwIfNotFound: true);
+        m_player_Talk = m_player.FindAction("Talk", throwIfNotFound: true);
         // New action map
         m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
         m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
@@ -337,6 +357,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_player_CameraMove;
     private readonly InputAction m_player_Aim;
     private readonly InputAction m_player_Dash;
+    private readonly InputAction m_player_Talk;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -352,6 +373,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @CameraMove => m_Wrapper.m_player_CameraMove;
         public InputAction @Aim => m_Wrapper.m_player_Aim;
         public InputAction @Dash => m_Wrapper.m_player_Dash;
+        public InputAction @Talk => m_Wrapper.m_player_Talk;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -394,6 +416,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Talk.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
+                @Talk.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
+                @Talk.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -431,6 +456,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Talk.started += instance.OnTalk;
+                @Talk.performed += instance.OnTalk;
+                @Talk.canceled += instance.OnTalk;
             }
         }
     }
@@ -481,6 +509,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnCameraMove(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnTalk(InputAction.CallbackContext context);
     }
     public interface INewactionmapActions
     {

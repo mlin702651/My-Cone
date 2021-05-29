@@ -35,6 +35,12 @@ public class SimpleMovement : MonoBehaviour
     public static bool canDash = false;
     private int dashCount = 0;
 
+    //talk
+    private bool ConversationPress = false;
+    private bool isTalking = false;
+    private bool canTalk = false;
+    private Dialogue dialogue = null;
+
     void Awake()
     {
         //手把控制
@@ -50,6 +56,10 @@ public class SimpleMovement : MonoBehaviour
             //衝
             controls.player.Dash.started += ctx => DashStart();
             controls.player.Dash.canceled += ctx => DashCanceled();
+
+             //對話
+            controls.player.Talk.started += ctx => ConversationStart();
+            controls.player.Talk.canceled += ctx => ConversationCanceled();
 
 
     }
@@ -90,6 +100,25 @@ public class SimpleMovement : MonoBehaviour
         Debug.Log("dashEnd!");
     }
 
+    void ConversationStart(){
+         Debug.Log("ConversationBtn Start");
+         ConversationPress = true;
+    }
+    void ConversationCanceled(){
+         Debug.Log("ConversationBtn Leave");
+
+    }
+
+    public void SetTalkingStatus(bool talkbool){
+        isTalking = talkbool;
+    }
+    public void SetCanTalkStatus(bool cantalkbool){
+        canTalk = cantalkbool;
+    }
+    public void GetDialogue(Dialogue _dialogue){
+        dialogue = _dialogue;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +128,20 @@ public class SimpleMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
+        //對話
+        if(canTalk&&ConversationPress){
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            canTalk = false;
+            ConversationPress = false;
+        }
+        else if(ConversationPress){
+            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+            ConversationPress = false;
+        }
+        if(isTalking){
+            return;//在講話的時候就不能動
+        }
         if (getMove.x > 0.2 || getMove.x < -0.2 || getMove.y > 0.2 || getMove.y < -0.2)
         {
             Vector3 TargetDir = new Vector3(getMove.x, 0, getMove.y);
@@ -204,5 +247,8 @@ public class SimpleMovement : MonoBehaviour
             
 
         //}
+
+        
+        
     }
 }

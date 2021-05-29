@@ -38,6 +38,8 @@ public class SimpleMovement : MonoBehaviour
     //talk
     private bool ConversationPress = false;
     private bool isTalking = false;
+    private bool canTalk = false;
+    private Dialogue dialogue = null;
 
     void Awake()
     {
@@ -110,6 +112,12 @@ public class SimpleMovement : MonoBehaviour
     public void SetTalkingStatus(bool talkbool){
         isTalking = talkbool;
     }
+    public void SetCanTalkStatus(bool cantalkbool){
+        canTalk = cantalkbool;
+    }
+    public void GetDialogue(Dialogue _dialogue){
+        dialogue = _dialogue;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -122,7 +130,12 @@ public class SimpleMovement : MonoBehaviour
     {
         
         //對話
-        if(ConversationPress){
+        if(canTalk&&ConversationPress){
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            canTalk = false;
+            ConversationPress = false;
+        }
+        else if(ConversationPress){
             FindObjectOfType<DialogueManager>().DisplayNextSentence();
             ConversationPress = false;
         }

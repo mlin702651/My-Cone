@@ -204,7 +204,7 @@ public class SimpleMovement : MonoBehaviour
 
             }
             ifTimer = false;
-            woomi.transform.localScale = new Vector3(1, 1, 1);
+            woomi.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             timer = 0;
             jumpStatus = 0;
         }

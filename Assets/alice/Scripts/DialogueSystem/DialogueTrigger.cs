@@ -25,12 +25,12 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         dialogueHint.DOFade(1,0.5f);
-        FindObjectOfType<SimpleMovement>().SetCanTalkStatus(true);
-        FindObjectOfType<SimpleMovement>().GetDialogue(dialogue);
+        FindObjectOfType<WoomiMovement>().SetCanTalkStatus(true);
+        FindObjectOfType<WoomiMovement>().GetDialogue(dialogue);
     }
     
     private void OnTriggerExit(Collider other) {
         dialogueHint.DOFade(0,0.3f);
-        FindObjectOfType<SimpleMovement>().SetCanTalkStatus(false);
+        FindObjectOfType<WoomiMovement>().SetCanTalkStatus(false);
     }
 }

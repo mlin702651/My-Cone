@@ -83,7 +83,7 @@ public class DialogueManager : MonoBehaviour {
         //UI上升的動畫
         dialogueSprite.DOAnchorPosY(-365,DialogueInTime,true).SetEase(DialogueEaseIn);
         //讓主角不能動
-        FindObjectOfType<SimpleMovement>().SetTalkingStatus(true);
+        FindObjectOfType<WoomiMovement>().SetTalkingStatus(true);
 
     }
 
@@ -122,10 +122,7 @@ public class DialogueManager : MonoBehaviour {
     void EndDialogue(){
         Debug.Log("End of conversation");
         dialogueSprite.DOAnchorPosY(-850,DialogueOutTime,true).SetEase(DialogueEaseOut);
-        FindObjectOfType<SimpleMovement>().SetTalkingStatus(false);
+        FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);
     }
 
 }
-
-//待修正 連按會讓對話壞掉 要設個bool控制可不可以講下一句話 
-//要改成按上才會開始對話 現在一碰到就會強制講話 會逃不出

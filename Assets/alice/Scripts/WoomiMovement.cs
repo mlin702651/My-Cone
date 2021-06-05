@@ -5,9 +5,9 @@ using UnityEngine;
 public class WoomiMovement : MonoBehaviour
 {
     Controls controls;
-
     private Rigidbody _body;
     private bool _isGrounded = false;
+    // #region#endregion
     #region Animation
     Animator _animator;
     private int currentAnimationState;
@@ -31,15 +31,25 @@ public class WoomiMovement : MonoBehaviour
     private int animationSlide;
     private int animationStayInAir;
     #endregion
-    
     #region Walk
     
-    private Vector2 getMove;
     [Header("Walk")]
     [SerializeField]private float PlayerSpeed = 5f;
     [SerializeField]private float rotSpeed = 0.6f;
+    private Vector2 getMove;
     #endregion
-    
+    #region Camera
+    [Header("Camera")]
+    [SerializeField]private Transform mainCam;
+    [SerializeField]private float Sensitivity = 100f;
+    [SerializeField]private float turnSmoothTime = 0.1f;
+    private Vector2 getCamMove;
+    public GameObject freeCamera;
+    public GameObject aimCamera;
+    public GameObject aimReticle;
+    private static int cameraChange = 1;
+    private float turnSmoothVelocity;
+    #endregion
     #region Jump
     [Header("Jump")]
     [SerializeField]private float JumpHeight = 2f;
@@ -59,7 +69,6 @@ public class WoomiMovement : MonoBehaviour
     [SerializeField] private float landingDuration = 0.5f;
     
     #endregion
-    
     #region Dash
     private static bool DashPressDown = false;
     private bool isGroundDashing = false;
@@ -67,7 +76,6 @@ public class WoomiMovement : MonoBehaviour
     [SerializeField]private float dashSpeed = 300;
     [SerializeField]private float groundDashDelay = 2f;
     #endregion
-
     #region Shoot
     private int magicStatus = 0; //0海螺 1泡泡 2海菇
     private bool ShootPressDown = false;
@@ -76,8 +84,18 @@ public class WoomiMovement : MonoBehaviour
     private bool PlusMagicStatusPress = false;
     private bool MinusMagicStatusPress = false;
     private bool isShooting = false;
+    private bool isHolding = false;
+    [Header("Shoot")]
+    [SerializeField]private float magicConchHoldTime = 2f;
     #endregion
-    // #region#endregion
+    #region Talk
+    private bool ConversationPress = false;
+    private bool isTalking = false;
+    private bool canTalk = false;
+    private Dialogue dialogue = null;
+    #endregion
+    
+    #region SetUp
     void Awake()
     {
          _animator = GetComponent<Animator>();
@@ -104,14 +122,21 @@ public class WoomiMovement : MonoBehaviour
         
         //= Animator.StringToHash("Player_");
         #endregion
-
         #region GamePadControls
         
         controls = new Controls();
-
+            //角色移動
             controls.player.Move.performed += ctx => getMove = ctx.ReadValue<Vector2>();
             controls.player.Move.canceled += ctx => getMove = Vector2.zero;
+
+            //視角移動
+            controls.player.CameraMove.performed+=ctx=> getCamMove= ctx.ReadValue<Vector2>();
+            controls.player.CameraMove.canceled += ctx => getCamMove = Vector2.zero;
             
+             //瞄準視角   
+            controls.player.Aim.performed += ctx => AimStart();
+            controls.player.Aim.canceled += ctx => AimCanceled();
+
             //跳
             controls.player.Jump.started += ctx => JumpStart();
             controls.player.Jump.canceled += ctx => JumpCanceled();
@@ -126,67 +151,104 @@ public class WoomiMovement : MonoBehaviour
             controls.player.SwitchWeaponPlus.started += ctx => PlusMagicStatus();
             controls.player.SwitchWeaponLess.started += ctx => MinusMagicStatus();
 
-            //  //對話
-            // controls.player.Talk.started += ctx => ConversationStart();
-            // controls.player.Talk.canceled += ctx => ConversationCanceled();
+             //對話
+            controls.player.Talk.started += ctx => ConversationStart();
+            controls.player.Talk.canceled += ctx => ConversationCanceled();
         #endregion
     }
-
     private void Start() {
        
         _body = GetComponent<Rigidbody>();
         currentAnimationState = animationIdle;
         ChangeAnimationState(animationIdle);
     }
-
     void OnEnable()
     {
         controls.player.Enable();
     }
-
     void OnDisable()
     {
         controls.player.Disable();
     }
-
     void ChangeAnimationState(int newAnimationState)
     {
-        if(newAnimationState == currentAnimationState) return; //一樣的話就不重新開始播ㄌ
-
+        if(newAnimationState==animationHoldMagicConch){
+            Debug.Log("nothing!!");
+        }
+        else if(newAnimationState == currentAnimationState) {
+            Debug.Log("return!!");
+            return; //一樣的話就不重新開始播ㄌ
+        }
         _animator.Play(newAnimationState);
         
         currentAnimationState = newAnimationState;
     }
-
-    // Update is called once per frame
+    #endregion
     void FixedUpdate()
     {
         
+        #region Talk
+        if(canTalk&&ConversationPress){
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            canTalk = false;
+            ConversationPress = false;
+        }
+        else if(ConversationPress){
+            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+            ConversationPress = false;
+        }
+        if(isTalking){
+            return;//在講話的時候就不能動
+        }
+        #endregion
+        #region Camera+Move
+        Vector3 direction = new Vector3(getMove.x, 0f, getMove.y).normalized;
+        //瞄準相機的移動
+        if (cameraChange == 2)
+        {
+            float camMoveSpeedX = getCamMove.x * Sensitivity * Time.deltaTime;
+            float camMoveSpeedY = getCamMove.y * Sensitivity * Time.deltaTime;
+            //controller.transform.Rotate(Vector3.up * camMoveSpeedX);
+
+            Vector3 move = transform.right * getMove.x + transform.forward * getMove.y;
+            //controller.Move(move * speed * Time.deltaTime);
+        }
+        //free相機的移動
+        else
+        {
+            if (direction.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCam.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                //controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                if(!isShooting)transform.position += moveDir.normalized*PlayerSpeed*Time.deltaTime;
+            }
+        }
+
+        if (cameraChange==2)
+        {
+            freeCamera.SetActive(false);
+            aimCamera.SetActive(true);
+            aimReticle.SetActive(true);
+        }
+        else
+        {
+            freeCamera.SetActive(true);
+            aimCamera.SetActive(false);
+            aimReticle.SetActive(false);
+        }
+        #endregion
+        #region Move Animation
         if ((getMove.x > 0.2 || getMove.x < -0.2 || getMove.y > 0.2 || getMove.y < -0.2)&&!isShooting)
         {
             if(!isJumping&&!isLanding&&!isGroundDashing&&!isShooting)ChangeAnimationState(animationWalk);
-            Vector3 TargetDir = new Vector3(getMove.x, 0, getMove.y);
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                Quaternion.LookRotation(TargetDir),
-                Time.time * rotSpeed
-            );
-            transform.position += new Vector3(
-                getMove.x * PlayerSpeed * Time.deltaTime,
-                0,
-                getMove.y * PlayerSpeed * Time.deltaTime
-            );
-            // _body.velocity = transform.forward * Time.deltaTime * PlayerSpeed *getMove.y;
-            // transform.rotation = Quaternion.RotateTowards(
-            //     transform.rotation,
-            //     transform.rotation+new Quaternion(),
-            //     Time.time * rotSpeed
-            // );
-
         }
         else{
             if(!isJumping&&!isLanding&&!isGroundDashing&&!isShooting)ChangeAnimationState(animationIdle);
         }
+        #endregion
         #region Jump&Land
         if (JumpPressDown)
         {
@@ -199,6 +261,10 @@ public class WoomiMovement : MonoBehaviour
         else{
             //_animator.SetBool("_bIsJumping",false);
             //_animator.SetBool("_bIsGrounded",_isGrounded);
+        }
+        if(_body.velocity.y<0&&!_isGrounded){
+            isLanding = true;
+            ChangeAnimationState(animationJumpEnd);
         }
         if(isLanding) 
         {
@@ -261,28 +327,77 @@ public class WoomiMovement : MonoBehaviour
         if(ShootPressDown){
             
             switch(magicStatus){
-                case 0:
-                Debug.Log("magic1");
-                ChangeAnimationState(animationStartMagicConch);
-                ShootPressDown = false;
+                case 0: //海螺
+                    Debug.Log("magic1");
+                    ChangeAnimationState(animationStartMagicConch);
+                    float magicConchStartDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+                    Invoke("PlayHoldMagicConchAnimation",magicConchStartDelay);
+                    ShootPressDown = false;
                     break;
                 case 1:
+                    Debug.Log("magic1");
+                    ChangeAnimationState(animationStartMagicBubble);
+                    float magicBubbleStartDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+                    Invoke("PlayHoldMagicBubbleAnimation",magicBubbleStartDelay);
+                    ShootPressDown = false;
+                    break;
+                case 2:
+                    Debug.Log("magic3");
+                    ChangeAnimationState(animationMagicBomb);
+                    float magicBombDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+                    Invoke("CompleteShooting",magicBombDelay);
+                    ShootPressDown = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+        if(isHolding&&!isPressingShoot){
+            isHolding = false;
+            switch(magicStatus){
+                case 0: //海螺
+                    ChangeAnimationState(animationEndMagicConch);
+                    float magicConchEndDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+                    Invoke("CompleteShooting",magicConchEndDelay);
+                    
+                    
+                    break;
+                case 1:
+                    ChangeAnimationState(animationEndMagicBubble);
+                    float magicBubbleEndDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+                    Invoke("CompleteShooting",magicBubbleEndDelay);
                     break;
                 case 2:
                     break;
                 default:
                     break;
             }
+            
         }
         if(isPressingShoot){
             isShooting = true;
-            //PressingShootTimer
+            PressingShootTimer += Time.deltaTime;
         }
         else{
-            isShooting = false;
+            //isShooting = false;
         }
         #endregion
     }
+
+#region Aim
+
+    void AimStart()
+    {
+        cameraChange = 2;
+        
+    }
+    void AimCanceled()
+    {
+        cameraChange = 1;
+        
+    }
+#endregion
+#region Jump
 
     void JumpLevel2(){
         ChangeAnimationState(animationJumpLevel2);
@@ -299,40 +414,94 @@ public class WoomiMovement : MonoBehaviour
         isPressingJump = false;
         Debug.Log("jumpEnd!");
     }
-
+#endregion
+#region Dash
     void DashStart(){
         DashPressDown = true;
     }
     void DashCanceled(){
         DashPressDown = false;
     }
-
     void DashComplete(){
         isGroundDashing = false;
     }
-
+#endregion
+#region Shoot
     void ShootStart(){
         ShootPressDown = true;
         isPressingShoot = true;
     }
     void ShootCanceled(){
-        ShootPressDown = false;
+        //ShootPressDown = false;
         isPressingShoot = false;
+        PressingShootTimer = 0;
     }
-
+    void PlayHoldMagicConchAnimation(){
+        if(isPressingShoot&&PressingShootTimer<=magicConchHoldTime){
+            isHolding = true;
+            ChangeAnimationState(animationHoldMagicConch);
+            float magicConchStartDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+            Invoke("PlayHoldMagicConchAnimation",magicConchStartDelay-0.2f);
+            Debug.Log("is playing hold1");
+        }
+        else{
+            isHolding = false;
+            CompleteShooting();
+        }
+        
+    }
+    void PlayHoldMagicBubbleAnimation(){
+        if(isPressingShoot&&PressingShootTimer<=magicConchHoldTime){
+            isHolding = true;
+            ChangeAnimationState(animationHoldMagicBubble);
+            float magicBubbleStartDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+            Invoke("PlayHoldBubbleConchAnimation",magicBubbleStartDelay-0.2f);
+            Debug.Log("is playing hold21");
+        }
+        else{
+            isHolding = false;
+            CompleteShooting();
+        }
+        
+    }
+    void CompleteShooting(){
+        isShooting = false;
+    }
+#endregion
+#region ChangeMagic
     void PlusMagicStatus(){
         PlusMagicStatusPress = true;
     }
     void MinusMagicStatus(){
         MinusMagicStatusPress = true;
     }
+#endregion
+#region Talk
+    void ConversationStart(){
+            Debug.Log("ConversationBtn Start");
+            ConversationPress = true;
+    }
+    void ConversationCanceled(){
+            Debug.Log("ConversationBtn Leave");
 
+    }
+
+    public void SetTalkingStatus(bool talkbool){
+        isTalking = talkbool;
+    }
+    public void SetCanTalkStatus(bool cantalkbool){
+        canTalk = cantalkbool;
+    }
+    public void GetDialogue(Dialogue _dialogue){
+        dialogue = _dialogue;
+    }
+#endregion
+#region Trigger
 
     private void OnTriggerEnter(Collider other) {
          _isGrounded = true;
          if(isJumping){
-            isLanding = true;
-            ChangeAnimationState(animationJumpEnd);
+            
          }
          isJumping = false;
     }
@@ -342,4 +511,6 @@ public class WoomiMovement : MonoBehaviour
     private void OnTriggerExit(Collider other) {
          _isGrounded = false;
     }
+#endregion
+
 }

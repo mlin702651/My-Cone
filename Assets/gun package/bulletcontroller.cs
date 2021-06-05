@@ -33,7 +33,7 @@ public class bulletcontroller : MonoBehaviour
     float exploTimer=0;
     bool exploFlag = false;
     float bombTimer = 10;
-
+    Vector3 bombPosition;
     //status
     
     private int magicStatus = 0; //0海螺 1泡泡 2海菇
@@ -193,7 +193,7 @@ public class bulletcontroller : MonoBehaviour
                 GameObject cloneBomb;
                 cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position, Quaternion.identity);
                 Lean.Pool.LeanPool.Despawn(cloneBomb, 6);
-
+                bombPosition = transform.position;
                 exploTimer = 0;
                 timer = 0;
                 exploFlag = true;
@@ -209,7 +209,7 @@ public class bulletcontroller : MonoBehaviour
             exploFlag = false;
             //煙
             GameObject cloneSmoke;
-            cloneSmoke = Lean.Pool.LeanPool.Spawn(smoke, transform.position, Quaternion.identity);
+            cloneSmoke = Lean.Pool.LeanPool.Spawn(smoke, bombPosition, Quaternion.identity);
             Lean.Pool.LeanPool.Despawn(cloneSmoke, 2);
             exploTimer = 0;
         }

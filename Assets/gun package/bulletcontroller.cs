@@ -26,6 +26,7 @@ public class bulletcontroller : MonoBehaviour
     public GameObject flashEffect02;
     public Rigidbody bullet02;
     public float bulletSpeed02 = 10.0f;
+    GameObject cloneFlash;
 
     //炸半
     public GameObject smoke;
@@ -44,7 +45,11 @@ public class bulletcontroller : MonoBehaviour
     private bool ShootPressDown = false;
     private bool ShootPressUp = false;
     private bool isPressingShoot = false;
-    
+
+    //旋轉firepoint跟魔法 面對woomi的方向
+    private bool isRotating = false;
+    Transform woomi;
+
     void Awake(){
         controls = new Controls();
 
@@ -65,7 +70,8 @@ public class bulletcontroller : MonoBehaviour
     }
     void Update()
     {
-        switch(magicStatus){
+        firepointRotate();
+        switch (magicStatus){
                 case 0: //海螺
                     magic01();
                     
@@ -96,10 +102,21 @@ public class bulletcontroller : MonoBehaviour
         }
         #endregion
     }
+    void firepointRotate()
+    {
 
+        
+
+    }
     void magic01()
     {
         Debug.Log(accumulateSuccess);
+        if (cloneStart != null)
+        {
+            cloneStart.transform.position = transform.position;
+
+        }
+        //cloneStart.transform.position = firePoint.transform.position;
         //if (Input.GetKeyDown("q"))
         if (ShootPressDown)
         {
@@ -158,6 +175,11 @@ public class bulletcontroller : MonoBehaviour
 
     void magic02()
     {
+        if (cloneFlash != null)
+        {
+            cloneFlash.transform.position = transform.position;
+
+        }
         //if (Input.GetKey("e"))
         if (isPressingShoot)
         {
@@ -165,7 +187,7 @@ public class bulletcontroller : MonoBehaviour
             if (timer > 0.5f)
             {
               
-                GameObject cloneFlash;
+                //GameObject cloneFlash;
                 cloneFlash = Lean.Pool.LeanPool.Spawn(flashEffect02, transform.position, Quaternion.identity);
                 Lean.Pool.LeanPool.Despawn(cloneFlash, 1);
                 Rigidbody clonebullet;

@@ -48,7 +48,7 @@ public class bulletcontroller : MonoBehaviour
 
     //旋轉firepoint跟魔法 面對woomi的方向
     private bool isRotating = false;
-    Transform woomi;
+    public Transform woomi;
 
     void Awake(){
         controls = new Controls();
@@ -104,8 +104,9 @@ public class bulletcontroller : MonoBehaviour
     }
     void firepointRotate()
     {
+        //transform.rotation = woomi.transform.rotation + new Vector3(0,90,0);
 
-        
+
 
     }
     void magic01()
@@ -166,7 +167,11 @@ public class bulletcontroller : MonoBehaviour
 
             Rigidbody clonebullet;
             clonebullet = Lean.Pool.LeanPool.Spawn(bullet01, transform.position, Quaternion.identity) as Rigidbody;
-            clonebullet.velocity = transform.TransformDirection(Vector3.left * bulletSpeed01);//讓子彈飛
+            clonebullet.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed01);//讓子彈飛
+            //面向飛的方向
+            // Vector3 relativePos = woomi.position - transform.position;
+            //clonebullet.transform.rotation = Quaternion.LookRotation(relativePos);
+
             Lean.Pool.LeanPool.Despawn(clonebullet, flyTime);
 
             pressTime = 0;                 
@@ -192,7 +197,7 @@ public class bulletcontroller : MonoBehaviour
                 Lean.Pool.LeanPool.Despawn(cloneFlash, 1);
                 Rigidbody clonebullet;
                 clonebullet = Lean.Pool.LeanPool.Spawn(bullet02, transform.position, Quaternion.identity) as Rigidbody;
-                clonebullet.velocity = transform.TransformDirection(Vector3.left * bulletSpeed02);//讓子彈飛
+                clonebullet.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed02);//讓子彈飛
                 Lean.Pool.LeanPool.Despawn(clonebullet, 1);
                 timer = 0;
                 

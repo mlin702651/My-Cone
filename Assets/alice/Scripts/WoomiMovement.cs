@@ -241,7 +241,7 @@ public class WoomiMovement : MonoBehaviour
         }
         #endregion
         #region Move Animation
-        if ((getMove.x > 0.2 || getMove.x < -0.2 || getMove.y > 0.2 || getMove.y < -0.2)&&!isShooting)
+        if ((getMove.x > 0.1 || getMove.x < -0.1 || getMove.y > 0.1 || getMove.y < -0.1)&&!isShooting)
         {
             if(!isJumping&&!isLanding&&!isGroundDashing&&!isShooting)ChangeAnimationState(animationWalk);
         }

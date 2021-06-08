@@ -172,11 +172,7 @@ public class WoomiMovement : MonoBehaviour
     }
     void ChangeAnimationState(int newAnimationState)
     {
-        if(newAnimationState==animationHoldMagicConch){
-            Debug.Log("nothing!!");
-        }
-        else if(newAnimationState == currentAnimationState) {
-            Debug.Log("return!!");
+       if(newAnimationState == currentAnimationState) {
             return; //一樣的話就不重新開始播ㄌ
         }
         _animator.Play(newAnimationState);
@@ -186,7 +182,6 @@ public class WoomiMovement : MonoBehaviour
     #endregion
     void FixedUpdate()
     {
-        
         #region Talk
         if(canTalk&&ConversationPress){
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue);

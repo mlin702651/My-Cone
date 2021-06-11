@@ -45,6 +45,7 @@ public class bulletcontroller : MonoBehaviour
     private bool ShootPressDown = false;
     private bool ShootPressUp = false;
     private bool isPressingShoot = false;
+    
 
     //旋轉firepoint跟魔法 面對woomi的方向
     private bool isRotating = false;
@@ -169,6 +170,7 @@ public class bulletcontroller : MonoBehaviour
             clonebullet = Lean.Pool.LeanPool.Spawn(bullet01, transform.position, Quaternion.identity) as Rigidbody;
             clonebullet.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed01);//讓子彈飛
             //面向飛的方向
+            clonebullet.transform.rotation = firePoint.transform.rotation;
             // Vector3 relativePos = woomi.position - transform.position;
             //clonebullet.transform.rotation = Quaternion.LookRotation(relativePos);
 

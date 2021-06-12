@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52575237, g: 0.6571304, b: 0.7617307, a: 1}
+  m_IndirectSpecularColor: {r: 0.52575433, g: 0.6571264, b: 0.7617369, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -310,7 +310,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64334910}
-  m_LocalRotation: {x: 0.13696578, y: -0.00000035565728, z: 0.000000049176325, w: 0.9905758}
+  m_LocalRotation: {x: 0.1369658, y: -0.0000002098271, z: 0.000000029012558, w: 0.9905758}
   m_LocalPosition: {x: 3.82, y: 2.927464, z: -7.6470737}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7408,12 +7408,12 @@ PrefabInstance:
     - target: {fileID: 6108421081208849783, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000004229867
+      value: -0.00000039492488
       objectReference: {fileID: 0}
     - target: {fileID: 6108421081208849783, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000005848588
+      value: 0.000000054605806
       objectReference: {fileID: 0}
     - target: {fileID: 6108421081208849783, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
@@ -7783,17 +7783,17 @@ PrefabInstance:
     - target: {fileID: 6108421082087739320, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13696578
+      value: 0.1369658
       objectReference: {fileID: 0}
     - target: {fileID: 6108421082087739320, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000013671533
+      value: -0.000000025162704
       objectReference: {fileID: 0}
     - target: {fileID: 6108421082087739320, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000001890347
+      value: 0.0000000034792185
       objectReference: {fileID: 0}
     - target: {fileID: 6108421082087739320, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
@@ -7838,12 +7838,12 @@ PrefabInstance:
     - target: {fileID: 6108421082899634169, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000022053898
+      value: 0.000000022053898
       objectReference: {fileID: 0}
     - target: {fileID: 6108421082899634169, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000030493672
+      value: -0.0000000030493672
       objectReference: {fileID: 0}
     - target: {fileID: 6108421082899634169, guid: 83d8e9ab4b80c6243a5b519e4af3ac7f,
         type: 3}
@@ -8222,6 +8222,7 @@ MonoBehaviour:
   freeCamera: {fileID: 1766837507}
   aimCamera: {fileID: 1766837506}
   aimReticle: {fileID: 643020998}
+  firepoint: {fileID: 0}
   JumpHeight: 3
   JumpLevel2Height: 5
   JumpToLevel2HoldingTime: 1.5
@@ -9053,8 +9054,8 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 6645823806017268030}
-  - {fileID: 3316992659700655267}
   - {fileID: 8160277321333713139}
+  - {fileID: 3316992659700655267}
   - {fileID: 2104099381}
   - {fileID: 1337398960}
   m_Father: {fileID: 0}
@@ -9147,6 +9148,7 @@ MonoBehaviour:
   freeCamera: {fileID: 1766837507}
   aimCamera: {fileID: 1766837506}
   aimReticle: {fileID: 643020998}
+  firepoint: {fileID: 2104099381}
   JumpHeight: 3
   JumpLevel2Height: 5
   JumpToLevel2HoldingTime: 1.5
@@ -9674,7 +9676,7 @@ Transform:
   m_LocalScale: {x: 0.42240578, y: 0.42240578, z: 0.42240578}
   m_Children: []
   m_Father: {fileID: 543450652257555684}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3357279884319435651
 Transform:
@@ -10594,7 +10596,7 @@ Transform:
   m_Children:
   - {fileID: 5392390208467172106}
   m_Father: {fileID: 543450652257555684}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8246423717127195958
 Transform:

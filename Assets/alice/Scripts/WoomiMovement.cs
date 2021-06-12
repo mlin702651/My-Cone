@@ -212,28 +212,28 @@ public class WoomiMovement : MonoBehaviour
             Vector3 move = transform.right * getMove.x + transform.forward * getMove.y;
             //controller.Move(move * speed * Time.deltaTime);
 
-            ////魔法的發射角度
-            //if (getCamMove.x != 0 || getCamMove.y != 0)
-            //{
-            //    if (firepoint.transform.eulerAngles.y > 30)
-            //    {
-            //        Quaternion quate = Quaternion.identity;
-            //        quate.eulerAngles = new Vector3(0, 29, 0);
-            //        firepoint.transform.rotation = quate;
+            //魔法的發射角度
+            if (getCamMove.x != 0 || getCamMove.y != 0)
+            {
+               if (firepoint.transform.eulerAngles.y > 30)
+               {
+                   Quaternion quate = Quaternion.identity;
+                   quate.eulerAngles = new Vector3(0, 29, 0);
+                   firepoint.transform.rotation = quate;
 
-            //    }
-            //    else if (firepoint.transform.eulerAngles.y < -30)
-            //    {
-            //        Quaternion quate = Quaternion.identity;
-            //        quate.eulerAngles = new Vector3(0, -29, 0);
-            //        firepoint.transform.rotation = quate;
-            //    }
-            //    else
-            //    {
-            //        Vector3 rotate = new Vector3(getCamMove.x, 0, getCamMove.y) * 100f * Time.deltaTime;
-            //        firepoint.Rotate(rotate, Space.World);
-            //    }
-            //}
+               }
+               else if (firepoint.transform.eulerAngles.y < -30)
+               {
+                   Quaternion quate = Quaternion.identity;
+                   quate.eulerAngles = new Vector3(0, -29, 0);
+                   firepoint.transform.rotation = quate;
+               }
+               else
+               {
+                   Vector3 rotate = new Vector3(getCamMove.x, 0, getCamMove.y) * 100f * Time.deltaTime;
+                   firepoint.Rotate(rotate, Space.World);
+               }
+            }
         }
         //free相機的移動
         else

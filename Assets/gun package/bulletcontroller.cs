@@ -117,7 +117,7 @@ public class bulletcontroller : MonoBehaviour
         Debug.Log(accumulateSuccess);
         if (cloneStart != null)
         {
-            cloneStart.transform.position = transform.position;
+            //cloneStart.transform.position = transform.position;
 
         }
         //cloneStart.transform.position = firePoint.transform.position;

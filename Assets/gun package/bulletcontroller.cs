@@ -11,6 +11,8 @@ public class bulletcontroller : MonoBehaviour
     float timer = 10;
     float flyTime = 2;
     //續力
+    #region magic01
+    [Header("Song Magic")]
     public GameObject startEffect01;
     GameObject cloneStart;
     public GameObject flashEffect01;
@@ -20,23 +22,30 @@ public class bulletcontroller : MonoBehaviour
     bool Flag = false;
     float pressTime = 0;
     float calculatePressToFly = 0;
-
-
+    #endregion
     //泡泡
+    #region magic02
+    [Header("Bubble Magic")]
     public GameObject flashEffect02;
     public Rigidbody bullet02;
     public float bulletSpeed02 = 10.0f;
     GameObject cloneFlash;
-
+    #endregion
     //炸半
+    #region magic03
+    [Header("Mushroom Magic")]
     public GameObject smoke;
     public GameObject bomb;
     float exploTimer=0;
     bool exploFlag = false;
     float bombTimer = 10;
     Vector3 bombPosition;
+    [SerializeField]
+    float magic03CDTime = 3;
+    float CDTimer03 = 0;
+    #endregion
     //status
-    
+
     private int magicStatus = 0; //0海螺 1泡泡 2海菇
     private bool PlusMagicStatusPress = false;
     private bool MinusMagicStatusPress = false;
@@ -71,7 +80,6 @@ public class bulletcontroller : MonoBehaviour
     }
     void Update()
     {
-        firepointRotate();
         switch (magicStatus){
                 case 0: //海螺
                     magic01();
@@ -103,13 +111,7 @@ public class bulletcontroller : MonoBehaviour
         }
         #endregion
     }
-    void firepointRotate()
-    {
-        //transform.rotation = woomi.transform.rotation + new Vector3(0,90,0);
 
-
-
-    }
     void magic01()
     {
         Debug.Log(accumulateSuccess);
@@ -210,10 +212,9 @@ public class bulletcontroller : MonoBehaviour
 
     void magic03()
     {
-       
-        //if (Input.GetKeyDown("r"))
-        if (ShootPressDown)
+        if (ShootPressDown&& CDTimer03> magic03CDTime)
         {
+            CDTimer03 = 0;
             ShootPressDown = false;
             ShootPressUp = false;
             if (bombTimer > 10f)
@@ -232,6 +233,7 @@ public class bulletcontroller : MonoBehaviour
         {
             exploTimer += Time.deltaTime;
             bombTimer += Time.deltaTime;
+            CDTimer03 += Time.deltaTime;
         }
         if (exploTimer > 4 && exploFlag)
         {

@@ -47,8 +47,12 @@ public class WoomiMovement : MonoBehaviour
     public GameObject freeCamera;
     public GameObject aimCamera;
     public GameObject aimReticle;
-    private static int cameraChange = 1;
+    [SerializeField]private static int cameraChange = 1;
     private float turnSmoothVelocity;
+    #endregion
+    #region Firepoint
+    [Header("Firepoint")]
+    public Transform firepoint;
     #endregion
     #region Jump
     [Header("Jump")]
@@ -129,11 +133,11 @@ public class WoomiMovement : MonoBehaviour
             controls.player.Move.performed += ctx => getMove = ctx.ReadValue<Vector2>();
             controls.player.Move.canceled += ctx => getMove = Vector2.zero;
 
-            //視角移動
+            //視角移動 + 魔法瞄準角度
             controls.player.CameraMove.performed+=ctx=> getCamMove= ctx.ReadValue<Vector2>();
             controls.player.CameraMove.canceled += ctx => getCamMove = Vector2.zero;
             
-             //瞄準視角   
+            //瞄準視角切換
             controls.player.Aim.performed += ctx => AimStart();
             controls.player.Aim.canceled += ctx => AimCanceled();
 
@@ -196,7 +200,7 @@ public class WoomiMovement : MonoBehaviour
             return;//在講話的時候就不能動
         }
         #endregion
-        #region Camera+Move
+        #region Camera+Move+Firepoint
         Vector3 direction = new Vector3(getMove.x, 0f, getMove.y).normalized;
         //瞄準相機的移動
         if (cameraChange == 2)
@@ -207,6 +211,29 @@ public class WoomiMovement : MonoBehaviour
 
             Vector3 move = transform.right * getMove.x + transform.forward * getMove.y;
             //controller.Move(move * speed * Time.deltaTime);
+
+            ////魔法的發射角度
+            //if (getCamMove.x != 0 || getCamMove.y != 0)
+            //{
+            //    if (firepoint.transform.eulerAngles.y > 30)
+            //    {
+            //        Quaternion quate = Quaternion.identity;
+            //        quate.eulerAngles = new Vector3(0, 29, 0);
+            //        firepoint.transform.rotation = quate;
+
+            //    }
+            //    else if (firepoint.transform.eulerAngles.y < -30)
+            //    {
+            //        Quaternion quate = Quaternion.identity;
+            //        quate.eulerAngles = new Vector3(0, -29, 0);
+            //        firepoint.transform.rotation = quate;
+            //    }
+            //    else
+            //    {
+            //        Vector3 rotate = new Vector3(getCamMove.x, 0, getCamMove.y) * 100f * Time.deltaTime;
+            //        firepoint.Rotate(rotate, Space.World);
+            //    }
+            //}
         }
         //free相機的移動
         else

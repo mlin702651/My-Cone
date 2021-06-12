@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1618823217751636254}
   - component: {fileID: 3351242553963189588}
   - component: {fileID: 5640732679249812963}
+  - component: {fileID: 2132413483752833358}
   m_Layer: 0
   m_Name: bomb
-  m_TagString: Untagged
+  m_TagString: Player_Magic3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,8 +1061,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.2456278
         - serializedVersion: 3
-          time: 0.7828781
-          value: 0.16143796
+          time: 0.8393356
+          value: 0.17681882
           inSlope: -0.8086042
           outSlope: -0.8086042
           tangentMode: 0
@@ -1069,7 +1070,7 @@ ParticleSystem:
           inWeight: 0.25724915
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.8883539
+          time: 0.9327087
           value: 0.98682964
           inSlope: 1.594828
           outSlope: 1.594828
@@ -1078,7 +1079,7 @@ ParticleSystem:
           inWeight: 1
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.93259484
+          time: 0.9446916
           value: 1
           inSlope: -0.0000015583764
           outSlope: -0.0000015583764
@@ -4851,6 +4852,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!135 &2132413483752833358
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998798219125082790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.28115064
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1109636753516026642
 GameObject:
   m_ObjectHideFlags: 0
@@ -9693,15 +9707,15 @@ PlayableDirector:
   m_GameObject: {fileID: 1109636753516026642}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: cf85fcfd2e2229944a543b2939254bc0, type: 2}
+  m_PlayableAsset: {fileID: 0}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 6206327826869928692, guid: cf85fcfd2e2229944a543b2939254bc0, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 5143934391016021068, guid: cf85fcfd2e2229944a543b2939254bc0, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
   - key: {fileID: 0}
     value: {fileID: 0}
@@ -19460,7 +19474,7 @@ PlayableDirector:
   m_GameObject: {fileID: 9007541990529179057}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: cf85fcfd2e2229944a543b2939254bc0, type: 2}
+  m_PlayableAsset: {fileID: 0}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -19470,9 +19484,9 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 6206327826869928692, guid: cf85fcfd2e2229944a543b2939254bc0, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 7912050733153436251}
-  - key: {fileID: 5143934391016021068, guid: cf85fcfd2e2229944a543b2939254bc0, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1489223992678038877}
   - key: {fileID: 0}
     value: {fileID: 0}

@@ -36,9 +36,9 @@ public class bulletcontroller : MonoBehaviour
     [Header("Mushroom Magic")]
     public GameObject smoke;
     public GameObject bomb;
-    float exploTimer=0;
+    float exploTimer=0; //炸彈炸掉的時間
     bool exploFlag = false;
-    float bombTimer = 10;
+    float bombTimer = 10; //炸彈炸掉的時間
     Vector3 bombPosition;
     [SerializeField]
     float magic03CDTime = 3;

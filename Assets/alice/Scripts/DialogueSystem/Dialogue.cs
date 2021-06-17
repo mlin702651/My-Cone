@@ -18,8 +18,8 @@ public class DialogueSet{
     public Characteres chara = Characteres.Woomi;
     public enum Characteres{
         Woomi,//=0
-        GinaBin,//=1
-        System,
+        Woowoowawa,//=1
+        Park,
         Lily,
         Bary,
         Dan,   

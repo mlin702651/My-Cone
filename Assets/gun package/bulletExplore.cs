@@ -10,10 +10,10 @@ public class bulletExplore : MonoBehaviour
    
     void OnCollisionEnter(Collision other)
     {
-        GameObject particle1;
-        particle1=Instantiate(exp1, transform.position, transform.rotation);
-        Destroy(particle1, 1);
-        Lean.Pool.LeanPool.Despawn(gameObject);
+        // GameObject particle1;
+        // particle1=Instantiate(exp1, transform.position, transform.rotation);
+        // Destroy(particle1, 1);
+        // Lean.Pool.LeanPool.Despawn(gameObject);
 
     }
 }

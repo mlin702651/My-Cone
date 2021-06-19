@@ -14,6 +14,5 @@ public class bulletExplore : MonoBehaviour
         particle1=Instantiate(exp1, transform.position, transform.rotation);
         Destroy(particle1, 1);
         Lean.Pool.LeanPool.Despawn(gameObject);
-
     }
 }

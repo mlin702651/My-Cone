@@ -6,6 +6,8 @@ public class CAttack : MonoBehaviour,IPooledObject {
     protected float _fBorntimer;
     protected float _fBornTime;
     protected float _fForwardSpeed ;
+    protected ObjectPooler testPooler;
+
     public virtual void OnObjectSpawn(){
 
     }
@@ -16,5 +18,8 @@ public class CAttack : MonoBehaviour,IPooledObject {
             gameObject.SetActive(false);
         }
     }
-
+    public virtual void OnCollisionEnter(Collision other) {
+            //attackPooler.SpawnFromPool("RainExplode",transform.position,transform.eulerAngles);
+        
+    }
 }

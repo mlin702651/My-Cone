@@ -167,6 +167,8 @@ public class Boss : MonoBehaviour
                 _fAttackTimer = 0;
                 _fAttack3RandomTime = Random.Range(0.5f,1.5f);
                 attackPooler.SpawnFromPool("Rain",transform.position,transform.eulerAngles);
+                //attackPooler.SpawnFromPool("RainExplode",transform.position,transform.eulerAngles);
+
             }  
         }
         

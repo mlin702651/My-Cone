@@ -16,18 +16,19 @@ class AttackRain : CAttack
 
     private float _fAttackRangeX = 0f;
     private float _fAttackRangeZ = 0f;
+
     
 
     
     public override void OnObjectSpawn(){
         _fAttackRangeX = Random.Range(-AttackRange, AttackRange);
         _fAttackRangeZ = Random.Range(-AttackRange, AttackRange);
-        transform.position += new Vector3(
+        transform.position = new Vector3(
             (_fAttackRangeX < 0 ? -_fAttackRangeX : _fAttackRangeX)>ClearRange ? _fAttackRangeX : ClearRange+_fAttackRangeX,
             Random.Range(StartHeight+1,StartHeight-1),
             (_fAttackRangeZ < 0 ? -_fAttackRangeZ : _fAttackRangeZ)>ClearRange ? _fAttackRangeZ : ClearRange+_fAttackRangeZ
         );
-        transform.DOMoveY(_targetLocation.y, _fMoveDuration).SetEase(_moveEase); 
+        //transform.DOMoveY(_targetLocation.y, _fMoveDuration).SetEase(_moveEase); 
         _fBorntimer = 0f;
         _fBornTime = BornTime;
         _fForwardSpeed = ForwardSpeed;
@@ -36,6 +37,13 @@ class AttackRain : CAttack
     void Update(){
         _fBorntimer += Time.deltaTime;
         SetAttackInvisible(ref _fBorntimer,_fBornTime);
+    }
+    public override void OnCollisionEnter(Collision other) {
+            Debug.Log("collide");
+            testPooler.SpawnFromPool("RainExplode",transform.position,transform.eulerAngles);
+            gameObject.SetActive(false);
+
+        
     }
 
 }

@@ -69,6 +69,7 @@ public class WoomiMovement : MonoBehaviour
     private bool isLanding;
     private float landingTimer = 0;
     private float jumpDelay = 0;
+    
 
     [SerializeField] private float landingDuration = 0.5f;
     
@@ -272,23 +273,80 @@ public class WoomiMovement : MonoBehaviour
         }
         #endregion
         #region Jump&Land
-        if (JumpPressDown)
+        // if (JumpPressDown)//第一次跳
+        // {
+            
+        //     ChangeAnimationState(animationJumpStart);
+        //     _body.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -1f * Physics.gravity.y), ForceMode.VelocityChange);
+        //     JumpPressDown = false;
+        //     isJumping = true;
+        // }
+        // if(_body.velocity.y<0&&!_isGrounded)//是不是在落下
+        // {
+        //     isLanding = true;
+        //     ChangeAnimationState(animationJumpEnd);
+        // }
+        // if(isLanding) //如果正在落下 判斷動畫用ㄉ
+        // {
+        //     landingTimer+= Time.deltaTime;
+        //     if(landingTimer >= landingDuration){
+        //         landingTimer= 0;
+        //         isLanding = false;
+        //     }
+        // }
+        // //有沒有在蓄力 有沒有蓄力成功
+        
+        // if(PressingJumpTimer>JumpToLevel2HoldingTime&&_isGrounded){ //時間按夠久 而且玩家在地上
+        //     canJumpLevel2 = true;
+        //     Debug.Log("can jump level 2!");
+        // }
+        // else if(isPressingJump){
+        //     PressingJumpTimer += Time.deltaTime;
+        // }
+
+        // if(canJumpLevel2&&!isPressingJump&&_isGrounded){
+        //     PressingJumpTimer = 0;
+        //     canJumpLevel2 = false;
+        //     isJumping = true;
+        //     ChangeAnimationState(animationJumpStart);
+        //     //jumpDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
+        //     jumpDelay = 0.5f;
+        //     Invoke("JumpLevel2",jumpDelay);//等跳的動畫播完才播下一個動畫
+        //     _body.AddForce(Vector3.up * Mathf.Sqrt(JumpLevel2Height * -1f * Physics.gravity.y), ForceMode.VelocityChange);
+            
+        // }
+        // else if(canJumpLevel2&&!isPressingJump){
+        //     PressingJumpTimer = 0;
+        //     canJumpLevel2 = false;
+        // }
+
+        //new jump
+        if (JumpPressDown && !canJumpLevel2)//第一次跳  第二次跳沒有打開
         {
             
             ChangeAnimationState(animationJumpStart);
             _body.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -1f * Physics.gravity.y), ForceMode.VelocityChange);
             JumpPressDown = false;
             isJumping = true;
+            canJumpLevel2 = true;
+            Debug.Log("jump 1 start!");
         }
-        else{
-            //_animator.SetBool("_bIsJumping",false);
-            //_animator.SetBool("_bIsGrounded",_isGrounded);
+        
+        if(JumpPressDown && canJumpLevel2){
+            ChangeAnimationState(animationJumpStart);
+            _body.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -1f * Physics.gravity.y), ForceMode.VelocityChange);
+            JumpPressDown = false;
+            canJumpLevel2 = false;
+            isJumping = true;
+            Debug.Log("jump 2 start!");
         }
-        if(_body.velocity.y<0&&!_isGrounded){
+
+        if(_body.velocity.y<0&&!_isGrounded)//是不是在落下
+        {
             isLanding = true;
             ChangeAnimationState(animationJumpEnd);
         }
-        if(isLanding) 
+        if(isLanding) //如果正在落下 判斷動畫用ㄉ
         {
             landingTimer+= Time.deltaTime;
             if(landingTimer >= landingDuration){
@@ -296,32 +354,7 @@ public class WoomiMovement : MonoBehaviour
                 isLanding = false;
             }
         }
-        //有沒有在蓄力 有沒有蓄力成功
         
-        if(PressingJumpTimer>JumpToLevel2HoldingTime&&_isGrounded){ //時間按夠久 而且玩家在地上
-            canJumpLevel2 = true;
-            Debug.Log("can jump level 2!");
-        }
-        else if(isPressingJump){
-            PressingJumpTimer += Time.deltaTime;
-        }
-
-        if(canJumpLevel2&&!isPressingJump&&_isGrounded){
-            PressingJumpTimer = 0;
-            canJumpLevel2 = false;
-            isJumping = true;
-            ChangeAnimationState(animationJumpStart);
-            //jumpDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
-            jumpDelay = 0.5f;
-            Invoke("JumpLevel2",jumpDelay);//等跳的動畫播完才播下一個動畫
-            _body.AddForce(Vector3.up * Mathf.Sqrt(JumpLevel2Height * -1f * Physics.gravity.y), ForceMode.VelocityChange);
-            
-        }
-        else if(canJumpLevel2&&!isPressingJump){
-            PressingJumpTimer = 0;
-            canJumpLevel2 = false;
-        }
-
         #endregion
         #region Dash
         if(DashPressDown&&_isGrounded&&!isGroundDashing){
@@ -421,20 +454,43 @@ public class WoomiMovement : MonoBehaviour
 #endregion
 #region Jump
 
-    void JumpLevel2(){
-        ChangeAnimationState(animationJumpLevel2);
-    }
+    // void JumpLevel2(){
+    //     ChangeAnimationState(animationJumpLevel2);
+    // }
+    // void JumpStart()
+    // {
+    //     if(_isGrounded)JumpPressDown = true;
+    //     isPressingJump = true;
+    //     Debug.Log("jump!");
+
+    // }
+    // void JumpCanceled()
+    // {
+    //     isPressingJump = false;
+    //     Debug.Log("jumpEnd!");
+    // }
+
+    // new jump
     void JumpStart()
     {
-        if(_isGrounded)JumpPressDown = true;
+        if(_isGrounded||canJumpLevel2){
+            JumpPressDown = true;
+            Debug.Log("can jump!");
+
+        }
+        if(canJumpLevel2) {
+            JumpPressDown = true;
+            // Debug.Log("can jump!");
+
+        }
         isPressingJump = true;
-        Debug.Log("jump!");
+        Debug.Log("jump press start!");
 
     }
     void JumpCanceled()
     {
         isPressingJump = false;
-        Debug.Log("jumpEnd!");
+        Debug.Log("jump press end!");
     }
 #endregion
 #region Dash
@@ -526,6 +582,7 @@ public class WoomiMovement : MonoBehaviour
             
          }
          isJumping = false;
+         canJumpLevel2 = false;
     }
     private void OnTriggerStay(Collider other) {
         _isGrounded = true;

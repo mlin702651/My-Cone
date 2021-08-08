@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: fogToGF
+  m_Shader: {fileID: -6465566751694194690, guid: df985c5938686f3438f1277826b7c979,
+    type: 3}
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _RECEIVE_SHADOWS_OFF
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - SHADOWCASTER
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_55A2C7A8:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_9FC3DE69_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 35a52137acec73e44ab56bed44203c1a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_1101A022: 0.5
+    - Vector1_15782827: -1
+    - Vector1_1BC75065: 0.6
+    - Vector1_1E531A7C: 0.5
+    - Vector1_23E7DD45: 1
+    - Vector1_2CA8B9CA: 0.57
+    - Vector1_36E4B050: 0.1
+    - Vector1_46C6D95: 1
+    - Vector1_49934263: 0.5
+    - Vector1_5A1D89E0: 10
+    - Vector1_65421F6C: 0.5
+    - Vector1_7485889A: 0.8
+    - Vector1_81767156: 0.1
+    - Vector1_86135043: 2.52
+    - Vector1_8D01A4DF: 0.7
+    - Vector1_9E53B89: 5.31
+    - Vector1_B5F9E418: 0.1
+    - Vector1_E12165A3: 3
+    - Vector1_E2E20607: 0.5
+    - Vector1_EB3CED19: 2
+    - Vector1_ED93759B: 0.9
+    - Vector1_F148B2A2: 3.13
+    - Vector1_F971B16D: 1.44
+    - Vector1_F9CA58F: 2.76
+    - Vector1_FBC8C658: 0.9
+    - _AlphaClip: 0
+    - _Blend: 1
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DstBlend: 10
+    - _EnvironmentReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _Metallic: 0
+    - _OcclusionStrength: 1
+    - _QueueOffset: 0
+    - _ReceiveShadows: 0
+    - _Size: 1
+    - _Smoothness: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Surface: 1
+    - _WorkflowMode: 1
+    - _ZWrite: 0
+    m_Colors:
+    - Color_4CE57164: {r: 1, g: 0, b: 0.1181407, a: 0}
+    - Color_62FDA25: {r: 0.01495989, g: 0.003337487, b: 0.02830189, a: 0}
+    - Color_7271E0D5: {r: 0, g: 0, b: 0, a: 0}
+    - Color_835B2762: {r: 0.50301933, g: 0, b: 0.7169812, a: 1}
+    - Color_947016F: {r: 0.24528301, g: 0.17007832, b: 0.22890162, a: 0}
+    - Color_C16CCF9A: {r: 0.4528302, g: 0.13456745, b: 0.39967173, a: 1}
+    - Color_EB491F1A: {r: 0.20441318, g: 0.05473476, b: 0.28301886, a: 0}
+    - Color_FF3F29AD: {r: 1, g: 0.2783019, b: 0.4729246, a: 0}
+    - Vector2_6CF4F2CA: {r: 0.2, g: 0.8, b: 0, a: 0}
+    - Vector2_905F59F5: {r: 0.3, g: 1, b: 0, a: 0}
+    - Vector2_CAD150AE: {r: 1, g: 1, b: 0, a: 0}
+    - Vector4_4E4E690B: {r: 3, g: 3, b: 3, a: 4.9}
+    - Vector4_9A4B1F83: {r: 1, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 0.4716981, g: 0.051174805, b: 0.353137, a: 0.3764706}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Position: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+--- !u!114 &7807618750006841341
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1

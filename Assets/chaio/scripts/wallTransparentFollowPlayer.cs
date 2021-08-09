@@ -11,7 +11,9 @@ public class wallTransparentFollowPlayer : MonoBehaviour
     public Material wallMaterial;
     public Camera cerrentCamera;
     public LayerMask mask;
-
+    //看的到的範圍
+    [SerializeField]
+    float viewMaxSize=2.0f;
     //用來調整圓中心點
     [SerializeField]
     Vector3 adjustPos=new Vector3(0,0,0);
@@ -25,7 +27,8 @@ public class wallTransparentFollowPlayer : MonoBehaviour
         //用一個射線偵測有沒有打到牆壁 
         if(Physics.Raycast(ray,3000,mask))
         {
-            wallMaterial.SetFloat(sizeID,1.5f);
+            
+            wallMaterial.SetFloat(sizeID,viewMaxSize);
         }
         else
         {

@@ -30,7 +30,17 @@ ModelImporter:
   - first:
       74: -1548206144251271952
     second: Armature.001|BodyAction
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: b523a0fe2eee0f242b54bb6444c91b4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow.001
+    second: {fileID: 2100000, guid: 1563712f4fe1bbb4594bb4c530832b33, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -88,8 +98,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 180
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0

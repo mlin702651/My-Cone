@@ -114,7 +114,7 @@ public class bulletcontroller : MonoBehaviour
 
     void magic01()
     {
-        Debug.Log(accumulateSuccess);
+        //Debug.Log(accumulateSuccess);
         if (cloneStart != null)
         {
             //cloneStart.transform.position = transform.position;

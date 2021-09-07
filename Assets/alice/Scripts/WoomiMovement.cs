@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class WoomiMovement : MonoBehaviour
 {
@@ -50,6 +51,11 @@ public class WoomiMovement : MonoBehaviour
     public GameObject aimReticle;
     [SerializeField]private static int cameraChange = 1;
     private float turnSmoothVelocity;
+
+    private Vector2 screenCenterPoint = new Vector2(Screen.width/2,Screen.height/2);
+    private Ray centerRay;
+    [SerializeField] private LayerMask aimColliderMask = new LayerMask();
+    [SerializeField] private GameObject raycastHitPoint;
     #endregion
     #region Firepoint
     [Header("Firepoint")]
@@ -167,6 +173,8 @@ public class WoomiMovement : MonoBehaviour
         _body = GetComponent<Rigidbody>();
         currentAnimationState = animationIdle;
         ChangeAnimationState(animationIdle);
+
+        
     }
     void OnEnable()
     {
@@ -203,7 +211,13 @@ public class WoomiMovement : MonoBehaviour
         }
         #endregion
         #region Camera Move Firepoint
+        centerRay = Camera.main.ScreenPointToRay(screenCenterPoint);
+        if(Physics.Raycast(centerRay, out RaycastHit raycastHit, 999f,aimColliderMask )){
+            raycastHitPoint.transform.position = raycastHit.point;
+        }
+
         Vector3 direction = new Vector3(getMove.x, 0f, getMove.y).normalized;
+        Vector3 camDirection = new Vector3(getCamMove.x, 0f, getCamMove.y).normalized;
         //瞄準相機的移動
         if (cameraChange == 2)
         {
@@ -214,28 +228,45 @@ public class WoomiMovement : MonoBehaviour
             Vector3 move = transform.right * getMove.x + transform.forward * getMove.y;
             //controller.Move(move * speed * Time.deltaTime);
 
-            //魔法的發射角度
-            if (getCamMove.x != 0 || getCamMove.y != 0)
-            {
-                Debug.Log("firepoint"+firepoint.transform.localEulerAngles);             
-                Debug.Log("WOOMI"+transform.localEulerAngles);
-                //可以用來確認local的角度
-                Vector3 firepointlocalEulerAngles=firepoint.transform.localEulerAngles;
-                Vector3 woomilocalEulerAngles=transform.localEulerAngles;
-                Vector3 rotate = new Vector3( -getCamMove.y, getCamMove.x, 0) * 100f * Time.deltaTime;
-                firepoint.Rotate(rotate, Space.Self);
+            // //魔法的發射角度
+            // if (getCamMove.x != 0 || getCamMove.y != 0)
+            // {
+            //     Debug.Log("firepoint"+firepoint.transform.localEulerAngles);             
+            //     Debug.Log("WOOMI"+transform.localEulerAngles);
+            //     //可以用來確認local的角度
+            //     Vector3 firepointlocalEulerAngles=firepoint.transform.localEulerAngles;
+            //     Vector3 woomilocalEulerAngles=transform.localEulerAngles;
+            //     Vector3 rotate = new Vector3( -getCamMove.y, getCamMove.x, 0) * 100f * Time.deltaTime;
+            //     firepoint.Rotate(rotate, Space.Self);
                 
-            }
+            // }
+            //firepoint會射向粉紅球的位置
+            firepoint.transform.LookAt(raycastHitPoint.transform);
+
             if (direction.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCam.eulerAngles.y;
+                
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 if(!isShooting)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
+                
             }
+            //相機轉不了 轉woomi
+            transform.eulerAngles = Vector3.Lerp(   transform.eulerAngles, 
+                                                    transform.eulerAngles + new Vector3(-getCamMove.y*4,getCamMove.x*10,0),
+                                                    0.1f);
+            //設定上下的範圍限制
+            if(transform.eulerAngles.x >= 20 && transform.eulerAngles.x <= 340) transform.eulerAngles = new Vector3(340,transform.eulerAngles.y,transform.eulerAngles.z);
+            else if(transform.eulerAngles.x >= 5 && transform.eulerAngles.x < 20) transform.eulerAngles = new Vector3(5,transform.eulerAngles.y,transform.eulerAngles.z);
+            
+            print(transform.eulerAngles);
+
+            
         }
         //free相機的移動
         else
         {
+            transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,transform.eulerAngles.z);
             if (direction.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCam.eulerAngles.y;
@@ -251,15 +282,17 @@ public class WoomiMovement : MonoBehaviour
 
         if (cameraChange==2)
         {
-            freeCamera.SetActive(false);
+            //freeCamera.SetActive(false);
             aimCamera.SetActive(true);
             aimReticle.SetActive(true);
+            raycastHitPoint.SetActive(true);
         }
         else
         {
-            freeCamera.SetActive(true);
+            //freeCamera.SetActive(true);
             aimCamera.SetActive(false);
             aimReticle.SetActive(false);
+            raycastHitPoint.SetActive(false);
         }
         #endregion
         #region Move Animation

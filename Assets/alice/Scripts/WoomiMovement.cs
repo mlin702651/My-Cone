@@ -34,7 +34,8 @@ public class WoomiMovement : MonoBehaviour
     #region Walk
     
     [Header("Walk")]
-    [SerializeField]private float PlayerSpeed = 5f;
+    [SerializeField]private float PlayerWalkingSpeed = 5f;
+    [SerializeField]private float PlayerRunningSpeed = 7f;
     [SerializeField]private float rotSpeed = 0.6f;
     private Vector2 getMove;
     #endregion
@@ -201,7 +202,7 @@ public class WoomiMovement : MonoBehaviour
             return;//在講話的時候就不能動
         }
         #endregion
-        #region Camera+Move+Firepoint
+        #region Camera Move Firepoint
         Vector3 direction = new Vector3(getMove.x, 0f, getMove.y).normalized;
         //瞄準相機的移動
         if (cameraChange == 2)
@@ -225,6 +226,12 @@ public class WoomiMovement : MonoBehaviour
                 firepoint.Rotate(rotate, Space.Self);
                 
             }
+            if (direction.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCam.eulerAngles.y;
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                if(!isShooting)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
+            }
         }
         //free相機的移動
         else
@@ -236,7 +243,9 @@ public class WoomiMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 //controller.Move(moveDir.normalized * speed * Time.deltaTime);
-                if(!isShooting)transform.position += moveDir.normalized*PlayerSpeed*Time.deltaTime;
+                if(!isShooting&&getMove.x<=0.35f&&getMove.x>=-0.35f&&getMove.y<=0.35f&&getMove.y>=-0.35f)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
+                else if(!isShooting)transform.position += moveDir.normalized*PlayerRunningSpeed*Time.deltaTime;
+                print(getMove.x);
             }
         }
 

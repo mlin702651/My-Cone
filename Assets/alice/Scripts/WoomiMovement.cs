@@ -248,7 +248,7 @@ public class WoomiMovement : MonoBehaviour
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCam.eulerAngles.y;
                 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                if(!isHolding)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
+                if(!isShooting)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
                 
             }
             //相機轉不了 轉woomi
@@ -274,9 +274,8 @@ public class WoomiMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 //controller.Move(moveDir.normalized * speed * Time.deltaTime);
-                if(!isHolding&&getMove.x<=0.35f&&getMove.x>=-0.35f&&getMove.y<=0.35f&&getMove.y>=-0.35f)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
-                else if(!isHolding&&!_isGrounded)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
-                else if(!isHolding)transform.position += moveDir.normalized*PlayerRunningSpeed*Time.deltaTime;
+                if(!isShooting&&getMove.x<=0.35f&&getMove.x>=-0.35f&&getMove.y<=0.35f&&getMove.y>=-0.35f)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
+                else if(!isShooting)transform.position += moveDir.normalized*PlayerRunningSpeed*Time.deltaTime;
                 print(getMove.x);
             }
         }
@@ -421,10 +420,9 @@ public class WoomiMovement : MonoBehaviour
                     float magicConchStartDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
                     Invoke("PlayHoldMagicConchAnimation",magicConchStartDelay);
                     ShootPressDown = false;
-                    isHolding = true;
                     break;
                 case 1:
-                    Debug.Log("magic2");
+                    Debug.Log("magic1");
                     ChangeAnimationState(animationStartMagicBubble);
                     float magicBubbleStartDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
                     Invoke("PlayHoldMagicBubbleAnimation",magicBubbleStartDelay);
@@ -434,9 +432,8 @@ public class WoomiMovement : MonoBehaviour
                     Debug.Log("magic3");
                     ChangeAnimationState(animationMagicBomb);
                     float magicBombDelay = _animator.GetCurrentAnimatorStateInfo(0).length;
-                    Invoke("CompleteShooting",magicBombDelay-0.5f);
+                    Invoke("CompleteShooting",magicBombDelay);
                     ShootPressDown = false;
-                    isHolding = true;
                     break;
                 default:
                     break;

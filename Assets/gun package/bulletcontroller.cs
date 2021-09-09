@@ -41,8 +41,8 @@ public class bulletcontroller : MonoBehaviour
     float bombTimer = 10; //炸彈炸掉的時間
     Vector3 bombPosition;
     [SerializeField]
-    float magic03CDTime = 3;
-    float CDTimer03 = 0;
+    float magic03CDTime = 5;
+    float CDTimer03 = 5;
     #endregion
     //status
 
@@ -193,7 +193,7 @@ public class bulletcontroller : MonoBehaviour
         if (isPressingShoot)
         {
             ShootPressUp = false;
-            if (timer > 0.5f)
+            if (timer > 0.2f)
             {
               
                 //GameObject cloneFlash;
@@ -212,8 +212,13 @@ public class bulletcontroller : MonoBehaviour
 
     void magic03()
     {
-        if (ShootPressDown&& CDTimer03> magic03CDTime)
+        if(ShootPressDown&&CDTimer03< magic03CDTime){
+            ShootPressDown = false;
+            return;
+        }
+        if (ShootPressDown&& CDTimer03>= magic03CDTime)
         {
+            FindObjectOfType<UIManager>().StartBombAttack();
             CDTimer03 = 0;
             ShootPressDown = false;
             ShootPressUp = false;

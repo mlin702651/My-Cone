@@ -22,6 +22,8 @@ public class bulletcontroller : MonoBehaviour
     bool Flag = false;
     float pressTime = 0;
     float calculatePressToFly = 0;
+    float magic01CDTime = 3;
+    float CDTimer01 = 3;
     #endregion
     //泡泡
     #region magic02
@@ -41,6 +43,7 @@ public class bulletcontroller : MonoBehaviour
     float bombTimer = 10; //炸彈炸掉的時間
     Vector3 bombPosition;
     [SerializeField]
+    
     float magic03CDTime = 5;
     float CDTimer03 = 5;
     #endregion
@@ -115,14 +118,19 @@ public class bulletcontroller : MonoBehaviour
     void magic01()
     {
         //Debug.Log(accumulateSuccess);
-        if (cloneStart != null)
-        {
-            //cloneStart.transform.position = transform.position;
+        // if (cloneStart != null)
+        // {
+        //     //cloneStart.transform.position = transform.position;
 
-        }
+        // }
         //cloneStart.transform.position = firePoint.transform.position;
         //if (Input.GetKeyDown("q"))
-        if (ShootPressDown)
+        if(ShootPressDown&&CDTimer01< magic01CDTime){
+            ShootPressDown = false;
+            pressTime = 0;
+            return;
+        }
+        if (ShootPressDown&& CDTimer01>= magic01CDTime)
         {
             ShootPressDown = false;
             pressTime = 0;
@@ -130,9 +138,13 @@ public class bulletcontroller : MonoBehaviour
             cloneStart = Lean.Pool.LeanPool.Spawn(startEffect01, transform.position, Quaternion.identity);
             accumulateSuccess = true;
         }
+        else
+        {
+            CDTimer01 += Time.deltaTime;
+        }
         //開始記錄續力時間 
         //if (Input.GetKey("q"))
-        if (isPressingShoot)
+        if (isPressingShoot&& CDTimer01>= magic01CDTime)
         {
             pressTime += Time.deltaTime;
             calculatePressToFly = pressTime;
@@ -160,6 +172,9 @@ public class bulletcontroller : MonoBehaviour
         //if (Input.GetKeyUp("q")&& accumulateSuccess)
         if (ShootPressUp&& accumulateSuccess)
         {
+            CDTimer01 = 0;
+            FindObjectOfType<UIManager>().StartAccumulateAttack();
+            accumulateSuccess = false;
             ShootPressUp = false;
             Lean.Pool.LeanPool.Despawn(cloneStart);
 

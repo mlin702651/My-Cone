@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: bell-body
-  m_Shader: {fileID: -6465566751694194690, guid: c243b6697f2f6ef4e884f8cd7d5fbe16,
+  m_Shader: {fileID: -6465566751694194690, guid: b637d32c40ec9614fb727ffbbb621f8f,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,6 +20,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_5E2DD2D8:
+        m_Texture: {fileID: 2800000, guid: f435f031264c46244ad971faa71c53cb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_741B9CA1:
+        m_Texture: {fileID: 2800000, guid: 1f35ba22bc6533a4589f1fef426f735d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_B1E65851:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ED421345:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -49,14 +65,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_8743F57E: 0.1
+    - Vector1_951109E8: 1
     - Vector1_96FC8400: 32
     - Vector1_ACD2E521: 0.7
     - Vector1_D69A8F20: 0.1
+    - Vector1_E9B4289B: 0.7
+    - Vector1_F6E270D3: 32
+    - Vector1_FE2FBEFC: 0.02
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
+    - _Disslove: 0
+    - _Dissolve: 0
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -76,8 +99,15 @@ Material:
     m_Colors:
     - Color_2CC9F843: {r: 1, g: 0.55065024, b: 0.18396229, a: 0}
     - Color_4710CCAE: {r: 1, g: 1, b: 1, a: 0}
+    - Color_63DC3F68: {r: 1, g: 0.6316455, b: 0, a: 0}
+    - Color_7D0E2CA4: {r: 1, g: 1, b: 1, a: 0}
     - Color_B47F0863: {r: 1, g: 1, b: 1, a: 0}
+    - Color_BE79EE7F: {r: 1, g: 0.35982987, b: 0, a: 0}
+    - Color_BFCEE464: {r: 0.9304684, g: 0.9304684, b: 0.9304684, a: 0}
+    - Color_C1A3A7DB: {r: 1, g: 1, b: 1, a: 0}
+    - Color_D90EB0CD: {r: 0.9528302, g: 0.48961547, b: 0, a: 0}
     - Color_ED53F654: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0}
+    - Vector2_97667523: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

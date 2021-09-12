@@ -22,7 +22,7 @@ public class bulletcontroller : MonoBehaviour
     bool Flag = false;
     float pressTime = 0;
     float calculatePressToFly = 0;
-    float magic01CDTime = 3;
+    [SerializeField]float magic01CDTime = 3;
     float CDTimer01 = 3;
     #endregion
     //泡泡
@@ -255,7 +255,7 @@ public class bulletcontroller : MonoBehaviour
             bombTimer += Time.deltaTime;
             CDTimer03 += Time.deltaTime;
         }
-        if (exploTimer > 4 && exploFlag)
+        if (exploTimer > 3.2f && exploFlag)
         {
             exploFlag = false;
             //煙

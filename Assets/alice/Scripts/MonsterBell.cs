@@ -7,6 +7,8 @@ public class MonsterBell : MonoBehaviour
     // Start is called before the first frame update
     #region
     #endregion
+    public MonsterProfile monsterProfile;
+    
     #region Animation
     [SerializeField]private GameObject leaf;
     [SerializeField]private float FloatingDuration;
@@ -47,9 +49,11 @@ public class MonsterBell : MonoBehaviour
     void Update()
     {
        if(!IsAlive) return;
+
        if(Hp<=0){
-           IsAlive = false;
+            IsAlive = false;
             DieAnimation();
+            if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
        }
        
         

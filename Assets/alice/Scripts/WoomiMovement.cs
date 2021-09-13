@@ -259,7 +259,7 @@ public class WoomiMovement : MonoBehaviour
             if(transform.eulerAngles.x >= 20 && transform.eulerAngles.x <= 340) transform.eulerAngles = new Vector3(340,transform.eulerAngles.y,transform.eulerAngles.z);
             else if(transform.eulerAngles.x >= 5 && transform.eulerAngles.x < 20) transform.eulerAngles = new Vector3(5,transform.eulerAngles.y,transform.eulerAngles.z);
             
-            print(transform.eulerAngles);
+            //print(transform.eulerAngles);
 
             
         }

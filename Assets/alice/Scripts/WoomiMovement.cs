@@ -198,12 +198,12 @@ public class WoomiMovement : MonoBehaviour
     {
         #region Talk
         if(canTalk&&ConversationPress){
-            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
             canTalk = false;
             ConversationPress = false;
         }
         else if(ConversationPress){
-            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+            //FindObjectOfType<DialogueManager>().DisplayNextSentence();
             ConversationPress = false;
         }
         if(isTalking){

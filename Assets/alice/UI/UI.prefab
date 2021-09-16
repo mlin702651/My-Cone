@@ -211,9 +211,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9f445c3eebbb64693054b4293b626d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 6164298569237036997}
   dialogueName: {fileID: 6164298569091982204}
-  dialogueText: {fileID: 6164298569315776237}
+  dialogueContent: {fileID: 6164298569315776237}
   dialogueImage: {fileID: 6164298570086307093}
+  DialogueEaseIn: 16
+  DialogueInTime: 0.7
+  DialogueEaseOut: 16
+  DialogueOutTime: 0.7
+  typeAnimationDelay: 0.03
 --- !u!1 &2159444404013291232
 GameObject:
   m_ObjectHideFlags: 0

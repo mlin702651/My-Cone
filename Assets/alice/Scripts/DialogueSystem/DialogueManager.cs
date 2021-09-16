@@ -136,11 +136,21 @@ public class DialogueManager : MonoBehaviour {
         }
         else instance = this;
     }
+    [Header("Dialogue Box")]
+    public RectTransform dialogueBox;
     public Text dialogueName;
     public Text dialogueContent;
     public Image dialogueImage;
 
-    public GameObject dialogueBox;
+    [SerializeField]public Ease DialogueEaseIn;
+    [SerializeField]public float DialogueInTime;
+    [SerializeField]public Ease DialogueEaseOut;
+    [SerializeField]public float DialogueOutTime;
+
+    [Header("Variable")]
+    public float typeAnimationDelay = 0.001f;
+    private bool isTyping = false;
+    private string completeContent;
 
     public Queue<DialogueBase.DialogueSet> dialogueSets = new Queue<DialogueBase.DialogueSet>();
 
@@ -153,26 +163,51 @@ public class DialogueManager : MonoBehaviour {
     }
 
     public void DequeueDialogue(){
+        if(isTyping){
+            CompleteContent();
+            StopAllCoroutines();
+            isTyping = false;
+            return;
+        }
         if(dialogueSets.Count == 0){
             EndDialogue();
             return;
         }
-        DialogueBase.DialogueSet dialogueSet = dialogueSets.Dequeue();
 
-        dialogueName.text = dialogueSet.characterName;
+        DialogueBase.DialogueSet dialogueSet = dialogueSets.Dequeue();
+        completeContent = dialogueSet.content;
+
+        dialogueName.text = dialogueSet.character.characterName;
         dialogueContent.text = dialogueSet.content;
-        dialogueImage.sprite = dialogueSet.characterImage;
+        dialogueImage.sprite = dialogueSet.character.characterImage;
+
+        dialogueContent.text = "";
+        StartCoroutine(TypeText(dialogueSet));
+    }
+
+    IEnumerator TypeText(DialogueBase.DialogueSet dialogueSet){
+        isTyping = true;
+        foreach(char c in dialogueSet.content.ToCharArray()){
+            yield return new WaitForSeconds(typeAnimationDelay);
+            dialogueContent.text += c;
+        }
+        isTyping = false;
+    }
+
+    private void CompleteContent(){
+        dialogueContent.text = completeContent;
     }
 
     public void StartDialogue(){
-        //     //UI上升的動畫
-        //     dialogueSprite.DOAnchorPosY(-365,DialogueInTime,true).SetEase(DialogueEaseIn);
-        //     //讓主角不能動
-        //     FindObjectOfType<WoomiMovement>().SetTalkingStatus(true);
+            //UI上升的動畫
+            dialogueBox.DOAnchorPosY(-365,DialogueInTime,true).SetEase(DialogueEaseIn);
+            //讓主角不能動
+            FindObjectOfType<WoomiMovement>().SetTalkingStatus(true);
+            DequeueDialogue();//輸出第一句話
     }
     public void EndDialogue(){
-        //     Debug.Log("End of conversation");
-        //     dialogueSprite.DOAnchorPosY(-850,DialogueOutTime,true).SetEase(DialogueEaseOut);
-        //     FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);
+            Debug.Log("End of conversation");
+            dialogueBox.DOAnchorPosY(-850,DialogueOutTime,true).SetEase(DialogueEaseOut);
+            FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);
     }
 }

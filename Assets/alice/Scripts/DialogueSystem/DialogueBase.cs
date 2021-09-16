@@ -7,8 +7,7 @@ public class DialogueBase : ScriptableObject
 {
     [System.Serializable]
     public class DialogueSet {
-        public string characterName;
-        public Sprite characterImage;
+        public CharacterProfile character;
         [TextArea(4,8)]
         public string content;
     }

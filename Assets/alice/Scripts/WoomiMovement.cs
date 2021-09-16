@@ -204,6 +204,7 @@ public class WoomiMovement : MonoBehaviour
         }
         else if(ConversationPress){
             //FindObjectOfType<DialogueManager>().DisplayNextSentence();
+            DialogueManager.instance.DequeueDialogue();
             ConversationPress = false;
         }
         if(isTalking){

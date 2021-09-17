@@ -278,7 +278,7 @@ public class WoomiMovement : MonoBehaviour
                 if(!isHolding&&getMove.x<=0.35f&&getMove.x>=-0.35f&&getMove.y<=0.35f&&getMove.y>=-0.35f)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
                 else if(!isHolding&&!_isGrounded)transform.position += moveDir.normalized*PlayerWalkingSpeed*Time.deltaTime;
                 else if(!isHolding)transform.position += moveDir.normalized*PlayerRunningSpeed*Time.deltaTime;
-                print(getMove.x);
+                //print(getMove.x);
             }
         }
 

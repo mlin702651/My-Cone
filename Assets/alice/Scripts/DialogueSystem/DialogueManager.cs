@@ -152,10 +152,14 @@ public class DialogueManager : MonoBehaviour {
     private bool isTyping = false;
     private string completeContent;
 
+    [Header("Quest")]
+    private DialogueBase currentDialogue;
+
     public Queue<DialogueBase.DialogueSet> dialogueSets = new Queue<DialogueBase.DialogueSet>();
 
     public void EnqueueDialogue(DialogueBase dialogueBase){ //把一個一個dialogueSet加進queue裡面
         dialogueSets.Clear();
+        currentDialogue = dialogueBase;
 
         foreach(DialogueBase.DialogueSet dialogueSet in dialogueBase.dialogueSet){
             dialogueSets.Enqueue(dialogueSet);
@@ -170,6 +174,7 @@ public class DialogueManager : MonoBehaviour {
             return;
         }
         if(dialogueSets.Count == 0){
+            CheckIfDialogueQuest();
             EndDialogue();
             return;
         }
@@ -198,6 +203,14 @@ public class DialogueManager : MonoBehaviour {
         dialogueContent.text = completeContent;
     }
 
+    private void CheckIfDialogueQuest(){ //可能可以寫成check dialogue type 如果我們有選項的話啦
+        if(currentDialogue is DialogueQuest){
+            DialogueQuest dialogueQuest = currentDialogue as DialogueQuest;
+            QuestManager.instance.InitiateQuest(dialogueQuest.quest);
+        }
+    }
+    #region dialogue UI animation
+
     public void StartDialogue(){
             //UI上升的動畫
             dialogueBox.DOAnchorPosY(-365,DialogueInTime,true).SetEase(DialogueEaseIn);
@@ -210,4 +223,5 @@ public class DialogueManager : MonoBehaviour {
             dialogueBox.DOAnchorPosY(-850,DialogueOutTime,true).SetEase(DialogueEaseOut);
             FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);
     }
+    #endregion
 }

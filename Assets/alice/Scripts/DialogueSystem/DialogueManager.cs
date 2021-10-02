@@ -151,6 +151,7 @@ public class DialogueManager : MonoBehaviour {
     public float typeAnimationDelay = 0.001f;
     private bool isTyping = false;
     private string completeContent;
+    public bool inDialogue = false;
 
     [Header("Quest")]
     private DialogueBase currentDialogue;
@@ -160,6 +161,7 @@ public class DialogueManager : MonoBehaviour {
     public void EnqueueDialogue(DialogueBase dialogueBase){ //把一個一個dialogueSet加進queue裡面
         dialogueSets.Clear();
         currentDialogue = dialogueBase;
+        inDialogue = true;
 
         foreach(DialogueBase.DialogueSet dialogueSet in dialogueBase.dialogueSet){
             dialogueSets.Enqueue(dialogueSet);
@@ -174,6 +176,7 @@ public class DialogueManager : MonoBehaviour {
             return;
         }
         if(dialogueSets.Count == 0){
+            inDialogue = false;
             CheckIfDialogueQuest();
             EndDialogue();
             return;

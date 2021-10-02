@@ -4,8 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : Interactable
 {
+    [Header("Basic Dialogue Info")]
+    
+    [SerializeField]private DialogueBase[] dialogueBases;
+    public int index = 0;
+    public bool nextDialogueInteract;
+    
+
     #region old dialogue trigger
     // [SerializeField]private Image dialogueHint;
     // public Dialogue dialogue;
@@ -35,4 +42,23 @@ public class DialogueTrigger : MonoBehaviour
     //     FindObjectOfType<WoomiMovement>().SetCanTalkStatus(false);
     // }
     #endregion
+    public override void Start(){
+        base.Start();
+        if(nextDialogueInteract){
+            index = -1;
+        }
+        else {
+            index = 0;
+        }
+    }
+    public override void Interact(){
+        if(nextDialogueInteract && DialogueManager.instance.inDialogue == false){
+            if(index < dialogueBases.Length -1){
+                index++;
+            }
+        }
+        DialogueManager.instance.EnqueueDialogue(dialogueBases[index]);
+        DialogueManager.instance.StartDialogue();
+
+    }
 }

@@ -199,6 +199,8 @@ public class WoomiMovement : MonoBehaviour
         #region Talk
         if(canTalk&&ConversationPress){
             //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            // DialogueManager.instance.EnqueueDialogue(dialogue);
+            // DialogueManager.instance.StartDialogue();
             canTalk = false;
             ConversationPress = false;
         }
@@ -208,6 +210,7 @@ public class WoomiMovement : MonoBehaviour
             ConversationPress = false;
         }
         if(isTalking){
+            ChangeAnimationState(animationTalk);
             return;//在講話的時候就不能動
         }
         #endregion

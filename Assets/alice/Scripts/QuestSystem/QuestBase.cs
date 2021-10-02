@@ -12,6 +12,8 @@ public class QuestBase : ScriptableObject
     public int[] RequiredAmount {get; set;}
 
     public bool IsCompleted {get; set;}
+    public CharacterProfile NPCTurnIn;
+    public DialogueBase completedQuestDialogue;
     public virtual void InitializedQuest() {
         CurrentAmount = new int[RequiredAmount.Length];
     }
@@ -22,5 +24,15 @@ public class QuestBase : ScriptableObject
             }
         }
         Debug.Log("Quest is complete!");
+
+        for(int i=0; i < GameManager.instance.allDialogueTriggers.Length; i++){
+
+            if(GameManager.instance.allDialogueTriggers[i].targetNPC == NPCTurnIn){
+
+                GameManager.instance.allDialogueTriggers[i].HasCompletedQuest = true;
+                GameManager.instance.allDialogueTriggers[i].CompletedQuestDialogue = completedQuestDialogue;
+                break;
+            }
+        }
     }
 }

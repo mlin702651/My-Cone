@@ -61,6 +61,7 @@ public class DialogueTrigger : Interactable
             if(HasCompletedQuest){
                 DialogueManager.instance.EnqueueDialogue(CompletedQuestDialogue);
                 DialogueManager.instance.StartDialogue();
+                DialogueManager.instance.CompletedQuestReady = true;
                 HasCompletedQuest = false;
                 return;
             }

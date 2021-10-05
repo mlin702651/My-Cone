@@ -14,6 +14,15 @@ public class QuestBase : ScriptableObject
     public bool IsCompleted {get; set;}
     public CharacterProfile NPCTurnIn;
     public DialogueBase completedQuestDialogue;
+    [System.Serializable]
+    public class Rewards{
+
+        public string[] itemRewardNames; //可以自己定義物品 做成scriptable object
+        public int experienceReward;
+        public int goldReward;
+    }
+
+    public Rewards rewards;
     public virtual void InitializedQuest() {
         CurrentAmount = new int[RequiredAmount.Length];
     }
@@ -34,5 +43,7 @@ public class QuestBase : ScriptableObject
                 break;
             }
         }
+
+        DialogueManager.instance.CompletedQuest = this;
     }
 }

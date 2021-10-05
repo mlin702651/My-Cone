@@ -158,6 +158,8 @@ public class DialogueManager : MonoBehaviour {
 
     public Queue<DialogueBase.DialogueSet> dialogueSets = new Queue<DialogueBase.DialogueSet>();
 
+    public QuestBase CompletedQuest {get; set;}
+    public bool CompletedQuestReady {get; set;}
     public void EnqueueDialogue(DialogueBase dialogueBase){ //把一個一個dialogueSet加進queue裡面
         dialogueSets.Clear();
         currentDialogue = dialogueBase;
@@ -177,7 +179,7 @@ public class DialogueManager : MonoBehaviour {
         }
         if(dialogueSets.Count == 0){
             inDialogue = false;
-            CheckIfDialogueQuest();
+            
             EndDialogue();
             return;
         }
@@ -215,16 +217,26 @@ public class DialogueManager : MonoBehaviour {
     #region dialogue UI animation
 
     public void StartDialogue(){
-            //UI上升的動畫
-            dialogueBox.DOAnchorPosY(-365,DialogueInTime,true).SetEase(DialogueEaseIn);
-            //讓主角不能動
-            FindObjectOfType<WoomiMovement>().SetTalkingStatus(true);
-            DequeueDialogue();//輸出第一句話
+        //UI上升的動畫
+        dialogueBox.DOAnchorPosY(-365,DialogueInTime,true).SetEase(DialogueEaseIn);
+        //讓主角不能動
+        FindObjectOfType<WoomiMovement>().SetTalkingStatus(true);
+        DequeueDialogue();//輸出第一句話
     }
     public void EndDialogue(){
-            Debug.Log("End of conversation");
-            dialogueBox.DOAnchorPosY(-850,DialogueOutTime,true).SetEase(DialogueEaseOut);
-            FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);
+        CheckIfDialogueQuest();
+        SetRewards();
+        Debug.Log("End of conversation");
+        dialogueBox.DOAnchorPosY(-850,DialogueOutTime,true).SetEase(DialogueEaseOut);
+        FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);
+    }
+
+    private void SetRewards(){
+        if(CompletedQuestReady){
+            QuestRewardManager.instance.SetRewardUI(CompletedQuest);
+
+            CompletedQuestReady = false;
+        }
     }
     #endregion
 }

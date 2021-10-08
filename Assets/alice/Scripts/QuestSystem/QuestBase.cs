@@ -5,8 +5,10 @@ using UnityEngine;
 public class QuestBase : ScriptableObject
 {
     public string questName;
-    [TextArea(5,10)]
+    [TextArea(2,10)]
     public string questDescription;
+    [TextArea(5,10)]
+    public string questDetail;
 
     public int[] CurrentAmount {get; set;}
     public int[] RequiredAmount {get; set;}
@@ -25,6 +27,7 @@ public class QuestBase : ScriptableObject
     public Rewards rewards;
     public virtual void InitializedQuest() {
         CurrentAmount = new int[RequiredAmount.Length];
+        MenuManager.instance.AddQuestToList(this);
     }
     public void Evaluate(){
         for(int i = 0; i < RequiredAmount.Length; i++){

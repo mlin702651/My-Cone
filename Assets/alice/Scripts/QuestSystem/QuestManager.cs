@@ -28,10 +28,11 @@ public class QuestManager : MonoBehaviour
     public QuestDialogueTrigger CurrentQuestDialogueTrigger{get; set;}
 
     public void InitiateQuest(QuestBase newQuest){
+        
+        newQuest.InitializedQuest();//直接接受ㄌ
         questName.text = newQuest.questName;
         questDescription.text = newQuest.questDescription + "    " + "0" + "/" + newQuest.RequiredAmount[0];
         
-        newQuest.InitializedQuest();//直接接受ㄌ
         CurrentQuest = newQuest;
         CurrentQuestDialogueTrigger.hasActiveQuest = false;
 

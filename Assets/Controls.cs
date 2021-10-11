@@ -121,6 +121,38 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSelectUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""09be5bac-e96b-4c41-b8e6-14d4e70a4a6a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSelectDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c127d4c-a9db-4253-8212-22127f222bd5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSelectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""9161a8bf-bec6-4a55-9ade-98f5644f2bef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSelectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""90ac49b1-4992-40de-8f3a-553017b10bb7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -420,6 +452,50 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56145486-f482-4b67-837d-30fed8d7c2ec"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSelectUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2c80f43-1f97-4c81-ad6d-0f8387352033"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSelectDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ae6c7c3-18c3-4bd6-8e0a-4f047a4c0dad"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b931598-4c22-451f-915b-4e462105ad03"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -468,6 +544,10 @@ public class @Controls : IInputActionCollection, IDisposable
         m_player_Dash = m_player.FindAction("Dash", throwIfNotFound: true);
         m_player_Talk = m_player.FindAction("Talk", throwIfNotFound: true);
         m_player_Menu = m_player.FindAction("Menu", throwIfNotFound: true);
+        m_player_MenuSelectUp = m_player.FindAction("MenuSelectUp", throwIfNotFound: true);
+        m_player_MenuSelectDown = m_player.FindAction("MenuSelectDown", throwIfNotFound: true);
+        m_player_MenuSelectLeft = m_player.FindAction("MenuSelectLeft", throwIfNotFound: true);
+        m_player_MenuSelectRight = m_player.FindAction("MenuSelectRight", throwIfNotFound: true);
         // New action map
         m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
         m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
@@ -533,6 +613,10 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_player_Dash;
     private readonly InputAction m_player_Talk;
     private readonly InputAction m_player_Menu;
+    private readonly InputAction m_player_MenuSelectUp;
+    private readonly InputAction m_player_MenuSelectDown;
+    private readonly InputAction m_player_MenuSelectLeft;
+    private readonly InputAction m_player_MenuSelectRight;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -550,6 +634,10 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_player_Dash;
         public InputAction @Talk => m_Wrapper.m_player_Talk;
         public InputAction @Menu => m_Wrapper.m_player_Menu;
+        public InputAction @MenuSelectUp => m_Wrapper.m_player_MenuSelectUp;
+        public InputAction @MenuSelectDown => m_Wrapper.m_player_MenuSelectDown;
+        public InputAction @MenuSelectLeft => m_Wrapper.m_player_MenuSelectLeft;
+        public InputAction @MenuSelectRight => m_Wrapper.m_player_MenuSelectRight;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -598,6 +686,18 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @MenuSelectUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectUp;
+                @MenuSelectUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectUp;
+                @MenuSelectUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectUp;
+                @MenuSelectDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectDown;
+                @MenuSelectDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectDown;
+                @MenuSelectDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectDown;
+                @MenuSelectLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectLeft;
+                @MenuSelectLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectLeft;
+                @MenuSelectLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectLeft;
+                @MenuSelectRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectRight;
+                @MenuSelectRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectRight;
+                @MenuSelectRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectRight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -641,6 +741,18 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @MenuSelectUp.started += instance.OnMenuSelectUp;
+                @MenuSelectUp.performed += instance.OnMenuSelectUp;
+                @MenuSelectUp.canceled += instance.OnMenuSelectUp;
+                @MenuSelectDown.started += instance.OnMenuSelectDown;
+                @MenuSelectDown.performed += instance.OnMenuSelectDown;
+                @MenuSelectDown.canceled += instance.OnMenuSelectDown;
+                @MenuSelectLeft.started += instance.OnMenuSelectLeft;
+                @MenuSelectLeft.performed += instance.OnMenuSelectLeft;
+                @MenuSelectLeft.canceled += instance.OnMenuSelectLeft;
+                @MenuSelectRight.started += instance.OnMenuSelectRight;
+                @MenuSelectRight.performed += instance.OnMenuSelectRight;
+                @MenuSelectRight.canceled += instance.OnMenuSelectRight;
             }
         }
     }
@@ -693,6 +805,10 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnTalk(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnMenuSelectUp(InputAction.CallbackContext context);
+        void OnMenuSelectDown(InputAction.CallbackContext context);
+        void OnMenuSelectLeft(InputAction.CallbackContext context);
+        void OnMenuSelectRight(InputAction.CallbackContext context);
     }
     public interface INewactionmapActions
     {

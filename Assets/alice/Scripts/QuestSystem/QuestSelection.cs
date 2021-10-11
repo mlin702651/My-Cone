@@ -8,6 +8,8 @@ public class QuestSelection : MonoBehaviour
     [HideInInspector]public QuestBase questBase;
     public Text questNameText;
 
+    public Image questBackground;
+
     public void SetQuest(QuestBase newQuest){
         questBase = newQuest;
         questNameText.text = newQuest.questName;

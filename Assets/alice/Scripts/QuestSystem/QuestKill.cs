@@ -30,7 +30,8 @@ public class QuestKill : QuestBase
             if(slaintMonster == objectives[i].requiredMonster){
                 CurrentAmount[i]++;
                 //更新給UI
-                QuestManager.instance.UpdateQuestTracker($"{questDescription + "    " + CurrentAmount[i] + "/" + RequiredAmount[i]}");
+                //QuestManager.instance.UpdateQuestTracker($"{questDescription + "    " + CurrentAmount[i] + "/" + RequiredAmount[i]}");
+                QuestManager.instance.UpdateQuestTracker(this.GetObjectiveList());
             }
         }
 

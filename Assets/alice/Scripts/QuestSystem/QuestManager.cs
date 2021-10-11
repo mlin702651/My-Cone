@@ -31,7 +31,7 @@ public class QuestManager : MonoBehaviour
         
         newQuest.InitializedQuest();//直接接受ㄌ
         questName.text = newQuest.questName;
-        questDescription.text = newQuest.questDescription + "    " + "0" + "/" + newQuest.RequiredAmount[0];
+        questDescription.text = newQuest.questDescription + "\n" + newQuest.GetObjectiveList();
         
         CurrentQuest = newQuest;
         CurrentQuestDialogueTrigger.hasActiveQuest = false;
@@ -40,7 +40,7 @@ public class QuestManager : MonoBehaviour
         //這邊在寫個任務UI跑進來淡出的動畫
     }
     public void UpdateQuestTracker(string newDescription){
-        questDescription.text = newDescription;
+        questDescription.text = CurrentQuest.questDescription + "\n" + newDescription;
     }
 
     public void ClearCompletedQuest(){

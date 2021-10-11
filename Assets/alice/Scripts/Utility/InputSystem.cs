@@ -12,6 +12,8 @@ public class InputSystem : MonoBehaviour
     #region Menu
 
     public bool MenuPressDown{get; set;}
+    public bool MenuSelectUpPressDown;
+    public bool MenuSelectDownPressDown;
 
     #endregion
 
@@ -28,6 +30,10 @@ public class InputSystem : MonoBehaviour
             //選單
             controls.player.Menu.performed += ctx => MenuStart();
             controls.player.Menu.canceled += ctx => MenuEnd();
+            controls.player.MenuSelectUp.started += ctx => SetPressDownTrue(ref MenuSelectUpPressDown);
+            controls.player.MenuSelectUp.canceled += ctx => SetPressDownFalse(ref MenuSelectUpPressDown);
+            controls.player.MenuSelectDown.started += ctx => SetPressDownTrue(ref MenuSelectDownPressDown);
+            controls.player.MenuSelectDown.canceled += ctx => SetPressDownFalse(ref MenuSelectDownPressDown);
             // //角色移動
             // controls.player.Move.performed += ctx => getMove = ctx.ReadValue<Vector2>();
             // controls.player.Move.canceled += ctx => getMove = Vector2.zero;
@@ -76,5 +82,14 @@ public class InputSystem : MonoBehaviour
 
     void MenuEnd(){
         MenuPressDown = false;
+    }
+
+
+    void SetPressDownTrue(ref bool pressDown){
+        pressDown = true;
+        //print("hey");
+    }
+    void SetPressDownFalse(ref bool pressDown){
+        pressDown = false;
     }
 }

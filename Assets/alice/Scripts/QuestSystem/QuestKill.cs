@@ -37,4 +37,16 @@ public class QuestKill : QuestBase
         Evaluate();
     }
 
+    public override string GetObjectiveList(){
+        
+        string tempObjectiveList = "";
+
+        for (int i = 0; i < objectives.Length; i++)
+        {
+            tempObjectiveList += $"已完成{"    ( " + CurrentAmount[i] + " / " + RequiredAmount[i]+ " ) 隻" + objectives[i].requiredMonster.monsterName} \n";
+        }
+
+        return tempObjectiveList;
+    }
+
 }

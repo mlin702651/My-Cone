@@ -49,4 +49,8 @@ public class QuestBase : ScriptableObject
 
         DialogueManager.instance.CompletedQuest = this;
     }
+
+    public virtual string GetObjectiveList(){
+        return null;
+    }
 }

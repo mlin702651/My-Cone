@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
     public Text questName;
     public Text questDescription;
     public Text questDetail;
+    public Text questObjective;
     public Transform questHolder;
     public GameObject questSelectionPrefab;
 
@@ -27,7 +28,7 @@ public class MenuManager : MonoBehaviour
             MenuUI.SetActive(!MenuUI.activeSelf);
             if(MenuUI.activeSelf){
                 FindObjectOfType<WoomiMovement>().SetInMenuStatus(true);
-                UpdateQuestUI(TestQuest);
+                UpdateQuestUI(TestQuest,TestQuest.GetObjectiveList());
 
             }
             else FindObjectOfType<WoomiMovement>().SetInMenuStatus(false);
@@ -35,17 +36,18 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    public void UpdateQuestUI(QuestBase newQuest){
+    public void UpdateQuestUI(QuestBase newQuest, string objectiveList){
         questName.text = newQuest.questName;
         questDetail.text = newQuest.questDetail;
-        questDescription.text = newQuest.questDescription + "    ( " + newQuest.CurrentAmount[0] + " / " + newQuest.RequiredAmount[0] + " )";
+        questDescription.text = newQuest.questDescription;
+        questObjective.text = objectiveList;
     }
 
     public void AddQuestToList(QuestBase newQuest){
         var questSelection = Instantiate(questSelectionPrefab, questHolder);
 
         questSelection.GetComponent<QuestSelection>().SetQuest(newQuest);
-        UpdateQuestUI(newQuest);
+        UpdateQuestUI(newQuest,newQuest.GetObjectiveList());
         TestQuest = newQuest;
         //questSelectionPrefab.Text.text = newQuest.questName;
         //questSelectionPrefab.GetComponent<Text>().text = newQuest.questName;

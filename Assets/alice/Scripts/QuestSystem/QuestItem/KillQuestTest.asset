@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054633284ae825843b36c6aa35de1c5a, type: 3}
+  m_Name: Kill Monster Bells
+  m_EditorClassIdentifier: 
+  questName: "\u9B54\u6CD5\u6E2C\u9A57 \u2014 \u6D77\u87BA\u4E4B\u6B4C"
+  questDescription: "\u6BBA\u4E94\u96BB\u9234\u9234\u8349"
+  questDetail: "\u9B54\u6CD5\u6E2C\u9A57\u7684\u7B2C\u4E00\u95DC\uFF0C\u4F7F\u7528\u5DEB\u7C73\u6D77\u87BA\u4E4B\u6B4C\u5C07\u9234\u9234\u8349\u64CA\u843D\u3002\n\u63D0\u793A
+    :  \u9577\u6309RT\u4EE5\u84C4\u529B"
+  NPCTurnIn: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
+  completedQuestDialogue: {fileID: 11400000, guid: ea0261620c838b34cbad586e4efa8c3c,
+    type: 2}
+  rewards:
+    itemRewardNames:
+    - "\u4F86\u81EA\u9577\u8001\u7684\u9F13\u52F5*1"
+    - "\u5DEB\u7C73\u7684\u9A55\u50B2*5"
+    experienceReward: 300
+    goldReward: 100
+  objectives:
+  - requiredMonster: {fileID: 11400000, guid: df2a779179c345940b12bed5901b772a, type: 2}
+    requiredAmount: 5

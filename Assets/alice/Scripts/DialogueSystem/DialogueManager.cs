@@ -189,7 +189,28 @@ public class DialogueManager : MonoBehaviour {
 
         dialogueName.text = dialogueSet.character.characterName;
         dialogueContent.text = dialogueSet.content;
-        dialogueImage.sprite = dialogueSet.character.characterImage;
+        switch(dialogueSet.emotion){
+            case DialogueBase.DialogueSet.Emotions.Normal:
+                dialogueImage.sprite = dialogueSet.character.characterImage_Normal;
+                break;
+            case DialogueBase.DialogueSet.Emotions.Happy:
+                dialogueImage.sprite = dialogueSet.character.characterImage_Happy;
+                break;
+            case DialogueBase.DialogueSet.Emotions.Mad:
+                dialogueImage.sprite = dialogueSet.character.characterImage_Mad;
+                break;
+            case DialogueBase.DialogueSet.Emotions.Ok:
+                dialogueImage.sprite = dialogueSet.character.characterImage_Ok;
+                break;
+            case DialogueBase.DialogueSet.Emotions.Scare:
+                dialogueImage.sprite = dialogueSet.character.characterImage_Scare;
+                break;
+            case DialogueBase.DialogueSet.Emotions.Shock:
+                dialogueImage.sprite = dialogueSet.character.characterImage_Shock;
+                break;
+        }
+                
+        if(dialogueImage.sprite==null) dialogueImage.sprite = dialogueSet.character.characterImage_Normal;
 
         dialogueContent.text = "";
         StartCoroutine(TypeText(dialogueSet));

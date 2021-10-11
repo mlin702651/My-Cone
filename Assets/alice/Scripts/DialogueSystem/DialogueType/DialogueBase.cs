@@ -10,6 +10,17 @@ public class DialogueBase : ScriptableObject
         public CharacterProfile character;
         [TextArea(4,8)]
         public string content;
+
+        public Emotions emotion = Emotions.Normal;
+        public enum Emotions{
+            Normal, //0
+            Happy,
+            Mad,
+            Ok,
+            Scare,
+            Shock
+            
+        }
     }
     [Header("Insert Dialogue Content")]
     public DialogueSet[] dialogueSet;

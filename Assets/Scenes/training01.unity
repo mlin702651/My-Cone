@@ -6204,6 +6204,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345170110f90e8d468ca346a06985d26, type: 3}
+--- !u!114 &1185235730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4256212061200738658, guid: 345170110f90e8d468ca346a06985d26,
+    type: 3}
+  m_PrefabInstance: {fileID: 1185235729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1185987981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13079,20 +13091,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7275059, y: 2.2825286, z: 1.5440296}
   m_Center: {x: 0.40139794, y: -0.10919214, z: 0.2720159}
---- !u!136 &1819337122
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819337119}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 2.67
-  m_Height: 6.37
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1819337123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13106,7 +13104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 1.5
-  interactHint: {fileID: 0}
+  interactHint: {fileID: 1185235730}
   targetNPC: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
   dialogueBases:
   - {fileID: 11400000, guid: 11449198f40253146ab8a5a595a14c6a, type: 2}

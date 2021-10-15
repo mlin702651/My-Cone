@@ -106,7 +106,9 @@ public class WoomiMovement : MonoBehaviour
     private bool canTalk = false;
     private Dialogue dialogue = null;
     #endregion
-    
+    #region Menu
+    private bool inMenu;
+    #endregion
     #region SetUp
     void Awake()
     {
@@ -196,6 +198,9 @@ public class WoomiMovement : MonoBehaviour
     #endregion
     void FixedUpdate()
     {
+        if(inMenu){
+            return;
+        }
         #region Talk
         if(canTalk&&ConversationPress){
             //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
@@ -605,6 +610,9 @@ public class WoomiMovement : MonoBehaviour
 
     public void SetTalkingStatus(bool talkbool){
         isTalking = talkbool;
+    }
+    public void SetInMenuStatus(bool menubool){
+        inMenu = menubool;
     }
     public void SetCanTalkStatus(bool cantalkbool){
         canTalk = cantalkbool;

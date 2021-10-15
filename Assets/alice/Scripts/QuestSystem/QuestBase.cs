@@ -5,8 +5,10 @@ using UnityEngine;
 public class QuestBase : ScriptableObject
 {
     public string questName;
-    [TextArea(5,10)]
+    [TextArea(2,10)]
     public string questDescription;
+    [TextArea(5,10)]
+    public string questDetail;
 
     public int[] CurrentAmount {get; set;}
     public int[] RequiredAmount {get; set;}
@@ -19,12 +21,14 @@ public class QuestBase : ScriptableObject
 
         public string[] itemRewardNames; //可以自己定義物品 做成scriptable object
         public int experienceReward;
-        public int goldReward;
+        public int spiritReward;
     }
 
     public Rewards rewards;
     public virtual void InitializedQuest() {
+        IsCompleted = false;
         CurrentAmount = new int[RequiredAmount.Length];
+        MenuManager.instance.AddQuestToList(this);
     }
     public void Evaluate(){
         for(int i = 0; i < RequiredAmount.Length; i++){
@@ -43,7 +47,11 @@ public class QuestBase : ScriptableObject
                 break;
             }
         }
-
+        IsCompleted = true;
         DialogueManager.instance.CompletedQuest = this;
+    }
+
+    public virtual string GetObjectiveList(){
+        return null;
     }
 }

@@ -18,4 +18,6 @@ public class GameManager : MonoBehaviour
 
     public delegate void OnEnemyDeathCallBack(MonsterProfile monsterProfile);
     public OnEnemyDeathCallBack onEnemyDeathCallBack;
+
+    
 }

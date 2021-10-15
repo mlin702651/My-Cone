@@ -29,10 +29,25 @@ public class QuestKill : QuestBase
         for(int i = 0; i < objectives.Length; i++){
             if(slaintMonster == objectives[i].requiredMonster){
                 CurrentAmount[i]++;
+                //更新給UI
+                //QuestManager.instance.UpdateQuestTracker($"{questDescription + "    " + CurrentAmount[i] + "/" + RequiredAmount[i]}");
+                QuestManager.instance.UpdateQuestTracker(this.GetObjectiveList());
             }
         }
 
         Evaluate();
+    }
+
+    public override string GetObjectiveList(){
+        
+        string tempObjectiveList = "";
+
+        for (int i = 0; i < objectives.Length; i++)
+        {
+            tempObjectiveList += $"已完成{"    ( " + CurrentAmount[i] + " / " + RequiredAmount[i]+ " ) 隻" + objectives[i].requiredMonster.monsterName} \n";
+        }
+
+        return tempObjectiveList;
     }
 
 }

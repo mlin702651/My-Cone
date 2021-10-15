@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc9ebd607fdefa4eb1a54028043bfa4, type: 3}
+  m_Name: QuestDialogueTest3
+  m_EditorClassIdentifier: 
+  dialogueSet:
+  - character: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
+    content: "\u53BB\u628A5\u96BB\u9234\u9234\u8349\u6BBA\u4E86"
+    emotion: 2
+  - character: {fileID: 11400000, guid: e7aefa82f7a40294bb7fee4b3d884da8, type: 2}
+    content: "\u6BBA...\u6BBA\u4E86???"
+    emotion: 5
+  - character: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
+    content: "\u6709\u610F\u898B\u3107?"
+    emotion: 0
+  - character: {fileID: 11400000, guid: e7aefa82f7a40294bb7fee4b3d884da8, type: 2}
+    content: "\u6C92\u6709..."
+    emotion: 4
+  quest: {fileID: 11400000, guid: c69c9241128895d4691ffbc3e0fdd154, type: 2}

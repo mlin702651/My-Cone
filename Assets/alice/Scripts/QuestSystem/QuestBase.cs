@@ -13,7 +13,12 @@ public class QuestBase : ScriptableObject
     public int[] CurrentAmount {get; set;}
     public int[] RequiredAmount {get; set;}
 
-    public bool IsCompleted = false;
+    // [System.Serializable]
+    // public class QuestStatus{
+    //     public bool IsCompleted {get;set;} = false;
+    // }
+    public CQuestStatus questStatus;
+    //public bool IsCompleted = false;
     public CharacterProfile NPCTurnIn;
     public DialogueBase completedQuestDialogue;
     [System.Serializable]
@@ -25,10 +30,12 @@ public class QuestBase : ScriptableObject
     }
 
     public Rewards rewards;
-
+    public QuestBase(){
+        questStatus = new CQuestStatus();
+    }
     
     public virtual void InitializedQuest() {
-        IsCompleted = false;
+        questStatus.IsCompleted = false;
         CurrentAmount = new int[RequiredAmount.Length];
         MenuManager.instance.AddQuestToList(this);
     }

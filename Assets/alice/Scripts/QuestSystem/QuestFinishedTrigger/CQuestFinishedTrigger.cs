@@ -10,9 +10,10 @@ public class CQuestFinishedTrigger : MonoBehaviour
     void Update()
     {
         if(isTrigger) return;
-        if(finishedQuest.IsCompleted){
+        if(finishedQuest.questStatus.IsCompleted== true){
             isTrigger = true;
             QuestTriggerEvent();
+            
         }
     }
 

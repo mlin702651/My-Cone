@@ -255,7 +255,7 @@ public class DialogueManager : MonoBehaviour {
     private void SetRewards(){
         if(CompletedQuestReady){
             //任務完成
-            CompletedQuest.IsCompleted = true;
+            CompletedQuest.questStatus.IsCompleted = true;
             QuestRewardManager.instance.SetRewardUI(CompletedQuest);
             QuestManager.instance.ClearCompletedQuest();
             CompletedQuestReady = false;

@@ -13,7 +13,7 @@ public class QuestBase : ScriptableObject
     public int[] CurrentAmount {get; set;}
     public int[] RequiredAmount {get; set;}
 
-    public bool IsCompleted {get; set;}
+    public bool IsCompleted = false;
     public CharacterProfile NPCTurnIn;
     public DialogueBase completedQuestDialogue;
     [System.Serializable]
@@ -25,6 +25,8 @@ public class QuestBase : ScriptableObject
     }
 
     public Rewards rewards;
+
+    
     public virtual void InitializedQuest() {
         IsCompleted = false;
         CurrentAmount = new int[RequiredAmount.Length];
@@ -47,7 +49,7 @@ public class QuestBase : ScriptableObject
                 break;
             }
         }
-        IsCompleted = true;
+        //IsCompleted = true;
         DialogueManager.instance.CompletedQuest = this;
     }
 

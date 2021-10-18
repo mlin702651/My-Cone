@@ -802,7 +802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b10c14f6d2246d42b6a9e4f1c250f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 2
+  PlayerWalkingSpeed: 3
+  PlayerRunningSpeed: 5
   rotSpeed: 1
   mainCam: {fileID: 0}
   Sensitivity: 100
@@ -810,6 +811,10 @@ MonoBehaviour:
   freeCamera: {fileID: 0}
   aimCamera: {fileID: 0}
   aimReticle: {fileID: 0}
+  aimColliderMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastHitPoint: {fileID: 0}
   firepoint: {fileID: 2243473532647832479}
   JumpHeight: 3
   JumpLevel2Height: 5

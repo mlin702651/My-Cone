@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
         }
 
         allDialogueTriggers = FindObjectsOfType<DialogueTrigger>();
+        
     }
 
     public DialogueTrigger[] allDialogueTriggers;
@@ -19,5 +20,6 @@ public class GameManager : MonoBehaviour
     public delegate void OnEnemyDeathCallBack(MonsterProfile monsterProfile);
     public OnEnemyDeathCallBack onEnemyDeathCallBack;
 
+    
     
 }

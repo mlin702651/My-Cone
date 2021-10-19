@@ -32,14 +32,22 @@ public class SceneStateController
         if(LoadSceneName == null || LoadSceneName.Length == 0){
             return;
         }
-        SceneManager.LoadScene(LoadSceneName);
+        //SceneManager.LoadScene(LoadSceneName);
+        asyncOperation = SceneManager.LoadSceneAsync(LoadSceneName);
+        //asyncOperation.allowSceneActivation = false;
     }
 
     //update the scene
     public void StateUpdate(){
-        asyncOperation = SceneManager.LoadSceneAsync(m_State.StateName);
-        if(asyncOperation.isDone) {
+        
+        // if(asyncOperation.progress>=0.9f){
+        //     asyncOperation.allowSceneActivation = true;
+        // }
+        //if(Application.isLoadingLevel) {
+        if(!asyncOperation.isDone) {
             Debug.Log("still loading");
+            //Debug.Log(asyncOperation.isDone);
+            Debug.Log(asyncOperation.progress);
             return; //if still loading then return
         }
 

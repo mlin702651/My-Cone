@@ -5,7 +5,8 @@ using UnityEngine;
 public class TrainingOneState : ISceneState
 {
     
-    public TrainingOneState(SceneStateController Controller):base(Controller)
+    //private Teleport teleport;
+	public TrainingOneState(SceneStateController Controller):base(Controller)
 	{
 		this.StateName = "Training01";
         Debug.Log("training one hello");
@@ -13,15 +14,20 @@ public class TrainingOneState : ISceneState
     // 開始
 	public override void StateBegin()
 	{
-		// 可在此進行遊戲資料載入及初始...等
+
+		//teleport = 
 	}
 
 	// 更新
 	public override void StateUpdate()
 	{
 		// 更換為
-		
-        Debug.Log("now in trianing01");
+        //Debug.Log("now in trianing01");
+
+		//if(MySceneManager.instance.thisSceneIsOver){
+			m_Controller.SetState(new TrainingTwoState(m_Controller), "Training02");
+			//MySceneManager.instance.StartNewScene();
+		//}
         
 	}
 }

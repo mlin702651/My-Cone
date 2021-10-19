@@ -17,7 +17,7 @@ public class StartState : ISceneState
 		// 可在此進行遊戲資料載入及初始...等
         Debug.Log("StartState begin");
 
-        //m_Controller.SetState(new TrainingOneState(m_Controller), "Training01");
+        m_Controller.SetState(new TrainingTwoState(m_Controller), "Training02");
 	}
 
 	// 更新

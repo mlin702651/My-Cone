@@ -15,7 +15,7 @@ public class TrainingOneState : ISceneState
 	public override void StateBegin()
 	{
 
-		//teleport = 
+		
 	}
 
 	// 更新
@@ -23,11 +23,19 @@ public class TrainingOneState : ISceneState
 	{
 		// 更換為
         //Debug.Log("now in trianing01");
-
-		//if(MySceneManager.instance.thisSceneIsOver){
-			m_Controller.SetState(new TrainingTwoState(m_Controller), "Training02");
-			//MySceneManager.instance.StartNewScene();
-		//}
+		CheckChangeSceneUpdate();
+		
         
+	}
+
+	
+	public override void TeleportToWhichScene(){
+			switch(nextSceneName){
+				case "Training02":
+					m_Controller.SetState(new TrainingTwoState(m_Controller), "Training02");
+					break;
+				case null:
+					break;
+		}
 	}
 }

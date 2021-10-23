@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private float interactRange = 1.5f;
+    [SerializeField] private Object targetScene; 
     private bool canInteract;
     
     
@@ -14,6 +17,7 @@ public class Teleport : MonoBehaviour
         CapsuleCollider capsuleCollider = gameObject.AddComponent(typeof(CapsuleCollider)) as CapsuleCollider;
         capsuleCollider.radius = interactRange;
         capsuleCollider.isTrigger = true;
+        //Debug.Log(targetScene.name);
     }
 
     // Update is called once per frame
@@ -21,7 +25,7 @@ public class Teleport : MonoBehaviour
     {
         if(canInteract){
             canInteract = false;
-            //MySceneManager.instance.EndThisScene(new TrainingTwoState(MySceneManager.instance.GetCurrentController()), "Training02");
+            MySceneManager.instance.EndThisScene(targetScene.name);
         }
     }
 

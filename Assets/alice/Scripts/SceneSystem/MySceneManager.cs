@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MySceneManager : MonoBehaviour
 {
     
@@ -25,13 +26,15 @@ public class MySceneManager : MonoBehaviour
         m_SceneStateController.StateUpdate();
     }
 
-    //public bool thisSceneIsOver {get;set;}= false;
-    // public void EndThisScene(ISceneState State, string LoadSceneName){
-    //     thisSceneIsOver = true;
-    // }
-    // public void StartNewScene(){
-    //     thisSceneIsOver = false;
-    // }
+    public bool thisSceneIsOver {get;set;}= false;
+    public string nextSceneName {get;set;} 
+    public void EndThisScene(string teleportSceneName){
+        thisSceneIsOver = true;
+        nextSceneName = teleportSceneName;
+    }
+    public void StartNewScene(){
+        thisSceneIsOver = false;
+    }
 
     public SceneStateController GetCurrentController(){
         return m_SceneStateController;

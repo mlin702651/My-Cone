@@ -10,6 +10,8 @@ public class ISceneState
         set{m_StateName = value;}
     }
 
+    protected string nextSceneName = null;
+
     //controller
     protected SceneStateController m_Controller = null;
 
@@ -23,6 +25,16 @@ public class ISceneState
     public virtual void StateEnd(){}
 
     public virtual void StateUpdate(){}
+
+    public void CheckChangeSceneUpdate(){
+		if(MySceneManager.instance.thisSceneIsOver){
+			MySceneManager.instance.StartNewScene();
+            nextSceneName = MySceneManager.instance.nextSceneName;
+			TeleportToWhichScene();
+		}
+	}
+
+    public virtual void TeleportToWhichScene(){}
 
     public override string ToString()
     {

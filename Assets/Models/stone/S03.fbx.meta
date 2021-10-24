@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 611c8e11d56fac140aa1db37f540d267
+guid: 6e3f71324dfcf0c4cae590d784f63fcd
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -12,7 +12,12 @@ ModelImporter:
   - first:
       74: 4892760764266987499
     second: Armature.001|small-stone-run
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SAMLL03
+    second: {fileID: 2100000, guid: 078d13a0f570b77418deed23f6f6d92d, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

@@ -265,8 +265,10 @@ public class WoomiMovement : MonoBehaviour
                                                     transform.eulerAngles + new Vector3(-getCamMove.y*4,getCamMove.x*10,0),
                                                     0.1f);
             //設定上下的範圍限制
-            if(transform.eulerAngles.x >= 20 && transform.eulerAngles.x <= 340) transform.eulerAngles = new Vector3(340,transform.eulerAngles.y,transform.eulerAngles.z);
-            else if(transform.eulerAngles.x >= 5 && transform.eulerAngles.x < 20) transform.eulerAngles = new Vector3(5,transform.eulerAngles.y,transform.eulerAngles.z);
+            //if(transform.eulerAngles.x >= 20 && transform.eulerAngles.x <= 340) transform.eulerAngles = new Vector3(340,transform.eulerAngles.y,transform.eulerAngles.z);
+            if(transform.eulerAngles.x >= 30 && transform.eulerAngles.x <= 350) transform.eulerAngles = new Vector3(350,transform.eulerAngles.y,transform.eulerAngles.z);
+            //else if(transform.eulerAngles.x >= 5 && transform.eulerAngles.x < 20) transform.eulerAngles = new Vector3(5,transform.eulerAngles.y,transform.eulerAngles.z);
+            else if(transform.eulerAngles.x >= 25 && transform.eulerAngles.x < 30) transform.eulerAngles = new Vector3(25,transform.eulerAngles.y,transform.eulerAngles.z);
             
             //print(transform.eulerAngles);
 
@@ -306,8 +308,11 @@ public class WoomiMovement : MonoBehaviour
         }
         #endregion
         #region Move Animation
-        if ((getMove.x > 0.1 || getMove.x < -0.1 || getMove.y > 0.1 || getMove.y < -0.1)&&!isShooting)
+        if ((getMove.x > 0.7 || getMove.x < -0.7 || getMove.y > 0.7 || getMove.y < -0.7)&&!isShooting&&cameraChange != 2)
         {
+            if(!isJumping&&!isLanding&&!isGroundDashing&&!isShooting)ChangeAnimationState(animationRun);
+        }
+        else if((getMove.x > 0 || getMove.x < -0 || getMove.y > 0 || getMove.y < -0)&&!isShooting){
             if(!isJumping&&!isLanding&&!isGroundDashing&&!isShooting)ChangeAnimationState(animationWalk);
         }
         else{

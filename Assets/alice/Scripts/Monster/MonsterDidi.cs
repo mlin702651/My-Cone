@@ -9,6 +9,8 @@ public class MonsterDidi : MonoBehaviour
     public MonsterProfile monsterProfile;
     private NavMeshAgent _agent;
 
+    private int didiState = 0; //0:underground 1:idle 2:flee
+
     [SerializeField]private float underGroundOffset = -0.14f;
     [SerializeField]private float onGroundOffset = 0.1f;
     private float offsetInterpolation = 0;
@@ -17,6 +19,7 @@ public class MonsterDidi : MonoBehaviour
     [SerializeField]private bool isAttacked = false;
     [SerializeField]private bool ifStartPopOut = false;
     [SerializeField]private bool ifStartFall = false;
+    [SerializeField]private bool ifGoal = false;
     private Animator _didiAnimator;
     private int currentAnimationState;
 
@@ -55,8 +58,17 @@ public class MonsterDidi : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
         float distanceToGoal = Vector3.Distance(transform.position, Goal.transform.position);
 
-        Debug.Log("Distance" + distanceToPlayer);
+        //Debug.Log("Distance" + distanceToPlayer);
 
+        if(_agent.baseOffset>=5){
+            if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
+            Destroy(gameObject);
+        }
+        if(ifGoal){
+             _agent.baseOffset += Time.deltaTime;
+            return;
+        }
+        
         if(isAttacked){
             isAttacked = false;
             PopOut();
@@ -82,6 +94,7 @@ public class MonsterDidi : MonoBehaviour
             _agent.SetDestination(newPos);
         } 
         else if(distanceToPlayer < DidiDistanceRun){
+            if(didiState==0) return;
             ChangeAnimationState(animationRun);
             Vector3 dirToPlayer = transform.position - Player.transform.position;
             Vector3 newPos = transform.position + dirToPlayer;
@@ -115,4 +128,17 @@ public class MonsterDidi : MonoBehaviour
     void PlayDidiIdleAnimation(){
         ChangeAnimationState(animationIdle);
     }
+    private void OnTriggerEnter(Collider other) {
+        
+        if(other.tag == "Player_Magic3"){
+            Debug.Log("Bomb Hit didi!!");
+            didiState = 1;
+            isAttacked = true;
+        }
+        if(other.tag =="Training03_Goal"){
+            ifGoal = true;
+        }
+    }
+
+    
 }

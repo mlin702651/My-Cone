@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5640732679249812963}
   - component: {fileID: 5944859040159757259}
   - component: {fileID: 8424296904168558894}
+  - component: {fileID: 1972259246213156880}
   m_Layer: 0
   m_Name: bomb
   m_TagString: Player_Magic3
@@ -4921,6 +4922,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &1972259246213156880
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998798219125082790}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1109636753516026642
 GameObject:
   m_ObjectHideFlags: 0

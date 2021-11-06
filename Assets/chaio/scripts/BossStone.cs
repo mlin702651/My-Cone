@@ -14,11 +14,11 @@ public class BossStone : MonoBehaviour
     [SerializeField]bool isDead=false;
     [SerializeField]bool isRevival=false;
     [SerializeField]bool isHitSuccess=false;
+    [SerializeField]bool isHitFail=false;
     [SerializeField]bool isFlyAway=false;
     [SerializeField]private GameObject particle;
-
-    //private Transform flyTo;
-    [SerializeField]private Vector3 flyTo;
+    [SerializeField]private Transform failTarget;
+    [SerializeField]private GameObject particleHit;
     public float MoveSpeed = 3.0f;
     public float attackSpeed = 6.0f;
     public float flySpeed = 4.5f;
@@ -29,10 +29,14 @@ public class BossStone : MonoBehaviour
     Vector3 velocity=new Vector3(0,0,0);
     float timer=0;
     float hitTimer=0;
+    float stayTimer=0;
+
+   
     // Start is called before the first frame update
     void Start()
     {
         isOnTheGround=false;
+        particleHit.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,9 +50,10 @@ public class BossStone : MonoBehaviour
             if(isOnTheGround && !isFlyAway){
                 animator_small.SetBool("leaveMain",true);
                 if(animator_small.GetCurrentAnimatorStateInfo(0).IsName("run")){
-                        transform.LookAt(player);
-                        controller.Move(transform.forward * MoveSpeed * Time.deltaTime);//移動朝woomi跑
-                        animator_small.SetBool("hitFail",false);  
+                    transform.LookAt(player);
+                    controller.Move(transform.forward * MoveSpeed * Time.deltaTime);//移動朝woomi跑
+                    animator_small.SetBool("hitFail",false); 
+                    hitTimer=0; 
                 }
             }
         }
@@ -70,23 +75,29 @@ public class BossStone : MonoBehaviour
             if(Vector3.Distance(player.position, transform.position)<hitRange && !isFlyAway){
                 animator_small.SetBool("attackRange",true);
                 transform.LookAt(player);
-                controller.Move(transform.forward * attackSpeed * Time.deltaTime);//攻擊woomi
-                //transform.position += transform.forward * attackSpeed * Time.deltaTime;
             }
             if(animator_small.GetCurrentAnimatorStateInfo(0).IsName("attack")){
                 hitTimer+=Time.deltaTime;
-                if(hitTimer>0.8 && !isHitSuccess){
+                //animator_small.SetBool("hitFail",false);  
+                Debug.Log(hitTimer);
+                isHitFail=false;
+                //速度
+                transform.LookAt(failTarget);
+                controller.Move(transform.forward * MoveSpeed * 2 * Time.deltaTime);//移動朝woomi跑
+                if(hitTimer>0.45 && !isHitSuccess){//只會跑一次
                     animator_small.SetBool("hitFail",true);  
                     animator_small.SetBool("hitSuccess",false); 
                     animator_small.SetBool("attackRange",false);  
                     hitTimer=0;
+                    stayTimer=0; 
+                    isHitFail=true;
                 }
             }
             if(isHitSuccess){
+                particleHit.SetActive(true);
                 isFlyAway=true;
                 isHitSuccess=false;
-                animator_small.SetBool("hitFail",false);  
-                //flyTo=target.position;
+                hitTimer=0;
             }
             if(isFlyAway){
                 animator_small.SetBool("hitFail",false); 
@@ -98,7 +109,6 @@ public class BossStone : MonoBehaviour
                     isFlyAway=false;
                     animator_small.SetBool("attackRange",false);
                     animator_small.SetBool("hitSuccess",false); 
-
                 }
             }
         }

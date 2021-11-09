@@ -38,6 +38,7 @@ public class QuestBase : ScriptableObject
         questStatus.IsCompleted = false;
         CurrentAmount = new int[RequiredAmount.Length];
         MenuManager.instance.AddQuestToList(this);
+        questStatus.IsInitialized = true;
     }
     public void Evaluate(){
         for(int i = 0; i < RequiredAmount.Length; i++){

@@ -6,6 +6,8 @@ public class CQuestStatus
 {
    public CQuestStatus(){
        IsCompleted = false;
+       IsInitialized = false;
    }
    public bool IsCompleted {get; set;}= false;
+   public bool IsInitialized {get; set;}= false;
 }

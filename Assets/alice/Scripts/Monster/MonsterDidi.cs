@@ -65,7 +65,7 @@ public class MonsterDidi : MonoBehaviour
             Destroy(gameObject);
         }
         if(ifGoal){
-             _agent.baseOffset += Time.deltaTime;
+             _agent.baseOffset += Time.deltaTime*0.5f;
             return;
         }
         

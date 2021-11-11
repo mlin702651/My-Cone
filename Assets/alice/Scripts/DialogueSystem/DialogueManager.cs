@@ -239,7 +239,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void StartDialogue(){
         //UI上升的動畫
-        dialogueBox.DOAnchorPosY(-365,DialogueInTime,true).SetEase(DialogueEaseIn);
+        dialogueBox.DOAnchorPosY(-170,DialogueInTime,true).SetEase(DialogueEaseIn);
         //讓主角不能動
         FindObjectOfType<WoomiMovement>().SetTalkingStatus(true);
         DequeueDialogue();//輸出第一句話
@@ -248,7 +248,7 @@ public class DialogueManager : MonoBehaviour {
         CheckIfDialogueQuest();
         SetRewards();
         Debug.Log("End of conversation");
-        dialogueBox.DOAnchorPosY(-850,DialogueOutTime,true).SetEase(DialogueEaseOut);
+        dialogueBox.DOAnchorPosY(-315,DialogueOutTime,true).SetEase(DialogueEaseOut);
         FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);
     }
 

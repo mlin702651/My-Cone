@@ -31,7 +31,8 @@ public class QuestManager : MonoBehaviour
         
         newQuest.InitializedQuest();//直接接受ㄌ
         questName.text = newQuest.questName;
-        questDescription.text = newQuest.questDescription + "\n" + newQuest.GetObjectiveList();
+        //questDescription.text = newQuest.questDescription + "\n" + newQuest.GetObjectiveList();
+        questDescription.text = newQuest.GetObjectiveList();
         
         CurrentQuest = newQuest;
         CurrentQuestDialogueTrigger.hasActiveQuest = false;

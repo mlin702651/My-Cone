@@ -23,7 +23,18 @@ public class TrainingTwoState : ISceneState
 	{
 		// 更換為
         //Debug.Log("now in trianing02");
-		
+		CheckChangeSceneUpdate();
         
+	}
+
+
+	public override void TeleportToWhichScene(){
+			switch(nextSceneName){
+				case "Training03":
+					m_Controller.SetState(new TrainingThreeState(m_Controller), "Training03");
+					break;
+				case null:
+					break;
+		}
 	}
 }

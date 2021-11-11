@@ -17,6 +17,10 @@ public class CQuestInitializedTrigger : MonoBehaviour
         }
     }
 
+    public bool GetIsTrigger(){
+        return isTrigger;
+    }
+
     public virtual void QuestTriggerEvent(){
 
     }

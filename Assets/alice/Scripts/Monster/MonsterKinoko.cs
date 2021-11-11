@@ -34,7 +34,8 @@ public class MonsterKinoko : MonoBehaviour
     [SerializeField]private float runSpeed = 2f;
     [SerializeField]private float startCountDown = 0f;
 
-    public CollideInteract collideInteract;
+    private CollideInteract collideInteract;
+    
     [Header("Hp")]
     private int kinokoHealth = 15;
     private float healthTimer = 0;
@@ -46,7 +47,7 @@ public class MonsterKinoko : MonoBehaviour
     [Header("facing player")]
 
     [SerializeField]private int rotateDamp = 2;
-    [SerializeField]private Transform lookTarget;
+    private Transform lookTarget;
     private Vector3 lookPosition;
     #endregion
 
@@ -54,7 +55,9 @@ public class MonsterKinoko : MonoBehaviour
     [Header("hit player")]
 
     private bool ifHitPlayer = false;
-    [SerializeField] private Rigidbody _playerRigidBody;
+    private Rigidbody _playerRigidBody;
+
+    private GameObject Player;
     #endregion
 
     void ChangeAnimationState(int newAnimationState)
@@ -76,19 +79,35 @@ public class MonsterKinoko : MonoBehaviour
         animationRun = Animator.StringToHash("Monster_Kinoko_Run");
         animationRunOver = Animator.StringToHash("Monster_Kinoko_Run_Over");
         animationAttack = Animator.StringToHash("Monster_Kinoko_Attack");
+
+        Player = GameObject.Find("Player");
+        _playerRigidBody = Player.GetComponent<Rigidbody>();
+        lookTarget = Player.transform;
+
     }
     // Start is called before the first frame update
     void Start()
     {
         kinokoState = 0;
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(collideInteract.isInteract){
-            ifTrainingStart = true;
+        
+        if(TrainingThreeManager.instance.canStartTraining){
+            if(collideInteract == null){
+                collideInteract = GameObject.Find("Test").GetComponentInChildren<CollideInteract>();
+            }
         }
+        if(collideInteract != null){
+            if(collideInteract.isInteract){
+                ifTrainingStart = true;
+            }
+        }
+        
         if(ifTrainingStart){
             startCountDown += Time.deltaTime;
         }
@@ -105,6 +124,9 @@ public class MonsterKinoko : MonoBehaviour
 
         if(kinokoHealth==0){
             //die
+            //TrainingThreeState.AddMonsterKilledCount();
+            TrainingThreeManager.instance.CheckBornNewMonster();
+            if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
             Destroy(gameObject);
         }
         
@@ -192,14 +214,14 @@ public class MonsterKinoko : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.tag=="Player_Magic1"){
-            kinokoHealth-=1;
+            kinokoHealth-=2;
         }
         else if(other.tag=="Player_Magic2"){
-            kinokoHealth-=1;
+            kinokoHealth-=2;
             Debug.Log("hurt2!");
         }
         else if(other.tag=="Player_Magic3"){
-            kinokoHealth-=1;
+            kinokoHealth-=2;
         }
     }
 }

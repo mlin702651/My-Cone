@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterKinoko : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class MonsterKinoko : MonoBehaviour
     private int kinokoHealth = 15;
     private float healthTimer = 0;
 
-
+    [SerializeField]private Text kinokoHealthText;
     #endregion
 
     #region facing player 
@@ -116,13 +117,15 @@ public class MonsterKinoko : MonoBehaviour
         }
 
         healthTimer+= Time.deltaTime;
-        if(healthTimer>=1.5f){
+        kinokoHealthText.text = kinokoHealth.ToString();
+
+        if(healthTimer>=1.0f){
             healthTimer=0;
             if(kinokoHealth==15) return;
             kinokoHealth+=1;
         }
 
-        if(kinokoHealth==0){
+        if(kinokoHealth<=0){
             //die
             //TrainingThreeState.AddMonsterKilledCount();
             TrainingThreeManager.instance.CheckBornNewMonster();

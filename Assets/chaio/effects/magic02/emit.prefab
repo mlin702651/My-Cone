@@ -4768,6 +4768,7 @@ GameObject:
   - component: {fileID: 3646308420627707286}
   - component: {fileID: 5860284434441474902}
   - component: {fileID: 2244334530983030993}
+  - component: {fileID: 7200406010607969373}
   m_Layer: 0
   m_Name: emit
   m_TagString: Player_Magic2
@@ -4879,3 +4880,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp1: {fileID: 740069646535838216, guid: c89452281209e7840840752b92784645, type: 3}
+--- !u!135 &7200406010607969373
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067369392809442637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0, z: 0}

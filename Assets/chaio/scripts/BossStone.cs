@@ -31,9 +31,7 @@ public class BossStone : MonoBehaviour
     float timer=0;
     float hitTimer=0;
     float stayTimer=0;
-    #region NavMeshAgent
-    // NavMeshAgent navMeshAgent=null;
-    #endregion
+   
     
    
     // Start is called before the first frame update
@@ -41,19 +39,13 @@ public class BossStone : MonoBehaviour
     {
         isOnTheGround=false;
         particleHit.SetActive(false);
-        #region NavMeshAgent
-        // navMeshAgent=this.GetComponent<NavMeshAgent>();
-        #endregion
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        #region NavMeshAgent
-        // if(Vector3.Distance(player.position, transform.position)<1.2f){
-        //     // navMeshAgent.isStopped=true;
-        // }
-        #endregion
+     
         if(isThrow){
             isWaiting=false;
             (gameObject.GetComponent(scr)as MonoBehaviour).enabled = false;//禁用dolly track
@@ -64,12 +56,6 @@ public class BossStone : MonoBehaviour
                 if(animator_small.GetCurrentAnimatorStateInfo(0).IsName("run")){
                     transform.LookAt(player);
                     controller.Move(transform.forward * MoveSpeed * Time.deltaTime);//移動朝woomi跑
-
-                    #region NavMeshAgent
-                    // navMeshAgent.SetDestination(player.transform.position);
-                    // GetComponent<NavMeshAgent>().speed=MoveSpeed;
-                    #endregion
-
                     animator_small.SetBool("hitFail",false); 
                     hitTimer=0;
                 }
@@ -101,11 +87,6 @@ public class BossStone : MonoBehaviour
                 isHitFail=false;
                 //速度
                 controller.Move(transform.forward * MoveSpeed * 2 * Time.deltaTime);//移動朝woomi跑
-                #region NavMeshAgent
-                // navMeshAgent.SetDestination(player.transform.position);
-                // GetComponent<NavMeshAgent>().speed=MoveSpeed * 2;
-                // navMeshAgent.isStopped=false;
-                #endregion
                 if(hitTimer>0.45 && !isHitSuccess){//只會跑一次
                     animator_small.SetBool("hitFail",true);  
                     animator_small.SetBool("hitSuccess",false); 
@@ -126,14 +107,7 @@ public class BossStone : MonoBehaviour
                 animator_small.SetBool("hitFail",false); 
                 animator_small.SetBool("hitSuccess",true);
                 if(animator_small.GetCurrentAnimatorStateInfo(0).IsName("FlyInSky")){
-
                     controller.Move(-transform.forward * flySpeed * Time.deltaTime);//移動遠離woomi
-                    #region NavMeshAgent
-                    // navMeshAgent.SetDestination(player.transform.position);
-                    // GetComponent<NavMeshAgent>().speed=flySpeed;
-                    // navMeshAgent.isStopped=false;
-                    #endregion
-
                     particleHit.SetActive(false);
                 }
                 if(animator_small.GetCurrentAnimatorStateInfo(0).IsName("standUp")){
@@ -151,11 +125,6 @@ public class BossStone : MonoBehaviour
             animator_small.SetBool("hitSuccess",false); 
             animator_small.SetBool("hitFail",false); 
             (gameObject.GetComponent(scr)as MonoBehaviour).enabled =true;//打開dolly track
-
-            #region NavMeshAgent  
-            // navMeshAgent.isStopped=false;
-            #endregion
-
             timer+=Time.deltaTime;
             particle.SetActive(true);
             transform.DOScale(0.4f,revivalTime+1);

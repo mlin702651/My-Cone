@@ -38,9 +38,9 @@ public class InputSystem : MonoBehaviour
             // controls.player.Move.performed += ctx => getMove = ctx.ReadValue<Vector2>();
             // controls.player.Move.canceled += ctx => getMove = Vector2.zero;
 
-            // //視角移動 + 魔法瞄準角度
-            // controls.player.CameraMove.performed+=ctx=> getCamMove= ctx.ReadValue<Vector2>();
-            // controls.player.CameraMove.canceled += ctx => getCamMove = Vector2.zero;
+            //視角移動 + 魔法瞄準角度
+            controls.player.CameraMove.performed+=ctx=> getCamMove= ctx.ReadValue<Vector2>();
+            controls.player.CameraMove.canceled += ctx => getCamMove = Vector2.zero;
             
             // //瞄準視角切換
             // controls.player.Aim.performed += ctx => AimStart();

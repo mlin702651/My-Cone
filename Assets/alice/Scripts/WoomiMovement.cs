@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
@@ -49,6 +49,8 @@ public class WoomiMovement : MonoBehaviour
     public GameObject freeCamera;
     public GameObject aimCamera;
     public GameObject aimReticle;
+
+    public GameObject aimCamTarget;
     [SerializeField]private static int cameraChange = 1;
     private float turnSmoothVelocity;
 
@@ -227,6 +229,7 @@ public class WoomiMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(getMove.x, 0f, getMove.y).normalized;
         Vector3 camDirection = new Vector3(getCamMove.x, 0f, getCamMove.y).normalized;
+
         //瞄準相機的移動
         if (cameraChange == 2)
         {
@@ -261,14 +264,20 @@ public class WoomiMovement : MonoBehaviour
                 
             }
             //相機轉不了 轉woomi
-            transform.eulerAngles = Vector3.Lerp(   transform.eulerAngles, 
-                                                    transform.eulerAngles + new Vector3(-getCamMove.y*4,getCamMove.x*10,0),
+            aimCamTarget.transform.eulerAngles = Vector3.Lerp(   aimCamTarget.transform.eulerAngles, 
+                                                    aimCamTarget.transform.eulerAngles + new Vector3(-getCamMove.y*4,0,0),
                                                     0.1f);
+            transform.eulerAngles = Vector3.Lerp(   transform.eulerAngles, 
+                                                    transform.eulerAngles + new Vector3(0,getCamMove.x*10,0),
+                                                    0.1f);
+            //-10 - 25
+            
             //設定上下的範圍限制
+           
             //if(transform.eulerAngles.x >= 20 && transform.eulerAngles.x <= 340) transform.eulerAngles = new Vector3(340,transform.eulerAngles.y,transform.eulerAngles.z);
-            if(transform.eulerAngles.x >= 30 && transform.eulerAngles.x <= 350) transform.eulerAngles = new Vector3(350,transform.eulerAngles.y,transform.eulerAngles.z);
+            if(aimCamTarget.transform.eulerAngles.x >= 30 && aimCamTarget.transform.eulerAngles.x <= 350) aimCamTarget.transform.eulerAngles = new Vector3(350,aimCamTarget.transform.eulerAngles.y,aimCamTarget.transform.eulerAngles.z);
             //else if(transform.eulerAngles.x >= 5 && transform.eulerAngles.x < 20) transform.eulerAngles = new Vector3(5,transform.eulerAngles.y,transform.eulerAngles.z);
-            else if(transform.eulerAngles.x >= 25 && transform.eulerAngles.x < 30) transform.eulerAngles = new Vector3(25,transform.eulerAngles.y,transform.eulerAngles.z);
+            else if(aimCamTarget.transform.eulerAngles.x >= 25 && aimCamTarget.transform.eulerAngles.x < 30) aimCamTarget.transform.eulerAngles = new Vector3(25,aimCamTarget.transform.eulerAngles.y,aimCamTarget.transform.eulerAngles.z);
             
             //print(transform.eulerAngles);
 

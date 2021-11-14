@@ -46,6 +46,8 @@ public class bulletcontroller : MonoBehaviour
     
     float magic03CDTime = 5;
     float CDTimer03 = 5;
+
+    private SphereCollider bombCollider;
     #endregion
     //status
 
@@ -241,7 +243,9 @@ public class bulletcontroller : MonoBehaviour
             {
                 //炸彈
                 GameObject cloneBomb;
-                cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position, Quaternion.identity);
+                cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position-new Vector3(0,0.7f,0), Quaternion.identity);
+                bombCollider = cloneBomb.GetComponent<SphereCollider>();
+                bombCollider.enabled = false;
                 Lean.Pool.LeanPool.Despawn(cloneBomb, 6);
                 bombPosition = transform.position;
                 exploTimer = 0;
@@ -254,6 +258,9 @@ public class bulletcontroller : MonoBehaviour
             exploTimer += Time.deltaTime;
             bombTimer += Time.deltaTime;
             CDTimer03 += Time.deltaTime;
+        }
+        if(exploTimer>3.1f){
+            bombCollider.enabled = true;
         }
         if (exploTimer > 3.2f && exploFlag)
         {

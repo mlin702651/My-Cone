@@ -61,6 +61,7 @@ public class MonsterDidi : MonoBehaviour
         //Debug.Log("Distance" + distanceToPlayer);
 
         if(_agent.baseOffset>=5){
+            //升天之後死掉
             if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
             Destroy(gameObject);
         }
@@ -74,6 +75,7 @@ public class MonsterDidi : MonoBehaviour
             PopOut();
         }
         if(ifStartPopOut){
+            //被拔起來
             _agent.baseOffset = Mathf.Lerp(underGroundOffset,onGroundOffset,offsetInterpolation);
             offsetInterpolation += Time.deltaTime/0.3f;
             if(offsetInterpolation>=1) {
@@ -82,11 +84,22 @@ public class MonsterDidi : MonoBehaviour
             }
         }
         if(ifStartFall){
+            //拔起來之後掉下去
             _agent.baseOffset = Mathf.Lerp(0,onGroundOffset,offsetInterpolation);
             offsetInterpolation -= Time.deltaTime/0.3f;
-            if(offsetInterpolation<=0) ifStartFall = false;
+            if(offsetInterpolation<=0) {
+                ifStartFall = false;
+                _agent.baseOffset = 0.004f;
+            }
         }
         if(currentAnimationState==animationPopOut) return;
+
+        // if(didiState == 1){
+        //     _agent.baseOffset = 0.004f;//試著修底底怪卡住的BUG
+        // }
+        
+        
+
         if(distanceToGoal < DidiDistanceGoal){
             ChangeAnimationState(animationRun);
             Vector3 dirToGoal = transform.position - Goal.transform.position;
@@ -131,6 +144,8 @@ public class MonsterDidi : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         
         if(other.tag == "Player_Magic3"){
+            Physics.IgnoreCollision(other,gameObject.GetComponent<CapsuleCollider>());
+            Physics.IgnoreCollision(other,gameObject.GetComponent<BoxCollider>());
             Debug.Log("Bomb Hit didi!!");
             didiState = 1;
             isAttacked = true;

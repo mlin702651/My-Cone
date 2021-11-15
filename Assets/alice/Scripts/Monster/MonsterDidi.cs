@@ -36,6 +36,8 @@ public class MonsterDidi : MonoBehaviour
 
     [SerializeField] private float DidiDistanceRun = 4.0f;
     [SerializeField] private float DidiDistanceGoal = 8.0f;
+
+    private bool isQuestCount = false;
     
     
     private void Awake() {
@@ -62,11 +64,14 @@ public class MonsterDidi : MonoBehaviour
 
         if(_agent.baseOffset>=5){
             //升天之後死掉
-            if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
             Destroy(gameObject);
         }
         if(ifGoal){
-             _agent.baseOffset += Time.deltaTime*0.5f;
+            if(!isQuestCount){
+                isQuestCount = true;
+                if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
+            }
+            _agent.baseOffset += Time.deltaTime*0.5f;
             return;
         }
         

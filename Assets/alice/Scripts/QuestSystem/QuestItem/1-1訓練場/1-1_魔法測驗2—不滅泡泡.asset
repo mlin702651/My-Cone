@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 054633284ae825843b36c6aa35de1c5a, type: 3}
-  m_Name: "1-1_\u9B54\u6CD5\u6E2C\u9A57\u4E00\u6D77\u87BA\u4E4B\u6B4C"
+  m_Name: "1-1_\u9B54\u6CD5\u6E2C\u9A572\u2014\u4E0D\u6EC5\u6CE1\u6CE1"
   m_EditorClassIdentifier: 
-  questName: "\u9B54\u6CD5\u6E2C\u9A57\u4E00 \u6D77\u87BA\u4E4B\u6B4C"
-  questDescription: "\u4F7F\u7528\u9B54\u6CD5-\u6D77\u87BA\u4E4B\u6B4C\uFF0C\u5C07\u8A13\u7DF4\u5834\u5167\u7684\u9234\u9234\u8349\u5168\u90E8\u64CA\u843D"
-  questDetail: 
+  questName: "\u9B54\u6CD5\u6E2C\u9A57\u4E00 \u4E0D\u6EC5\u6CE1\u6CE1"
+  questDescription: 
+  questDetail: "\u4F7F\u7528\u9B54\u6CD5-\u4E0D\u6EC5\u6CE1\u6CE1\uFF0C\u5FEB\u901F\u7684\u5C07\u8A13\u7DF4\u5834\u5167\u7684\u83C7\u592A\u90CE\u6253\u5012\u3002"
   NPCTurnIn: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
   completedQuestDialogue: {fileID: 11400000, guid: 32d96b85e05507742b39d58d800f4746,
     type: 2}
   rewards:
     itemRewardNames: []
-    experienceReward: 0
-    spiritReward: 0
+    experienceReward: 20
+    spiritReward: 20
   objectives:
-  - requiredMonster: {fileID: 11400000, guid: df2a779179c345940b12bed5901b772a, type: 2}
-    requiredAmount: 12
+  - requiredMonster: {fileID: 11400000, guid: fa3230953c5ae7c47bc820fc5e43d045, type: 2}
+    requiredAmount: 3

@@ -26,7 +26,7 @@ public class BigStone : MonoBehaviour
             timer+=Time.deltaTime; 
             animator_big.SetBool("goDead",true);
         }
-        if(timer>2.5f){
+        if(timer>2.2f){
             gameObject.SetActive(false);
             transform.DOScale(0,0.5f);
             isDead=true;

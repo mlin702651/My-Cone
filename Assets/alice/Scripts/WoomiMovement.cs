@@ -506,6 +506,11 @@ public class WoomiMovement : MonoBehaviour
     void AimStart()
     {
         cameraChange = 2;
+        //讓woomi轉到螢幕朝的方向 不然很暈
+        raycastHitPoint.SetActive(true);
+        Vector3 lookAtPosition = raycastHitPoint.transform.position;
+        lookAtPosition.y = transform.position.y;
+        transform.LookAt(lookAtPosition);
         
     }
     void AimCanceled()

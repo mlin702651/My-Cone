@@ -264,12 +264,14 @@ public class WoomiMovement : MonoBehaviour
                 
             }
             //相機轉不了 轉woomi
-            aimCamTarget.transform.eulerAngles = Vector3.Lerp(   aimCamTarget.transform.eulerAngles, 
-                                                    aimCamTarget.transform.eulerAngles + new Vector3(-getCamMove.y*4,0,0),
-                                                    0.1f);
-            transform.eulerAngles = Vector3.Lerp(   transform.eulerAngles, 
-                                                    transform.eulerAngles + new Vector3(0,getCamMove.x*10,0),
-                                                    0.1f);
+            // aimCamTarget.transform.eulerAngles = Vector3.Lerp(   aimCamTarget.transform.eulerAngles, 
+            //                                         aimCamTarget.transform.eulerAngles + new Vector3(-getCamMove.y*10,0,0),
+            //                                         0.1f);
+            // transform.eulerAngles = Vector3.Lerp(   transform.eulerAngles, 
+            //                                         transform.eulerAngles + new Vector3(0,getCamMove.x*15,0),
+            //                                         0.1f);
+            aimCamTarget.transform.eulerAngles = aimCamTarget.transform.eulerAngles + new Vector3( -getCamMove.y*2,0,0);
+            transform.eulerAngles = transform.eulerAngles + new Vector3(0,getCamMove.x*3,0);
             //-10 - 25
             
             //設定上下的範圍限制

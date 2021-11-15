@@ -55,10 +55,13 @@ public class MonsterKinoko : MonoBehaviour
     #region hit player 
     [Header("hit player")]
 
-    private bool ifHitPlayer = false;
+    [SerializeField]private bool ifHitPlayer = false;
     private Rigidbody _playerRigidBody;
 
     private GameObject Player;
+    #endregion
+    #region kinoko material
+    private Renderer[] kinokoRenderer;
     #endregion
 
     void ChangeAnimationState(int newAnimationState)
@@ -90,8 +93,11 @@ public class MonsterKinoko : MonoBehaviour
     void Start()
     {
         kinokoState = 0;
+        kinokoRenderer = gameObject.GetComponentsInChildren<Renderer>();
         
-        
+        kinokoRenderer[0].material.SetFloat("Vector1_2FCC19E7", 1);
+        kinokoRenderer[1].material.SetFloat("Vector1_2FCC19E7", 1);
+        Debug.Log(kinokoRenderer[0].material.shader.name);
     }
 
     // Update is called once per frame
@@ -155,10 +161,13 @@ public class MonsterKinoko : MonoBehaviour
         switch(kinokoState){
             case 0:
                 ChangeAnimationState(animationIdle);
+                
                 break;
             case 1:
                 //kinokoState = 4;
                 ChangeAnimationState(animationPrepareAttack);
+               
+
                 FacingPlayer();
                 break;
             case 2:
@@ -170,6 +179,7 @@ public class MonsterKinoko : MonoBehaviour
             case 3:
                 //_kinokoRigidbody.velocity = transform.forward*Time.deltaTime* -200;
                 //kinokoState = 4;
+                
                 ChangeAnimationState(animationAttack);
                 break;
             default:
@@ -183,6 +193,8 @@ public class MonsterKinoko : MonoBehaviour
             ChangeAnimationState(animationIdleOver);
             if(ifStartAttack){
                 kinokoState = 1;
+                kinokoRenderer[0].material.SetFloat("Vector1_2FCC19E7", 1);
+                kinokoRenderer[1].material.SetFloat("Vector1_2FCC19E7", 1);
             }
             else kinokoState = 0;
         }
@@ -195,19 +207,23 @@ public class MonsterKinoko : MonoBehaviour
             runCount++;
             if(runCount>=maxRunCount){
                 kinokoState = 3;
+                kinokoRenderer[0].material.SetFloat("Vector1_2FCC19E7", 0.5f);
+                kinokoRenderer[1].material.SetFloat("Vector1_2FCC19E7", 0.5f);
                 runCount = 0;
             }
             else kinokoState = 2;
         }
         else if(_kinokoAnimator.GetCurrentAnimatorStateInfo(0).IsName("Monster_Kinoko_Attack_Over")){
-            kinokoState = 1;
+            kinokoRenderer[0].material.SetFloat("Vector1_2FCC19E7", 0);
+            kinokoRenderer[1].material.SetFloat("Vector1_2FCC19E7", 0);
+            kinokoState = 0;
         }
     }
 
     private void HitPlayerCheck(){
         if(ifHitPlayer){
             ifHitPlayer = false;
-            _playerRigidBody.velocity = transform.forward*Time.deltaTime* -200;
+            _playerRigidBody.velocity = transform.forward*Time.deltaTime* -400;
         }
     }
 
@@ -216,15 +232,24 @@ public class MonsterKinoko : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.tag=="Player_Magic1"){
+        float kinokoGlow = kinokoRenderer[0].material.GetFloat("Vector1_2FCC19E7");
+        if(other.tag=="Player_Magic1"&&kinokoGlow == 0){
             kinokoHealth-=2;
         }
-        else if(other.tag=="Player_Magic2"){
+        else if(other.tag=="Player_Magic2"&&kinokoGlow == 0){
             kinokoHealth-=2;
             Debug.Log("hurt2!");
         }
-        else if(other.tag=="Player_Magic3"){
+        else if(other.tag=="Player_Magic3"&&kinokoGlow == 0){
             kinokoHealth-=2;
         }
+        
     }
+
+    // private void OnCollisionEnter(Collision other) {
+    //     if(other.collider.tag=="Player"&&(kinokoState==3)){
+    //         Debug.Log("Hit player");
+    //         ifHitPlayer=true;
+    //     }
+    // }
 }

@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class StoneController : MonoBehaviour
 {
-    // [SerializeField]BossStone stone01;
-    // [SerializeField]BossStone stone02;
+    [SerializeField]BigStone bigStone=null;
     [SerializeField]StoneNMA stone01=null;
     [SerializeField]StoneNMA stone02=null;
     [SerializeField]StoneNMA stone03=null;
     [SerializeField]StoneNMA stone04=null;
     [SerializeField]private GameObject particle;
-    [SerializeField]int howManyStone = 2;
+    [SerializeField]int howManyStone = 4;
+    [SerializeField]GameObject deadParticle;
     float timer=0;
-
-    bool bossAttack=false;
-    int count=0;
-
+    [SerializeField]Vector4 throeTime=new Vector4(3,5,8,11);
+    bool bossAttack=false;//大石頭可不可以丟小石頭
+    int countThrow=0;
 
 
     // Start is called before the first frame update
@@ -28,44 +27,58 @@ public class StoneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(bossAttack){//過幾秒丟一顆石頭
+
+        if(bigStone.getIsDead()){
+            gameObject.SetActive(false);
+            deadParticle.transform.position=bigStone.getBossPosition();//讓爆炸的位子跟大石頭一樣
+            deadParticle.SetActive(true);
+        }
+        //過幾秒丟一顆石頭
+        if(bossAttack){
+            stone01.setNotAllStoneDead();
+            stone02.setNotAllStoneDead();
+            stone03.setNotAllStoneDead();
+            stone04.setNotAllStoneDead();
+            Debug.Log("in bossAttack");
             timer+=Time.deltaTime;
-            if(timer>10 && count<1){
+            if(timer>throeTime.x && countThrow<1){
                 stone01.setIsThorw();
-                count++;
+                countThrow++;
             }
-            if(timer>15 && count<2){
+            else if(timer>throeTime.y && countThrow<2){
                 stone02.setIsThorw();
-                count++;
+                countThrow++;
+            }
+            else if(timer>throeTime.z && countThrow<3){
+                stone03.setIsThorw();
+                countThrow++;
+            }
+            else if(timer>throeTime.w && countThrow<4){
+                stone04.setIsThorw();
+                countThrow++;
             }
         }
-        // if(stone01!=null){
-
-        // }
-        // if(stone02!=null){
-            
-        // }
-        // if(stone03!=null){
-            
-        // }
-        // if(stone04!=null){
-            
-        // }
-        if(stone01.getIsWaiting()&&stone02.getIsWaiting()){//所有石頭可以攻擊 粒子打開
+        //所有小石頭可以被丟出去 粒子打開 大石頭不可以被攻擊
+        if(stone01.getIsWaiting()&&stone02.getIsWaiting()&&stone03.getIsWaiting()&&stone04.getIsWaiting()){
             bossAttack=true;
             particle.SetActive(true);
+            bigStone.setCanNotHurt();
         }
-        if(count >= howManyStone ){//所有石頭丟出去之後 timer歸0
+        //所有小石頭丟出去之後 timer歸0     
+        if(countThrow >= howManyStone ){
+            countThrow=0;
             bossAttack=false;
             timer=0;
         }
-        if(stone01.getIsDead()&&stone02.getIsDead()){//所有石頭死掉之後把粒子關掉
+        //所有石頭死掉之後把粒子關掉
+        if(stone01.getIsDead()&&stone02.getIsDead()&&stone03.getIsDead()&&stone04.getIsDead()){
             particle.SetActive(false);
             stone01.setIsAllStoneDead();
             stone02.setIsAllStoneDead();
-            //stone01.setIsRevival();
-            //stone02.setIsRevival();
-            count=0;
+            stone03.setIsAllStoneDead();
+            stone04.setIsAllStoneDead();
+            bigStone.setCanHurt();//大石頭可以被攻擊
+            //countThrow=0;
         }
     }
 }

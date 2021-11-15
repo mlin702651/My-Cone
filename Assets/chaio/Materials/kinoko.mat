@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1483982011073161866
+--- !u!114 &-743458102329900416
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
+  version: 2
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -20,8 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: wallWithTransparent
-  m_Shader: {fileID: 4800000, guid: 1adb87d078b6ab24694682b195f7b138, type: 3}
+  m_Name: kinoko
+  m_Shader: {fileID: -6465566751694194690, guid: c243b6697f2f6ef4e884f8cd7d5fbe16,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,12 +33,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_55A2C7A8:
-        m_Texture: {fileID: 0}
+    - Texture2D_684A592B:
+        m_Texture: {fileID: 2800000, guid: e2d05132e08d3f046a84671dfca6cbb7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1543ad056efe1ef4bb6eb8135e130638, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -49,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e2d05132e08d3f046a84671dfca6cbb7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -64,10 +65,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_3DF1D3E2_Out_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1E531A7C: 0.24
-    - Vector1_D0C66703: 0
-    - Vector1_E2E20607: 0.94
+    - Vector1_2FCC19E7: 1
+    - Vector1_4FFEEFA8: 0
+    - Vector1_808CA393: 0.7
+    - Vector1_96FC8400: 32
+    - Vector1_ACD2E521: 0.7
+    - Vector1_BF98A7ED: 32
+    - Vector1_C99E1A52: 0.1
+    - Vector1_D69A8F20: 0.1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -78,11 +88,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GlowOn: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Size: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -91,9 +101,19 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_7271E0D5: {r: 1, g: 1, b: 1, a: 0}
+    - Color_2CC9F843: {r: 1, g: 1, b: 1, a: 0}
+    - Color_3D59BB47: {r: 1, g: 1, b: 1, a: 0}
+    - Color_4710CCAE: {r: 1, g: 1, b: 1, a: 0}
+    - Color_583BA406: {r: 0.9304684, g: 0.9304684, b: 0.9304684, a: 0}
+    - Color_6CE4EBEB: {r: 1, g: 0.8657526, b: 0, a: 0}
+    - Color_779928F0: {r: 1, g: 0.87057, b: 0.0990566, a: 0}
+    - Color_86C16006: {r: 1, g: 1, b: 1, a: 0}
+    - Color_B47F0863: {r: 1, g: 1, b: 1, a: 0}
+    - Color_CEEE4C1F: {r: 1, g: 1, b: 1, a: 0}
+    - Color_ED53F654: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0}
+    - Vector2_2897D02F: {r: 2, g: 4, b: 0, a: 0}
+    - Vector2_3798DC59: {r: 2, g: 4, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Position: {r: 0.50000036, g: 0.5936893, b: 7.485781, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

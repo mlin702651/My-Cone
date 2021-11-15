@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+using UnityEngine.UI;
 public class StoneNMA : MonoBehaviour
 {
     NavMeshAgent navMeshAgent=null;
     [SerializeField]private Animator animator_small;
     [SerializeField] private StoneMode stoneMode=StoneMode.aroundMain; 
-    [Range(0,100),SerializeField] private int Hp = 100;
+    [Range(0,40),SerializeField] private int Hp = 40;
+    [SerializeField]private Text healthText;
     [SerializeField]Transform straightTarget;
     [SerializeField]Transform player;
     [SerializeField]private GameObject particleHit;
@@ -28,11 +30,13 @@ public class StoneNMA : MonoBehaviour
     [SerializeField] bool isTurnning=false;
     //範圍
     [Header("Value")]
-    [SerializeField] float hitRange=5;
-    [SerializeField] float stopRange=1.2f;
+    [SerializeField]float hitRange=5;
+    [SerializeField]float stopRange=1.2f;
     [SerializeField]float moveSpeed=2.5f;
     [SerializeField]float attackSpeed=3.5f;
-    [SerializeField] float coolTime=1;
+    [SerializeField]float coolTime=1;
+    [SerializeField]float revivalSize=0.2f;
+    [SerializeField]float runningSize=0.4f;
     public float revivalTime=3;
     float toPlayerDistance;
     float timer=0;
@@ -48,6 +52,12 @@ public class StoneNMA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Hp<0){
+            healthText.text ="0";
+        }
+        else{
+            healthText.text = Hp.ToString();
+        }
         toPlayerDistance=Vector3.Distance(player.position, transform.position);
         switch(stoneMode){
             case StoneMode.aroundMain:
@@ -120,7 +130,9 @@ public class StoneNMA : MonoBehaviour
     }
     private void DoOnTheGround(){
         //Debug.Log("Timer"+timer);
+        // healthText.text = Hp.ToString();
         animator_small.SetBool("leaveMain",true);
+        transform.DOScale(runningSize,0.5f);
         if(animator_small.GetCurrentAnimatorStateInfo(0).IsName("standUp")){//撥這個動畫的時候轉向
             navMeshAgent.SetDestination(player.transform.position);
             Debug.Log("turnning");
@@ -210,7 +222,7 @@ public class StoneNMA : MonoBehaviour
         (gameObject.GetComponent(scr)as MonoBehaviour).enabled =true;//打開dolly track
         particleRev.SetActive(true);
         revTimer+=Time.deltaTime;
-        transform.DOScale(0.4f,revivalTime+1);
+        transform.DOScale(revivalSize,revivalTime+1);
         if(revTimer > revivalTime){
             isRevival=false;
             particleRev.SetActive(false);
@@ -218,7 +230,7 @@ public class StoneNMA : MonoBehaviour
             revTimer=0;
             Debug.Log("end revival");       
         }
-        Hp=100;
+        Hp=40;
     }
     public enum StoneMode{
         aroundMain,
@@ -232,6 +244,9 @@ public class StoneNMA : MonoBehaviour
     }
     public void setIsAllStoneDead(){
         isAllStoneDead=true;
+    } 
+    public void setNotAllStoneDead(){
+        isAllStoneDead=false;
     } 
     public void setIsRevival(){
         isRevival=true;

@@ -272,11 +272,11 @@ public class bulletcontroller : MonoBehaviour
             {
                 //炸彈
                 GameObject cloneBomb;
-                cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position-new Vector3(0,0.7f,0), Quaternion.identity);
+                cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position-new Vector3(0,0.55f,0), Quaternion.identity);
                 bombColliders[currentBombCount] = cloneBomb.GetComponent<SphereCollider>();
                 bombColliders[currentBombCount].enabled = false;
                 Lean.Pool.LeanPool.Despawn(cloneBomb, 6);
-                bombPositions[currentBombCount] = transform.position-new Vector3(0,0.7f,0);
+                bombPositions[currentBombCount] = transform.position-new Vector3(0,0.55f,0);
                 exploTimeres[currentBombCount] = 0;
                 isBombsBorn[currentBombCount] = true;
                 isBombsSmokeBorn[currentBombCount] = false;

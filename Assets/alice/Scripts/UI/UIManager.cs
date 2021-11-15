@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
+    [Header("Magic Sprite")]
+    [SerializeField]private Image currentMagicImage;
+    [SerializeField]private Sprite magicAccumulate;
+    [SerializeField]private Sprite magicBubble;
+    [SerializeField]private Sprite magicBomb;
+    
     [Header("Accumulate Attack")]
     [SerializeField]private Image accumulateAttackCD;
     [SerializeField]private bool isAccumulateAttack;
@@ -17,6 +23,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]private bool recoverBombAttack = false;
     [SerializeField]private float bombAttackCDCircleDecreaseTime = 2f;
     [SerializeField]private float bombAttackCDCircleRecoverTime = 3f;
+
+    [Header("Bomb Attack")]
+    [SerializeField]private Image bubbleAttackCD;
     float CDCircleFullValue = 1f; // the goal
     float CDCircleClearValue = 0f; // animation start value
     float accumulateAttackCDCircleDisplayValue = 0f; // value during animation
@@ -88,4 +97,34 @@ public class UIManager : MonoBehaviour
     public void SetBombLeftAmount(int currentBombCount){
         currentBombLeft.text = currentBombCount.ToString();
     }
+
+    public void SetCurrentMagic(int magicStatus){
+        switch(magicStatus){
+            case 0:
+            currentMagicImage.sprite = magicAccumulate;
+            accumulateAttackCD.enabled = true;
+            bubbleAttackCD.enabled = false;
+            bombAttackCD.enabled = false;
+            currentBombLeft.enabled = false;
+                break;
+            case 1:
+            currentMagicImage.sprite = magicBubble;
+            accumulateAttackCD.enabled = false;
+            bubbleAttackCD.enabled = true;
+            bombAttackCD.enabled = false;
+            currentBombLeft.enabled = false;
+                break;
+            case 2:
+            currentMagicImage.sprite = magicBomb;
+            accumulateAttackCD.enabled = false;
+            bubbleAttackCD.enabled = false;
+            bombAttackCD.enabled = true;
+            currentBombLeft.enabled = true;
+                break;
+                
+            default:
+                break;
+        }
+    }
+
 }

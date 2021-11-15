@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     float bombAttackCDCircleDisplayValue = 0f; // value during animation
     float bombAttackCDTimer = 0f;
     float bombAttackCDFulltimer = 0f;
+
+    [SerializeField]private Text currentBombLeft;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,10 +78,14 @@ public class UIManager : MonoBehaviour
         displayValue = Mathf.Lerp( CDCircleClearValue, CDCircleFullValue, timer);
         circle.fillAmount = displayValue;
     }
-    public void StartAccumulateAttack(){
+    public void StartAccumulateCD(){
         isAccumulateAttack = true;
     }
-    public void StartBombAttack(){
+    public void StartBombCD(){
         isBombAttack = true;
+    }
+
+    public void SetBombLeftAmount(int currentBombCount){
+        currentBombLeft.text = currentBombCount.ToString();
     }
 }

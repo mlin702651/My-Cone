@@ -39,13 +39,21 @@ public class bulletcontroller : MonoBehaviour
     public GameObject smoke;
     public GameObject bomb;
     float exploTimer=0; //炸彈炸掉的時間
+    float[] exploTimeres; //紀錄每個炸彈爆炸的時間
     bool exploFlag = false;
     float bombTimer = 10; //炸彈炸掉的時間
-    Vector3 bombPosition;
+    Vector3[] bombPositions;
     [SerializeField]
     
     float magic03CDTime = 5;
     float CDTimer03 = 5;
+
+    private SphereCollider[] bombColliders;
+
+    private int currentBombCount = 0;
+    private bool[] isBombsBorn;
+    private bool[] isBombsSmokeBorn;
+    [SerializeField]private int maxBombCount = 5;
     #endregion
     //status
 
@@ -72,6 +80,21 @@ public class bulletcontroller : MonoBehaviour
         //切換魔法
         controls.player.SwitchWeaponPlus.started += ctx => PlusMagicStatus();
         controls.player.SwitchWeaponLess.started += ctx => MinusMagicStatus();
+    }
+
+    private void Start() {
+        isBombsBorn = new bool[maxBombCount];
+        isBombsSmokeBorn = new bool[maxBombCount];
+        bombColliders = new SphereCollider[maxBombCount];
+        bombPositions = new Vector3[maxBombCount];
+        exploTimeres = new float[maxBombCount];
+        for(int i=0;i< maxBombCount;i++){
+            isBombsBorn[i] = false;
+            isBombsSmokeBorn[i] = false;
+            bombColliders[i] = null;
+            bombPositions[i] = new Vector3(0,0,0);
+            exploTimeres[i] = 0;
+        }
     }
     void OnEnable()
     {
@@ -130,6 +153,7 @@ public class bulletcontroller : MonoBehaviour
             pressTime = 0;
             return;
         }
+        
         if (ShootPressDown&& CDTimer01>= magic01CDTime)
         {
             ShootPressDown = false;
@@ -173,7 +197,7 @@ public class bulletcontroller : MonoBehaviour
         if (ShootPressUp&& accumulateSuccess)
         {
             CDTimer01 = 0;
-            FindObjectOfType<UIManager>().StartAccumulateAttack();
+            FindObjectOfType<UIManager>().StartAccumulateCD();
             accumulateSuccess = false;
             ShootPressUp = false;
             Lean.Pool.LeanPool.Despawn(cloneStart);
@@ -231,39 +255,78 @@ public class bulletcontroller : MonoBehaviour
             ShootPressDown = false;
             return;
         }
-        if (ShootPressDown&& CDTimer03>= magic03CDTime)
-        {
-            FindObjectOfType<UIManager>().StartBombAttack();
+        if(currentBombCount>=maxBombCount){
+            //start cd
+            ShootPressDown = false;
+            currentBombCount = 0;
+            FindObjectOfType<UIManager>().StartBombCD();
+            FindObjectOfType<UIManager>().SetBombLeftAmount(maxBombCount-currentBombCount);
             CDTimer03 = 0;
+            return;
+        }
+        if (ShootPressDown&& CDTimer03>= magic03CDTime&&currentBombCount<maxBombCount)
+        {
             ShootPressDown = false;
             ShootPressUp = false;
             if (bombTimer > 10f)
             {
                 //炸彈
                 GameObject cloneBomb;
-                cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position, Quaternion.identity);
+                cloneBomb = Lean.Pool.LeanPool.Spawn(bomb, transform.position-new Vector3(0,0.7f,0), Quaternion.identity);
+                bombColliders[currentBombCount] = cloneBomb.GetComponent<SphereCollider>();
+                bombColliders[currentBombCount].enabled = false;
                 Lean.Pool.LeanPool.Despawn(cloneBomb, 6);
-                bombPosition = transform.position;
+                bombPositions[currentBombCount] = transform.position-new Vector3(0,0.7f,0);
+                exploTimeres[currentBombCount] = 0;
+                isBombsBorn[currentBombCount] = true;
+                isBombsSmokeBorn[currentBombCount] = false;
                 exploTimer = 0;
                 timer = 0;
                 exploFlag = true;
             }        
+            currentBombCount++;
+            FindObjectOfType<UIManager>().SetBombLeftAmount(maxBombCount-currentBombCount);
         }
         else
         {
-            exploTimer += Time.deltaTime;
+            //exploTimer += Time.deltaTime;
             bombTimer += Time.deltaTime;
             CDTimer03 += Time.deltaTime;
         }
-        if (exploTimer > 3.2f && exploFlag)
-        {
-            exploFlag = false;
-            //煙
-            GameObject cloneSmoke;
-            cloneSmoke = Lean.Pool.LeanPool.Spawn(smoke, bombPosition, Quaternion.identity);
-            Lean.Pool.LeanPool.Despawn(cloneSmoke, 2);
-            exploTimer = 0;
+        for(int i=0;i< maxBombCount;i++){
+            if(isBombsBorn[i]){ //如果這顆炸彈有被放出來
+                exploTimeres[i] += Time.deltaTime;
+                if (exploTimeres[i] > 3.2f&& !isBombsSmokeBorn[i])
+                {
+                    isBombsSmokeBorn[i] = true;
+                    //煙
+                    GameObject cloneSmoke;
+                    cloneSmoke = Lean.Pool.LeanPool.Spawn(smoke, bombPositions[i], Quaternion.identity);
+                    Lean.Pool.LeanPool.Despawn(cloneSmoke, 2);
+                    
+                }
+                else if(exploTimeres[i]>3.1f&&exploTimeres[i]<=4.0f){
+                    bombColliders[i].enabled = true;
+                }
+                else if(exploTimeres[i] > 4.0f){
+                    bombColliders[i].enabled = false;
+                    exploTimeres[i] = 0;
+                    isBombsBorn[i] = false;
+                }
+            }
         }
+        // if(exploTimer>3.1f){
+        //     bombColliders[currentBombCount].enabled = true;
+        // }
+        // if (exploTimer > 3.2f && exploFlag)
+        // {
+        //     exploFlag = false;
+        //     //煙
+        //     GameObject cloneSmoke;
+        //     cloneSmoke = Lean.Pool.LeanPool.Spawn(smoke, bombPositions[currentBombCount], Quaternion.identity);
+        //     Lean.Pool.LeanPool.Despawn(cloneSmoke, 2);
+        //     exploTimer = 0;
+        // }
     }
 
     #region ChangeMagic

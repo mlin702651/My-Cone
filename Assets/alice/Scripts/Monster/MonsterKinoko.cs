@@ -100,7 +100,7 @@ public class MonsterKinoko : MonoBehaviour
         
         if(TrainingThreeManager.instance.canStartTraining){
             if(collideInteract == null){
-                collideInteract = GameObject.Find("Test").GetComponentInChildren<CollideInteract>();
+                collideInteract = GameObject.Find("FightingStartTrigger").GetComponentInChildren<CollideInteract>();
             }
         }
         if(collideInteract != null){

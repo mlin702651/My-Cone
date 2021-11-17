@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2822,8 +2822,8 @@ MonoBehaviour:
   isTurnning: 0
   hitRange: 2.5
   stopRange: 2.1
-  moveSpeed: 8
-  attackSpeed: 15
+  moveSpeed: 6
+  attackSpeed: 12
   coolTime: 1
   revivalSize: 0.2
   runningSize: 0.4
@@ -8800,8 +8800,8 @@ MonoBehaviour:
   isTurnning: 0
   hitRange: 2.5
   stopRange: 2.1
-  moveSpeed: 8
-  attackSpeed: 15
+  moveSpeed: 6
+  attackSpeed: 12
   coolTime: 1
   revivalSize: 0.2
   runningSize: 0.4
@@ -17048,7 +17048,7 @@ PrefabInstance:
     - target: {fileID: 3847312062011890489, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.059620257
+      value: 0.059620246
       objectReference: {fileID: 0}
     - target: {fileID: 3847312062011890489, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17058,7 +17058,7 @@ PrefabInstance:
     - target: {fileID: 3847312062011890489, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000025901778
+      value: 0.000000025901775
       objectReference: {fileID: 0}
     - target: {fileID: 3847312062011890489, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17078,7 +17078,7 @@ PrefabInstance:
     - target: {fileID: 3847312062011890489, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 87.20413
+      value: -15.695871
       objectReference: {fileID: 0}
     - target: {fileID: 4153739691980142887, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17113,7 +17113,7 @@ PrefabInstance:
     - target: {fileID: 6899672681979775658, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 94.9
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6899672681979775658, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17143,12 +17143,12 @@ PrefabInstance:
     - target: {fileID: 7034936475213493697, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.05452019
+      value: 0.05452018
       objectReference: {fileID: 0}
     - target: {fileID: 7034936475213493697, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0203149
+      value: -0.020314896
       objectReference: {fileID: 0}
     - target: {fileID: 7034936475213493697, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17188,17 +17188,17 @@ PrefabInstance:
     - target: {fileID: 7034936475479993728, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.32983357
+      value: 0.3298336
       objectReference: {fileID: 0}
     - target: {fileID: 7034936475479993728, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.020314889
+      value: -0.02031488
       objectReference: {fileID: 0}
     - target: {fileID: 7034936475479993728, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.054520156
+      value: 0.054520138
       objectReference: {fileID: 0}
     - target: {fileID: 7034936475479993728, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17218,7 +17218,7 @@ PrefabInstance:
     - target: {fileID: 7034936476349394716, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 88.65763
+      value: -14.2423725
       objectReference: {fileID: 0}
     - target: {fileID: 7034936476349394716, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17293,7 +17293,7 @@ PrefabInstance:
     - target: {fileID: 7034936476398206734, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.05452018
+      value: 0.054520164
       objectReference: {fileID: 0}
     - target: {fileID: 7034936476398206734, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -17303,7 +17303,7 @@ PrefabInstance:
     - target: {fileID: 7034936476398206734, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.02031487
+      value: -0.020314867
       objectReference: {fileID: 0}
     - target: {fileID: 7034936476398206734, guid: b506c4dae5739354f898c8ee5ea46a2f,
         type: 3}
@@ -21581,6 +21581,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.1, z: 1.1}
   m_Center: {x: 0.000030517578, y: 0.62, z: 0.000015258789}
+--- !u!1 &1510338642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6092067456450252816, guid: b506c4dae5739354f898c8ee5ea46a2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1017660540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1510338643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510338642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  XYAxis: {fileID: 2938201420005364302, guid: f4544a7bb38f5f84fae6128a57c9e49c, type: 3}
+  ZAxis: {fileID: 2938201420005364302, guid: f4544a7bb38f5f84fae6128a57c9e49c, type: 3}
 --- !u!1 &1570991736
 GameObject:
   m_ObjectHideFlags: 0
@@ -21871,7 +21892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1582767970
 Transform:
   m_ObjectHideFlags: 0
@@ -39600,8 +39621,8 @@ MonoBehaviour:
   isTurnning: 0
   hitRange: 2.5
   stopRange: 2.1
-  moveSpeed: 8
-  attackSpeed: 15
+  moveSpeed: 6
+  attackSpeed: 12
   coolTime: 1
   revivalSize: 0.2
   runningSize: 0.4
@@ -40191,8 +40212,8 @@ MonoBehaviour:
   isTurnning: 0
   hitRange: 2.5
   stopRange: 2.1
-  moveSpeed: 8
-  attackSpeed: 15
+  moveSpeed: 6
+  attackSpeed: 12
   coolTime: 1
   revivalSize: 0.2
   runningSize: 0.4

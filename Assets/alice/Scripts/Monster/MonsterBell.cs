@@ -10,7 +10,8 @@ public class MonsterBell : MonoBehaviour
     public MonsterProfile monsterProfile;
     
     #region Animation
-    [SerializeField]private GameObject leaf;
+    [SerializeField]private GameObject leafL;
+    [SerializeField]private GameObject leafR;
     [SerializeField]private float FloatingDuration;
     [SerializeField]private float FloatingPosition;
     [SerializeField]private float LeafRotateDuration = 2;
@@ -20,7 +21,8 @@ public class MonsterBell : MonoBehaviour
     [SerializeField] private Ease FloatingDownEase = Ease.Linear;
     [SerializeField] private Ease LeafRotateEase = Ease.Linear;
     Sequence BodyMove;
-    Sequence LeafMove;
+    Sequence LeafMoveL;
+    Sequence LeafMoveR;
     Sequence DieMove;
     private Vector3 originalPosition;
     private Vector3 currentPosition;
@@ -38,7 +40,8 @@ public class MonsterBell : MonoBehaviour
          
         originalPosition = transform.position;
         BodyMove = DOTween.Sequence();
-        LeafMove = DOTween.Sequence();
+        LeafMoveL = DOTween.Sequence();
+        LeafMoveR = DOTween.Sequence();
         DieMove = DOTween.Sequence();
 
         IdleAnimation();
@@ -71,17 +74,24 @@ public class MonsterBell : MonoBehaviour
          .Append(transform.DOMoveY(originalPosition.y, FloatingDuration).SetEase(FloatingDownEase));
          BodyMove.SetLoops(-1);
 
-         LeafMove.Append(leaf.transform.DORotate(new Vector3(leaf.transform.rotation.x,leaf.transform.rotation.y,leaf.transform.rotation.z+1080)
+         LeafMoveL.Append(leafL.transform.DORotate(new Vector3(leafL.transform.rotation.x,leafL.transform.rotation.y+1080,leafL.transform.rotation.z)
          ,LeafRotateDuration
-         ,RotateMode.LocalAxisAdd
+         ,RotateMode.WorldAxisAdd
          ).SetEase(LeafRotateEase));
-         LeafMove.SetLoops(-1,LoopType.Incremental);
+         LeafMoveL.SetLoops(-1,LoopType.Incremental);
+
+         LeafMoveR.Append(leafR.transform.DORotate(new Vector3(leafR.transform.rotation.x,leafR.transform.rotation.y+1080,leafR.transform.rotation.z)
+         ,LeafRotateDuration
+         ,RotateMode.WorldAxisAdd
+         ).SetEase(LeafRotateEase));
+         LeafMoveR.SetLoops(-1,LoopType.Incremental);
     }
     void DieAnimation(){
         BodyMove.Kill(true);
         currentPosition = transform.position;
         currentRotation = new Vector3(transform.rotation.x,transform.rotation.y,transform.rotation.z);
-        LeafMove.Kill(true);
+        LeafMoveL.Kill(true);
+        LeafMoveR.Kill(true);
         DieMove.Append(transform.DORotate(currentRotation+new Vector3(0,0,10*Random.Range(-8,8)),DieDuration,RotateMode.LocalAxisAdd).OnComplete(()=>MonsterDie()));
         DieMove.Insert(0,transform.DOMoveY(currentPosition.y-DieDistance,DieDuration));
     }

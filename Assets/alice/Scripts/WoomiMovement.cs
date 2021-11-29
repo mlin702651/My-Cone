@@ -288,6 +288,7 @@ public class WoomiMovement : MonoBehaviour
         //free相機的移動
         else
         {
+            firepoint.transform.eulerAngles = transform.eulerAngles;
             transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,transform.eulerAngles.z);
             if (direction.magnitude >= 0.1f)
             {

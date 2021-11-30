@@ -27,14 +27,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""HandMove"",
-                    ""type"": ""Value"",
-                    ""id"": ""3bd03aed-91bf-43dc-b3ba-28baded7baa6"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""46db0bec-0aed-4889-8074-65db44edb337"",
@@ -54,14 +46,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""SwitchWeaponLess"",
                     ""type"": ""Button"",
                     ""id"": ""9529684a-170c-4901-b52e-6cb816008a0d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Grab"",
-                    ""type"": ""Button"",
-                    ""id"": ""6d5e5a51-b8b1-469a-a566-c365b87f69c9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -113,115 +97,9 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Menu"",
-                    ""type"": ""Button"",
-                    ""id"": ""418f184d-109c-44ec-ba76-507fed5815f5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""MenuSelectUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""09be5bac-e96b-4c41-b8e6-14d4e70a4a6a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""MenuSelectDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""1c127d4c-a9db-4253-8212-22127f222bd5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""MenuSelectLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""9161a8bf-bec6-4a55-9ade-98f5644f2bef"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""MenuSelectRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""90ac49b1-4992-40de-8f3a-553017b10bb7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""4e184ad7-87af-4302-b8a5-470842f961f2"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HandMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""e57fda91-14f8-45f9-a876-e331a70398f4"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HandMove"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""4abc94dc-b0bf-4b67-9fa9-99fdb79e78f7"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HandMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""5fd6e763-36ba-4c6c-8e7f-dab4c665518d"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HandMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""d6b9f130-a7bb-41d1-afc7-c9320e5c1e69"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HandMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""28a1ea2a-548d-4903-b392-0cd3392a0de8"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HandMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""bb196511-a76d-4669-bf85-c9d031721788"",
@@ -236,7 +114,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""aaf3c89b-23ab-4d2f-af39-889b8a364af8"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -247,7 +125,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fc1a9dda-0f90-46da-bcb1-f0c7984bb1e0"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -335,7 +213,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0b7a1ba0-145e-4641-a459-384a85bb2c22"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -367,12 +245,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b94f941e-dc4e-42d6-8ab2-16c8cab3ae30"",
-                    ""path"": """",
+                    ""id"": ""d7e7291d-8f7c-4dae-be08-2b6e99984f08"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Grab"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -397,6 +275,61 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""0e32d4a8-0bf7-4161-81d1-67ce59fc858c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0face6ab-d780-4471-82b3-4e1bbc63733d"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""01310b03-2fc0-4bf8-993b-d3d37b757421"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9091ee11-d569-4544-ada5-8921863d1097"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ede53a75-2d8c-444a-ad0a-bc367e363c64"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -441,10 +374,58 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Talk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""01d69666-7ae1-4530-b088-8fadd380130b"",
+            ""actions"": [
+                {
+                    ""name"": ""MenuSelectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5b9df8c-0b14-4964-8d64-5693d45851e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 },
                 {
+                    ""name"": ""MenuSelectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""9078dd27-a21c-4d8e-a0af-44d8006fde3e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSelectDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""18b9946c-6a80-43e9-93da-b83f943260d0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSelectUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""648f0d69-b41f-4c08-bc17-9633ac24c2ad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""308f1451-6744-44f0-83bc-31c97b7ac465"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""d9e0ffe8-2619-4cf6-9ae3-75a984c0fdb8"",
+                    ""id"": ""8ee1cba9-e4dd-43e8-b591-673f8e78f2dd"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -455,7 +436,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""56145486-f482-4b67-837d-30fed8d7c2ec"",
+                    ""id"": ""aca13d94-ac25-4509-921d-b1c39cdc4605"",
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -466,7 +447,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e2c80f43-1f97-4c81-ad6d-0f8387352033"",
+                    ""id"": ""86156e6b-8bf1-4e0b-8431-3277e15d8a8e"",
                     ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -477,7 +458,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1ae6c7c3-18c3-4bd6-8e0a-4f047a4c0dad"",
+                    ""id"": ""df86ac09-c822-4b49-962f-690b675a4b90"",
                     ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -488,39 +469,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2b931598-4c22-451f-915b-4e462105ad03"",
+                    ""id"": ""ac29558a-ac83-495c-909b-a0d846066930"",
                     ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MenuSelectRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""New action map"",
-            ""id"": ""e37b3e86-f6a3-449c-a5e3-b717fee99975"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""10fe930a-28be-4382-8071-1914223276cb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""37baa78c-38d3-4aa3-9585-eda95dc7b4fe"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -532,25 +486,22 @@ public class @Controls : IInputActionCollection, IDisposable
         // player
         m_player = asset.FindActionMap("player", throwIfNotFound: true);
         m_player_Move = m_player.FindAction("Move", throwIfNotFound: true);
-        m_player_HandMove = m_player.FindAction("HandMove", throwIfNotFound: true);
         m_player_Shoot = m_player.FindAction("Shoot", throwIfNotFound: true);
         m_player_SwitchWeaponPlus = m_player.FindAction("SwitchWeaponPlus", throwIfNotFound: true);
         m_player_SwitchWeaponLess = m_player.FindAction("SwitchWeaponLess", throwIfNotFound: true);
-        m_player_Grab = m_player.FindAction("Grab", throwIfNotFound: true);
         m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
         m_player_Charge = m_player.FindAction("Charge", throwIfNotFound: true);
         m_player_CameraMove = m_player.FindAction("CameraMove", throwIfNotFound: true);
         m_player_Aim = m_player.FindAction("Aim", throwIfNotFound: true);
         m_player_Dash = m_player.FindAction("Dash", throwIfNotFound: true);
         m_player_Talk = m_player.FindAction("Talk", throwIfNotFound: true);
-        m_player_Menu = m_player.FindAction("Menu", throwIfNotFound: true);
-        m_player_MenuSelectUp = m_player.FindAction("MenuSelectUp", throwIfNotFound: true);
-        m_player_MenuSelectDown = m_player.FindAction("MenuSelectDown", throwIfNotFound: true);
-        m_player_MenuSelectLeft = m_player.FindAction("MenuSelectLeft", throwIfNotFound: true);
-        m_player_MenuSelectRight = m_player.FindAction("MenuSelectRight", throwIfNotFound: true);
-        // New action map
-        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_MenuSelectRight = m_Menu.FindAction("MenuSelectRight", throwIfNotFound: true);
+        m_Menu_MenuSelectLeft = m_Menu.FindAction("MenuSelectLeft", throwIfNotFound: true);
+        m_Menu_MenuSelectDown = m_Menu.FindAction("MenuSelectDown", throwIfNotFound: true);
+        m_Menu_MenuSelectUp = m_Menu.FindAction("MenuSelectUp", throwIfNotFound: true);
+        m_Menu_Menu = m_Menu.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -601,43 +552,29 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_player_Move;
-    private readonly InputAction m_player_HandMove;
     private readonly InputAction m_player_Shoot;
     private readonly InputAction m_player_SwitchWeaponPlus;
     private readonly InputAction m_player_SwitchWeaponLess;
-    private readonly InputAction m_player_Grab;
     private readonly InputAction m_player_Jump;
     private readonly InputAction m_player_Charge;
     private readonly InputAction m_player_CameraMove;
     private readonly InputAction m_player_Aim;
     private readonly InputAction m_player_Dash;
     private readonly InputAction m_player_Talk;
-    private readonly InputAction m_player_Menu;
-    private readonly InputAction m_player_MenuSelectUp;
-    private readonly InputAction m_player_MenuSelectDown;
-    private readonly InputAction m_player_MenuSelectLeft;
-    private readonly InputAction m_player_MenuSelectRight;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_player_Move;
-        public InputAction @HandMove => m_Wrapper.m_player_HandMove;
         public InputAction @Shoot => m_Wrapper.m_player_Shoot;
         public InputAction @SwitchWeaponPlus => m_Wrapper.m_player_SwitchWeaponPlus;
         public InputAction @SwitchWeaponLess => m_Wrapper.m_player_SwitchWeaponLess;
-        public InputAction @Grab => m_Wrapper.m_player_Grab;
         public InputAction @Jump => m_Wrapper.m_player_Jump;
         public InputAction @Charge => m_Wrapper.m_player_Charge;
         public InputAction @CameraMove => m_Wrapper.m_player_CameraMove;
         public InputAction @Aim => m_Wrapper.m_player_Aim;
         public InputAction @Dash => m_Wrapper.m_player_Dash;
         public InputAction @Talk => m_Wrapper.m_player_Talk;
-        public InputAction @Menu => m_Wrapper.m_player_Menu;
-        public InputAction @MenuSelectUp => m_Wrapper.m_player_MenuSelectUp;
-        public InputAction @MenuSelectDown => m_Wrapper.m_player_MenuSelectDown;
-        public InputAction @MenuSelectLeft => m_Wrapper.m_player_MenuSelectLeft;
-        public InputAction @MenuSelectRight => m_Wrapper.m_player_MenuSelectRight;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -650,9 +587,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @HandMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandMove;
-                @HandMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandMove;
-                @HandMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandMove;
                 @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
@@ -662,9 +596,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SwitchWeaponLess.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
                 @SwitchWeaponLess.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
                 @SwitchWeaponLess.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
-                @Grab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                @Grab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                @Grab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -683,21 +614,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Talk.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
                 @Talk.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
                 @Talk.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
-                @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
-                @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
-                @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
-                @MenuSelectUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectUp;
-                @MenuSelectUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectUp;
-                @MenuSelectUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectUp;
-                @MenuSelectDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectDown;
-                @MenuSelectDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectDown;
-                @MenuSelectDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectDown;
-                @MenuSelectLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectLeft;
-                @MenuSelectLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectLeft;
-                @MenuSelectLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectLeft;
-                @MenuSelectRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectRight;
-                @MenuSelectRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectRight;
-                @MenuSelectRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuSelectRight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -705,9 +621,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @HandMove.started += instance.OnHandMove;
-                @HandMove.performed += instance.OnHandMove;
-                @HandMove.canceled += instance.OnHandMove;
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
@@ -717,9 +630,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SwitchWeaponLess.started += instance.OnSwitchWeaponLess;
                 @SwitchWeaponLess.performed += instance.OnSwitchWeaponLess;
                 @SwitchWeaponLess.canceled += instance.OnSwitchWeaponLess;
-                @Grab.started += instance.OnGrab;
-                @Grab.performed += instance.OnGrab;
-                @Grab.canceled += instance.OnGrab;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -738,80 +648,94 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Talk.started += instance.OnTalk;
                 @Talk.performed += instance.OnTalk;
                 @Talk.canceled += instance.OnTalk;
-                @Menu.started += instance.OnMenu;
-                @Menu.performed += instance.OnMenu;
-                @Menu.canceled += instance.OnMenu;
-                @MenuSelectUp.started += instance.OnMenuSelectUp;
-                @MenuSelectUp.performed += instance.OnMenuSelectUp;
-                @MenuSelectUp.canceled += instance.OnMenuSelectUp;
-                @MenuSelectDown.started += instance.OnMenuSelectDown;
-                @MenuSelectDown.performed += instance.OnMenuSelectDown;
-                @MenuSelectDown.canceled += instance.OnMenuSelectDown;
-                @MenuSelectLeft.started += instance.OnMenuSelectLeft;
-                @MenuSelectLeft.performed += instance.OnMenuSelectLeft;
-                @MenuSelectLeft.canceled += instance.OnMenuSelectLeft;
-                @MenuSelectRight.started += instance.OnMenuSelectRight;
-                @MenuSelectRight.performed += instance.OnMenuSelectRight;
-                @MenuSelectRight.canceled += instance.OnMenuSelectRight;
             }
         }
     }
     public PlayerActions @player => new PlayerActions(this);
 
-    // New action map
-    private readonly InputActionMap m_Newactionmap;
-    private INewactionmapActions m_NewactionmapActionsCallbackInterface;
-    private readonly InputAction m_Newactionmap_Newaction;
-    public struct NewactionmapActions
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_MenuSelectRight;
+    private readonly InputAction m_Menu_MenuSelectLeft;
+    private readonly InputAction m_Menu_MenuSelectDown;
+    private readonly InputAction m_Menu_MenuSelectUp;
+    private readonly InputAction m_Menu_Menu;
+    public struct MenuActions
     {
         private @Controls m_Wrapper;
-        public NewactionmapActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Newactionmap_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        public MenuActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MenuSelectRight => m_Wrapper.m_Menu_MenuSelectRight;
+        public InputAction @MenuSelectLeft => m_Wrapper.m_Menu_MenuSelectLeft;
+        public InputAction @MenuSelectDown => m_Wrapper.m_Menu_MenuSelectDown;
+        public InputAction @MenuSelectUp => m_Wrapper.m_Menu_MenuSelectUp;
+        public InputAction @Menu => m_Wrapper.m_Menu_Menu;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
-        public void SetCallbacks(INewactionmapActions instance)
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
         {
-            if (m_Wrapper.m_NewactionmapActionsCallbackInterface != null)
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
+                @MenuSelectRight.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectRight;
+                @MenuSelectRight.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectRight;
+                @MenuSelectRight.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectRight;
+                @MenuSelectLeft.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectLeft;
+                @MenuSelectLeft.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectLeft;
+                @MenuSelectLeft.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectLeft;
+                @MenuSelectDown.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectDown;
+                @MenuSelectDown.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectDown;
+                @MenuSelectDown.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectDown;
+                @MenuSelectUp.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectUp;
+                @MenuSelectUp.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectUp;
+                @MenuSelectUp.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSelectUp;
+                @Menu.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenu;
             }
-            m_Wrapper.m_NewactionmapActionsCallbackInterface = instance;
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @MenuSelectRight.started += instance.OnMenuSelectRight;
+                @MenuSelectRight.performed += instance.OnMenuSelectRight;
+                @MenuSelectRight.canceled += instance.OnMenuSelectRight;
+                @MenuSelectLeft.started += instance.OnMenuSelectLeft;
+                @MenuSelectLeft.performed += instance.OnMenuSelectLeft;
+                @MenuSelectLeft.canceled += instance.OnMenuSelectLeft;
+                @MenuSelectDown.started += instance.OnMenuSelectDown;
+                @MenuSelectDown.performed += instance.OnMenuSelectDown;
+                @MenuSelectDown.canceled += instance.OnMenuSelectDown;
+                @MenuSelectUp.started += instance.OnMenuSelectUp;
+                @MenuSelectUp.performed += instance.OnMenuSelectUp;
+                @MenuSelectUp.canceled += instance.OnMenuSelectUp;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
-    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
+    public MenuActions @Menu => new MenuActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnHandMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnSwitchWeaponPlus(InputAction.CallbackContext context);
         void OnSwitchWeaponLess(InputAction.CallbackContext context);
-        void OnGrab(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCharge(InputAction.CallbackContext context);
         void OnCameraMove(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnTalk(InputAction.CallbackContext context);
-        void OnMenu(InputAction.CallbackContext context);
-        void OnMenuSelectUp(InputAction.CallbackContext context);
-        void OnMenuSelectDown(InputAction.CallbackContext context);
-        void OnMenuSelectLeft(InputAction.CallbackContext context);
-        void OnMenuSelectRight(InputAction.CallbackContext context);
     }
-    public interface INewactionmapActions
+    public interface IMenuActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMenuSelectRight(InputAction.CallbackContext context);
+        void OnMenuSelectLeft(InputAction.CallbackContext context);
+        void OnMenuSelectDown(InputAction.CallbackContext context);
+        void OnMenuSelectUp(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

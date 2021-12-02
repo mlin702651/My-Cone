@@ -15,25 +15,35 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
         [SerializeField]float walkingSpeed = 2.0f;
         [SerializeField]float runningSpeed = 5.0f;
+        [SerializeField]float jumpingFriction = 0.8f;
         //[SerializeField]float rotationFactorPerFrame = 1.0f;
         [SerializeField]private float turnSmoothTime = 0.1f;
         Vector3 currentMoveMent;
         Vector3 gravityMoveMent = new Vector3(0,0,0);
+        Vector3 appliedMoveMent = new Vector3(0,0,0);  //跟跳躍有關的
         float currentSpeed = 2.0f;
         private float turnSmoothVelocity;
+        bool isRunning = false;
+        bool isWalking = false;
+
     #endregion
 
     #region Jump
         [Header("Jump")]
         [SerializeField]float maxJumpHeight = 1.0f;
         [SerializeField]float maxJumpTime = 0.5f;
+        [SerializeField]float maxSecondJumpHeight = 1.0f;
+        [SerializeField]float maxSecondJumpTime = 0.5f;
         [SerializeField]float fallMultiplier = 2.0f;
         float groundGravity = -0.5f;
         float gravity = -9.8f;
         float initialJumpVelocity;
+        float initialSecondJumpVelocity;
         bool isJumping = false;
+        bool isSecondJumping = false;
 
         bool isFalling = false;
+        bool canSecondJump = false;
     #endregion
 
 
@@ -46,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private int animationJumpStart;
     private int animationJumpLevel2;
     private int animationJumpEnd;
+    private int animationJumpEnd_End;
     private int animationDash;
     private int animationDashInAir;
     private int animationDashInAirLevel2;
@@ -74,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         animationJumpStart = Animator.StringToHash("Player_JumpStart");
         animationJumpLevel2 = Animator.StringToHash("Player_JumpLevel2");
         animationJumpEnd = Animator.StringToHash("Player_JumpEnd");
+        animationJumpEnd_End = Animator.StringToHash("Player_JumpEnd_End");
         animationDash = Animator.StringToHash("Player_Dash");
         animationDashInAir = Animator.StringToHash("Player_DashInAir");
         animationDashInAirLevel2 = Animator.StringToHash("Player_DashInAirLevel2");
@@ -108,11 +120,19 @@ public class PlayerMovement : MonoBehaviour
         
         if(currentMoveMent.magnitude>0.7){
             currentSpeed = runningSpeed;
+            isRunning = true;
+            isWalking = false;
         }
-        else if(currentMoveMent.magnitude>0){
+        else if(currentMoveMent.magnitude>0.05){
             currentSpeed = walkingSpeed;
+            isRunning = false;
+            isWalking = true;
         }
-        else currentSpeed = 0;
+        else{
+            currentSpeed = 0;
+            isWalking = false;
+            isRunning = false;
+        }
 
         if(currentMoveMent.magnitude>0.05){
             currentMoveMent = currentMoveMent.normalized;
@@ -121,10 +141,11 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            if(isJumping) currentSpeed  = currentSpeed * jumpingFriction;
             _characterController.Move(moveDir.normalized*Time.deltaTime*currentSpeed);
         }
 
-        _characterController.Move(gravityMoveMent*Time.deltaTime);
+        _characterController.Move(appliedMoveMent*Time.deltaTime);
         handleGravity();
         handleJump();
 
@@ -135,43 +156,61 @@ public class PlayerMovement : MonoBehaviour
     
     void handleGravity(){
 
-        isFalling = gravityMoveMent.y <= -10 && !_characterController.isGrounded; //|| !InputSystem.instance.isJumpPressed)
+        isFalling = gravityMoveMent.y <= -7.5 && !_characterController.isGrounded; //|| !InputSystem.instance.isJumpPressed)
         
         if(_characterController.isGrounded){
             
             gravityMoveMent.y = groundGravity;
+            appliedMoveMent.y = groundGravity;
         }
         else if(isFalling){
             float previousYVelocity = gravityMoveMent.y;
-            float newYVelocity = gravityMoveMent.y + (gravity* fallMultiplier * Time.deltaTime);
-            float nextYVelocity = Mathf.Max((previousYVelocity + newYVelocity) * 0.5f, -20.0f); //從高處掉下來的時候不要掉太快
-            gravityMoveMent.y = nextYVelocity;
+            gravityMoveMent.y = gravityMoveMent.y + (gravity* fallMultiplier * Time.deltaTime);
+            appliedMoveMent.y = Mathf.Max((previousYVelocity + gravityMoveMent.y) * 0.5f, -20.0f); //從高處掉下來的時候不要掉太快
         }
         else{
             float previousYVelocity = gravityMoveMent.y;
-            float newYVelocity = gravityMoveMent.y + (gravity * Time.deltaTime);
-            float nextYVelocity = (previousYVelocity + newYVelocity) * 0.5f;
-            gravityMoveMent.y = nextYVelocity;
-            //gravityMoveMent.y += gravity*Time.deltaTime;
+            gravityMoveMent.y = gravityMoveMent.y + (gravity * Time.deltaTime);
+            appliedMoveMent.y = (previousYVelocity + gravityMoveMent.y) * 0.5f;
 
         }
-        //_characterController.Move(gravityMoveMent*Time.deltaTime);
     }
 
     void setUpJumpVariables(){
         float timeToApex = maxJumpTime/2;
         gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);  // h = 1/2 * g * t平方 (t = 到達最高點需要的時間)
         initialJumpVelocity = (2 * maxJumpHeight) / timeToApex; //v = gt 約分之後長這樣 應該也可寫成 gravity * timeToApex
+        float timeToSecondApex = maxSecondJumpTime/2;
+        //gravity = (-2 * maxSecondJumpHeight) / Mathf.Pow(timeToSecondApex, 2);  // h = 1/2 * g * t平方 (t = 到達最高點需要的時間)
+        initialSecondJumpVelocity = (2 * maxSecondJumpHeight) / timeToSecondApex; //v = gt 約分之後長這樣 應該也可寫成 gravity * timeToApex
     }
 
     void handleJump(){
+        if(canSecondJump && InputSystem.instance.isJumpPressed){
+            InputSystem.instance.isJumpPressed = false;
+            canSecondJump = false;
+            isSecondJumping = true;
+            gravityMoveMent.y = initialSecondJumpVelocity; 
+            appliedMoveMent.y = initialSecondJumpVelocity; 
+            Debug.Log("jump 2!");
+        }
+        else if(_characterController.isGrounded){
+            canSecondJump = false;
+            isSecondJumping = false;
+        }
+
         if(!isJumping && _characterController.isGrounded && InputSystem.instance.isJumpPressed){
+            InputSystem.instance.isJumpPressed = false;
             isJumping = true;
-            gravityMoveMent.y = initialJumpVelocity * 0.5f; //還不知道為甚麼要除以二
+            canSecondJump = true;
+            gravityMoveMent.y = initialJumpVelocity; 
+            appliedMoveMent.y = initialJumpVelocity; 
         }
         else if(isJumping && _characterController.isGrounded && !InputSystem.instance.isJumpPressed){
             isJumping = false;
         }
+
+
         
     }
     
@@ -189,16 +228,20 @@ public class PlayerMovement : MonoBehaviour
         if(isFalling){
             ChangeAnimationState(animationJumpEnd);
         }
+        else if(isSecondJumping  && !_characterController.isGrounded){
+            ChangeAnimationState(animationJumpLevel2);
+        }
         else if(isJumping && !_characterController.isGrounded){
             ChangeAnimationState(animationJumpStart);
         }
-        else if(InputSystem.instance.isMovementPressed && currentMoveMent.magnitude>0.7){
+        else if(isRunning){
             ChangeAnimationState(animationRun);
         }
-        else if(InputSystem.instance.isMovementPressed){
+        else if(isWalking){
             ChangeAnimationState(animationWalk);
         }
         else { 
+            if(_animator.GetCurrentAnimatorStateInfo(0).shortNameHash == animationJumpEnd) return; //如果還在降落就播完動畫
             ChangeAnimationState(animationIdle);
         }
     }

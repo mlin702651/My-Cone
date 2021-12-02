@@ -63,8 +63,8 @@ public class InputSystem : MonoBehaviour
             controls.player.CameraMove.canceled += ctx => inputCameraMovement = Vector2.zero;
             
             //跳
-            controls.player.Jump.started += OnJump;
-            controls.player.Jump.canceled += OnJump;
+            controls.player.Jump.started += ctx => JumpStart();
+            controls.player.Jump.canceled += ctx => JumpCanceled();
 
             //瞄準視角切換
             controls.player.Aim.performed += ctx => AimStart();
@@ -131,6 +131,13 @@ public class InputSystem : MonoBehaviour
     void OnJump(InputAction.CallbackContext ctx){
         isJumpPressed = ctx.ReadValueAsButton();
 
+    }
+
+    void JumpStart(){
+        isJumpPressed = true;
+    }
+    void JumpCanceled(){
+        isJumpPressed = false;
     }
     void AimStart(){
 

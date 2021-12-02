@@ -5,21 +5,37 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     
-    #region Player
-    CharacterController _woomiCharacterController;
-    #endregion
     Transform mainCamera;
+    #region Player
+        CharacterController _characterController;
+        [Header("Interact with rigid body")]
+        [SerializeField] float pushPower = 2.0F;
+    #endregion
     #region Move
     [Header("Movement")]
-    Vector3 currentMoveMent;
-    Vector3 gravityMoveMent = new Vector3(0,0,0);
-    float currentSpeed = 2.0f;
-    [SerializeField]float walkingSpeed = 2.0f;
-    [SerializeField]float runningSpeed = 5.0f;
-    [SerializeField]float rotationFactorPerFrame = 1.0f;
-    private float turnSmoothVelocity;
-    [SerializeField]private float turnSmoothTime = 0.1f;
+        [SerializeField]float walkingSpeed = 2.0f;
+        [SerializeField]float runningSpeed = 5.0f;
+        //[SerializeField]float rotationFactorPerFrame = 1.0f;
+        [SerializeField]private float turnSmoothTime = 0.1f;
+        Vector3 currentMoveMent;
+        Vector3 gravityMoveMent = new Vector3(0,0,0);
+        float currentSpeed = 2.0f;
+        private float turnSmoothVelocity;
     #endregion
+
+    #region Jump
+        [Header("Jump")]
+        [SerializeField]float maxJumpHeight = 1.0f;
+        [SerializeField]float maxJumpTime = 0.5f;
+        [SerializeField]float fallMultiplier = 2.0f;
+        float groundGravity = -0.5f;
+        float gravity = -9.8f;
+        float initialJumpVelocity;
+        bool isJumping = false;
+
+        bool isFalling = false;
+    #endregion
+
 
     #region Animation
     Animator _animator;
@@ -47,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void Awake() {
         mainCamera = Camera.main.transform;
-        _woomiCharacterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<CharacterController>();
+        _characterController.detectCollisions = enabled;
         _animator = GetComponent<Animator>();
         #region Set Animation HashID
         animationIdle = Animator.StringToHash("Player_Idle");
@@ -72,6 +89,8 @@ public class PlayerMovement : MonoBehaviour
         
         //= Animator.StringToHash("Player_");
         #endregion
+    
+        setUpJumpVariables();
     }
     
     // Start is called before the first frame update
@@ -84,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         currentMoveMent = InputSystem.instance.GetCurrentMovement();
-        handleGravity();
         handleAnimation();
         //handleRoatation();
         
@@ -103,39 +121,78 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            Debug.Log(currentSpeed);
-            _woomiCharacterController.Move(moveDir.normalized*Time.deltaTime*currentSpeed);
+            _characterController.Move(moveDir.normalized*Time.deltaTime*currentSpeed);
         }
+
+        _characterController.Move(gravityMoveMent*Time.deltaTime);
+        handleGravity();
+        handleJump();
+
         
         
     }
 
     
     void handleGravity(){
-        if(_woomiCharacterController.isGrounded){
-            float groundGravity = -0.5f;
+
+        isFalling = gravityMoveMent.y <= -10 && !_characterController.isGrounded; //|| !InputSystem.instance.isJumpPressed)
+        
+        if(_characterController.isGrounded){
+            
             gravityMoveMent.y = groundGravity;
         }
+        else if(isFalling){
+            float previousYVelocity = gravityMoveMent.y;
+            float newYVelocity = gravityMoveMent.y + (gravity* fallMultiplier * Time.deltaTime);
+            float nextYVelocity = Mathf.Max((previousYVelocity + newYVelocity) * 0.5f, -20.0f); //從高處掉下來的時候不要掉太快
+            gravityMoveMent.y = nextYVelocity;
+        }
         else{
-            float gravity = -9.8f;
-            gravityMoveMent.y += gravity;
+            float previousYVelocity = gravityMoveMent.y;
+            float newYVelocity = gravityMoveMent.y + (gravity * Time.deltaTime);
+            float nextYVelocity = (previousYVelocity + newYVelocity) * 0.5f;
+            gravityMoveMent.y = nextYVelocity;
+            //gravityMoveMent.y += gravity*Time.deltaTime;
 
         }
-        _woomiCharacterController.Move(gravityMoveMent);
+        //_characterController.Move(gravityMoveMent*Time.deltaTime);
+    }
+
+    void setUpJumpVariables(){
+        float timeToApex = maxJumpTime/2;
+        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);  // h = 1/2 * g * t平方 (t = 到達最高點需要的時間)
+        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex; //v = gt 約分之後長這樣 應該也可寫成 gravity * timeToApex
+    }
+
+    void handleJump(){
+        if(!isJumping && _characterController.isGrounded && InputSystem.instance.isJumpPressed){
+            isJumping = true;
+            gravityMoveMent.y = initialJumpVelocity * 0.5f; //還不知道為甚麼要除以二
+        }
+        else if(isJumping && _characterController.isGrounded && !InputSystem.instance.isJumpPressed){
+            isJumping = false;
+        }
+        
     }
     
-    void handleRoatation(){
-        Vector3 positionToLookAt;
-        positionToLookAt = currentMoveMent;
-        positionToLookAt.y = 0;
-        //current rotation
-        Quaternion currentRotation = transform.rotation;
-        //new rotation where player is pressing
-        Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-        if(InputSystem.instance.isMovementPressed) transform.rotation = Quaternion.Slerp(currentRotation,targetRotation,rotationFactorPerFrame*Time.deltaTime);
-    }
+    // void handleRoatation(){
+    //     Vector3 positionToLookAt;
+    //     positionToLookAt = currentMoveMent;
+    //     positionToLookAt.y = 0;
+    //     //current rotation
+    //     Quaternion currentRotation = transform.rotation;
+    //     //new rotation where player is pressing
+    //     Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+    //     if(InputSystem.instance.isMovementPressed) transform.rotation = Quaternion.Slerp(currentRotation,targetRotation,rotationFactorPerFrame*Time.deltaTime);
+    // }
     void handleAnimation(){
-        if(InputSystem.instance.isMovementPressed && currentMoveMent.magnitude>0.7){
+        if(isFalling){
+            ChangeAnimationState(animationJumpEnd);
+        }
+        else if(isJumping && !_characterController.isGrounded){
+            ChangeAnimationState(animationJumpStart);
+        }
+        else if(InputSystem.instance.isMovementPressed && currentMoveMent.magnitude>0.7){
             ChangeAnimationState(animationRun);
         }
         else if(InputSystem.instance.isMovementPressed){
@@ -154,5 +211,28 @@ public class PlayerMovement : MonoBehaviour
         _animator.Play(newAnimationState);
         
         currentAnimationState = newAnimationState;
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        // no rigidbody
+        if (body == null || body.isKinematic)
+            return;
+
+        // We dont want to push objects below us
+        if (hit.moveDirection.y < -0.3f)
+            return;
+
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+        // If you know how fast your character is trying to move,
+        // then you can also multiply the push velocity by that.
+
+        // Apply the push
+        body.velocity = pushDir * pushPower;
     }
 }

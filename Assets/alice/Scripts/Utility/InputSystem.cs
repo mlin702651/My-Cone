@@ -18,6 +18,13 @@ public class InputSystem : MonoBehaviour
 
     public bool isMovementPressed;
     #endregion
+
+    #region Jump
+
+    public bool isJumpPressed = false;
+
+    #endregion
+
     #region Menu
 
     public bool MenuPressDown{get; set;}
@@ -49,19 +56,19 @@ public class InputSystem : MonoBehaviour
             controls.player.Move.performed += OnMovementInput;
             controls.player.Move.started += OnMovementInput;
             controls.player.Move.canceled += OnMovementInput;
-            controls.player.Move.canceled += ctx => inputMovement = Vector2.zero;
+            //controls.player.Move.canceled += ctx => inputMovement = Vector2.zero;
 
             //視角移動 + 魔法瞄準角度
             controls.player.CameraMove.performed+=ctx=> inputCameraMovement= ctx.ReadValue<Vector2>();
             controls.player.CameraMove.canceled += ctx => inputCameraMovement = Vector2.zero;
             
+            //跳
+            controls.player.Jump.started += OnJump;
+            controls.player.Jump.canceled += OnJump;
+
             //瞄準視角切換
             controls.player.Aim.performed += ctx => AimStart();
             controls.player.Aim.canceled += ctx => AimCanceled();
-
-            //跳
-            controls.player.Jump.started += ctx => JumpStart();
-            controls.player.Jump.canceled += ctx => JumpCanceled();
 
             //衝
             controls.player.Dash.started += ctx => DashStart();
@@ -113,10 +120,18 @@ public class InputSystem : MonoBehaviour
         currentMovement.z = inputMovement.y;
         isMovementPressed = inputMovement.x != 0 || inputMovement.y !=0;
     }
+
+    void OnCameraMovementInput(InputAction.CallbackContext ctx){
+        inputCameraMovement = ctx.ReadValue<Vector2>()*new Vector2(-1,0);
+    }
     public Vector3 GetCurrentMovement(){
         return currentMovement;
     }
     
+    void OnJump(InputAction.CallbackContext ctx){
+        isJumpPressed = ctx.ReadValueAsButton();
+
+    }
     void AimStart(){
 
     }
@@ -125,13 +140,6 @@ public class InputSystem : MonoBehaviour
 
     }
 
-    void JumpStart(){
-
-    }
-
-    void JumpCanceled(){
-
-    }
 
     void DashStart(){
     }

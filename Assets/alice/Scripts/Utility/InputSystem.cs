@@ -21,7 +21,8 @@ public class InputSystem : MonoBehaviour
 
     #region Jump
 
-    public bool isJumpPressed = false;
+    bool _isJumpPressed = false;
+    public bool IsJumpPressed {get {return _isJumpPressed; } set {_isJumpPressed = value;}}
 
     #endregion
 
@@ -118,6 +119,7 @@ public class InputSystem : MonoBehaviour
         currentMovement.x = inputMovement.x;
         currentMovement.y = 0;
         currentMovement.z = inputMovement.y;
+        
         isMovementPressed = inputMovement.x != 0 || inputMovement.y !=0;
     }
 
@@ -129,15 +131,15 @@ public class InputSystem : MonoBehaviour
     }
     
     void OnJump(InputAction.CallbackContext ctx){
-        isJumpPressed = ctx.ReadValueAsButton();
+        _isJumpPressed = ctx.ReadValueAsButton();
 
     }
 
     void JumpStart(){
-        isJumpPressed = true;
+        _isJumpPressed = true;
     }
     void JumpCanceled(){
-        isJumpPressed = false;
+        _isJumpPressed = false;
     }
     void AimStart(){
 

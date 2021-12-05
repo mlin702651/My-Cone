@@ -73,11 +73,11 @@ public class Interactable : MonoBehaviour
     }
 
     void ConversationStart(){
-            Debug.Log("ConversationBtn Start");
+            //Debug.Log("ConversationBtn Start");
             ConversationPress = true;
     }
     void ConversationCanceled(){
-            Debug.Log("ConversationBtn Leave");
+            //Debug.Log("ConversationBtn Leave");
             ConversationPress = false;
 
 

@@ -13,11 +13,11 @@ public class PlayerGroundedState : PlayerBaseState
     public override void EnterState(){
         Ctx.GravityMovementY = -9.8f;
         Ctx.AppliedMovementY = -9.8f;
+        Debug.Log("Start Grounded");
     }
     public override void UpdateState(){
         CheckSwitchStates();
         HandleGravity();
-        Debug.Log("now Grounded");
 
     }
     public override void ExitState(){}
@@ -35,8 +35,11 @@ public class PlayerGroundedState : PlayerBaseState
 
     }
     public override void CheckSwitchStates(){
-         if(InputSystem.instance.IsJumpPressed){
+        if(InputSystem.instance.IsJumpPressed){
             SwitchState(Factory.Jump());
+        }
+        if(InputSystem.instance.IsShootPressed){
+            SwitchState(Factory.Shoot());
         }
     }
 

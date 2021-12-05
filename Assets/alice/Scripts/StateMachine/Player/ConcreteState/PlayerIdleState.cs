@@ -9,18 +9,23 @@ public class PlayerIdleState :PlayerBaseState
     public override void EnterState(){
         
         
+        Debug.Log("Start Idle");
         
     }
     public override void UpdateState(){
         CheckSwitchStates();
         Ctx.AppliedMovementX = 0;
         Ctx.AppliedMovementZ = 0;
-        Debug.Log("now Idle");
-        if(Ctx.Animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Ctx.AnimationJumpEnd || Ctx.IsJumping) return; //如果還在降落就播完動畫
+        if(Ctx.IsShooting) return;
+        if(Ctx.CurrentAnimationState == Ctx.AnimationJumpEnd || Ctx.IsJumping) return; //如果還在降落就播完動畫
         ChangeAnimationState(Ctx.AnimationIdle);
     }
     public override void ExitState(){}
     public override void CheckSwitchStates(){
+        if(Ctx.CurrentAnimationState == Ctx.AnimationStartMagicConch || Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBubble ){
+            return;
+        }
+        
         if(Ctx.IsRunning){
             SwitchState(Factory.Run());
         }

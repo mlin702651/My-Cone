@@ -46,7 +46,39 @@ public class PlayerStateMachine : MonoBehaviour
         bool _isFalling = false;
         bool _canSecondJump = false;
     #endregion
-
+    #region Shoot
+        public Dictionary<string, int> PlayerMagicDic =
+        new Dictionary<string, int>()
+        {
+            {"Magic1", 1}, 
+            {"Magic2", 2},
+            {"Magic3", 3}, 
+            //{"Magic1L2", 4}
+        };
+        
+        int _currentMagic = 0; //1
+        bool _isShooting;
+        bool _isHolding;
+        float _magicConchMaxHoldingTime = 3.0f;
+        float _magicConchMinHoldingTime = 0.5f;
+        float _holdingTime = .0f;
+        public bool IsShooting {get{return _isShooting;} set{_isShooting = value;}}
+        public bool IsHolding {get{return _isHolding;} set{_isHolding = value;}}
+        public float MagicConchMaxHoldingTime {get{return _magicConchMaxHoldingTime;}}
+        public float MagicConchMinHoldingTime {get{return _magicConchMinHoldingTime;}}
+        public float HoldingTime {get{return _holdingTime;} set{_holdingTime = value;}}
+        //海螺
+        public int AnimationStartMagicConch {get{return animationStartMagicConch;}}
+        public int AnimationHoldMagicConch {get{return animationHoldMagicConch;}}
+        public int AnimationEndMagicConch {get{return animationEndMagicConch;}}
+        public int AnimationHoldMagicConchRun {get{return animationHoldMagicConchRun;}}
+        //泡泡
+        public int AnimationStartMagicBubble {get{return animationStartMagicBubble;}}
+        public int AnimationHoldMagicBubble {get{return animationHoldMagicBubble;}}
+        public int AnimationEndMagicBubble {get{return animationEndMagicBubble;}}
+        //炸彈
+        public int AnimationMagicBomb {get{return animationMagicBomb;}}
+    #endregion
 
     #region Animation
         Animator _animator;
@@ -65,6 +97,7 @@ public class PlayerStateMachine : MonoBehaviour
         private int animationStartMagicConch;
         private int animationHoldMagicConch;
         private int animationEndMagicConch;
+        private int animationHoldMagicConchRun;
         private int animationStartMagicBubble;
         private int animationHoldMagicBubble;
         private int animationEndMagicBubble;
@@ -101,7 +134,6 @@ public class PlayerStateMachine : MonoBehaviour
             public float TargetAngle {get{return _targetAngle;} set{_targetAngle = value;}}
             public Vector3 MoveDir {get{return moveDir; } set{moveDir = value;}}
         #endregion
-        //gravity
         #region gravity
             public float GroundGravity {get{return _groundGravity;}}
             public float Gravity {get{return _gravity;}}
@@ -134,6 +166,10 @@ public class PlayerStateMachine : MonoBehaviour
         #region Idle
             public int AnimationIdle{ get{return animationIdle;}}
         #endregion
+        #region Shoot
+            public int CurrentMagic {get{return _currentMagic;}}
+
+        #endregion
 
     #endregion
     private void Awake() {
@@ -164,6 +200,7 @@ public class PlayerStateMachine : MonoBehaviour
         animationStartMagicConch = Animator.StringToHash("Player_StartMagicConch");
         animationHoldMagicConch = Animator.StringToHash("Player_HoldMagicConch");
         animationEndMagicConch = Animator.StringToHash("Player_EndMagicConch");
+        animationHoldMagicConchRun = Animator.StringToHash("Player_HoldMagicConch_Run");
         animationStartMagicBubble = Animator.StringToHash("Player_StartMagicBubble");
         animationHoldMagicBubble = Animator.StringToHash("Player_HoldMagicBubble");
         animationEndMagicBubble = Animator.StringToHash("Player_EndMagicBubble");
@@ -178,15 +215,29 @@ public class PlayerStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _currentMagic = PlayerMagicDic["Magic1"];
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        
+        if(DialogueManager.instance.inDialogue){
+            ChangeAnimationState(animationTalk);
+            return; //在對話就不要動!
+        } 
         _currentMovement = InputSystem.instance.GetCurrentMovement();
 
+        if(InputSystem.instance.IsMagicPlusStatusPressed){
+            InputSystem.instance.IsMagicPlusStatusPressed = false;
+            ChangeMagicState(true);
+        }
+        else if(InputSystem.instance.IsMagicMinusStatusPressed){
+            InputSystem.instance.IsMagicMinusStatusPressed = false;
+            ChangeMagicState(false);
+        }
+        
         
         if(_currentMovement.magnitude>0.7){
             _isRunning = true;
@@ -231,6 +282,26 @@ public class PlayerStateMachine : MonoBehaviour
     void handleRoatation(){
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    }
+
+    void ChangeAnimationState(int newAnimationState)
+    {
+       if(newAnimationState == currentAnimationState) {
+            return; //一樣的話就不重新開始播ㄌ
+        }
+        _animator.Play(newAnimationState);
+        
+        currentAnimationState = newAnimationState;
+    }
+
+    void ChangeMagicState(bool isPlus){
+        if(isPlus){
+            //_currentMagic ++;
+            _currentMagic = (_currentMagic < PlayerMagicDic.Count) ?_currentMagic +1:PlayerMagicDic["Magic1"];
+        }
+        else {
+            _currentMagic = (_currentMagic > 1) ?_currentMagic -1:PlayerMagicDic["Magic3"];
+        }
     }
 
     

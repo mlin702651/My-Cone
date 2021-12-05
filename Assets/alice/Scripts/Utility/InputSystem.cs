@@ -12,25 +12,43 @@ public class InputSystem : MonoBehaviour
     Controls controls;
 
     #region Move
-    private Vector2 inputMovement;
-    private Vector3 currentMovement;
-    private Vector2 inputCameraMovement;
+        private Vector2 inputMovement;
+        private Vector3 currentMovement;
+        private Vector2 inputCameraMovement;
 
-    public bool isMovementPressed;
+        public bool isMovementPressed;
     #endregion
 
     #region Jump
 
-    bool _isJumpPressed = false;
-    public bool IsJumpPressed {get {return _isJumpPressed; } set {_isJumpPressed = value;}}
+        bool _isJumpPressed = false;
+        public bool IsJumpPressed {get {return _isJumpPressed; } set {_isJumpPressed = value;}}
 
     #endregion
 
+    #region Talk
+        bool _isConversationPressed = false;
+        public bool IsConversationPressed {get{return _isConversationPressed;} set{_isConversationPressed = value;}}
+
+    #endregion
+    #region Shoot
+        bool _isShootPressed = false;
+        bool _isShootReleased = false;
+        public bool IsShootPressed {get{return _isShootPressed;} set{_isShootPressed = value;}}
+        public bool IsShootReleased {get{return _isShootReleased;} set{_isShootReleased = value;}}
+    #endregion
+    #region Magic
+        bool _isMagicPlusStatusPressed = false;
+        bool _isMagicMinusStatusPressed = false;
+        public bool IsMagicPlusStatusPressed {get{return _isMagicPlusStatusPressed;} set{_isMagicPlusStatusPressed = value;}}
+        public bool IsMagicMinusStatusPressed {get{return _isMagicMinusStatusPressed;} set{_isMagicMinusStatusPressed = value;}}
+
+    #endregion
     #region Menu
 
-    public bool MenuPressDown{get; set;}
-    public bool MenuSelectUpPressDown;
-    public bool MenuSelectDownPressDown;
+        public bool MenuPressDown{get; set;}
+        public bool MenuSelectUpPressDown;
+        public bool MenuSelectDownPressDown;
 
     #endregion
 
@@ -78,8 +96,11 @@ public class InputSystem : MonoBehaviour
             controls.player.Shoot.started += ctx => ShootStart();
             controls.player.Shoot.canceled += ctx => ShootCanceled();
             //切換魔法
-            controls.player.SwitchWeaponPlus.started += ctx => PlusMagicStatus();
-            controls.player.SwitchWeaponLess.started += ctx => MinusMagicStatus();
+            
+            controls.player.SwitchWeaponPlus.started += ctx => PlusMagicStart();
+            controls.player.SwitchWeaponPlus.canceled += ctx => PlusMagicCanceled();
+            controls.player.SwitchWeaponLess.started += ctx => MinusMagicStart();
+            controls.player.SwitchWeaponLess.canceled += ctx => MinusMagicCanceled();
 
              //對話
             controls.player.Talk.started += ctx => ConversationStart();
@@ -158,18 +179,37 @@ public class InputSystem : MonoBehaviour
     }
 
     void ShootStart(){
+        _isShootPressed = true;
+        _isShootReleased = false;
     }
     void ShootCanceled(){
+        _isShootPressed = false;
+        _isShootReleased = true;
     }
 
-    void PlusMagicStatus(){
+    
+
+    void PlusMagicStart(){
+        _isMagicPlusStatusPressed = true;
     }
-    void MinusMagicStatus(){
+    void PlusMagicCanceled(){
+        _isMagicPlusStatusPressed = false;
+    }
+    void MinusMagicStart(){
+        _isMagicMinusStatusPressed = true;
+    }
+    void MinusMagicCanceled(){
+        _isMagicMinusStatusPressed = false;
     }
 
     void ConversationStart(){
+        _isConversationPressed = true;
+        if(DialogueManager.instance.inDialogue){
+            DialogueManager.instance.DequeueDialogue();
+            _isConversationPressed = false;
+        }
     }
     void ConversationCanceled(){
-
+        _isConversationPressed = false;
     }
 }

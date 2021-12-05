@@ -7,19 +7,23 @@ public class PlayerRunState : PlayerBaseState
     public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     :base (currentContext, playerStateFactory){} //把這個傳去base state
     public override void EnterState(){
-        ChangeAnimationState(Ctx.AnimationRun);
+        //ChangeAnimationState(Ctx.AnimationRun);
+        Debug.Log("Start Run");
+
     }
     public override void UpdateState(){
         CheckSwitchStates();
         Ctx.CurrentSpeed = Ctx.RunningSpeed;
-        if(Ctx.IsJumping) Debug.Log("XXX"); Ctx.CurrentSpeed  = Ctx.CurrentSpeed * Ctx.JumpingFriction;
+        if(Ctx.IsJumping) Ctx.CurrentSpeed  = Ctx.CurrentSpeed * Ctx.JumpingFriction;
         Ctx.AppliedMovementX = (Ctx.MoveDir*Ctx.CurrentSpeed).x;
         Ctx.AppliedMovementZ = (Ctx.MoveDir*Ctx.CurrentSpeed).z;
+
+        if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch) ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
+        if(Ctx.IsShooting) return;
 
         if(Ctx.IsJumping) return;
         else if(Ctx.Animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Ctx.AnimationJumpEnd && Ctx.IsJumping) return; //如果還在降落就播完動畫
         ChangeAnimationState(Ctx.AnimationRun);
-        Debug.Log("now Run");
 
     }
     public override void ExitState(){}

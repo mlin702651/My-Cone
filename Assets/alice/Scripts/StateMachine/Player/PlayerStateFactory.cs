@@ -24,6 +24,9 @@ public class PlayerStateFactory
     public PlayerBaseState Grounded(){
         return new PlayerGroundedState(_context, this);
     }
+    public PlayerBaseState Shoot(){
+        return new PlayerShootState(_context, this);
+    }
 }
 
 /*

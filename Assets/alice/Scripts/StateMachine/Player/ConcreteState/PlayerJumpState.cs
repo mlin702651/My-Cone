@@ -11,14 +11,13 @@ public class PlayerJumpState : PlayerBaseState
     } //把這個傳去base state
     public override void EnterState(){
         HandleJump();
-        Debug.Log("enter Jump");
+        Debug.Log("Start Jump");
 
     }
     public override void UpdateState(){
         CheckSwitchStates();
         HandleSecondJump();
         HandleGravity();
-        Debug.Log("now Jump");
 
     }
     public override void ExitState(){
@@ -61,7 +60,6 @@ public class PlayerJumpState : PlayerBaseState
         
         if(Ctx.IsFalling){
             ChangeAnimationState(Ctx.AnimationJumpEnd);
-            Debug.Log("???");
             float previousYVelocity = Ctx.GravityMovementY;
             Ctx.GravityMovementY = Ctx.GravityMovementY + (Ctx.Gravity* Ctx.FallMultiplier * Time.deltaTime);
             Ctx.AppliedMovementY = Mathf.Max((previousYVelocity + Ctx.GravityMovementY) * 0.5f, -20.0f); //從高處掉下來的時候不要掉太快
@@ -82,7 +80,7 @@ public class PlayerJumpState : PlayerBaseState
             Ctx.IsSecondJumping = true;
             Ctx.GravityMovementY = Ctx.InitialSecondJumpVelocity; 
             Ctx.AppliedMovementY = Ctx.InitialSecondJumpVelocity; 
-            Debug.Log("jump 2!");
+            Debug.Log("Start jump 2!");
         }
         else if(Ctx.CharacterController.isGrounded){
             Ctx.CanSecondJump = false;

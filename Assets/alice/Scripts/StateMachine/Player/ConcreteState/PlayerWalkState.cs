@@ -7,7 +7,8 @@ public class PlayerWalkState : PlayerBaseState
     public PlayerWalkState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     :base (currentContext, playerStateFactory){} //把這個傳去base state
     public override void EnterState(){
-        ChangeAnimationState(Ctx.AnimationWalk);
+        //ChangeAnimationState(Ctx.AnimationWalk);
+        Debug.Log("Start Walk");
     }
     public override void UpdateState(){
         CheckSwitchStates();
@@ -16,10 +17,12 @@ public class PlayerWalkState : PlayerBaseState
         Ctx.AppliedMovementX = (Ctx.MoveDir*Ctx.CurrentSpeed).x;
         Ctx.AppliedMovementZ = (Ctx.MoveDir*Ctx.CurrentSpeed).z;
 
+        if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch) ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
+        if(Ctx.IsShooting) return;
+        
         if(Ctx.IsJumping) return;
         else if(Ctx.Animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Ctx.AnimationJumpEnd || Ctx.IsJumping) return; //如果還在降落就播完動畫
         ChangeAnimationState(Ctx.AnimationWalk);
-        Debug.Log("now Walk");
 
     }
     public override void ExitState(){}

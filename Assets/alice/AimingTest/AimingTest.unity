@@ -2834,6 +2834,8 @@ MonoBehaviour:
   _maxSecondJumpHeight: 2
   _maxSecondJumpTime: 0.9
   _fallMultiplier: 0.2
+  _magicConchMaxHoldingTime: 2.8
+  _magicConchMinHoldingTime: 0.5
 --- !u!1001 &639144444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4305,6 +4307,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &929429724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2401309439864464072, guid: d9a4ad860fd03294090752735e8c4e7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 869463337}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &929429726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929429724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3232d89ef2e08654b94204753395b000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 929429724}
+--- !u!114 &929429727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929429724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f93630291fe4e4495f0b8afc65fbc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: MagicConchStart
+    prefab: {fileID: 7655747335298454963, guid: c76d080e25652774c83b10512b4ee9b4,
+      type: 3}
+    size: 2
+  - tag: MagicConchFlash
+    prefab: {fileID: 3106633130747445357, guid: 5c9780d3a8ca8a446b6e5f5393b4c236,
+      type: 3}
+    size: 2
+  - tag: MagicBubbleFlash
+    prefab: {fileID: 4469409139171422839, guid: 5c0dc9efb0aa1b244aa1e7438c2d2df8,
+      type: 3}
+    size: 10
+  - tag: MagicBombSmoke
+    prefab: {fileID: 998798219125082790, guid: efac737b33768704f9823e8f3febc68f, type: 3}
+    size: 6
+  - tag: MagicBomb
+    prefab: {fileID: 8725193532114289983, guid: ab18508c9591c26488c520dd7d47ee0e,
+      type: 3}
+    size: 6
+  - tag: MagicConchBullet
+    prefab: {fileID: 3543051884099681263, guid: 01c42773434cdfb4ca6537e5e71addf7,
+      type: 3}
+    size: 2
+  - tag: MagicConchBulletExplosion
+    prefab: {fileID: 5811886077242198849, guid: 94eecd2632d29704f840e08252ef8b64,
+      type: 3}
+    size: 2
 --- !u!1 &955139956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1541641762267284, guid: b2b603c900d83e942873b5dc37c173b2,
@@ -9832,7 +9893,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193891783}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b10c14f6d2246d42b6a9e4f1c250f68, type: 3}
   m_Name: 
@@ -10188,7 +10249,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3847312062144255908}
-  m_LocalRotation: {x: 0.12948082, y: -0.00000042251878, z: 0.00000005517253, w: 0.9915819}
+  m_LocalRotation: {x: 0.12948082, y: -0.0000002412956, z: 0.000000031508392, w: 0.9915819}
   m_LocalPosition: {x: 6.22, y: 4.8156, z: -5.9325714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11027,12 +11088,12 @@ PrefabInstance:
     - target: {fileID: 232892020540766995, guid: 066f43d3e2082004cbaceb077a031bfb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.0000000039221293
       objectReference: {fileID: 0}
     - target: {fileID: 232892020540766995, guid: 066f43d3e2082004cbaceb077a031bfb,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.000000030036205
       objectReference: {fileID: 0}
     - target: {fileID: 232892020540766995, guid: 066f43d3e2082004cbaceb077a031bfb,
         type: 3}
@@ -11102,12 +11163,12 @@ PrefabInstance:
     - target: {fileID: 232892021440000476, guid: 066f43d3e2082004cbaceb077a031bfb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000055457797
+      value: 0.000000055290126
       objectReference: {fileID: 0}
     - target: {fileID: 232892021440000476, guid: 066f43d3e2082004cbaceb077a031bfb,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000004247034
+      value: -0.00000042341938
       objectReference: {fileID: 0}
     - target: {fileID: 232892021440000476, guid: 066f43d3e2082004cbaceb077a031bfb,
         type: 3}
@@ -11627,7 +11688,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50662081034978759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

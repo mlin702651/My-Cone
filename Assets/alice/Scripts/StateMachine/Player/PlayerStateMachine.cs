@@ -47,6 +47,9 @@ public class PlayerStateMachine : MonoBehaviour
         bool _canSecondJump = false;
     #endregion
     #region Shoot
+        [Header("Shoot")]
+        [SerializeField]float _magicConchMaxHoldingTime = 3.0f;
+        [SerializeField]float _magicConchMinHoldingTime = 0.5f;
         public Dictionary<string, int> PlayerMagicDic =
         new Dictionary<string, int>()
         {
@@ -59,8 +62,6 @@ public class PlayerStateMachine : MonoBehaviour
         int _currentMagic = 0; //1
         bool _isShooting;
         bool _isHolding;
-        float _magicConchMaxHoldingTime = 3.0f;
-        float _magicConchMinHoldingTime = 0.5f;
         float _holdingTime = .0f;
         public bool IsShooting {get{return _isShooting;} set{_isShooting = value;}}
         public bool IsHolding {get{return _isHolding;} set{_isHolding = value;}}

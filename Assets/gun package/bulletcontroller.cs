@@ -13,6 +13,7 @@ public class bulletcontroller : MonoBehaviour
     //續力
     #region magic01
     [Header("Song Magic")]
+    [SerializeField]float magic01CDTime = 3;
     public GameObject startEffect01;
     GameObject cloneStart;
     public GameObject flashEffect01;
@@ -22,7 +23,6 @@ public class bulletcontroller : MonoBehaviour
     bool Flag = false;
     float pressTime = 0;
     float calculatePressToFly = 0;
-    [SerializeField]float magic01CDTime = 3;
     float CDTimer01 = 3;
     #endregion
     //泡泡
@@ -36,6 +36,7 @@ public class bulletcontroller : MonoBehaviour
     //炸半
     #region magic03
     [Header("Mushroom Magic")]
+    [SerializeField] float magic03CDTime = 5;
     public GameObject smoke;
     public GameObject bomb;
     float exploTimer=0; //炸彈炸掉的時間
@@ -43,9 +44,6 @@ public class bulletcontroller : MonoBehaviour
     bool exploFlag = false;
     float bombTimer = 10; //炸彈炸掉的時間
     Vector3[] bombPositions;
-    [SerializeField]
-    
-    float magic03CDTime = 5;
     float CDTimer03 = 5;
 
     private SphereCollider[] bombColliders;
@@ -184,7 +182,7 @@ public class bulletcontroller : MonoBehaviour
             }    
         }
         //Debug.Log(pressTime);
-        if (calculatePressToFly < 0.3f)
+        if (calculatePressToFly < 0.3f) //飛行距離
         {
             flyTime = 0.2f;
         }
@@ -194,7 +192,7 @@ public class bulletcontroller : MonoBehaviour
         }
        
         //if (Input.GetKeyUp("q")&& accumulateSuccess)
-        if (ShootPressUp&& accumulateSuccess)
+        if (ShootPressUp&& accumulateSuccess) //發射成功
         {
             CDTimer01 = 0;
             FindObjectOfType<UIManager>().StartAccumulateCD();

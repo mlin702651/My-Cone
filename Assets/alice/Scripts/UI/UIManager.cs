@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]private Image accumulateAttackCD;
     [SerializeField]private bool isAccumulateAttack;
     [SerializeField]private bool recoverAccumulateAttack = false;
+    public bool IsAccumulateAttack {get{return isAccumulateAttack;}}
+    public bool RecoverAccumulateAttack {get{return recoverAccumulateAttack;}}
     [SerializeField]private float accumulateAttackCDCircleDecreaseTime = 2f;
     [SerializeField]private float accumulateAttackCDCircleRecoverTime = 3f;
     [Header("Bomb Attack")]
@@ -36,6 +38,15 @@ public class UIManager : MonoBehaviour
     float bombAttackCDFulltimer = 0f;
 
     [SerializeField]private Text currentBombLeft;
+    
+    public static UIManager instance;
+    private void Awake(){
+        if(instance != null){
+            Debug.LogWarning("fix this: " + gameObject.name);
+        }
+        else instance = this;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {

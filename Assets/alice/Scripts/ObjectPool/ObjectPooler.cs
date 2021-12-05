@@ -66,6 +66,21 @@ public class ObjectPooler : MonoBehaviour {
 
     }
 
+    public void DisableObject(string tag){
+        foreach (GameObject item in poolDictionary[tag])
+        {
+            item.SetActive(false);
+        }
+    }
+
+    public void MakeChild(string tag, ref GameObject parent){
+        
+        foreach (GameObject item in poolDictionary[tag])
+        {
+            item.transform.parent = parent.transform;
+        }
+    }
+
     
 
 }

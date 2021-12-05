@@ -15,12 +15,10 @@ public class PlayerShootState : PlayerBaseState
 
     public override void EnterState(){
         Debug.Log("Start Shoot");
-        Ctx.IsShooting = true;
+        
         switch(Ctx.CurrentMagic){
             case 1:
-                ChangeAnimationState(Ctx.AnimationStartMagicConch);
-                FunctionTimer.Create(() => HoldMagicConch(),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length-0.5f,"StartHoldConch");
-                
+                CheckMagicConchCD();
                 break;
             case 2:
                 break;
@@ -31,18 +29,23 @@ public class PlayerShootState : PlayerBaseState
         }
     }
     public override void UpdateState(){
-         if(InputSystem.instance.IsShootReleased){
+         if(InputSystem.instance.IsShootReleased&&Ctx.IsShooting){
              CheckMagicConch();
              InputSystem.instance.IsShootReleased = false;
          }
          CheckSwitchStates();
-         Ctx.HoldingTime+= Time.deltaTime;
+         if(Ctx.IsShooting){
+            Ctx.HoldingTime+= Time.deltaTime;
+            
+            PlayerMagicController.instance.MagicConchBornTime = Mathf.Pow(2, Ctx.HoldingTime) - 1.0f;
+         }
     }
     public override void ExitState(){
         //Debug.Log("Exit Shoot");
         Ctx.IsShooting = false;
         InputSystem.instance.IsShootPressed = false;
         Ctx.HoldingTime = 0;
+        PlayerMagicController.instance.MagicConchBornTime = 2f;
     }
     public override void CheckSwitchStates(){
         if(!Ctx.IsShooting){
@@ -67,7 +70,7 @@ public class PlayerShootState : PlayerBaseState
         Ctx.IsHolding = true;
         ChangeAnimationState(Ctx.AnimationHoldMagicConch);
         //這邊firepoint 要放集氣動畫
-        FunctionTimer.Create(() => CanceledMagicConch(),Ctx.MagicConchMaxHoldingTime,"HoldMagicConch"); //如果按住太久就取消
+        FunctionTimer.Create(() => CanceledMagicConch(),Ctx.MagicConchMaxHoldingTime-0.6f,"HoldMagicConch"); //如果按住太久就取消
     }
 
     void CanceledMagicConch(){
@@ -77,6 +80,8 @@ public class PlayerShootState : PlayerBaseState
         FunctionTimer.StopTimer("StartHoldConch");
         FunctionTimer.StopTimer("HoldMagicConch");
         SwitchState(Factory.Grounded());
+
+        
     }
 
     void FinishedMagicConch(){
@@ -84,6 +89,10 @@ public class PlayerShootState : PlayerBaseState
         FunctionTimer.StopTimer("StartHoldConch");
         FunctionTimer.StopTimer("HoldMagicConch");
         ChangeAnimationState(Ctx.AnimationEndMagicConch);
+
+        PlayerMagicController.instance.MagicConchFinished();
+        UIManager.instance.StartAccumulateCD();
+
         FunctionTimer.Create(()=> SwitchState(Factory.Grounded()),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
@@ -94,6 +103,22 @@ public class PlayerShootState : PlayerBaseState
             FinishedMagicConch();
         }
         else CanceledMagicConch();
+
+        PlayerMagicController.instance.CanceledMagicConch();
+    }
+
+    void CheckMagicConchCD(){
+        if(UIManager.instance.IsAccumulateAttack || UIManager.instance.RecoverAccumulateAttack){
+            return;
+        }
+        else{
+            Ctx.IsShooting = true;
+            ChangeAnimationState(Ctx.AnimationStartMagicConch);
+            FunctionTimer.Create(() => HoldMagicConch(),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length-0.5f,"StartHoldConch");
+
+            PlayerMagicController.instance.MagicConchStart();
+        
+        }
     }
 
 

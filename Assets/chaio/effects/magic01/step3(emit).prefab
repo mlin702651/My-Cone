@@ -4767,8 +4767,8 @@ GameObject:
   - component: {fileID: 3543051884099681258}
   - component: {fileID: 3543051884099681257}
   - component: {fileID: 1575595420492526365}
-  - component: {fileID: 7355180293175627914}
   - component: {fileID: 4122659578620116700}
+  - component: {fileID: -1747093565304839227}
   m_Layer: 0
   m_Name: step3(emit)
   m_TagString: Player_Magic1
@@ -4869,19 +4869,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 96
   m_CollisionDetection: 0
---- !u!114 &7355180293175627914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3543051884099681263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aaadc379d4c4c478d6fa27b23911a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exp1: {fileID: 5811886077242198849, guid: 94eecd2632d29704f840e08252ef8b64, type: 3}
 --- !u!82 &4122659578620116700
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4978,6 +4965,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1747093565304839227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543051884099681263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58ba50d10deb1349a080f49fe127073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BornTime: 0.2
+  _bulletSpeed: 10
 --- !u!1 &3543051884866223595
 GameObject:
   m_ObjectHideFlags: 0

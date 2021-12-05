@@ -18,6 +18,11 @@ public class PlayerWalkState : PlayerBaseState
         Ctx.AppliedMovementZ = (Ctx.MoveDir*Ctx.CurrentSpeed).z;
 
         if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch) ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch){
+            Ctx.AppliedMovementX = 0;
+            Ctx.AppliedMovementZ = 0;
+        } 
+        
         if(Ctx.IsShooting) return;
         
         if(Ctx.IsJumping) return;

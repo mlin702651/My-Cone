@@ -15,6 +15,8 @@ public class InputSystem : MonoBehaviour
         private Vector2 inputMovement;
         private Vector3 currentMovement;
         private Vector2 inputCameraMovement;
+        private Vector3 currentCameraMovement;
+        public Vector3 CurrentCameraMovement{get{return currentCameraMovement;}}
 
         public bool isMovementPressed;
     #endregion
@@ -42,6 +44,11 @@ public class InputSystem : MonoBehaviour
         bool _isMagicMinusStatusPressed = false;
         public bool IsMagicPlusStatusPressed {get{return _isMagicPlusStatusPressed;} set{_isMagicPlusStatusPressed = value;}}
         public bool IsMagicMinusStatusPressed {get{return _isMagicMinusStatusPressed;} set{_isMagicMinusStatusPressed = value;}}
+
+    #endregion
+    #region Aim
+        bool _isAimPressed;
+        public bool IsAimPressed {get{return _isAimPressed;} }
 
     #endregion
     #region Menu
@@ -78,16 +85,20 @@ public class InputSystem : MonoBehaviour
             //controls.player.Move.canceled += ctx => inputMovement = Vector2.zero;
 
             //視角移動 + 魔法瞄準角度
-            controls.player.CameraMove.performed+=ctx=> inputCameraMovement= ctx.ReadValue<Vector2>();
-            controls.player.CameraMove.canceled += ctx => inputCameraMovement = Vector2.zero;
+            controls.player.CameraMove.performed+=OnCameraMovementInput;
+            controls.player.CameraMove.canceled += OnCameraMovementInput;
+            // controls.player.CameraMove.performed+=ctx=> inputCameraMovement= ctx.ReadValue<Vector2>();
+            // controls.player.CameraMove.canceled += ctx => inputCameraMovement = Vector2.zero;
             
             //跳
             controls.player.Jump.started += ctx => JumpStart();
             controls.player.Jump.canceled += ctx => JumpCanceled();
 
             //瞄準視角切換
-            controls.player.Aim.performed += ctx => AimStart();
-            controls.player.Aim.canceled += ctx => AimCanceled();
+            // controls.player.Aim.performed += ctx => AimStart();
+            // controls.player.Aim.canceled += ctx => AimCanceled();
+            controls.player.Aim.performed += OnAim;
+            controls.player.Aim.canceled += OnAim;
 
             //衝
             controls.player.Dash.started += ctx => DashStart();
@@ -144,9 +155,16 @@ public class InputSystem : MonoBehaviour
         isMovementPressed = inputMovement.x != 0 || inputMovement.y !=0;
     }
 
+    
+
     void OnCameraMovementInput(InputAction.CallbackContext ctx){
-        inputCameraMovement = ctx.ReadValue<Vector2>()*new Vector2(-1,0);
+        inputCameraMovement = ctx.ReadValue<Vector2>()*new Vector2(-1,-1);
+        currentCameraMovement.x = inputCameraMovement.x;
+        currentCameraMovement.y = inputCameraMovement.y;
+        //Debug.Log(currentCameraMovement);
     }
+
+
     public Vector3 GetCurrentMovement(){
         return currentMovement;
     }
@@ -164,6 +182,10 @@ public class InputSystem : MonoBehaviour
     }
     void AimStart(){
 
+    }
+
+    void OnAim(InputAction.CallbackContext ctx){
+        _isAimPressed = ctx.ReadValueAsButton();
     }
 
     void AimCanceled(){

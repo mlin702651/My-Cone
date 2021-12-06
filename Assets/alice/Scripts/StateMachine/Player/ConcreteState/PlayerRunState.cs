@@ -14,6 +14,7 @@ public class PlayerRunState : PlayerBaseState
     public override void UpdateState(){
         CheckSwitchStates();
         Ctx.CurrentSpeed = Ctx.RunningSpeed;
+        if(Ctx.IsAiming)Ctx.CurrentSpeed = Ctx.WalkingSpeed;
         if(Ctx.IsJumping) Ctx.CurrentSpeed  = Ctx.CurrentSpeed * Ctx.JumpingFriction;
         Ctx.AppliedMovementX = (Ctx.MoveDir*Ctx.CurrentSpeed).x;
         Ctx.AppliedMovementZ = (Ctx.MoveDir*Ctx.CurrentSpeed).z;

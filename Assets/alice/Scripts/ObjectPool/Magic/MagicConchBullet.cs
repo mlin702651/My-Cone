@@ -26,6 +26,6 @@ public class MagicConchBullet : CMagic
     public override void OnCollisionEnter(Collision other)
     {
         ObjectPooler.Instance.SpawnFromPool("MagicConchBulletExplosion",transform.position,transform.eulerAngles);
-        
+        gameObject.SetActive(false);
     }
 }

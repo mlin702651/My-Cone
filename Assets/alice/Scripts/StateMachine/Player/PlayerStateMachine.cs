@@ -85,6 +85,25 @@ public class PlayerStateMachine : MonoBehaviour
         public int AnimationMagicBomb {get{return animationMagicBomb;}}
     #endregion
 
+    #region Camera
+        [Header("Camera")]
+        [SerializeField]private GameObject _freeCamera;
+        [SerializeField]private GameObject _aimCamera;
+        [SerializeField]private GameObject _aimReticle;
+
+        [SerializeField]private GameObject _aimCamTarget;
+        [SerializeField] private GameObject raycastHitPoint;
+        [SerializeField] private LayerMask aimColliderMask = new LayerMask();
+        [SerializeField] private Transform _firepoint;
+        private Vector2 screenCenterPoint = new Vector2(Screen.width/2,Screen.height/2);
+        private int _currentCamera = 0; //0 free 1 aim
+        private Ray centerRay;
+
+        private bool _isAiming = false;
+        public bool IsAiming {get{return _isAiming;}}
+
+
+    #endregion
     #region Animation
         Animator _animator;
         private int currentAnimationState;
@@ -234,8 +253,9 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeAnimationState(animationTalk);
             return; //在對話就不要動!
         } 
-        _currentMovement = InputSystem.instance.GetCurrentMovement();
 
+        
+        HandleCamera();
         if(InputSystem.instance.IsMagicPlusStatusPressed){
             InputSystem.instance.IsMagicPlusStatusPressed = false;
             ChangeMagicState(true);
@@ -245,7 +265,7 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeMagicState(false);
         }
         
-        
+        _currentMovement = InputSystem.instance.GetCurrentMovement();
         if(_currentMovement.magnitude>0.7){
             _isRunning = true;
             _isWalking = false;
@@ -258,17 +278,51 @@ public class PlayerStateMachine : MonoBehaviour
             _isWalking = false;
             _isRunning = false;
         }
+        
+        //camera + movingDirection
+        if(_currentCamera == 1){ //Aim
+            _isAiming = true;
+            centerRay = Camera.main.ScreenPointToRay(screenCenterPoint);
+            if(Physics.Raycast(centerRay, out RaycastHit raycastHit, 999f,aimColliderMask )){
+                raycastHitPoint.transform.position = raycastHit.point;
+            }
+            _firepoint.transform.LookAt(raycastHitPoint.transform);
+
+
+            //相機轉不了 轉woomi
+            
+            _aimCamTarget.transform.eulerAngles = _aimCamTarget.transform.eulerAngles + new Vector3( InputSystem.instance.CurrentCameraMovement.y*2,0,0);
+            transform.eulerAngles = transform.eulerAngles + new Vector3(0,InputSystem.instance.CurrentCameraMovement.x*3,0);
+            //-10 - 25
+            
+            //設定上下的範圍限制
+           
+            //if(transform.eulerAngles.x >= 20 && transform.eulerAngles.x <= 340) transform.eulerAngles = new Vector3(340,transform.eulerAngles.y,transform.eulerAngles.z);
+            if(_aimCamTarget.transform.eulerAngles.x >= 30 && _aimCamTarget.transform.eulerAngles.x <= 330) _aimCamTarget.transform.eulerAngles = new Vector3(330,_aimCamTarget.transform.eulerAngles.y,_aimCamTarget.transform.eulerAngles.z);
+            //else if(transform.eulerAngles.x >= 5 && transform.eulerAngles.x < 20) transform.eulerAngles = new Vector3(5,transform.eulerAngles.y,transform.eulerAngles.z);
+            else if(_aimCamTarget.transform.eulerAngles.x >= 25 && _aimCamTarget.transform.eulerAngles.x < 30) _aimCamTarget.transform.eulerAngles = new Vector3(25,_aimCamTarget.transform.eulerAngles.y,_aimCamTarget.transform.eulerAngles.z);
+            
+        }
+        else{ //free look
+            _isAiming = false;
+            _firepoint.transform.eulerAngles = transform.eulerAngles;
+            transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,transform.eulerAngles.z);
+
+            if(_currentMovement.magnitude>0)handleRoatation();
+        }
 
         _currentMovement = _currentMovement.normalized;
-        _targetAngle = Mathf.Atan2(_currentMovement.x, _currentMovement.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
-        
-        if(_currentMovement.magnitude>0)handleRoatation();
+            _targetAngle = Mathf.Atan2(_currentMovement.x, _currentMovement.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
+            
+            
+
+            
+            moveDir = Quaternion.Euler(0f, _targetAngle, 0f) * Vector3.forward;
+            moveDir = moveDir.normalized;
+            // _appliedMovement.x = (moveDir.normalized*_currentSpeed).x;
+            // _appliedMovement.z = (moveDir.normalized*_currentSpeed).z;
 
         
-        moveDir = Quaternion.Euler(0f, _targetAngle, 0f) * Vector3.forward;
-        moveDir = moveDir.normalized;
-        // _appliedMovement.x = (moveDir.normalized*_currentSpeed).x;
-        // _appliedMovement.z = (moveDir.normalized*_currentSpeed).z;
 
         //state update
         _currentState.UpdateStates();
@@ -319,6 +373,23 @@ public class PlayerStateMachine : MonoBehaviour
         InputSystem.instance.IsShootPressed = false;
         _holdingTime = 0;
         PlayerMagicController.instance.MagicConchBornTime = 2f;
+    }
+
+    void HandleCamera(){
+        if (InputSystem.instance.IsAimPressed) //換相機
+        {
+            _currentCamera = 1;
+            _aimCamera.SetActive(true);
+            _aimReticle.SetActive(true);
+            raycastHitPoint.SetActive(true);
+        }
+        else
+        {
+            _currentCamera = 0;
+            _aimCamera.SetActive(false);
+            _aimReticle.SetActive(false);
+            raycastHitPoint.SetActive(false);
+        }
     }
 
     

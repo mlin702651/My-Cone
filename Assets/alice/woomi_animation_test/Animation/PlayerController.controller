@@ -292,6 +292,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 7273367158672080462}
     m_Position: {x: 250, y: 590, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -669805797380467322}
+    m_Position: {x: 250, y: 710, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -302,6 +305,33 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1167806631778220819}
+--- !u!1102 &-669805797380467322
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Player_MagicBubbleRun
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -6195695398557579771, guid: eb81c22666f65a644bebd40bbf3dba60,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-4853756926384210
 AnimatorState:
   serializedVersion: 5

@@ -14,6 +14,8 @@ public class PlayerShootState : PlayerBaseState
 
 
     public override void EnterState(){
+        Ctx.GravityMovementY = -3f;
+        Ctx.AppliedMovementY = -3f;
         Debug.Log("Start Shoot");
         
         switch(Ctx.CurrentMagic){
@@ -21,6 +23,7 @@ public class PlayerShootState : PlayerBaseState
                 CheckMagicConchCD();
                 break;
             case 2:
+                StartMagicBubble();
                 break;
             case 3:
                 break;
@@ -29,9 +32,12 @@ public class PlayerShootState : PlayerBaseState
         }
     }
     public override void UpdateState(){
-         if(InputSystem.instance.IsShootReleased&&Ctx.IsShooting){
+         if(InputSystem.instance.IsShootReleased&&Ctx.CurrentMagic ==1){
              CheckMagicConch();
              InputSystem.instance.IsShootReleased = false;
+         }
+         if(Ctx.CurrentMagic ==2){
+             CheckMagicBubble();
          }
          CheckSwitchStates();
          if(Ctx.IsShooting){
@@ -39,10 +45,13 @@ public class PlayerShootState : PlayerBaseState
             
             PlayerMagicController.instance.MagicConchBornTime = Mathf.Pow(2, Ctx.HoldingTime) - 1.0f;
          }
+         HandleGravity();
     }
     public override void ExitState(){
         //Debug.Log("Exit Shoot");
         Ctx.IsShooting = false;
+        Ctx.IsHolding = false;
+        Ctx.IsEnding = false;
         InputSystem.instance.IsShootPressed = false;
         Ctx.HoldingTime = 0;
         PlayerMagicController.instance.MagicConchBornTime = 2f;
@@ -78,7 +87,7 @@ public class PlayerShootState : PlayerBaseState
 
         InputSystem.instance.IsShootReleased = false;
         FunctionTimer.StopTimer("StartHoldConch");
-        FunctionTimer.StopTimer("HoldMagicConch");
+        FunctionTimer.StopTimer("HoldingMagicConch");
         SwitchState(Factory.Grounded());
 
         
@@ -87,7 +96,7 @@ public class PlayerShootState : PlayerBaseState
     void FinishedMagicConch(){
         //Debug.Log("Finished Shoot");
         FunctionTimer.StopTimer("StartHoldConch");
-        FunctionTimer.StopTimer("HoldMagicConch");
+        FunctionTimer.StopTimer("HoldingMagicConch");
         ChangeAnimationState(Ctx.AnimationEndMagicConch);
 
         PlayerMagicController.instance.MagicConchFinished();
@@ -119,6 +128,54 @@ public class PlayerShootState : PlayerBaseState
             PlayerMagicController.instance.MagicConchStart();
         
         }
+    }
+
+    void StartMagicBubble(){
+        if(Ctx.IsEnding) return;
+        //Debug.Log("Start bubble");
+        
+        Ctx.IsHolding = true;
+        Ctx.IsShooting = true;
+
+        InputSystem.instance.IsShootPressed = false;
+
+        PlayerMagicController.instance.MagicBubbleStart();
+        if(Ctx.CurrentAnimationState!=Ctx.AnimationMagicBubbleRun||(!Ctx.IsRunning&&!Ctx.IsWalking))
+            ChangeAnimationState(Ctx.AnimationHoldMagicBubble);
+        //FunctionTimer.Create(() => FinishedMagicBubble(),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length);
+
+    }
+
+    
+
+    void FinishedMagicBubble(){
+        
+        Ctx.IsShooting = false;
+        Ctx.IsEnding = false;
+    }
+
+    void CheckMagicBubble(){
+        if(Ctx.HoldingTime>=0.5){ //間隔時間太長就結束
+            Ctx.IsEnding = true;
+            ChangeAnimationState(Ctx.AnimationEndMagicBubble);
+            FunctionTimer.Create(() => FinishedMagicBubble(),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length); 
+            ///Ctx.IsShooting = false;
+        }
+        else if(InputSystem.instance.IsShootPressed){
+            Ctx.HoldingTime = 0;
+            StartMagicBubble();
+        }
+
+    }
+
+    void HandleGravity(){
+        
+        
+        float previousYVelocity = Ctx.GravityMovementY;
+        Ctx.GravityMovementY = Ctx.GravityMovementY + (Ctx.Gravity* Ctx.FallMultiplier * Time.deltaTime);
+        Ctx.AppliedMovementY = Mathf.Max((previousYVelocity + Ctx.GravityMovementY) * 0.5f, -9.8f); //從高處掉下來的時候不要掉太快
+        
+        
     }
 
 

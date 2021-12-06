@@ -28,6 +28,9 @@ public class PlayerJumpState : PlayerBaseState
         if(Ctx.CharacterController.isGrounded){
             SwitchState(Factory.Grounded());
         }
+        if(InputSystem.instance.IsShootPressed){
+            SwitchState(Factory.Shoot());
+        }
     }
     public override void InitializedSubState(){
         if(Ctx.IsRunning){

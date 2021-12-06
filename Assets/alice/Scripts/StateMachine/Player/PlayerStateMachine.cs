@@ -62,9 +62,12 @@ public class PlayerStateMachine : MonoBehaviour
         int _currentMagic = 0; //1
         bool _isShooting;
         bool _isHolding;
+        bool _isEnding;
         float _holdingTime = .0f;
         public bool IsShooting {get{return _isShooting;} set{_isShooting = value;}}
         public bool IsHolding {get{return _isHolding;} set{_isHolding = value;}}
+        public bool IsEnding {get{return _isEnding;} set{_isEnding = value;}}
+        
         public float MagicConchMaxHoldingTime {get{return _magicConchMaxHoldingTime;}}
         public float MagicConchMinHoldingTime {get{return _magicConchMinHoldingTime;}}
         public float HoldingTime {get{return _holdingTime;} set{_holdingTime = value;}}
@@ -76,6 +79,7 @@ public class PlayerStateMachine : MonoBehaviour
         //泡泡
         public int AnimationStartMagicBubble {get{return animationStartMagicBubble;}}
         public int AnimationHoldMagicBubble {get{return animationHoldMagicBubble;}}
+        public int AnimationMagicBubbleRun {get{return animationMagicBubbleRun;}}
         public int AnimationEndMagicBubble {get{return animationEndMagicBubble;}}
         //炸彈
         public int AnimationMagicBomb {get{return animationMagicBomb;}}
@@ -102,6 +106,7 @@ public class PlayerStateMachine : MonoBehaviour
         private int animationStartMagicBubble;
         private int animationHoldMagicBubble;
         private int animationEndMagicBubble;
+        private int animationMagicBubbleRun;
         private int animationMagicBomb;
         private int animationSlide;
         private int animationStayInAir;
@@ -205,6 +210,7 @@ public class PlayerStateMachine : MonoBehaviour
         animationStartMagicBubble = Animator.StringToHash("Player_StartMagicBubble");
         animationHoldMagicBubble = Animator.StringToHash("Player_HoldMagicBubble");
         animationEndMagicBubble = Animator.StringToHash("Player_EndMagicBubble");
+        animationMagicBubbleRun = Animator.StringToHash("Player_MagicBubbleRun");
         animationMagicBomb = Animator.StringToHash("Player_MagicBomb");
         
         //= Animator.StringToHash("Player_");
@@ -303,6 +309,16 @@ public class PlayerStateMachine : MonoBehaviour
         else {
             _currentMagic = (_currentMagic > 1) ?_currentMagic -1:PlayerMagicDic["Magic3"];
         }
+        UIManager.instance.SetCurrentMagic(_currentMagic);
+        ResetShootStatus();
+    }
+
+    void ResetShootStatus(){
+        _isShooting = false;
+        _isHolding = false;
+        InputSystem.instance.IsShootPressed = false;
+        _holdingTime = 0;
+        PlayerMagicController.instance.MagicConchBornTime = 2f;
     }
 
     

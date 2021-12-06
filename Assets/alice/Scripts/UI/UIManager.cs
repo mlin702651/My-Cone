@@ -111,21 +111,21 @@ public class UIManager : MonoBehaviour
 
     public void SetCurrentMagic(int magicStatus){
         switch(magicStatus){
-            case 0:
+            case 1:
             currentMagicImage.sprite = magicAccumulate;
             accumulateAttackCD.enabled = true;
             bubbleAttackCD.enabled = false;
             bombAttackCD.enabled = false;
             currentBombLeft.enabled = false;
                 break;
-            case 1:
+            case 2:
             currentMagicImage.sprite = magicBubble;
             accumulateAttackCD.enabled = false;
             bubbleAttackCD.enabled = true;
             bombAttackCD.enabled = false;
             currentBombLeft.enabled = false;
                 break;
-            case 2:
+            case 3:
             currentMagicImage.sprite = magicBomb;
             accumulateAttackCD.enabled = false;
             bubbleAttackCD.enabled = false;

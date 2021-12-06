@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5136045748923135480}
   - component: {fileID: 9153404063720150101}
   - component: {fileID: 4012064103186336819}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4767,9 +4767,9 @@ GameObject:
   - component: {fileID: 5350938070333236693}
   - component: {fileID: 3646308420627707286}
   - component: {fileID: 5860284434441474902}
-  - component: {fileID: 2244334530983030993}
   - component: {fileID: 7200406010607969373}
-  m_Layer: 0
+  - component: {fileID: 617556177782493327}
+  m_Layer: 16
   m_Name: emit
   m_TagString: Player_Magic2
   m_Icon: {fileID: 0}
@@ -4865,21 +4865,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 96
+  m_Constraints: 100
   m_CollisionDetection: 0
---- !u!114 &2244334530983030993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9067369392809442637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aaadc379d4c4c478d6fa27b23911a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exp1: {fileID: 740069646535838216, guid: c89452281209e7840840752b92784645, type: 3}
 --- !u!135 &7200406010607969373
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4893,3 +4880,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &617556177782493327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067369392809442637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c5db9f367b971419de01f24e87ef76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BornTime: 0.5
+  _bulletSpeed: 13

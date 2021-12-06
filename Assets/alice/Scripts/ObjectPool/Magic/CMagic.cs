@@ -14,7 +14,7 @@ public class CMagic : MonoBehaviour,IPooledObject
     }
     public virtual void SetAttackInvisible(ref float _fBorntr,float _fBornt){
         if(_fBorntr>=_fBornt){
-            print("3sec!!!!");
+            //print("3sec!!!!");
             _fBorntr = 0;
             gameObject.SetActive(false);
         }

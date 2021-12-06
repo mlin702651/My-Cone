@@ -9,14 +9,14 @@ public class PlayerIdleState :PlayerBaseState
     public override void EnterState(){
         
         
-        Debug.Log("Start Idle");
+        //Debug.Log("Start Idle");
         
     }
     public override void UpdateState(){
         CheckSwitchStates();
         Ctx.AppliedMovementX = 0;
         Ctx.AppliedMovementZ = 0;
-        if(Ctx.IsShooting) return;
+        if(Ctx.IsShooting||Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble) return;
         if(Ctx.CurrentAnimationState == Ctx.AnimationJumpEnd || Ctx.IsJumping) return; //如果還在降落就播完動畫
         ChangeAnimationState(Ctx.AnimationIdle);
     }

@@ -44,7 +44,7 @@ public class ObjectPooler : MonoBehaviour {
             Debug.LogWarning("Pool with tag" + tag + "doesn't exsist.");
             return null;
         }
-        Debug.Log("try");
+        //Debug.Log("try");
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();//傳回第一個物件 並移除
 
         //設定初始值

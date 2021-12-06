@@ -44,4 +44,10 @@ public class PlayerMagicController : MonoBehaviour
     public float CaculateMagicConchBulletBornTime(float bornTime){
         return bornTime;
     }
+
+    public void MagicBubbleStart(){
+        _magicPooler.SpawnFromPool("MagicBubbleBullet",_firePoint.transform.position,_firePoint.transform.eulerAngles);
+        _magicPooler.SpawnFromPool("MagicBubbleFlash",_firePoint.transform.position,_firePoint.transform.eulerAngles);
+        _magicPooler.MakeChild("MagicBubbleFlash", ref _firePoint);
+    }
 }

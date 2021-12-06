@@ -22,6 +22,11 @@ public class PlayerWalkState : PlayerBaseState
             Ctx.AppliedMovementX = 0;
             Ctx.AppliedMovementZ = 0;
         } 
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble) ChangeAnimationState(Ctx.AnimationMagicBubbleRun);
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBubble){
+            Ctx.AppliedMovementX = 0;
+            Ctx.AppliedMovementZ = 0;
+        } 
         
         if(Ctx.IsShooting) return;
         

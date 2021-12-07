@@ -12,7 +12,7 @@ public class PlayerRunState : PlayerBaseState
 
     }
     public override void UpdateState(){
-        Debug.Log("????");
+        
         CheckSwitchStates();
         Ctx.CurrentSpeed = Ctx.RunningSpeed;
         if(Ctx.IsAiming)Ctx.CurrentSpeed = Ctx.WalkingSpeed;
@@ -20,16 +20,26 @@ public class PlayerRunState : PlayerBaseState
         Ctx.AppliedMovementX = (Ctx.MoveDir*Ctx.CurrentSpeed).x;
         Ctx.AppliedMovementZ = (Ctx.MoveDir*Ctx.CurrentSpeed).z;
 
-        if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch) ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
-        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch){
+        
+        
+        if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch){
+            ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
+        }
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch||Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBubble||Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBomb){
             Ctx.AppliedMovementX = 0;
             Ctx.AppliedMovementZ = 0;
         } 
-        else if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble) ChangeAnimationState(Ctx.AnimationMagicBubbleRun);
-        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBubble){
-            Ctx.AppliedMovementX = 0;
-            Ctx.AppliedMovementZ = 0;
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble){
+            ChangeAnimationState(Ctx.AnimationMagicBubbleRun);
         } 
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBomb){
+            Debug.Log("hi");
+            ChangeAnimationState(Ctx.AnimationEndMagicBombRun);
+            return;
+        } 
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBombRun){
+            return;
+        }
 
         if(Ctx.IsShooting) return;
 

@@ -26,6 +26,7 @@ public class PlayerShootState : PlayerBaseState
                 StartMagicBubble();
                 break;
             case 3:
+                StartMagicBomb();
                 break;
             default:
                 break;
@@ -165,6 +166,39 @@ public class PlayerShootState : PlayerBaseState
             Ctx.HoldingTime = 0;
             StartMagicBubble();
         }
+
+    }
+
+    
+
+    void StartMagicBomb(){
+
+        if(UIManager.instance.IsBombAttack || UIManager.instance.RecoverBombAttack){
+            return;
+        }
+        else{
+            Ctx.IsShooting = true;
+            InputSystem.instance.IsShootPressed = false;
+
+            PlayerMagicController.instance.MagicBombStart();
+
+            Ctx.CurrentBombCount--;
+            UIManager.instance.SetBombLeftAmount(Ctx.CurrentBombCount);
+            ChangeAnimationState(Ctx.AnimationStartMagicBomb);
+            FunctionTimer.Create(()=> HoldMagicBomb(),0.1f);
+        }
+    }
+
+    void HoldMagicBomb(){
+        Debug.Log("Hold bomb");
+        ChangeAnimationState(Ctx.AnimationEndMagicBomb);
+        FunctionTimer.Create(()=> FinishedMagicBomb(),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length);
+    }
+
+    void FinishedMagicBomb(){
+        Debug.Log("Finished bomb");
+        Ctx.IsShooting = false;
+        
 
     }
 

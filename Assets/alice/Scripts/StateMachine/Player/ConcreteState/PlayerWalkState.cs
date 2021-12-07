@@ -17,16 +17,23 @@ public class PlayerWalkState : PlayerBaseState
         Ctx.AppliedMovementX = (Ctx.MoveDir*Ctx.CurrentSpeed).x;
         Ctx.AppliedMovementZ = (Ctx.MoveDir*Ctx.CurrentSpeed).z;
 
-        if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch) ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
-        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch){
+        if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch){
+            ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
+        }
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch||Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBubble||Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBomb){
             Ctx.AppliedMovementX = 0;
             Ctx.AppliedMovementZ = 0;
         } 
-        else if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble) ChangeAnimationState(Ctx.AnimationMagicBubbleRun);
-        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBubble){
-            Ctx.AppliedMovementX = 0;
-            Ctx.AppliedMovementZ = 0;
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble){
+            ChangeAnimationState(Ctx.AnimationMagicBubbleRun);
         } 
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBomb){
+            ChangeAnimationState(Ctx.AnimationEndMagicBombWalk);
+            return;
+        }
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBombRun||Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBombWalk){
+            return;
+        }
         
         if(Ctx.IsShooting) return;
         

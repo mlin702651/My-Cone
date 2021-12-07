@@ -50,4 +50,10 @@ public class PlayerMagicController : MonoBehaviour
         _magicPooler.SpawnFromPool("MagicBubbleFlash",_firePoint.transform.position,_firePoint.transform.eulerAngles);
         _magicPooler.MakeChild("MagicBubbleFlash", ref _firePoint);
     }
+
+    public void MagicBombStart(){
+        _magicPooler.SpawnFromPool("MagicBomb",_firePoint.transform.position-new Vector3(0,0.55f,0),_firePoint.transform.eulerAngles);
+        
+    }
+    
 }

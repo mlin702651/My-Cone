@@ -9,12 +9,12 @@ public class PlayerDashState : PlayerBaseState
     public override void EnterState(){
         Debug.Log("Start Dash");
         //InputSystem.instance.IsDashPressed = false;
-        if(Ctx.IsJumping){
+        if(!Ctx.IsRunning&&!Ctx.IsWalking){
+            FinishedDash();
+        }
+        else if(Ctx.IsJumping){
             ChangeAnimationState(Ctx.AnimationDashInAir);
             FunctionTimer.Create(() => FinishedDash(),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length,"AIR DASH");
-        }
-        else if(!Ctx.IsRunning&&!Ctx.IsWalking){
-            FinishedDash();
         }
         else{
             ChangeAnimationState(Ctx.AnimationDash);

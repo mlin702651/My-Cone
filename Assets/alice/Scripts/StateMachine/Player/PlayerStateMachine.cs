@@ -64,6 +64,7 @@ public class PlayerStateMachine : MonoBehaviour
         bool _isHolding;
         bool _isEnding;
         float _holdingTime = .0f;
+        int _currentBombLeft = 5;
         public bool IsShooting {get{return _isShooting;} set{_isShooting = value;}}
         public bool IsHolding {get{return _isHolding;} set{_isHolding = value;}}
         public bool IsEnding {get{return _isEnding;} set{_isEnding = value;}}
@@ -71,6 +72,7 @@ public class PlayerStateMachine : MonoBehaviour
         public float MagicConchMaxHoldingTime {get{return _magicConchMaxHoldingTime;}}
         public float MagicConchMinHoldingTime {get{return _magicConchMinHoldingTime;}}
         public float HoldingTime {get{return _holdingTime;} set{_holdingTime = value;}}
+        public int CurrentBombCount {get{return _currentBombLeft;} set{_currentBombLeft = value;}}
         //海螺
         public int AnimationStartMagicConch {get{return animationStartMagicConch;}}
         public int AnimationHoldMagicConch {get{return animationHoldMagicConch;}}
@@ -82,7 +84,10 @@ public class PlayerStateMachine : MonoBehaviour
         public int AnimationMagicBubbleRun {get{return animationMagicBubbleRun;}}
         public int AnimationEndMagicBubble {get{return animationEndMagicBubble;}}
         //炸彈
-        public int AnimationMagicBomb {get{return animationMagicBomb;}}
+        public int AnimationStartMagicBomb {get{return animationStartMagicBomb;}}
+        public int AnimationEndMagicBomb {get{return animationEndMagicBomb;}}
+        public int AnimationEndMagicBombWalk {get{return animationEndMagicBombWalk;}}
+        public int AnimationEndMagicBombRun {get{return animationEndMagicBombRun;}}
     #endregion
 
     #region Camera
@@ -134,7 +139,10 @@ public class PlayerStateMachine : MonoBehaviour
         private int animationHoldMagicBubble;
         private int animationEndMagicBubble;
         private int animationMagicBubbleRun;
-        private int animationMagicBomb;
+        private int animationStartMagicBomb;
+        private int animationEndMagicBomb;
+        private int animationEndMagicBombWalk;
+        private int animationEndMagicBombRun;
         private int animationSlide;
         private int animationStayInAir;
     #endregion
@@ -238,7 +246,10 @@ public class PlayerStateMachine : MonoBehaviour
         animationHoldMagicBubble = Animator.StringToHash("Player_HoldMagicBubble");
         animationEndMagicBubble = Animator.StringToHash("Player_EndMagicBubble");
         animationMagicBubbleRun = Animator.StringToHash("Player_MagicBubbleRun");
-        animationMagicBomb = Animator.StringToHash("Player_MagicBomb");
+        animationStartMagicBomb = Animator.StringToHash("Player_StartMagicBomb");
+        animationEndMagicBomb = Animator.StringToHash("Player_EndMagicBomb");
+        animationEndMagicBombWalk = Animator.StringToHash("Player_EndMagicBombWalk");
+        animationEndMagicBombRun = Animator.StringToHash("Player_EndMagicBombRun");
         
         //= Animator.StringToHash("Player_");
         #endregion
@@ -271,6 +282,11 @@ public class PlayerStateMachine : MonoBehaviour
         else if(InputSystem.instance.IsMagicMinusStatusPressed){
             InputSystem.instance.IsMagicMinusStatusPressed = false;
             ChangeMagicState(false);
+        }
+
+        if(_currentBombLeft<=0){
+            _currentBombLeft = 5;
+            UIManager.instance.StartBombCD();
         }
         
         _currentMovement = InputSystem.instance.GetCurrentMovement();

@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]private Image bombAttackCD;
     [SerializeField]private bool isBombAttack;
     [SerializeField]private bool recoverBombAttack = false;
+    public bool IsBombAttack {get{return isBombAttack;}}
+    public bool RecoverBombAttack {get{return recoverBombAttack;}}
     [SerializeField]private float bombAttackCDCircleDecreaseTime = 2f;
     [SerializeField]private float bombAttackCDCircleRecoverTime = 3f;
 
@@ -84,6 +86,7 @@ public class UIManager : MonoBehaviour
             if(bombAttackCDCircleDisplayValue>=1){
                 recoverBombAttack = false;
                 bombAttackCDTimer = 0;
+                SetBombLeftAmount(5);
             }
         }
     }

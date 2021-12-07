@@ -51,6 +51,10 @@ public class InputSystem : MonoBehaviour
         public bool IsAimPressed {get{return _isAimPressed;} }
 
     #endregion
+    #region Dash
+        bool _isDashPressed;
+        public bool IsDashPressed {get{return _isDashPressed;} set{_isDashPressed = value;}}
+    #endregion
     #region Menu
 
         public bool MenuPressDown{get; set;}
@@ -101,7 +105,7 @@ public class InputSystem : MonoBehaviour
             controls.player.Aim.canceled += OnAim;
 
             //衝
-            controls.player.Dash.started += ctx => DashStart();
+            controls.player.Dash.performed += ctx => DashStart();
             controls.player.Dash.canceled += ctx => DashCanceled();
             //射擊
             controls.player.Shoot.started += ctx => ShootStart();
@@ -194,8 +198,10 @@ public class InputSystem : MonoBehaviour
 
 
     void DashStart(){
+        _isDashPressed = true;
     }
     void DashCanceled(){
+        _isDashPressed = false;
     }
     void DashComplete(){
     }

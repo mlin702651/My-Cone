@@ -25,6 +25,7 @@ public class PlayerJumpState : PlayerBaseState
 
     }
     public override void CheckSwitchStates(){
+        
         if(Ctx.CharacterController.isGrounded){
             SwitchState(Factory.Grounded());
         }
@@ -33,7 +34,10 @@ public class PlayerJumpState : PlayerBaseState
         }
     }
     public override void InitializedSubState(){
-        if(Ctx.IsRunning){
+        if(Ctx.IsDashing){
+            SetSubState(Factory.Dash());
+        }
+        else if(Ctx.IsRunning){
             SetSubState(Factory.Run());
         }
         else if(Ctx.IsWalking){
@@ -62,7 +66,7 @@ public class PlayerJumpState : PlayerBaseState
         
         
         if(Ctx.IsFalling){
-            ChangeAnimationState(Ctx.AnimationJumpEnd);
+            if(!Ctx.IsDashing)ChangeAnimationState(Ctx.AnimationJumpEnd);
             float previousYVelocity = Ctx.GravityMovementY;
             Ctx.GravityMovementY = Ctx.GravityMovementY + (Ctx.Gravity* Ctx.FallMultiplier * Time.deltaTime);
             Ctx.AppliedMovementY = Mathf.Max((previousYVelocity + Ctx.GravityMovementY) * 0.5f, -20.0f); //從高處掉下來的時候不要掉太快

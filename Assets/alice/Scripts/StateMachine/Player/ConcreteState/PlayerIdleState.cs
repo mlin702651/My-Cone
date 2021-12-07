@@ -9,7 +9,7 @@ public class PlayerIdleState :PlayerBaseState
     public override void EnterState(){
         
         
-        //Debug.Log("Start Idle");
+        Debug.Log("Start Idle");
         
     }
     public override void UpdateState(){
@@ -26,7 +26,10 @@ public class PlayerIdleState :PlayerBaseState
             return;
         }
         
-        if(Ctx.IsRunning){
+        if(Ctx.IsDashing){
+            SwitchState(Factory.Dash());
+        }
+        else if(Ctx.IsRunning){
             SwitchState(Factory.Run());
         }
         else if(Ctx.IsWalking){

@@ -104,6 +104,14 @@ public class PlayerStateMachine : MonoBehaviour
 
 
     #endregion
+    #region Dash
+        [SerializeField] private float _dashSpeed = 20;
+        private bool _isDashing = false;
+        public bool IsDashing {get{return _isDashing;} set{_isDashing = value;}}
+        public float DashSpeed {get{return _dashSpeed;}}
+        public int AnimationDash{get{return animationDash;}}
+        public int AnimationDashInAir{get{return animationDashInAir;}}
+    #endregion
     #region Animation
         Animator _animator;
         private int currentAnimationState;
@@ -266,6 +274,11 @@ public class PlayerStateMachine : MonoBehaviour
         }
         
         _currentMovement = InputSystem.instance.GetCurrentMovement();
+        
+        if(InputSystem.instance.IsDashPressed){
+            InputSystem.instance.IsDashPressed = false;
+            _isDashing = true;
+        }
         if(_currentMovement.magnitude>0.7){
             _isRunning = true;
             _isWalking = false;

@@ -37,6 +37,10 @@ public class PlayerWalkState : PlayerBaseState
     }
     public override void ExitState(){}
     public override void CheckSwitchStates(){
+        
+        if(Ctx.IsDashing){
+            SwitchState(Factory.Dash());
+        }
         if(Ctx.IsRunning){
             SwitchState(Factory.Run());
         }

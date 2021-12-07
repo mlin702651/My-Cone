@@ -12,6 +12,7 @@ public class PlayerRunState : PlayerBaseState
 
     }
     public override void UpdateState(){
+        Debug.Log("????");
         CheckSwitchStates();
         Ctx.CurrentSpeed = Ctx.RunningSpeed;
         if(Ctx.IsAiming)Ctx.CurrentSpeed = Ctx.WalkingSpeed;
@@ -35,11 +36,16 @@ public class PlayerRunState : PlayerBaseState
         if(Ctx.IsJumping) return;
         else if(Ctx.Animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Ctx.AnimationJumpEnd && Ctx.IsJumping) return; //如果還在降落就播完動畫
         ChangeAnimationState(Ctx.AnimationRun);
+        
 
     }
     public override void ExitState(){}
     public override void CheckSwitchStates(){
-        if(Ctx.IsWalking){
+        
+        if(Ctx.IsDashing){
+            SwitchState(Factory.Dash());
+        }
+        else if(Ctx.IsWalking){
             SwitchState(Factory.Walk());
         }
         else if(!Ctx.IsWalking && !Ctx.IsRunning){ 

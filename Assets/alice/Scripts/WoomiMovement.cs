@@ -428,14 +428,14 @@ public class WoomiMovement : MonoBehaviour
             PlusMagicStatusPress = false;
             magicStatus ++;
             if(magicStatus==3) magicStatus = 0;
-            FindObjectOfType<UIManager>().SetCurrentMagic(magicStatus);
+            //FindObjectOfType<UIManager>().SetCurrentMagic(magicStatus);
             Debug.Log("magicStatus"+magicStatus);
         }
         if(MinusMagicStatusPress){
             MinusMagicStatusPress = false;
             magicStatus --;
             if(magicStatus==-1) magicStatus = 2;
-            FindObjectOfType<UIManager>().SetCurrentMagic(magicStatus);
+            //FindObjectOfType<UIManager>().SetCurrentMagic(magicStatus);
             Debug.Log("magicStatus"+magicStatus);
         }
         #endregion

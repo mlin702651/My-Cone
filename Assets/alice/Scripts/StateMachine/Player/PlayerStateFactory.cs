@@ -27,6 +27,9 @@ public class PlayerStateFactory
     public PlayerBaseState Shoot(){
         return new PlayerShootState(_context, this);
     }
+    public PlayerBaseState Dash(){
+        return new PlayerDashState(_context, this);
+    }
 }
 
 /*

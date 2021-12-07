@@ -22,7 +22,10 @@ public class PlayerGroundedState : PlayerBaseState
     }
     public override void ExitState(){}
     public override void InitializedSubState(){
-        if(Ctx.IsRunning){
+        if(Ctx.IsDashing){
+            SetSubState(Factory.Dash());
+        }
+        else if(Ctx.IsRunning){
             SetSubState(Factory.Run());
         }
         else if(Ctx.IsWalking){

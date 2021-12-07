@@ -92,6 +92,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     #region Camera
         [Header("Camera")]
+        [SerializeField]float _cameraSensitivity = 0.8f;
         [SerializeField]private GameObject _freeCamera;
         [SerializeField]private GameObject _aimCamera;
         [SerializeField]private GameObject _aimReticle;
@@ -106,6 +107,8 @@ public class PlayerStateMachine : MonoBehaviour
 
         private bool _isAiming = false;
         public bool IsAiming {get{return _isAiming;}}
+
+        
 
 
     #endregion
@@ -320,8 +323,8 @@ public class PlayerStateMachine : MonoBehaviour
 
             //相機轉不了 轉woomi
             
-            _aimCamTarget.transform.eulerAngles = _aimCamTarget.transform.eulerAngles + new Vector3( InputSystem.instance.CurrentCameraMovement.y*2,0,0);
-            transform.eulerAngles = transform.eulerAngles + new Vector3(0,InputSystem.instance.CurrentCameraMovement.x*3,0);
+            _aimCamTarget.transform.eulerAngles = _aimCamTarget.transform.eulerAngles + new Vector3( InputSystem.instance.CurrentAimCameraMovement.y*_cameraSensitivity,0,0);
+            transform.eulerAngles = transform.eulerAngles + new Vector3(0,InputSystem.instance.CurrentAimCameraMovement.x*_cameraSensitivity,0);
             //-10 - 25
             
             //設定上下的範圍限制

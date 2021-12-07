@@ -17,6 +17,9 @@ public class InputSystem : MonoBehaviour
         private Vector2 inputCameraMovement;
         private Vector3 currentCameraMovement;
         public Vector3 CurrentCameraMovement{get{return currentCameraMovement;}}
+        private Vector2 inputAimCameraMovement;
+        private Vector3 currentAimCameraMovement;
+        public Vector3 CurrentAimCameraMovement{get{return currentAimCameraMovement;}}
 
         public bool isMovementPressed;
     #endregion
@@ -91,6 +94,8 @@ public class InputSystem : MonoBehaviour
             //視角移動 + 魔法瞄準角度
             controls.player.CameraMove.performed+=OnCameraMovementInput;
             controls.player.CameraMove.canceled += OnCameraMovementInput;
+            controls.player.AimCameraMove.performed+=OnAimCameraMovementInput;
+            controls.player.AimCameraMove.canceled += OnAimCameraMovementInput;
             // controls.player.CameraMove.performed+=ctx=> inputCameraMovement= ctx.ReadValue<Vector2>();
             // controls.player.CameraMove.canceled += ctx => inputCameraMovement = Vector2.zero;
             
@@ -165,6 +170,12 @@ public class InputSystem : MonoBehaviour
         inputCameraMovement = ctx.ReadValue<Vector2>()*new Vector2(-1,-1);
         currentCameraMovement.x = inputCameraMovement.x;
         currentCameraMovement.y = inputCameraMovement.y;
+        //Debug.Log(currentCameraMovement);
+    }
+    void OnAimCameraMovementInput(InputAction.CallbackContext ctx){
+        inputAimCameraMovement = ctx.ReadValue<Vector2>()*new Vector2(-1,-1);
+        currentAimCameraMovement.x = inputAimCameraMovement.x;
+        currentAimCameraMovement.y = inputAimCameraMovement.y;
         //Debug.Log(currentCameraMovement);
     }
 

@@ -97,6 +97,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""AimCameraMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""3666357c-85b9-414a-bba7-6c24dbca9c66"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -341,6 +349,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Talk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be25ba11-c74d-48a1-ac49-1a776c98efd8"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2(invertY=false)"",
+                    ""groups"": """",
+                    ""action"": ""AimCameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ef52e69-070f-4205-be47-b246ebfa866d"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2(invertY=false),ScaleVector2(x=0.2,y=0.2)"",
+                    ""groups"": """",
+                    ""action"": ""AimCameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -462,6 +492,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_player_Aim = m_player.FindAction("Aim", throwIfNotFound: true);
         m_player_Dash = m_player.FindAction("Dash", throwIfNotFound: true);
         m_player_Talk = m_player.FindAction("Talk", throwIfNotFound: true);
+        m_player_AimCameraMove = m_player.FindAction("AimCameraMove", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_MenuSelectRight = m_Menu.FindAction("MenuSelectRight", throwIfNotFound: true);
@@ -528,6 +559,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_player_Aim;
     private readonly InputAction m_player_Dash;
     private readonly InputAction m_player_Talk;
+    private readonly InputAction m_player_AimCameraMove;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -542,6 +574,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_player_Aim;
         public InputAction @Dash => m_Wrapper.m_player_Dash;
         public InputAction @Talk => m_Wrapper.m_player_Talk;
+        public InputAction @AimCameraMove => m_Wrapper.m_player_AimCameraMove;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -581,6 +614,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Talk.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
                 @Talk.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
                 @Talk.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTalk;
+                @AimCameraMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimCameraMove;
+                @AimCameraMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimCameraMove;
+                @AimCameraMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimCameraMove;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -615,6 +651,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Talk.started += instance.OnTalk;
                 @Talk.performed += instance.OnTalk;
                 @Talk.canceled += instance.OnTalk;
+                @AimCameraMove.started += instance.OnAimCameraMove;
+                @AimCameraMove.performed += instance.OnAimCameraMove;
+                @AimCameraMove.canceled += instance.OnAimCameraMove;
             }
         }
     }
@@ -696,6 +735,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnTalk(InputAction.CallbackContext context);
+        void OnAimCameraMove(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

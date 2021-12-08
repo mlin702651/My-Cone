@@ -37,12 +37,12 @@ public class BigStone : MonoBehaviour
             transform.DOScale(0,0.5f);
             isDead=true;
         }
-        if(!canHurt){
-            float x=Mathf.Cos(countPosition);
-            float z=Mathf.Sin(countPosition);
-            float y=0;
-            transform.position=new Vector3(radius*x + Player.position.x + offset.x, y + offset.y, radius * z + Player.position.z + offset.z);
-        }
+        // if(!canHurt){
+        //     float x=Mathf.Cos(countPosition);
+        //     float z=Mathf.Sin(countPosition);
+        //     float y=0;
+        //     transform.position=new Vector3(radius*x + Player.position.x + offset.x, y + offset.y, radius * z + Player.position.z + offset.z);
+        // }
     }
 
     void OnTriggerEnter(Collider other)

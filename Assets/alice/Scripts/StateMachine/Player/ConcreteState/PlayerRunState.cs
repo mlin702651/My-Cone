@@ -25,7 +25,7 @@ public class PlayerRunState : PlayerBaseState
         if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicConch){
             ChangeAnimationState(Ctx.AnimationHoldMagicConchRun);
         }
-        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch||Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBubble||Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBomb){
+        else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch||Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBomb){
             Ctx.AppliedMovementX = 0;
             Ctx.AppliedMovementZ = 0;
         } 

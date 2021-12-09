@@ -9,27 +9,28 @@ public class TrainingThreeState : ISceneState
     public TrainingThreeState(SceneStateController Controller):base(Controller)
 	{
 		this.StateName = "Training03";
-        Debug.Log("training one hello");
+        Debug.Log("training three hello");
 	}
 
 
     
    
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-       
-    }
+    public override void StateBegin()
+	{
+		// 可在此進行遊戲資料載入及初始...等
+        //m_Controller.SetState(new TrainingOneState(m_Controller), "Training01");
 
-   
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// 更新
+	public override void StateUpdate()
+	{
+		// 更換為
+        //Debug.Log("now in trianing02");
+		CheckChangeSceneUpdate();
         
-    }
+	}
 
     public override void TeleportToWhichScene(){
 			switch(nextSceneName){

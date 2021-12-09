@@ -592,17 +592,27 @@ PrefabInstance:
     - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -4.2535078e-29
       objectReference: {fileID: 0}
     - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 1.0354769e-30
       objectReference: {fileID: 0}
     - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9915819
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7618961567897224139, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -632,12 +642,12 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000042470336
+      value: -0.00000042444643
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000005545779
+      value: 0.00000005542424
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -647,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9915819
+      value: 0.991582
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -2302,6 +2312,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: teleport point
       objectReference: {fileID: 0}
+    - target: {fileID: 6548250104707171133, guid: c67dc777a14f3fa43b5ed551d1efebdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c67dc777a14f3fa43b5ed551d1efebdd, type: 3}
 --- !u!1 &797546824 stripped
@@ -3218,10 +3233,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1174123359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d555823727c1fae4a837fefa3cbd0992, type: 3}
+  m_Script: {fileID: 11500000, guid: 79d581ad4ee8a444e8284db77d2eef86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialedQuest: {fileID: 11400000, guid: 99e4fc216ee455240945250a49eaddea, type: 2}
+  finishedQuest: {fileID: 11400000, guid: 99e4fc216ee455240945250a49eaddea, type: 2}
   enableObjects:
   - {fileID: 797546824}
 --- !u!65 &1174123361

@@ -20,7 +20,7 @@ public class TrainingThreeManager:MonoBehaviour
 
      public QuestInitializedTriggerEnable questInitializedTriggerEnable;
 
-    private int MonsterToKill = 3;
+    private int MonsterToKill = 2;
     private int MonsterKilledCount = 0;
 
     public bool canStartTraining = false;

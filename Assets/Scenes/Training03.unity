@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5350344, g: 0.66327727, b: 0.7576928, a: 1}
+  m_IndirectSpecularColor: {r: 0.53496945, g: 0.6632315, b: 0.7576997, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -632,22 +632,32 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000043288014
+      value: -0.00000039997744
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000005652551
+      value: 0.00000015026836
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.12948082
+      value: 0.35169142
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9915819
+      value: 0.93611604
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.4790149
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.12642002
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568179554689, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -666,6 +676,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc, type: 3}
+--- !u!1 &338885044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 350024647345317763, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 338885043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &371361565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1276,7 @@ MonoBehaviour:
   ifStartFall: 0
   ifGoal: 0
   didiPopOutDelay: 0.8
-  Player: {fileID: 1952178750}
+  Player: {fileID: 338885044}
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
@@ -1454,7 +1470,7 @@ MonoBehaviour:
   ifStartFall: 0
   ifGoal: 0
   didiPopOutDelay: 0.8
-  Player: {fileID: 1952178750}
+  Player: {fileID: 338885044}
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
@@ -2016,7 +2032,7 @@ MonoBehaviour:
   ifStartFall: 0
   ifGoal: 0
   didiPopOutDelay: 0.8
-  Player: {fileID: 1952178750}
+  Player: {fileID: 338885044}
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
@@ -2117,7 +2133,7 @@ MonoBehaviour:
   ifStartFall: 0
   ifGoal: 0
   didiPopOutDelay: 0.8
-  Player: {fileID: 1952178750}
+  Player: {fileID: 338885044}
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
@@ -2614,7 +2630,7 @@ MonoBehaviour:
   ifStartFall: 0
   ifGoal: 0
   didiPopOutDelay: 0.8
-  Player: {fileID: 1952178750}
+  Player: {fileID: 338885044}
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
@@ -4161,12 +4177,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939350104}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1952178750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6092067456450252816, guid: b506c4dae5739354f898c8ee5ea46a2f,
-    type: 3}
-  m_PrefabInstance: {fileID: 702869014}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2063023246
 GameObject:
   m_ObjectHideFlags: 0
@@ -5958,7 +5968,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 1952178750}
+      objectReference: {fileID: 338885044}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f6b139a99a90f41a0435df53e2d36a, type: 3}
 --- !u!1 &8999067183169604019

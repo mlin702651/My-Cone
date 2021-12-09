@@ -52,14 +52,14 @@ public class MonsterKinoko : MonoBehaviour
     private Vector3 lookPosition;
     #endregion
 
-    #region hit player 
-    [Header("hit player")]
+     #region hit player 
+    // [Header("hit player")]
 
-    [SerializeField]private bool ifHitPlayer = false;
-    private Rigidbody _playerRigidBody;
+    // [SerializeField]private bool ifHitPlayer = false;
+    // private Rigidbody _playerRigidBody;
 
     private GameObject Player;
-    #endregion
+     #endregion
     #region kinoko material
     private Renderer[] kinokoRenderer;
     #endregion
@@ -84,8 +84,8 @@ public class MonsterKinoko : MonoBehaviour
         animationRunOver = Animator.StringToHash("Monster_Kinoko_Run_Over");
         animationAttack = Animator.StringToHash("Monster_Kinoko_Attack");
 
-        Player = GameObject.Find("Player");
-        _playerRigidBody = Player.GetComponent<Rigidbody>();
+        Player = GameObject.Find("NewPlayer");
+        //_playerRigidBody = Player.GetComponent<Rigidbody>();
         lookTarget = Player.transform;
 
     }
@@ -142,7 +142,7 @@ public class MonsterKinoko : MonoBehaviour
         AnimationOverCheck();
         StateCheck();
         
-        HitPlayerCheck();
+        //HitPlayerCheck();
         
         
         
@@ -220,12 +220,12 @@ public class MonsterKinoko : MonoBehaviour
         }
     }
 
-    private void HitPlayerCheck(){
-        if(ifHitPlayer){
-            ifHitPlayer = false;
-            _playerRigidBody.velocity = transform.forward*Time.deltaTime* -400;
-        }
-    }
+    // private void HitPlayerCheck(){
+    //     if(ifHitPlayer){
+    //         ifHitPlayer = false;
+    //         _playerRigidBody.velocity = transform.forward*Time.deltaTime* -400;
+    //     }
+    // }
 
     public void StartFighting(){
         ifStartAttack = true;

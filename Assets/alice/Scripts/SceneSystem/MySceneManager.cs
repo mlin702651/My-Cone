@@ -19,7 +19,7 @@ public class MySceneManager : MonoBehaviour
     SceneStateController m_SceneStateController = new SceneStateController();
     private void Start() {
         //m_SceneStateController.SetState(new StartState(m_SceneStateController), "SampleScene");
-        m_SceneStateController.SetState(new TrainingOneState(m_SceneStateController), "Training01");
+        m_SceneStateController.SetState(new MushroomPlazaState(m_SceneStateController), "MushroomPlaza");
     }
 
     private void Update() {

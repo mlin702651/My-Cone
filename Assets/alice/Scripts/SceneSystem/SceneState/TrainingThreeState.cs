@@ -31,5 +31,13 @@ public class TrainingThreeState : ISceneState
         
     }
 
-    
+    public override void TeleportToWhichScene(){
+			switch(nextSceneName){
+				case "island":
+					m_Controller.SetState(new IslandState(m_Controller), "island");
+					break;
+				case null:
+					break;
+		}
+	}
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 using UnityEngine.UI;
+
 public class BigStone : MonoBehaviour
 {
     [SerializeField]bool canHurt=false;
@@ -18,6 +19,11 @@ public class BigStone : MonoBehaviour
     [SerializeField]float radius=5.0f;
     [SerializeField]float speed=0.5f;
     // Start is called before the first frame update
+    [SerializeField]GameObject[] teleportPoint= new GameObject[3];
+    int damage=0;
+    bool teleport=false;
+    float teleportTimer=0;
+    //CinemachineDollyCart cart;
     void Start()
     {
         
@@ -32,35 +38,48 @@ public class BigStone : MonoBehaviour
             timer+=Time.deltaTime; 
             animator_big.SetBool("goDead",true);
         }
-        if(timer>2.2f){
+        if(timer>2.1f){
             gameObject.SetActive(false);
             transform.DOScale(0,0.5f);
             isDead=true;
         }
-        // if(!canHurt){
-        //     float x=Mathf.Cos(countPosition);
-        //     float z=Mathf.Sin(countPosition);
-        //     float y=0;
-        //     transform.position=new Vector3(radius*x + Player.position.x + offset.x, y + offset.y, radius * z + Player.position.z + offset.z);
-        // }
+
+
+        if(damage>=35){
+            teleport=true;
+            damage=0;
+            transform.DOScale(0,0.5f);
+            teleportTimer+=Time.deltaTime; 
+        }
+        else{
+            teleport=false;
+            teleportTimer=0;
+        }
+
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(canHurt){
             if(other.tag =="Player_Magic1"){
+            damage+=15;
             Hp-=15;
             Debug.Log("hurt1!");
             }
             else if(other.tag =="Player_Magic2"){
+                damage+=5;
                 Hp-=5;
                 Debug.Log("hurt2!");
             }
             else if(other.tag =="Player_Magic3"){
-                Hp-=30;
+                damage+=20;
+                Hp-=20;
                 Debug.Log("hurt3!");
             }
         }
+    }
+    public bool GetTeleport(){
+        return(teleport);
     }
     public void setCanHurt(){
         canHurt=true;

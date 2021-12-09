@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class StoneController : MonoBehaviour
 {
     [SerializeField]BigStone bigStone=null;
@@ -17,6 +16,7 @@ public class StoneController : MonoBehaviour
     bool bossAttack=false;//大石頭可不可以丟小石頭
     int countThrow=0;
 
+    [SerializeField]GameObject[] teleportPoint= new GameObject[3];
 
     // Start is called before the first frame update
     void Start()
@@ -80,5 +80,15 @@ public class StoneController : MonoBehaviour
             bigStone.setCanHurt();//大石頭可以被攻擊
             //countThrow=0;
         }
+
+        if(bigStone.GetTeleport()){
+            DoTeleport();
+        }
+    }
+
+     void DoTeleport(){
+        int TeleportCount;
+        TeleportCount=Random.Range(0,3);
+        transform.position=teleportPoint[TeleportCount].transform.position;
     }
 }

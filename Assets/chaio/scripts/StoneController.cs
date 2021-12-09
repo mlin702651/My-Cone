@@ -18,6 +18,8 @@ public class StoneController : MonoBehaviour
 
     [SerializeField]GameObject[] teleportPoint= new GameObject[3];
 
+    bool IsTeleportOn=false;
+    int TeleportCount=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,12 +85,18 @@ public class StoneController : MonoBehaviour
 
         if(bigStone.GetTeleport()){
             DoTeleport();
+            
         }
+
+        
     }
 
      void DoTeleport(){
-        int TeleportCount;
-        TeleportCount=Random.Range(0,3);
+        TeleportCount+=2;
+        if(TeleportCount>=3){
+            TeleportCount-=3;
+        }
+        //TeleportCount=Random.Range(0,3);
         transform.position=teleportPoint[TeleportCount].transform.position;
     }
 }

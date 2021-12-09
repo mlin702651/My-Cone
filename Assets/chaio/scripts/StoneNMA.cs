@@ -114,7 +114,8 @@ public class StoneNMA : MonoBehaviour
             Debug.Log("hurt2!");
         }
         else if(other.tag =="Player_Magic3"){
-            Hp-=30;
+            Physics.IgnoreCollision(other,gameObject.GetComponent<SphereCollider>());
+            Hp-=20;
             Debug.Log("hurt3!");
         }
     }

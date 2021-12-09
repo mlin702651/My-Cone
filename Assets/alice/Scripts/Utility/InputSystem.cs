@@ -200,7 +200,7 @@ public class InputSystem : MonoBehaviour
     }
 
     void OnAim(InputAction.CallbackContext ctx){
-        _isAimPressed = ctx.ReadValueAsButton();
+        //_isAimPressed = ctx.ReadValueAsButton();
     }
 
     void AimCanceled(){

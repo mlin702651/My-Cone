@@ -16,7 +16,7 @@ public class PlayerIdleState :PlayerBaseState
         CheckSwitchStates();
         Ctx.AppliedMovementX = 0;
         Ctx.AppliedMovementZ = 0;
-        if(Ctx.IsShooting||Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble ||Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBomb) return;
+        if(Ctx.IsShooting||Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble ||Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBomb||Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch) return;
         if(Ctx.CurrentAnimationState == Ctx.AnimationJumpEnd || Ctx.IsJumping) return; //如果還在降落就播完動畫
 
         ChangeAnimationState(Ctx.AnimationIdle);

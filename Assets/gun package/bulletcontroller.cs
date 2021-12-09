@@ -195,7 +195,7 @@ public class bulletcontroller : MonoBehaviour
         if (ShootPressUp&& accumulateSuccess) //發射成功
         {
             CDTimer01 = 0;
-            FindObjectOfType<UIManager>().StartAccumulateCD();
+            //FindObjectOfType<UIManager>().StartAccumulateCD();
             accumulateSuccess = false;
             ShootPressUp = false;
             Lean.Pool.LeanPool.Despawn(cloneStart);
@@ -257,8 +257,8 @@ public class bulletcontroller : MonoBehaviour
             //start cd
             ShootPressDown = false;
             currentBombCount = 0;
-            FindObjectOfType<UIManager>().StartBombCD();
-            FindObjectOfType<UIManager>().SetBombLeftAmount(maxBombCount-currentBombCount);
+            //FindObjectOfType<UIManager>().StartBombCD();
+            //FindObjectOfType<UIManager>().SetBombLeftAmount(maxBombCount-currentBombCount);
             CDTimer03 = 0;
             return;
         }
@@ -283,7 +283,7 @@ public class bulletcontroller : MonoBehaviour
                 exploFlag = true;
             }        
             currentBombCount++;
-            FindObjectOfType<UIManager>().SetBombLeftAmount(maxBombCount-currentBombCount);
+            //FindObjectOfType<UIManager>().SetBombLeftAmount(maxBombCount-currentBombCount);
         }
         else
         {

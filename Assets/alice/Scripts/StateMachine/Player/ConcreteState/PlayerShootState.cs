@@ -56,6 +56,8 @@ public class PlayerShootState : PlayerBaseState
         InputSystem.instance.IsShootPressed = false;
         Ctx.HoldingTime = 0;
         PlayerMagicController.instance.MagicConchBornTime = 2f;
+        ChangeAnimationState(Ctx.AnimationIdle);
+
     }
     public override void CheckSwitchStates(){
         if(!Ctx.IsShooting){
@@ -96,7 +98,7 @@ public class PlayerShootState : PlayerBaseState
 
     void FinishedMagicConch(){
         //Debug.Log("Finished Shoot");
-        Ctx.IsShooting = false;
+        //Ctx.IsShooting = false;
         FunctionTimer.StopTimer("StartHoldConch");
         FunctionTimer.StopTimer("HoldingMagicConch");
         ChangeAnimationState(Ctx.AnimationEndMagicConch);

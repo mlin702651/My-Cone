@@ -28,6 +28,7 @@ public class PlayerRunState : PlayerBaseState
         else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch||Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBomb){
             Ctx.AppliedMovementX = 0;
             Ctx.AppliedMovementZ = 0;
+            return;
         } 
         else if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble){
             ChangeAnimationState(Ctx.AnimationMagicBubbleRun);

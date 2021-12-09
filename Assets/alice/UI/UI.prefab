@@ -499,8 +499,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 38.309155, y: 45.266365}
+  m_AnchoredPosition: {x: -0.000002861, y: 0}
+  m_SizeDelta: {x: 67.01448, y: 73.44977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5116846688806052314
 CanvasRenderer:
@@ -523,19 +523,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ce89b3e11c8b514da5410c109bf2fdd, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -891,9 +891,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMagicImage: {fileID: 2016798209746359630}
-  magicAccumulate: {fileID: 21300000, guid: 76680c21cbf8d1e4986fa220149cb80e, type: 3}
+  magicAccumulate: {fileID: 21300000, guid: 6e76e34e380f303488ceeeca3b4878e2, type: 3}
   magicBubble: {fileID: 21300000, guid: 03a3e53ed74b7524da66f7dbbeb158c8, type: 3}
-  magicBomb: {fileID: 21300000, guid: a6df086da53171c4fa72a84812c3c8f8, type: 3}
+  magicBomb: {fileID: 21300000, guid: 833df4b435a74a746a172c0077b7d4ae, type: 3}
   accumulateAttackCD: {fileID: 819639982475203689}
   isAccumulateAttack: 0
   recoverAccumulateAttack: 0
@@ -1959,7 +1959,7 @@ RectTransform:
   m_LocalScale: {x: 0.41371197, y: 0.41371197, z: 0.41371197}
   m_Children: []
   m_Father: {fileID: 1893162257113471169}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2034,7 +2034,7 @@ RectTransform:
   m_Children:
   - {fileID: 4115329404225206285}
   m_Father: {fileID: 1893162257113471169}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2457,8 +2457,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -72, y: 63}
-  m_SizeDelta: {x: 294.5924, y: 29.980324}
+  m_AnchoredPosition: {x: -70.2, y: 60.6}
+  m_SizeDelta: {x: 298.25366, y: 34.861923}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6164298569091982205
 CanvasRenderer:
@@ -2489,7 +2489,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 13f986f24618a914db989cc889161f89, type: 3}
-    m_FontSize: 24
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2652,13 +2652,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 67
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: "\u6211\u2026\u6211\u4E0D\u77E5\u9053\u6E2C\u9A57\u5834\u5728\u54EA\u2026\u9577\u8001\u6C92\u6709\u8DDF\u6211\u8B1B\uFF1A\uFF08\u6211\u2026\u6211\u5834\u5728\u54EA\u2026\u9577\u8001\u6C92\u6709\u8DDF\u6211\u8B1B\uFF1A\uFF08"
+  m_Text: "\u6211\u6211\u4E0D\u77E5\u9053\u6E2C\u9A57\u5834\u5728\u54EA\u9577\u8001\u6C92\u6709\u8DDF\u6211\u8B1B\u9577\u8001\u6C92\u6709\u8DDF\u6211\u8B1B\u8001\u6C92\u6709\u8DDF\u6211\u8B1B\u8001\u6C92\u6709\u8DDF\u6211\u3002"
 --- !u!1 &6164298569709397842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,7 +3097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8865197384577108524
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3218,7 +3218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76680c21cbf8d1e4986fa220149cb80e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e76e34e380f303488ceeeca3b4878e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3331,8 +3331,8 @@ RectTransform:
   m_Children:
   - {fileID: 1872572521695746711}
   - {fileID: 1293155054808873883}
-  - {fileID: 8698187642008594498}
   - {fileID: 9051439014113035170}
+  - {fileID: 8698187642008594498}
   - {fileID: 6153641380377967165}
   - {fileID: 8865197384577108524}
   - {fileID: 2159444405980018300}

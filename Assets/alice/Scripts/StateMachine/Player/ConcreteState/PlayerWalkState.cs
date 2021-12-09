@@ -23,6 +23,7 @@ public class PlayerWalkState : PlayerBaseState
         else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicConch||Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBomb){
             Ctx.AppliedMovementX = 0;
             Ctx.AppliedMovementZ = 0;
+            return;
         } 
         else if(Ctx.CurrentAnimationState == Ctx.AnimationHoldMagicBubble){
             ChangeAnimationState(Ctx.AnimationMagicBubbleRun);
@@ -36,7 +37,6 @@ public class PlayerWalkState : PlayerBaseState
         }
         
         if(Ctx.IsShooting) return;
-        
         if(Ctx.IsJumping) return;
         else if(Ctx.Animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Ctx.AnimationJumpEnd || Ctx.IsJumping) return; //如果還在降落就播完動畫
         ChangeAnimationState(Ctx.AnimationWalk);

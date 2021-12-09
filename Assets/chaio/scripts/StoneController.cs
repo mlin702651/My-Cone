@@ -84,11 +84,8 @@ public class StoneController : MonoBehaviour
         }
 
         if(bigStone.GetTeleport()){
-            DoTeleport();
-            
+            FunctionTimer.Create(()=>DoTeleport(),0.5f);
         }
-
-        
     }
 
      void DoTeleport(){
@@ -98,5 +95,8 @@ public class StoneController : MonoBehaviour
         }
         //TeleportCount=Random.Range(0,3);
         transform.position=teleportPoint[TeleportCount].transform.position;
+    }
+    public Transform GetPosition(){
+        return(transform);
     }
 }

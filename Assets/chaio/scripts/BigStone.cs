@@ -18,11 +18,14 @@ public class BigStone : MonoBehaviour
     [SerializeField]Vector3 offset=new Vector3(0,0,0);
     [SerializeField]float radius=5.0f;
     [SerializeField]float speed=0.5f;
+
     // Start is called before the first frame update
-    [SerializeField]GameObject[] teleportPoint= new GameObject[3];
     int damage=0;
     bool teleport=false;
     float teleportTimer=0;
+
+    [SerializeField]GameObject teleportParticle;
+    [SerializeField]GameObject teleportParticleParent;
     //CinemachineDollyCart cart;
     void Start()
     {
@@ -48,15 +51,15 @@ public class BigStone : MonoBehaviour
             if(damage>=35){
                 teleport=true;
                 damage=0;
-                transform.DOScale(0,0.5f);
-                FunctionTimer.Create(()=>Enlarge(),0.3f);//好讚的東西
+                transform.DOScale(0,0.3f);
+                //Instantiate(teleportParticle,transform);
+                //teleportParticle.transform.parent=teleportParticleParent.transform;
+                FunctionTimer.Create(()=>Enlarge(),0.5f);//好讚的東西
             }
             else{
                 teleport=false;
             }
         }
-        
-
     }
 
     void OnTriggerEnter(Collider other)

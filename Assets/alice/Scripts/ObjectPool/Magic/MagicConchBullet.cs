@@ -6,10 +6,10 @@ public class MagicConchBullet : CMagic
 {
     [SerializeField] private float BornTime = 0.2f;
     [SerializeField] private float _bulletSpeed = 10.0f;
-    private Rigidbody _rigidbody;
+    //private Rigidbody _rigidbody;
     
     private void Awake() {
-        _rigidbody = GetComponent<Rigidbody>();
+        //_rigidbody = GetComponent<Rigidbody>();
     }
     public override void OnObjectSpawn(){
         _fBorntimer = 0f;
@@ -20,11 +20,14 @@ public class MagicConchBullet : CMagic
     void Update(){
         _fBorntimer += Time.deltaTime;
         SetAttackInvisible(ref _fBorntimer,_fBornTime);
-        _rigidbody.velocity = transform.TransformDirection(Vector3.forward * _bulletSpeed);//讓子彈飛
+        //_rigidbody.velocity = transform.TransformDirection(Vector3.forward * _bulletSpeed);//讓子彈飛
+        transform.Translate(Vector3.forward * _bulletSpeed * Time.deltaTime);
+
     }
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnTriggerEnter(Collider other)
     {
+        
         ObjectPooler.Instance.SpawnFromPool("MagicConchBulletExplosion",transform.position,transform.eulerAngles);
         gameObject.SetActive(false);
     }

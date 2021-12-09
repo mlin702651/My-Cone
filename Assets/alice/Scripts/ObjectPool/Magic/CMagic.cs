@@ -23,4 +23,8 @@ public class CMagic : MonoBehaviour,IPooledObject
             //attackPooler.SpawnFromPool("RainExplode",transform.position,transform.eulerAngles);
         
     }
+
+    public virtual void OnTriggerEnter(Collider other) {
+        
+    }
 }

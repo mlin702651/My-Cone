@@ -6,10 +6,10 @@ public class MagicBubbleBullet : CMagic
 {
     [SerializeField] private float BornTime = 0.5f;
     [SerializeField] private float _bulletSpeed = 13.0f;
-    private Rigidbody _rigidbody;
+    //private Rigidbody _rigidbody;
     
     private void Awake() {
-        _rigidbody = GetComponent<Rigidbody>();
+        //_rigidbody = GetComponent<Rigidbody>();
     }
     public override void OnObjectSpawn(){
         _fBorntimer = 0f;

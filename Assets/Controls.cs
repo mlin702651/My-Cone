@@ -278,7 +278,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""id"": ""6fa19468-fe8e-49e8-ad29-8244ef6fd271"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""InvertVector2(invertY=false)"",
+                    ""processors"": ""InvertVector2(invertY=false),ScaleVector2(x=0.45,y=0.4),StickDeadzone"",
                     ""groups"": """",
                     ""action"": ""CameraMove"",
                     ""isComposite"": false,

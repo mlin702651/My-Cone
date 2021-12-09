@@ -36,8 +36,9 @@ public class IslandState : ISceneState
 					break;
                 case "training01":
 					m_Controller.SetState(new TrainingOneState(m_Controller), "Training01");
-
-
+					break;
+                case "DaybreakSpring":
+					m_Controller.SetState(new DaybreakSpringState(m_Controller), "DaybreakSpring");
 					break;
 				default:
 					break;

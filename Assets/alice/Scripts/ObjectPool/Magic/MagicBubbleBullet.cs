@@ -20,7 +20,8 @@ public class MagicBubbleBullet : CMagic
     void Update(){
         _fBorntimer += Time.deltaTime;
         SetAttackInvisible(ref _fBorntimer,_fBornTime);
-        _rigidbody.velocity = transform.TransformDirection(Vector3.forward * _bulletSpeed);//讓子彈飛
+        //_rigidbody.velocity = transform.TransformDirection(Vector3.forward * _bulletSpeed);//讓子彈飛
+        transform.Translate(Vector3.forward * _bulletSpeed * Time.deltaTime);
     }
 
     public override void OnCollisionEnter(Collision other)

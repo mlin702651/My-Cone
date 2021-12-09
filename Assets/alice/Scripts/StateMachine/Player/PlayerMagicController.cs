@@ -10,7 +10,7 @@ public class PlayerMagicController : MonoBehaviour
     //[Header("Magic Conch")]
     private float _magicConchBornTime = 2;
     public float MagicConchBornTime{get{return _magicConchBornTime;} set{_magicConchBornTime = value;}}
-
+    
     
     
     private void Awake(){

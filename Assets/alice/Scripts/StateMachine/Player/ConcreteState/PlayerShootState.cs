@@ -96,6 +96,7 @@ public class PlayerShootState : PlayerBaseState
 
     void FinishedMagicConch(){
         //Debug.Log("Finished Shoot");
+        Ctx.IsShooting = false;
         FunctionTimer.StopTimer("StartHoldConch");
         FunctionTimer.StopTimer("HoldingMagicConch");
         ChangeAnimationState(Ctx.AnimationEndMagicConch);
@@ -110,7 +111,9 @@ public class PlayerShootState : PlayerBaseState
         Ctx.IsHolding = false;
 
         if(Ctx.HoldingTime <= Ctx.MagicConchMaxHoldingTime&& Ctx.HoldingTime >= Ctx.MagicConchMinHoldingTime){
+            Ctx.HoldingTime = 0;
             FinishedMagicConch();
+            Debug.Log("shoot!");
         }
         else CanceledMagicConch();
 

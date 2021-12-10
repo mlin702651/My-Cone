@@ -63,7 +63,13 @@ public class MonsterKinoko : MonoBehaviour
     #region kinoko material
     private Renderer[] kinokoRenderer;
     #endregion
+    #region sound
+    [SerializeField]AudioSource audio;
+    [SerializeField]AudioClip run;
+    [SerializeField]AudioClip hit;
+    [SerializeField]AudioClip step;
 
+    #endregion
     void ChangeAnimationState(int newAnimationState)
     {
        if(newAnimationState == currentAnimationState) {
@@ -161,13 +167,15 @@ public class MonsterKinoko : MonoBehaviour
         switch(kinokoState){
             case 0:
                 ChangeAnimationState(animationIdle);
-                
+                audio.clip =null;
                 break;
             case 1:
                 //kinokoState = 4;
                 ChangeAnimationState(animationPrepareAttack);
-               
-
+                if(!audio.isPlaying){
+                    audio.clip = step;
+                    audio.Play();
+                }
                 FacingPlayer();
                 break;
             case 2:
@@ -175,11 +183,18 @@ public class MonsterKinoko : MonoBehaviour
                 //_kinokoRigidbody.velocity = transform.forward*Time.deltaTime* -200;
                 transform.position += transform.forward*Time.deltaTime* (-runSpeed);
                 ChangeAnimationState(animationRun);
+                if(!audio.isPlaying){
+                    audio.clip = run;
+                    audio.Play();
+                }
                 break;
             case 3:
                 //_kinokoRigidbody.velocity = transform.forward*Time.deltaTime* -200;
                 //kinokoState = 4;
-                
+                if(!audio.isPlaying){
+                    audio.clip = hit;
+                    audio.Play();
+                }
                 ChangeAnimationState(animationAttack);
                 break;
             default:

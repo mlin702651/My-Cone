@@ -9,7 +9,7 @@ public class StoneNMA : MonoBehaviour
     NavMeshAgent navMeshAgent=null;
     [SerializeField]private Animator animator_small;
     [SerializeField] private StoneMode stoneMode=StoneMode.aroundMain; 
-    [Range(0,40),SerializeField] private int Hp = 40;
+    [Range(0,40),SerializeField] private int Hp = 30;
     [SerializeField]private Text healthText;
     [SerializeField]Transform straightTarget;
     [SerializeField]Transform player;
@@ -231,7 +231,7 @@ public class StoneNMA : MonoBehaviour
             revTimer=0;
             Debug.Log("end revival");       
         }
-        Hp=40;
+        Hp=30;
     }
     public enum StoneMode{
         aroundMain,

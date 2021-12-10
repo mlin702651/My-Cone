@@ -23,6 +23,7 @@ public class StoneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         
     }
 
@@ -31,9 +32,11 @@ public class StoneController : MonoBehaviour
     {
 
         if(bigStone.getIsDead()){
-            gameObject.SetActive(false);
-            deadParticle.transform.position=bigStone.getBossPosition();//讓爆炸的位子跟大石頭一樣
+            Debug.Log("Stone Controller getIsDead");
+            //deadParticle.transform.position=bigStone.getBossPosition();//讓爆炸的位子跟大石頭一樣
             deadParticle.SetActive(true);
+            FunctionTimer.Create(()=>CloseGameObject(),1);
+            
         }
         //過幾秒丟一顆石頭
         if(bossAttack){
@@ -98,5 +101,9 @@ public class StoneController : MonoBehaviour
     }
     public Transform GetPosition(){
         return(transform);
+    }
+
+    public void CloseGameObject(){
+        gameObject.SetActive(false);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.53496945, g: 0.6632315, b: 0.7576997, a: 1}
+  m_IndirectSpecularColor: {r: 0.5350344, g: 0.66327727, b: 0.7576928, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -592,12 +592,12 @@ PrefabInstance:
     - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -4.2535078e-29
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.0354769e-30
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -642,12 +642,12 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000042444643
+      value: -0.00000043288014
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000005542424
+      value: 0.00000005652551
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -657,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.991582
+      value: 0.9915819
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -668,6 +668,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618961568179554688, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: m_IgnoreTag
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568179554689, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -967,6 +972,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterDidi2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
         type: 3}
       propertyPath: m_Controller
@@ -1201,6 +1211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterDidi4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
         type: 3}
       propertyPath: m_Controller
@@ -1290,6 +1305,8 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
+  audio: {fileID: 0}
+  run: {fileID: 0}
 --- !u!65 &497409588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1484,6 +1501,8 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
+  audio: {fileID: 0}
+  run: {fileID: 0}
 --- !u!65 &678614464
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2046,6 +2065,8 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
+  audio: {fileID: 0}
+  run: {fileID: 0}
 --- !u!65 &750356975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2147,6 +2168,8 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
+  audio: {fileID: 0}
+  run: {fileID: 0}
 --- !u!65 &786051981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2524,6 +2547,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterDidi5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
         type: 3}
       propertyPath: m_Controller
@@ -2738,6 +2766,8 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
+  audio: {fileID: 0}
+  run: {fileID: 0}
 --- !u!65 &971944040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3166,6 +3196,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonsterDidi6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
         type: 3}
@@ -3919,6 +3954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonsterDidi3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 69fd31d9af9f5434fbfe1e0493adc02c,
         type: 3}
@@ -6116,6 +6156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonsterDidi
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113845454527606063, guid: 20f6b139a99a90f41a0435df53e2d36a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8922189272886900629, guid: 20f6b139a99a90f41a0435df53e2d36a,
         type: 3}

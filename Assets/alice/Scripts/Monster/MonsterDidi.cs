@@ -39,7 +39,8 @@ public class MonsterDidi : MonoBehaviour
 
     private bool isQuestCount = false;
     
-    
+    [SerializeField]AudioSource audio;
+    [SerializeField]AudioClip run;
     private void Awake() {
         _didiAnimator = GetComponent<Animator>();
         animationIdle = Animator.StringToHash("MonsterDiDi_Idle");
@@ -87,6 +88,9 @@ public class MonsterDidi : MonoBehaviour
                 ifStartPopOut = false;
                 ifStartFall = true;
             }
+            if(!audio.isPlaying){
+                audio.Play();
+            }
         }
         if(ifStartFall){
             //拔起來之後掉下去
@@ -107,6 +111,11 @@ public class MonsterDidi : MonoBehaviour
 
         if(distanceToGoal < DidiDistanceGoal){
             ChangeAnimationState(animationRun);
+            if(!audio.isPlaying){
+                Debug.Log("!audio.isPlaying");
+                audio.clip =run;
+                audio.Play();
+            }
             Vector3 dirToGoal = transform.position - Goal.transform.position;
             Vector3 newPos = transform.position - dirToGoal;
             _agent.SetDestination(newPos);
@@ -114,6 +123,11 @@ public class MonsterDidi : MonoBehaviour
         else if(distanceToPlayer < DidiDistanceRun){
             if(didiState==0) return;
             ChangeAnimationState(animationRun);
+            if(!audio.isPlaying){
+                Debug.Log("!audio.isPlaying");
+                audio.clip =run;
+                audio.Play();
+            }
             Vector3 dirToPlayer = transform.position - Player.transform.position;
             Vector3 newPos = transform.position + dirToPlayer;
             _agent.SetDestination(newPos);

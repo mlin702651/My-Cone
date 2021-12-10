@@ -33,7 +33,7 @@ public class MonsterBell : MonoBehaviour
     [Range(0,100),SerializeField] private int Hp = 100;
     
     #endregion
-    
+    [SerializeField]AudioSource dieSound;
     
     void Start()
     {
@@ -56,6 +56,8 @@ public class MonsterBell : MonoBehaviour
        if(Hp<=0){
             IsAlive = false;
             DieAnimation();
+            if(!dieSound.isPlaying)
+            dieSound.Play(0);
             if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
        }
        
@@ -64,7 +66,7 @@ public class MonsterBell : MonoBehaviour
     }
 
     void MonsterDie(){
-         Destroy(gameObject);
+        Destroy(gameObject);
         Debug.Log("Die!");
     }
 

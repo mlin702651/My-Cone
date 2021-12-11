@@ -77,6 +77,7 @@ public class StoneNMA : MonoBehaviour
                 if(isDead){
                     stoneMode=StoneMode.dead;
                 }
+                slider.gameObject.SetActive(true);
                 break;
             case StoneMode.dead:
                 //做事

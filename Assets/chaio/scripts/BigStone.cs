@@ -10,6 +10,7 @@ public class BigStone : MonoBehaviour
     [SerializeField]bool canHurt=false;
     [SerializeField]private Transform Player;
     [Range(0,100),SerializeField] private int Hp = 100;
+    [SerializeField] Slider slider;
     bool isDead=false;
     [SerializeField]private Animator animator_big;
     float timer=0;
@@ -60,6 +61,8 @@ public class BigStone : MonoBehaviour
                 teleport=false;
             }
         }
+        slider.value = Hp;
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -102,5 +105,6 @@ public class BigStone : MonoBehaviour
     public Vector3 getBossPosition(){
         return(transform.position);
     }
+
 
 }

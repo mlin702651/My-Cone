@@ -10,6 +10,7 @@ public class StoneNMA : MonoBehaviour
     [SerializeField]private Animator animator_small;
     [SerializeField] private StoneMode stoneMode=StoneMode.aroundMain; 
     [Range(0,40),SerializeField] private int Hp = 30;
+    [SerializeField] Slider slider;
     [SerializeField]private Text healthText;
     [SerializeField]Transform straightTarget;
     [SerializeField]Transform player;
@@ -58,7 +59,8 @@ public class StoneNMA : MonoBehaviour
         else{
             healthText.text = Hp.ToString();
         }
-        toPlayerDistance=Vector3.Distance(player.position, transform.position);
+        slider.value = Hp;
+        toPlayerDistance =Vector3.Distance(player.position, transform.position);
         switch(stoneMode){
             case StoneMode.aroundMain:
                 //做事

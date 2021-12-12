@@ -64,7 +64,7 @@ public class MonsterKinoko : MonoBehaviour
     private Renderer[] kinokoRenderer;
     #endregion
     #region sound
-    [SerializeField]AudioSource audio;
+    [SerializeField]new AudioSource audio;
     [SerializeField]AudioClip run;
     [SerializeField]AudioClip hit;
     [SerializeField]AudioClip step;

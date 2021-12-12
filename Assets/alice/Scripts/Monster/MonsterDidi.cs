@@ -39,7 +39,7 @@ public class MonsterDidi : MonoBehaviour
 
     private bool isQuestCount = false;
     
-    [SerializeField]AudioSource audio;
+    [SerializeField]new AudioSource audio;
     [SerializeField]AudioClip run;
     private void Awake() {
         _didiAnimator = GetComponent<Animator>();

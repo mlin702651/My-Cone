@@ -10,13 +10,17 @@ public class SceneStateController
 
    private static AsyncOperation asyncOperation;
 
+   private bool _isFirst = false;
+
     public SceneStateController(){
     }
 
     public void SetState(ISceneState State, string LoadSceneName){
+        
         m_bRunBegin = false;
 
         //load next scene
+        //if(currentScene.name != LoadSceneName)LoadScene(LoadSceneName);
         LoadScene(LoadSceneName);
 
         //end previous scene
@@ -29,11 +33,14 @@ public class SceneStateController
 
     //loading scene
     private void LoadScene(string LoadSceneName){
-        if(LoadSceneName == null || LoadSceneName.Length == 0){
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(LoadSceneName == null || LoadSceneName.Length == 0 ||currentScene.name == LoadSceneName){
+            _isFirst = true;
             return;
         }
         //SceneManager.LoadScene(LoadSceneName);
         asyncOperation = SceneManager.LoadSceneAsync(LoadSceneName);
+        _isFirst = false;
         //asyncOperation.allowSceneActivation = false;
     }
 
@@ -44,11 +51,12 @@ public class SceneStateController
         //     asyncOperation.allowSceneActivation = true;
         // }
         //if(Application.isLoadingLevel) {
-        if(!asyncOperation.isDone) {
-            Debug.Log("still loading");
-            //Debug.Log(asyncOperation.isDone);
-            Debug.Log(asyncOperation.progress);
-            return; //if still loading then return
+        if(!_isFirst){
+            if(!asyncOperation.isDone) {
+                Debug.Log("still loading");
+                //Debug.Log(asyncOperation.progress);//load場景的進度
+                return; //if still loading then return
+            }
         }
 
         //new state begin

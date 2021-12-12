@@ -417,6 +417,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuConfirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc2b980b-4945-4730-a62d-496b065a4caa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -474,6 +482,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""MenuSelectRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06fa19e8-598f-47f2-aa26-6c28611eb67d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuConfirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -500,6 +519,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menu_MenuSelectDown = m_Menu.FindAction("MenuSelectDown", throwIfNotFound: true);
         m_Menu_MenuSelectUp = m_Menu.FindAction("MenuSelectUp", throwIfNotFound: true);
         m_Menu_Menu = m_Menu.FindAction("Menu", throwIfNotFound: true);
+        m_Menu_MenuConfirm = m_Menu.FindAction("MenuConfirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -667,6 +687,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menu_MenuSelectDown;
     private readonly InputAction m_Menu_MenuSelectUp;
     private readonly InputAction m_Menu_Menu;
+    private readonly InputAction m_Menu_MenuConfirm;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
@@ -676,6 +697,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MenuSelectDown => m_Wrapper.m_Menu_MenuSelectDown;
         public InputAction @MenuSelectUp => m_Wrapper.m_Menu_MenuSelectUp;
         public InputAction @Menu => m_Wrapper.m_Menu_Menu;
+        public InputAction @MenuConfirm => m_Wrapper.m_Menu_MenuConfirm;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -700,6 +722,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenu;
+                @MenuConfirm.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuConfirm;
+                @MenuConfirm.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuConfirm;
+                @MenuConfirm.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuConfirm;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -719,6 +744,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @MenuConfirm.started += instance.OnMenuConfirm;
+                @MenuConfirm.performed += instance.OnMenuConfirm;
+                @MenuConfirm.canceled += instance.OnMenuConfirm;
             }
         }
     }
@@ -744,5 +772,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMenuSelectDown(InputAction.CallbackContext context);
         void OnMenuSelectUp(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnMenuConfirm(InputAction.CallbackContext context);
     }
 }

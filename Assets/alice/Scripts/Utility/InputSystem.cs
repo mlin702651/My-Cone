@@ -61,8 +61,12 @@ public class InputSystem : MonoBehaviour
     #region Menu
 
         public bool MenuPressDown{get; set;}
-        public bool MenuSelectUpPressDown;
-        public bool MenuSelectDownPressDown;
+        public bool MenuSelectUpPressDown{get {return _menuSelectUpPressDown;} set{_menuSelectUpPressDown = value;}}
+        private bool _menuSelectUpPressDown;
+        private bool _menuSelectDownPressDown;
+        public bool MenuSelectDownPressDown{get {return _menuSelectDownPressDown;} set{_menuSelectDownPressDown = value;}}
+        private bool _menuConfirmPressDown;
+        public bool MenuConfirmPressDown{get {return _menuConfirmPressDown;} set{_menuConfirmPressDown = value;}}
 
     #endregion
 
@@ -76,13 +80,20 @@ public class InputSystem : MonoBehaviour
 
         controls = new Controls();
 
-            //選單
+            //選單開啟
             controls.Menu.Menu.performed += ctx => MenuStart();
             controls.Menu.Menu.canceled += ctx => MenuEnd();
-            controls.Menu.MenuSelectUp.started += ctx => SetPressDownTrue(ref MenuSelectUpPressDown);
-            controls.Menu.MenuSelectUp.canceled += ctx => SetPressDownFalse(ref MenuSelectUpPressDown);
-            controls.Menu.MenuSelectDown.started += ctx => SetPressDownTrue(ref MenuSelectDownPressDown);
-            controls.Menu.MenuSelectDown.canceled += ctx => SetPressDownFalse(ref MenuSelectDownPressDown);
+            //選單上下
+            controls.Menu.MenuSelectUp.started += ctx => SetPressTrue(ref _menuSelectUpPressDown);
+            controls.Menu.MenuSelectUp.performed += ctx => SetPressTrue(ref _menuSelectUpPressDown);
+            controls.Menu.MenuSelectUp.canceled += ctx => SetPressFalse(ref _menuSelectUpPressDown);
+            controls.Menu.MenuSelectDown.started += ctx => SetPressTrue(ref _menuSelectDownPressDown);
+            controls.Menu.MenuSelectDown.performed += ctx => SetPressTrue(ref _menuSelectDownPressDown);
+            controls.Menu.MenuSelectDown.canceled += ctx => SetPressFalse(ref _menuSelectDownPressDown);
+            //選單確認
+            controls.Menu.MenuConfirm.started += ctx => SetPressTrue(ref _menuConfirmPressDown);
+            controls.Menu.MenuConfirm.performed += ctx => SetPressTrue(ref _menuConfirmPressDown);
+            controls.Menu.MenuConfirm.canceled += ctx => SetPressFalse(ref _menuConfirmPressDown);
             
             
             //角色移動
@@ -131,10 +142,12 @@ public class InputSystem : MonoBehaviour
     void OnEnable()
     {
         controls.player.Enable();
+        controls.Menu.Enable();
     }
     void OnDisable()
     {
         controls.player.Disable();
+        controls.Menu.Disable();
     }
 
     void MenuStart(){
@@ -147,13 +160,14 @@ public class InputSystem : MonoBehaviour
     }
 
 
-    void SetPressDownTrue(ref bool pressDown){
-        pressDown = true;
+    void SetPressTrue(ref bool press){
+        press = true;
         //print("hey");
     }
-    void SetPressDownFalse(ref bool pressDown){
-        pressDown = false;
+    void SetPressFalse(ref bool press){
+        press = false;
     }
+    
 
     void OnMovementInput(InputAction.CallbackContext ctx){
         inputMovement = ctx.ReadValue<Vector2>();

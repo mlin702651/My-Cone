@@ -404,6 +404,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "MenuConfirm",
+                    "type": "Button",
+                    "id": "bc2b980b-4945-4730-a62d-496b065a4caa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -459,6 +467,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MenuSelectRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06fa19e8-598f-47f2-aa26-6c28611eb67d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuConfirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

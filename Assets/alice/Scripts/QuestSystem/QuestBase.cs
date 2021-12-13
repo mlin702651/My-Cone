@@ -47,6 +47,7 @@ public class QuestBase : ScriptableObject
             }
         }
         Debug.Log("Quest is complete!");
+        GameManager.instance.PlayAudio();
 
         for(int i=0; i < GameManager.instance.allDialogueTriggers.Length; i++){
 

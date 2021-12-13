@@ -128,7 +128,6 @@ public class DialogueManager : MonoBehaviour {
     // }
 
     #endregion
-
     public static DialogueManager instance;
     private void Awake(){
         if(instance != null){

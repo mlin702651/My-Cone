@@ -19,7 +19,6 @@ public class TrainingThreeEndingEvent : MonoBehaviour
     bool canShake = false;
     bool startVideo = false;
     bool endVideo = false;
-    public bool inVideo = false;
     [SerializeField] CinemachineFreeLook freeLookCam;
     [SerializeField] float cameraShakeDuration = 2;
     [SerializeField]DialogueBase cameraEndDialogue;
@@ -62,7 +61,7 @@ public class TrainingThreeEndingEvent : MonoBehaviour
         legendVideo.SetActive(true);
         startVideo = true;
         FunctionTimer.Create(()=> EndVideo(), 33f);
-        inVideo= true;
+        DialogueManager.instance.inDialogue = true;
 
     }
 
@@ -123,7 +122,7 @@ public class TrainingThreeEndingEvent : MonoBehaviour
             DialogueManager.instance.EnqueueDialogue(videoEndDialogue);
             DialogueManager.instance.StartDialogue();
             teleportPoint.SetActive(true);
-            inVideo= false;  
+            //inVideo= false;  
 
         }
     }

@@ -271,7 +271,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         
         
-        if(DialogueManager.instance.inDialogue|| TrainingThreeEndingEvent.instance.inVideo){
+        if(DialogueManager.instance.inDialogue){
             ChangeAnimationState(animationTalk);
             return; //在對話就不要動!
         } 

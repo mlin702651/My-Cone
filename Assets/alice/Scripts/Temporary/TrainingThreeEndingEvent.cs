@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine; 
-using Cinemachine.Editor; 
-using Cinemachine.Utility;
+using UnityEngine.UI;
+
 
 
 public class TrainingThreeEndingEvent : MonoBehaviour
@@ -17,14 +17,22 @@ public class TrainingThreeEndingEvent : MonoBehaviour
     }
 
     bool canShake = false;
+    bool startVideo = false;
+    bool endVideo = false;
+    public bool inVideo = false;
     [SerializeField] CinemachineFreeLook freeLookCam;
     [SerializeField] float cameraShakeDuration = 2;
-    [SerializeField]DialogueBase endingDialogue;
+    [SerializeField]DialogueBase cameraEndDialogue;
+    [SerializeField]DialogueBase videoEndDialogue;
+    [SerializeField]GameObject legendVideo;
+    [SerializeField]GameObject legendVideoCanvas;
+    [SerializeField]RawImage legendVideoRenderer;
+    [SerializeField]GameObject teleportPoint;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        //StartVideo();
     }
 
     // Update is called once per frame
@@ -33,6 +41,13 @@ public class TrainingThreeEndingEvent : MonoBehaviour
         if(canShake){
             canShake = false;
             ShakeCamera(10,cameraShakeDuration);
+        }
+
+        if(startVideo){
+            FadeInCanvas();
+        }
+        if(endVideo){
+            FadeOutCanvas();
         }
     }
 
@@ -43,7 +58,12 @@ public class TrainingThreeEndingEvent : MonoBehaviour
 
     public void StartVideo(){
         Debug.Log("video!");
-        
+        legendVideoCanvas.SetActive(true);
+        legendVideo.SetActive(true);
+        startVideo = true;
+        FunctionTimer.Create(()=> EndVideo(), 33f);
+        inVideo= true;
+
     }
 
     public void ShakeCamera(float intensity , float time){
@@ -75,10 +95,37 @@ public class TrainingThreeEndingEvent : MonoBehaviour
         freeLookCam.GetRig(2).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
 
-        DialogueManager.instance.EnqueueDialogue(endingDialogue);
+        DialogueManager.instance.EnqueueDialogue(cameraEndDialogue);
         DialogueManager.instance.StartDialogue();
 
     }
+    void EndVideo(){
+        endVideo = true;
+        
+    }
 
+    void FadeInCanvas(){
+        var tempColor = legendVideoRenderer.color;
+        tempColor.a += 0.01f;//2s
+        legendVideoRenderer.color = tempColor;
+        if(tempColor.a>=1.0f){ 
+            startVideo = false;
+        }
+    }
+    void FadeOutCanvas(){
+        var tempColor = legendVideoRenderer.color;
+        tempColor.a -= 0.01f;//2s
+        legendVideoRenderer.color = tempColor;
+        if(tempColor.a<=0){
+            endVideo = false;
+            legendVideo.SetActive(false);
+            legendVideoCanvas.SetActive(false);
+            DialogueManager.instance.EnqueueDialogue(videoEndDialogue);
+            DialogueManager.instance.StartDialogue();
+            teleportPoint.SetActive(true);
+            inVideo= false;  
+
+        }
+    }
     
 }

@@ -242,6 +242,12 @@ public class DialogueManager : MonoBehaviour {
             dialogueEvent.StartEvent();
         }
     }
+    private void CheckIfDialogueVideo(){
+        if(currentDialogue is DialogueVideo){
+            DialogueVideo dialogueVideo = currentDialogue as DialogueVideo;
+            dialogueVideo.StartEvent();
+        }
+    }
     #region dialogue UI animation
 
     public void StartDialogue(){
@@ -254,6 +260,7 @@ public class DialogueManager : MonoBehaviour {
     public void EndDialogue(){
         CheckIfDialogueQuest();
         CheckIfDialogueEvent();
+        CheckIfDialogueVideo();
         SetRewards();
         Debug.Log("End of conversation");
         dialogueBox.DOAnchorPosY(-315,DialogueOutTime,true).SetEase(DialogueEaseOut);

@@ -235,6 +235,13 @@ public class DialogueManager : MonoBehaviour {
             QuestManager.instance.InitiateQuest(dialogueQuest.quest);
         }
     }
+
+    private void CheckIfDialogueEvent(){
+        if(currentDialogue is DialogueEvent){
+            DialogueEvent dialogueEvent = currentDialogue as DialogueEvent;
+            dialogueEvent.StartEvent();
+        }
+    }
     #region dialogue UI animation
 
     public void StartDialogue(){
@@ -246,6 +253,7 @@ public class DialogueManager : MonoBehaviour {
     }
     public void EndDialogue(){
         CheckIfDialogueQuest();
+        CheckIfDialogueEvent();
         SetRewards();
         Debug.Log("End of conversation");
         dialogueBox.DOAnchorPosY(-315,DialogueOutTime,true).SetEase(DialogueEaseOut);

@@ -26,6 +26,7 @@ public class TrainingThreeEndingEvent : MonoBehaviour
     [SerializeField]GameObject legendVideo;
     [SerializeField]GameObject legendVideoCanvas;
     [SerializeField]RawImage legendVideoRenderer;
+    [SerializeField]Image legendVideoBg;
     [SerializeField]GameObject teleportPoint;
     
     // Start is called before the first frame update
@@ -105,16 +106,22 @@ public class TrainingThreeEndingEvent : MonoBehaviour
 
     void FadeInCanvas(){
         var tempColor = legendVideoRenderer.color;
+        var tempColor2 = legendVideoBg.color;
         tempColor.a += 0.01f;//2s
+        tempColor2.a += 0.01f;//2s
         legendVideoRenderer.color = tempColor;
+        legendVideoBg.color = tempColor2;
         if(tempColor.a>=1.0f){ 
             startVideo = false;
         }
     }
     void FadeOutCanvas(){
         var tempColor = legendVideoRenderer.color;
+        var tempColor2 = legendVideoBg.color;
         tempColor.a -= 0.01f;//2s
+        tempColor2.a -= 0.01f;//2s
         legendVideoRenderer.color = tempColor;
+        legendVideoBg.color = tempColor2;
         if(tempColor.a<=0){
             endVideo = false;
             legendVideo.SetActive(false);

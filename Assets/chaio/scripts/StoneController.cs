@@ -17,8 +17,6 @@ public class StoneController : MonoBehaviour
     int countThrow=0;
 
     [SerializeField]GameObject[] teleportPoint= new GameObject[3];
-
-    bool IsTeleportOn=false;
     int TeleportCount=0;
     // Start is called before the first frame update
     void Start()
@@ -32,11 +30,11 @@ public class StoneController : MonoBehaviour
     {
 
         if(bigStone.getIsDead()){
-            Debug.Log("Stone Controller getIsDead");
-            //deadParticle.transform.position=bigStone.getBossPosition();//讓爆炸的位子跟大石頭一樣
+            if(bigStone!=null){
+                deadParticle.transform.position=bigStone.getBossPosition();//讓爆炸的位子跟大石頭一樣
+            }
             deadParticle.SetActive(true);
-            FunctionTimer.Create(()=>CloseGameObject(),1);
-            
+            FunctionTimer.Create(()=>CloseGameObject(),1);         
         }
         //過幾秒丟一顆石頭
         if(bossAttack){
@@ -44,7 +42,6 @@ public class StoneController : MonoBehaviour
             stone02.setNotAllStoneDead();
             stone03.setNotAllStoneDead();
             stone04.setNotAllStoneDead();
-            Debug.Log("in bossAttack");
             timer+=Time.deltaTime;
             if(timer>throeTime.x && countThrow<1){
                 stone01.setIsThorw();
@@ -85,7 +82,6 @@ public class StoneController : MonoBehaviour
             bigStone.setCanHurt();//大石頭可以被攻擊
             //countThrow=0;
         }
-
         if(bigStone.GetTeleport()){
             FunctionTimer.Create(()=>DoTeleport(),0.5f);
         }
@@ -96,7 +92,6 @@ public class StoneController : MonoBehaviour
         if(TeleportCount>=3){
             TeleportCount-=3;
         }
-        //TeleportCount=Random.Range(0,3);
         transform.position=teleportPoint[TeleportCount].transform.position;
     }
     public Transform GetPosition(){

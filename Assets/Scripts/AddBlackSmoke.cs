@@ -17,7 +17,7 @@ public class AddBlackSmoke : MonoBehaviour
     void Update()
     {
         if(bigStone.GetTeleport()){
-            Instantiate(teleportParticle,stoneController.GetPosition());
+            Instantiate(teleportParticle,bigStone.getPosition());
         }
     }
 }

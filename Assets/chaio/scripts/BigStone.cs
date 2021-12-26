@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BigStone : MonoBehaviour
 {
+    NavMeshAgent navMeshAgent=null;
     [SerializeField]bool canHurt=false;
     [SerializeField]private Transform Player;
     [Range(0,100),SerializeField] private int Hp = 100;
@@ -23,14 +24,9 @@ public class BigStone : MonoBehaviour
     // Start is called before the first frame update
     int damage=0;
     bool teleport=false;
-    float teleportTimer=0;
-
-    [SerializeField]GameObject teleportParticle;
-    [SerializeField]GameObject teleportParticleParent;
-    //CinemachineDollyCart cart;
     void Start()
     {
-        
+       navMeshAgent=GetComponent<NavMeshAgent>(); 
     }
 
     // Update is called once per frame
@@ -62,7 +58,8 @@ public class BigStone : MonoBehaviour
             }
         }
         slider.value = Hp;
-
+        //move();
+        navMeshAgent.SetDestination(Player.transform.position);
     }
 
     void OnTriggerEnter(Collider other)
@@ -105,6 +102,7 @@ public class BigStone : MonoBehaviour
     public Vector3 getBossPosition(){
         return(transform.position);
     }
-
-
+    public Transform getPosition(){
+        return(transform);
+    }
 }

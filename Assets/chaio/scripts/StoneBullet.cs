@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseStone : MonoBehaviour
+public class StoneBullet : MonoBehaviour
 {
+
+    [SerializeField]float speed=3;
     // Start is called before the first frame update
-    [SerializeField]BigStone bigStone=null;
+    void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if( bigStone.getIsDead()){
-            gameObject.SetActive(false);
-        }
+        transform.position+=Vector3.forward*speed;
     }
 }

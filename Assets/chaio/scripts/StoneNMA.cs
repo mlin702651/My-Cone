@@ -43,11 +43,20 @@ public class StoneNMA : MonoBehaviour
     float timer=0;
     float coolTimer=0;
     float revTimer=0;
+    // //旋轉球球
+    // [SerializeField] private float BornTime = 0.2f;
+    // [SerializeField] private float _bulletSpeed = 10.0f;
+    [SerializeField] GameObject bullet;
+    GameObject bulletClone;
+    bool canShoot=true;
+    float shootTimer=0;
 
     // Start is called before the first frame update
     void Start()
     {
         navMeshAgent=GetComponent<NavMeshAgent>();
+        bulletClone=Instantiate(bullet);
+        bulletClone.SetActive(false);
     }
 
     // Update is called once per frame
@@ -133,15 +142,27 @@ public class StoneNMA : MonoBehaviour
         }
     }
     private void DoOnTheGround(){
-        //Debug.Log("Timer"+timer);
-        // healthText.text = Hp.ToString();
+
+        // if(shootTimer>10.0f){
+        //     shoot();
+        //     shootTimer=0;
+        //     //FunctionTimer.Create(()=>shoot(),2.0f);//發射球球
+        // }
+        // else{
+        //     shootTimer+=Time.deltaTime;
+        // }
+
+
+        bulletClone.SetActive(true);
+        bulletClone.transform.position=transform.position;
+        //
         animator_small.SetBool("leaveMain",true);
         transform.DOScale(runningSize,0.5f);
         if(animator_small.GetCurrentAnimatorStateInfo(0).IsName("standUp")){//撥這個動畫的時候轉向
             navMeshAgent.SetDestination(player.transform.position);
             Debug.Log("turnning");
         }
-        if(isCoolDown){//冷卻時間   
+        if(isCoolDown){//冷卻時間 跌倒的   
             coolTimer+=Time.deltaTime;
             if(coolTimer>coolTime){//重設參數們
                 isCoolDown=false;
@@ -202,6 +223,7 @@ public class StoneNMA : MonoBehaviour
                     animator_small.SetBool("attackRange",false);
                     navMeshAgent.SetDestination(player.transform.position);
                     GetComponent<NavMeshAgent>().speed=moveSpeed;
+                    
                 }
             }
             if(Hp<=0){
@@ -210,6 +232,10 @@ public class StoneNMA : MonoBehaviour
         }      
     }
     private void DoDead(){
+        //
+        bulletClone.SetActive(false);
+        //  
+
         animator_small.SetBool("leaveMain",false);
         animator_small.SetBool("leaveMain",false);
         animator_small.SetBool("dead",true);
@@ -264,4 +290,9 @@ public class StoneNMA : MonoBehaviour
     public bool getIsWaiting(){
         return(isWaiting);
     }
+
+    void shoot(){
+        Instantiate(bullet,transform.position,transform.rotation);
+        Destroy(bullet,11.0f);
+    } 
 }

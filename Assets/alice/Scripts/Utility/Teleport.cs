@@ -27,8 +27,9 @@ public class Teleport : MonoBehaviour
     {
         if(canInteract){
             canInteract = false;
-            currentStageRespawnPoint.respawnPosition = changeRespawnPoint.respawnPosition;
-            currentStageRespawnPoint.respawnRotation = changeRespawnPoint.respawnRotation;
+            currentStageRespawnPoint.SetValue(changeRespawnPoint.respawnPosition,changeRespawnPoint.respawnRotation);
+            //currentStageRespawnPoint.respawnPosition = changeRespawnPoint.respawnPosition;
+            //currentStageRespawnPoint.respawnRotation = changeRespawnPoint.respawnRotation;
             MySceneManager.instance.EndThisScene(targetScene.name);
         }
     }

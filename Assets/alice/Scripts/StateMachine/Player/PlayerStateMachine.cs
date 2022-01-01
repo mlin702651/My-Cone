@@ -9,6 +9,7 @@ public class PlayerStateMachine : MonoBehaviour
         CharacterController _characterController;
         [Header("Interact with rigid body")]
         [SerializeField] float _pushPower = 2.0F;
+        [SerializeField]RespawnPoint currentRespawnPoint;
     #endregion
     #region Move
     [Header("Movement")]
@@ -264,6 +265,11 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         _currentMagic = PlayerMagicDic["Magic1"];
+        //set player position
+        Debug.Log(currentRespawnPoint.respawnPosition);
+        transform.position = currentRespawnPoint.respawnPosition;
+        transform.rotation = currentRespawnPoint.respawnRotation;
+        Debug.Log("reset!!");
     }
 
     // Update is called once per frame

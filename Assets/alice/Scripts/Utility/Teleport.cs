@@ -8,6 +8,8 @@ public class Teleport : MonoBehaviour
 {
     [SerializeField] private float interactRange = 1.5f;
     [SerializeField] private Object targetScene; 
+    [SerializeField]RespawnPoint currentStageRespawnPoint;
+    [SerializeField]RespawnPoint changeRespawnPoint;
     private bool canInteract;
     
     
@@ -25,6 +27,8 @@ public class Teleport : MonoBehaviour
     {
         if(canInteract){
             canInteract = false;
+            currentStageRespawnPoint.respawnPosition = changeRespawnPoint.respawnPosition;
+            currentStageRespawnPoint.respawnRotation = changeRespawnPoint.respawnRotation;
             MySceneManager.instance.EndThisScene(targetScene.name);
         }
     }

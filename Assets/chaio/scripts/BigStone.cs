@@ -21,12 +21,25 @@ public class BigStone : MonoBehaviour
     [SerializeField]float radius=5.0f;
     [SerializeField]float speed=0.5f;
 
+    [SerializeField]GameObject currentParticle=null;
+
     // Start is called before the first frame update
     int damage=0;
     bool teleport=false;
+
+    //震波動畫
+    private Vector3 OriginPosition = Vector3.zero;
+    [SerializeField] private Vector3 A1AnimationTarget = new Vector3(0,5f,0);
+    [SerializeField] private float A1AnimationStartDur = 3f;
+    [SerializeField] private Ease A1AnimationStartE = Ease.Linear;
+    [SerializeField] private float A1AnimationEndDur = 1f;
+    [SerializeField] private Ease A1AnimationEndE = Ease.Linear;
+    [SerializeField] private float A1AnimationDelay = 3f;
     void Start()
     {
-       navMeshAgent=GetComponent<NavMeshAgent>(); 
+        navMeshAgent=GetComponent<NavMeshAgent>(); 
+        // OriginPosition = transform.position;
+        // print(OriginPosition);
     }
 
     // Update is called once per frame
@@ -58,8 +71,17 @@ public class BigStone : MonoBehaviour
             }
         }
         slider.value = Hp;
-        //move();
         navMeshAgent.SetDestination(Player.transform.position);
+
+        if(canHurt){
+            currentParticle.SetActive(true);
+            // DOTween.Sequence()
+            //                 .Append(transform.DOMoveY(A1AnimationTarget.y, A1AnimationStartDur).SetEase(A1AnimationStartE))
+            //                 .Append(transform.DOMoveY(OriginPosition.y, A1AnimationEndDur).SetEase(A1AnimationEndE));
+        }
+        else{
+            currentParticle.SetActive(false);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -105,4 +127,6 @@ public class BigStone : MonoBehaviour
     public Transform getPosition(){
         return(transform);
     }
+
+    
 }

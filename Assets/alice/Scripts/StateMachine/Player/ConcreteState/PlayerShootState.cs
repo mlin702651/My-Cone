@@ -104,7 +104,7 @@ public class PlayerShootState : PlayerBaseState
         ChangeAnimationState(Ctx.AnimationEndMagicConch);
 
         PlayerMagicController.instance.MagicConchFinished();
-        UIManager.instance.StartAccumulateCD();
+        MagicCDManager.instance.StartAccumulateCD();
 
         FunctionTimer.Create(()=> SwitchState(Factory.Grounded()),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length);
     }
@@ -123,7 +123,7 @@ public class PlayerShootState : PlayerBaseState
     }
 
     void CheckMagicConchCD(){
-        if(UIManager.instance.IsAccumulateAttack || UIManager.instance.RecoverAccumulateAttack){
+        if(MagicCDManager.instance.IsAccumulateAttack || MagicCDManager.instance.RecoverAccumulateAttack){
             return;
         }
         else{
@@ -178,7 +178,7 @@ public class PlayerShootState : PlayerBaseState
 
     void StartMagicBomb(){
 
-        if(UIManager.instance.IsBombAttack || UIManager.instance.RecoverBombAttack){
+        if(MagicCDManager.instance.IsBombAttack || MagicCDManager.instance.RecoverBombAttack){
             return;
         }
         else{
@@ -188,7 +188,7 @@ public class PlayerShootState : PlayerBaseState
             PlayerMagicController.instance.MagicBombStart();
 
             Ctx.CurrentBombCount--;
-            UIManager.instance.SetBombLeftAmount(Ctx.CurrentBombCount);
+            MagicCDManager.instance.SetBombLeftAmount(Ctx.CurrentBombCount);
             ChangeAnimationState(Ctx.AnimationStartMagicBomb);
             FunctionTimer.Create(()=> HoldMagicBomb(),0.1f);
         }

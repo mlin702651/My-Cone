@@ -786,6 +786,7 @@ GameObject:
   - component: {fileID: 6446576538459015743}
   - component: {fileID: 7030706481356808626}
   - component: {fileID: 706348700745044558}
+  - component: {fileID: 5013121920020319676}
   - component: {fileID: 3506131231725334870}
   m_Layer: 5
   m_Name: UI
@@ -981,6 +982,25 @@ MonoBehaviour:
   questHolder: {fileID: 7471356459096457216}
   questSelectionPrefab: {fileID: 3916675835044622188, guid: c7ed1978fc293b143b1dd71ded8c9f66,
     type: 3}
+--- !u!114 &5013121920020319676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159444403938609640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74eb8cd898437344195fd0a43094115c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealthBar: {fileID: 6509087081080044610}
+  SetHealthDuration: 0.2
+  CrystalAmountText: {fileID: 2159444404013291234}
+  CrystalAmountTextShadow: {fileID: 3589305493564491458}
+  setCrystalDuration: 0.1
+  SpiritAmountText: {fileID: 2159444404224004701}
+  SpiritAmountTextShadow: {fileID: 321339749073520307}
 --- !u!82 &3506131231725334870
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1154,7 +1174,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 123
+  m_Text: 0
 --- !u!1 &2159444404224004699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1252,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 123
+  m_Text: 0
 --- !u!1 &2159444404365784448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,7 +3196,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 123
+  m_Text: 0
 --- !u!1 &6721356989689869950
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,7 +3414,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.72
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -3713,7 +3733,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 123
+  m_Text: 0
 --- !u!1 &8074232207548695115
 GameObject:
   m_ObjectHideFlags: 0

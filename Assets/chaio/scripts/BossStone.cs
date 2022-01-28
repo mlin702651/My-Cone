@@ -69,7 +69,7 @@ public class BossStone : MonoBehaviour
         if(isDead){
             animator_small.SetBool("leaveMain",false);
             animator_small.SetBool("dead",true);
-            transform.DOScale(0,1);
+            transform.DOScale(0.1f,1);
             isThrow=false;
             isOnTheGround=false;
             isFlyAway=false;

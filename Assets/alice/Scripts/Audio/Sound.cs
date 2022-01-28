@@ -15,7 +15,7 @@ public class Sound : ScriptableObject
 
     public bool loop;
     
-    //[HideInInspector]
+    [HideInInspector]
     public AudioSource source;
     public AudioMixerGroup mixer;
 }

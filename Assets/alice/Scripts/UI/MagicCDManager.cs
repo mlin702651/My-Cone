@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour
+public class MagicCDManager : MonoBehaviour
 {
     [Header("Magic Sprite")]
     [SerializeField]private Image currentMagicImage;
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]private Text currentBombLeft;
     
-    public static UIManager instance;
+    public static MagicCDManager instance;
     private void Awake(){
         if(instance != null){
             Debug.LogWarning("fix this: " + gameObject.name);

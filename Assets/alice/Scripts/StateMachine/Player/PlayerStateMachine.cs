@@ -10,6 +10,11 @@ public class PlayerStateMachine : MonoBehaviour
         [Header("Interact with rigid body")]
         [SerializeField] float _pushPower = 2.0F;
         [SerializeField]RespawnPoint currentRespawnPoint;
+        [SerializeField] bool minusTest = false;
+        [SerializeField] bool addTest = false;
+        private int health = 100;
+        private int crystalAmount = 0;
+        private int spiritAmount = 0; 
     #endregion
     #region Move
     [Header("Movement")]
@@ -276,6 +281,18 @@ public class PlayerStateMachine : MonoBehaviour
     void Update()
     {
         
+        if(minusTest){
+            minusTest = false;
+            SetPlayerHealth(-20);
+            SetCrystalAmount(-20);
+            SetSpiritAmount(-100);
+        }
+        if(addTest){
+            addTest = false;
+            SetPlayerHealth(40);
+            SetCrystalAmount(100);
+            SetSpiritAmount(50);
+        }
         
         if(DialogueManager.instance.inDialogue){
             ChangeAnimationState(animationTalk);
@@ -295,7 +312,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         if(_currentBombLeft<=0){
             _currentBombLeft = 5;
-            UIManager.instance.StartBombCD();
+            MagicCDManager.instance.StartBombCD();
         }
         
         _currentMovement = InputSystem.instance.GetCurrentMovement();
@@ -401,7 +418,7 @@ public class PlayerStateMachine : MonoBehaviour
         else {
             _currentMagic = (_currentMagic > 1) ?_currentMagic -1:PlayerMagicDic["Magic3"];
         }
-        UIManager.instance.SetCurrentMagic(_currentMagic);
+        MagicCDManager.instance.SetCurrentMagic(_currentMagic);
         ResetShootStatus();
     }
 
@@ -430,5 +447,34 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
+    void SetPlayerHealth(int modifyAmount){
+        int originHealth = health;
+        health += modifyAmount;
+        if(health>=100) health = 100;
+        //else if(health <=0) player is dead;
+
+        PlayerInfoManager.instance.StartSetPlayerHealth(originHealth,health);
+    }
+    void SetCrystalAmount(int modifyAmount){
+        int originCrystal = crystalAmount;
+        crystalAmount += modifyAmount;
+        if(crystalAmount<0) {
+            crystalAmount = originCrystal;
+            Debug.Log("you don't have enough crystal!");
+        }
+        else PlayerInfoManager.instance.StartSetCrystalAmount(originCrystal,crystalAmount);
+        
+
+    }
+
+    void SetSpiritAmount(int modifyAmount){
+        int originSpirit = spiritAmount;
+        spiritAmount += modifyAmount;
+        if(spiritAmount<0) {
+            spiritAmount = originSpirit;
+            Debug.Log("you don't have enough spirit!");
+        }
+        else PlayerInfoManager.instance.StartSetSpiritAmount(originSpirit,spiritAmount);
+    }
     
 }

@@ -628,6 +628,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 584025797697169982, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: currentRespawnPoint
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c8573381cb24c64dbead61c92367a83,
+        type: 2}
     - target: {fileID: 1121494316038389049, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -818,6 +824,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7618961567161619292, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7618961567897224139, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -871,6 +882,11 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568179554688, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
@@ -1584,7 +1600,7 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
-  audio: {fileID: 0}
+  jump: {fileID: 0}
   run: {fileID: 0}
 --- !u!65 &497409588
 BoxCollider:
@@ -1964,7 +1980,7 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
-  audio: {fileID: 0}
+  jump: {fileID: 0}
   run: {fileID: 0}
 --- !u!65 &678614464
 BoxCollider:
@@ -2534,7 +2550,7 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
-  audio: {fileID: 0}
+  jump: {fileID: 0}
   run: {fileID: 0}
 --- !u!65 &750356975
 BoxCollider:
@@ -2637,7 +2653,7 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
-  audio: {fileID: 0}
+  jump: {fileID: 0}
   run: {fileID: 0}
 --- !u!65 &786051981
 BoxCollider:
@@ -3333,7 +3349,7 @@ MonoBehaviour:
   Goal: {fileID: 1009690057}
   DidiDistanceRun: 3
   DidiDistanceGoal: 8
-  audio: {fileID: 0}
+  jump: {fileID: 0}
   run: {fileID: 0}
 --- !u!65 &971944040
 BoxCollider:
@@ -7269,6 +7285,18 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 338885044}
+    - target: {fileID: 8960829148480797488, guid: 20f6b139a99a90f41a0435df53e2d36a,
+        type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ea0948419d7cd94a85e33936a045fc8,
+        type: 2}
+    - target: {fileID: 8960829148480797488, guid: 20f6b139a99a90f41a0435df53e2d36a,
+        type: 3}
+      propertyPath: run
+      value: 
+      objectReference: {fileID: 11400000, guid: dd8bb43ef5a128645a0838f404eba2c9,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f6b139a99a90f41a0435df53e2d36a, type: 3}
 --- !u!1 &8999067183169604019

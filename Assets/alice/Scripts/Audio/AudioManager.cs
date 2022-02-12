@@ -45,7 +45,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(Sound tempSound,GameObject soundParent){
         Sound s = tempSound;
-        s.source = soundParent.AddComponent<AudioSource>();
+        if(soundParent.GetComponent<AudioSource>() != null)s.source = soundParent.GetComponent<AudioSource>();
+        else s.source = soundParent.AddComponent<AudioSource>();
         s.source.outputAudioMixerGroup = s.mixer;
         s.source.clip = s.clip;
         s.source.volume = s.volume;

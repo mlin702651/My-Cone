@@ -21,9 +21,13 @@ public class MenuManager : MonoBehaviour
     public Transform questHolder;
     public GameObject questSelectionPrefab;
 
+    public bool inMenu;
+
     //update UI qhen open
     private QuestBase LastDisplayQuest;
     private int currentSelectedQuest = 0;
+
+    
 
     //private QuestSelection[] questList;
 
@@ -32,7 +36,8 @@ public class MenuManager : MonoBehaviour
             InputSystem.instance.MenuPressDown = false;
             currentSelectedQuest = 0;
             MenuUI.SetActive(!MenuUI.activeSelf);
-            
+            Time.timeScale = MenuUI.activeSelf? 0f:1f;
+            inMenu = MenuUI.activeSelf;
         }
         if(MenuUI.activeSelf){ //if menu is open
                 
@@ -63,7 +68,7 @@ public class MenuManager : MonoBehaviour
                     var firstSelection = questHolder.GetChild(currentSelectedQuest).GetComponent<QuestSelection>();
                     //make it be select ex.change color?
                     firstSelection.questBackground.color = Color.gray;
-                    FindObjectOfType<WoomiMovement>().SetInMenuStatus(true);
+                    //FindObjectOfType<WoomiMovement>().SetInMenuStatus(true);
                     UpdateQuestUI(firstSelection.questBase,firstSelection.questBase.GetObjectiveList());
                 }
                 catch{
@@ -71,7 +76,7 @@ public class MenuManager : MonoBehaviour
                 }
 
             }
-            else FindObjectOfType<WoomiMovement>().SetInMenuStatus(false);
+            //else FindObjectOfType<WoomiMovement>().SetInMenuStatus(false);
         
     }
 

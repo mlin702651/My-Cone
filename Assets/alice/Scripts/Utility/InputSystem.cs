@@ -12,61 +12,61 @@ public class InputSystem : MonoBehaviour
     Controls controls;
 
     #region Move
-    private Vector2 inputMovement;
-    private Vector3 currentMovement;
-    private Vector2 inputCameraMovement;
-    private Vector3 currentCameraMovement;
-    public Vector3 CurrentCameraMovement { get { return currentCameraMovement; } }
-    private Vector2 inputAimCameraMovement;
-    private Vector3 currentAimCameraMovement;
-    public Vector3 CurrentAimCameraMovement { get { return currentAimCameraMovement; } }
+        private Vector2 inputMovement;
+        private Vector3 currentMovement;
+        private Vector2 inputCameraMovement;
+        private Vector3 currentCameraMovement;
+        public Vector3 CurrentCameraMovement { get { return currentCameraMovement; } }
+        private Vector2 inputAimCameraMovement;
+        private Vector3 currentAimCameraMovement;
+        public Vector3 CurrentAimCameraMovement { get { return currentAimCameraMovement; } }
 
-    public bool isMovementPressed;
+        public bool isMovementPressed;
     #endregion
 
     #region Jump
 
-    bool _isJumpPressed = false;
-    public bool IsJumpPressed { get { return _isJumpPressed; } set { _isJumpPressed = value; } }
+        bool _isJumpPressed = false;
+        public bool IsJumpPressed { get { return _isJumpPressed; } set { _isJumpPressed = value; } }
 
     #endregion
 
     #region Talk
-    bool _isConversationPressed = false;
-    public bool IsConversationPressed { get { return _isConversationPressed; } set { _isConversationPressed = value; } }
+        bool _isConversationPressed = false;
+        public bool IsConversationPressed { get { return _isConversationPressed; } set { _isConversationPressed = value; } }
 
     #endregion
     #region Shoot
-    bool _isShootPressed = false;
-    bool _isShootReleased = false;
-    public bool IsShootPressed { get { return _isShootPressed; } set { _isShootPressed = value; } }
-    public bool IsShootReleased { get { return _isShootReleased; } set { _isShootReleased = value; } }
+        bool _isShootPressed = false;
+        bool _isShootReleased = false;
+        public bool IsShootPressed { get { return _isShootPressed; } set { _isShootPressed = value; } }
+        public bool IsShootReleased { get { return _isShootReleased; } set { _isShootReleased = value; } }
     #endregion
     #region Magic
-    bool _isMagicPlusStatusPressed = false;
-    bool _isMagicMinusStatusPressed = false;
-    public bool IsMagicPlusStatusPressed { get { return _isMagicPlusStatusPressed; } set { _isMagicPlusStatusPressed = value; } }
-    public bool IsMagicMinusStatusPressed { get { return _isMagicMinusStatusPressed; } set { _isMagicMinusStatusPressed = value; } }
+        bool _isMagicPlusStatusPressed = false;
+        bool _isMagicMinusStatusPressed = false;
+        public bool IsMagicPlusStatusPressed { get { return _isMagicPlusStatusPressed; } set { _isMagicPlusStatusPressed = value; } }
+        public bool IsMagicMinusStatusPressed { get { return _isMagicMinusStatusPressed; } set { _isMagicMinusStatusPressed = value; } }
 
     #endregion
     #region Aim
-    bool _isAimPressed;
-    public bool IsAimPressed { get { return _isAimPressed; } }
+        bool _isAimPressed;
+        public bool IsAimPressed { get { return _isAimPressed; } }
 
     #endregion
     #region Dash
-    bool _isDashPressed;
-    public bool IsDashPressed { get { return _isDashPressed; } set { _isDashPressed = value; } }
+        bool _isDashPressed;
+        public bool IsDashPressed { get { return _isDashPressed; } set { _isDashPressed = value; } }
     #endregion
     #region Menu
 
-    public bool MenuPressDown { get; set; }
-    public bool MenuSelectUpPressDown { get { return _menuSelectUpPressDown; } set { _menuSelectUpPressDown = value; } }
-    private bool _menuSelectUpPressDown;
-    private bool _menuSelectDownPressDown;
-    public bool MenuSelectDownPressDown { get { return _menuSelectDownPressDown; } set { _menuSelectDownPressDown = value; } }
-    private bool _menuConfirmPressDown;
-    public bool MenuConfirmPressDown { get { return _menuConfirmPressDown; } set { _menuConfirmPressDown = value; } }
+        public bool MenuPressDown { get; set; }
+        public bool MenuSelectUpPressDown { get { return _menuSelectUpPressDown; } set { _menuSelectUpPressDown = value; } }
+        private bool _menuSelectUpPressDown;
+        private bool _menuSelectDownPressDown;
+        public bool MenuSelectDownPressDown { get { return _menuSelectDownPressDown; } set { _menuSelectDownPressDown = value; } }
+        private bool _menuConfirmPressDown;
+        public bool MenuConfirmPressDown { get { return _menuConfirmPressDown; } set { _menuConfirmPressDown = value; } }
 
     #endregion
 
@@ -155,6 +155,7 @@ public class InputSystem : MonoBehaviour
     void MenuStart()
     {
         MenuPressDown = true;
+        
         Debug.Log("menu open");
     }
 

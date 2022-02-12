@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6741489023325507782}
   - component: {fileID: 3414868371452821849}
   - component: {fileID: 4803724813020131319}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestReward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 65436636697285838}
   - component: {fileID: 1637807358913731337}
   - component: {fileID: 5578757997792432784}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -982,6 +982,7 @@ MonoBehaviour:
   questHolder: {fileID: 7471356459096457216}
   questSelectionPrefab: {fileID: 3916675835044622188, guid: c7ed1978fc293b143b1dd71ded8c9f66,
     type: 3}
+  inMenu: 0
 --- !u!114 &5013121920020319676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +1002,7 @@ MonoBehaviour:
   setCrystalDuration: 0.1
   SpiritAmountText: {fileID: 2159444404224004701}
   SpiritAmountTextShadow: {fileID: 321339749073520307}
+  setSpiritDuration: 0.1
 --- !u!82 &3506131231725334870
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1752,7 +1754,7 @@ GameObject:
   - component: {fileID: 328951279805477814}
   - component: {fileID: 8008474883475036826}
   - component: {fileID: 5719627699618976719}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: menu_bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1775,7 +1777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -563}
   m_SizeDelta: {x: 2019.5017, y: 1183.9204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8008474883475036826
@@ -1900,7 +1902,7 @@ GameObject:
   - component: {fileID: 323365626804073071}
   - component: {fileID: 860215960012626309}
   - component: {fileID: 4911210887548017576}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2320,7 +2322,7 @@ GameObject:
   - component: {fileID: 2067889838427405241}
   - component: {fileID: 1170949068464724517}
   - component: {fileID: 4874612012830745906}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestObjectives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3068,7 +3070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7471356459096457216}
   - component: {fileID: 654251755193073021}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestListLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3473,7 +3475,7 @@ GameObject:
   - component: {fileID: 5830676906842219927}
   - component: {fileID: 4806912486332608122}
   - component: {fileID: 3107271319042371044}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestListTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3550,7 +3552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7428406916288030524}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestListPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3575,7 +3577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -563}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7744027084667707263
@@ -3589,7 +3591,7 @@ GameObject:
   - component: {fileID: 8832439989862959184}
   - component: {fileID: 8507590663294404024}
   - component: {fileID: 8605683707932077833}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3819,7 +3821,7 @@ GameObject:
   - component: {fileID: 823745013272695588}
   - component: {fileID: 4521909508566061023}
   - component: {fileID: 1415993647122802843}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestDetail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4008,7 +4010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8988180947008698627}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI_Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4023,7 +4025,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8985366669533200919}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -995.7122}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.39769, y: 0.39769, z: 0.39769}
   m_Children:
   - {fileID: 328951279805477814}
@@ -4031,8 +4033,8 @@ RectTransform:
   m_Father: {fileID: 2159444403938609644}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

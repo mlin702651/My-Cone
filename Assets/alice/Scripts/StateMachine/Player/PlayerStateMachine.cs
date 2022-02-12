@@ -293,6 +293,11 @@ public class PlayerStateMachine : MonoBehaviour
             SetCrystalAmount(100);
             SetSpiritAmount(50);
         }
+
+        if(MenuManager.instance.inMenu){
+            
+            return; //在選單就不要動!
+        }
         
         if(DialogueManager.instance.inDialogue){
             ChangeAnimationState(animationTalk);

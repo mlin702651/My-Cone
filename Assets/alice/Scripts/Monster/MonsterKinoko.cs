@@ -65,6 +65,9 @@ public class MonsterKinoko : MonoBehaviour
     #endregion
     #region sound
     [SerializeField]new AudioSource audio;
+    [SerializeField] Sound stepSound;
+    [SerializeField] Sound runSound;
+    [SerializeField] Sound hitSound;
     [SerializeField]AudioClip run;
     [SerializeField]AudioClip hit;
     [SerializeField]AudioClip step;
@@ -172,10 +175,12 @@ public class MonsterKinoko : MonoBehaviour
             case 1:
                 //kinokoState = 4;
                 ChangeAnimationState(animationPrepareAttack);
-                if(!audio.isPlaying){
-                    audio.clip = step;
-                    audio.Play();
-                }
+                AudioManager.instance.PlaySound(stepSound,gameObject);
+
+                // if(!audio.isPlaying){
+                //     audio.clip = step;
+                //     audio.Play();
+                // }
                 FacingPlayer();
                 break;
             case 2:
@@ -183,18 +188,21 @@ public class MonsterKinoko : MonoBehaviour
                 //_kinokoRigidbody.velocity = transform.forward*Time.deltaTime* -200;
                 transform.position += transform.forward*Time.deltaTime* (-runSpeed);
                 ChangeAnimationState(animationRun);
-                if(!audio.isPlaying){
-                    audio.clip = run;
-                    audio.Play();
-                }
+                AudioManager.instance.PlaySound(runSound,gameObject);
+                // if(!audio.isPlaying){
+                //     audio.clip = run;
+                //     audio.Play();
+                // }
                 break;
             case 3:
                 //_kinokoRigidbody.velocity = transform.forward*Time.deltaTime* -200;
                 //kinokoState = 4;
-                if(!audio.isPlaying){
-                    audio.clip = hit;
-                    audio.Play();
-                }
+                AudioManager.instance.PlaySound(hitSound,gameObject);
+
+                // if(!audio.isPlaying){
+                //     audio.clip = hit;
+                //     audio.Play();
+                // }
                 ChangeAnimationState(animationAttack);
                 break;
             default:

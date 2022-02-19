@@ -12,7 +12,10 @@ public class InventoryTest : MonoBehaviour
 
     }
     private void Update() {
-        if(InputSystem.instance.IsMagicPlusStatusPressed)   InventoryManager.instance.AddItem(testItem);
+        if(InputSystem.instance.IsMagicPlusStatusPressed){   
+            InventoryManager.instance.AddItem(testItem);
+            Debug.Log("123123");
+            }
         if(InputSystem.instance.IsMagicMinusStatusPressed) InventoryManager.instance.RemoveItem(testItem);
     }
 

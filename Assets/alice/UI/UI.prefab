@@ -1019,6 +1019,7 @@ GameObject:
   - component: {fileID: 706348700745044558}
   - component: {fileID: 5013121920020319676}
   - component: {fileID: 3506131231725334870}
+  - component: {fileID: 855864335402756698}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1331,6 +1332,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &855864335402756698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159444403938609640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736495fe40586a64697171f414c23fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  inBackpack: 0
+  backpackUI: {fileID: 470106666658994191}
+  selectedItemImage: {fileID: 7569474624188022455}
+  selectedItemName: {fileID: 7874201508703806761}
+  selectedItemDescription: {fileID: 6620328531189539907}
 --- !u!1 &2159444404013291232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,8 +2363,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a7996d929e55b94ba9c21f81b4ebed5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4881,6 +4900,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7197919417713832247}
     m_Modifications:
+    - target: {fileID: 1136066545908830707, guid: 443df8b71a2f76d439c6f7d7da518129,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1136066545908830707, guid: 443df8b71a2f76d439c6f7d7da518129,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1136066545908830707, guid: 443df8b71a2f76d439c6f7d7da518129,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190735162761130877, guid: 443df8b71a2f76d439c6f7d7da518129,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2404005551141068740, guid: 443df8b71a2f76d439c6f7d7da518129,
         type: 3}
       propertyPath: m_LocalPosition.x

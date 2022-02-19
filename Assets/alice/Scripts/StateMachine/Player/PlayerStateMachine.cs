@@ -280,7 +280,7 @@ public class PlayerStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        #region test
         if(minusTest){
             minusTest = false;
             SetPlayerHealth(-20);
@@ -293,16 +293,10 @@ public class PlayerStateMachine : MonoBehaviour
             SetCrystalAmount(100);
             SetSpiritAmount(50);
         }
+        #endregion
 
-        if(MenuManager.instance.inMenu){
-            
-            return; //在選單就不要動!
-        }
         
-        if(DialogueManager.instance.inDialogue){
-            ChangeAnimationState(animationTalk);
-            return; //在對話就不要動!
-        } 
+        if(FreezeCheck()) return;
 
         
         HandleCamera();
@@ -450,6 +444,21 @@ public class PlayerStateMachine : MonoBehaviour
             _aimReticle.SetActive(false);
             raycastHitPoint.SetActive(false);
         }
+    }
+
+    bool FreezeCheck(){
+        if(MenuManager.instance.inMenu){
+            
+            return true; //在選單就不要動!
+        }
+        else if(InventoryManager.instance.inBackpack){
+            return true; //在背包就不要動!
+        }
+        else if(DialogueManager.instance.inDialogue){
+            ChangeAnimationState(animationTalk);
+            return true; //在對話就不要動!
+        } 
+        else return false;
     }
 
     void SetPlayerHealth(int modifyAmount){

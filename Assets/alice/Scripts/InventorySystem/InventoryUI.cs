@@ -6,11 +6,15 @@ public class InventoryUI : MonoBehaviour
 {
     //[HideInInspector]
     public InventorySlot[] slots;
+    
+    
 
     private void Start() {
         slots = GetComponentsInChildren<InventorySlot>();
         InventoryManager.instance.onItemAddCallBack += UpdateInventoryAdd; 
         InventoryManager.instance.onItemRemoveCallBack += UpdateInventoryRemove; 
+        InventoryManager.instance.onSelectionChangeCallBack += UpdateInventorySelection; 
+        InventoryManager.instance.onSelectionResetCallBack += ResetInventoryUI; 
         //只要onItemAddCallBack被呼叫 就會執行UpdateInventoryAdd
     }
     private int? GetNextEmptySlot(){
@@ -31,9 +35,28 @@ public class InventoryUI : MonoBehaviour
     }
     public void UpdateInventoryAdd(ItemBase item){
         slots[(int)GetNextEmptySlot()].AddItem(item);
+        Debug.Log("UIAdditem");
     }
 
     public void UpdateInventoryRemove(ItemBase item){
         slots[(int)GetSameSlot(item)].RemoveItem();
+    }
+    public void UpdateInventorySelection(int newSelection,int currentSelection){
+        slots[currentSelection].UpdateFrame(false);
+        slots[newSelection].UpdateFrame(true);
+        // for (int i = 0; i < slots.Length; i++)
+        // {
+        //     if(i == currentSelection) slots[i].UpdateFrame(true);
+        //     else slots[i].UpdateFrame(false);
+        // }
+        
+    }
+    void OnDisable()
+    {
+        Debug.Log("PrintOnDisable: script was disabled");
+    }
+
+    public void ResetInventoryUI(int currentSelection){
+        slots[currentSelection].UpdateFrame(false);
     }
 }

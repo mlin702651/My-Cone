@@ -431,6 +431,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "MenuSwitchPagePlus",
+                    "type": "Button",
+                    "id": "fb34d3e4-73e5-452e-aa01-25246129572a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MenuSwitchPageMinus",
+                    "type": "Button",
+                    "id": "71dfc9f0-f18e-43a6-afea-2ffc871bc970",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -508,6 +524,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Backpack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9b478b7-49b1-4ff2-a24f-b91b5aa378b3",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuSwitchPagePlus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5596815a-9a52-4fdf-a1db-7807541bed96",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuSwitchPageMinus",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

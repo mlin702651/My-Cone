@@ -280,7 +280,7 @@ public class PlayerStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region test
+#region test
         if(minusTest){
             minusTest = false;
             SetPlayerHealth(-20);
@@ -293,7 +293,7 @@ public class PlayerStateMachine : MonoBehaviour
             SetCrystalAmount(100);
             SetSpiritAmount(50);
         }
-        #endregion
+#endregion
 
         
         if(FreezeCheck()) return;
@@ -447,7 +447,7 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     bool FreezeCheck(){
-        if(MenuManager.instance.inMenu){
+        if(PauseMenuManager.instance.inPauseMenu){
             
             return true; //在選單就不要動!
         }

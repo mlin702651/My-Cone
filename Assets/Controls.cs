@@ -444,6 +444,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSwitchPagePlus"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb34d3e4-73e5-452e-aa01-25246129572a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSwitchPageMinus"",
+                    ""type"": ""Button"",
+                    ""id"": ""71dfc9f0-f18e-43a6-afea-2ffc871bc970"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -523,6 +539,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Backpack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9b478b7-49b1-4ff2-a24f-b91b5aa378b3"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSwitchPagePlus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5596815a-9a52-4fdf-a1db-7807541bed96"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSwitchPageMinus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -551,6 +589,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menu_Menu = m_Menu.FindAction("Menu", throwIfNotFound: true);
         m_Menu_MenuConfirm = m_Menu.FindAction("MenuConfirm", throwIfNotFound: true);
         m_Menu_Backpack = m_Menu.FindAction("Backpack", throwIfNotFound: true);
+        m_Menu_MenuSwitchPagePlus = m_Menu.FindAction("MenuSwitchPagePlus", throwIfNotFound: true);
+        m_Menu_MenuSwitchPageMinus = m_Menu.FindAction("MenuSwitchPageMinus", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -720,6 +760,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menu_Menu;
     private readonly InputAction m_Menu_MenuConfirm;
     private readonly InputAction m_Menu_Backpack;
+    private readonly InputAction m_Menu_MenuSwitchPagePlus;
+    private readonly InputAction m_Menu_MenuSwitchPageMinus;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
@@ -731,6 +773,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Menu => m_Wrapper.m_Menu_Menu;
         public InputAction @MenuConfirm => m_Wrapper.m_Menu_MenuConfirm;
         public InputAction @Backpack => m_Wrapper.m_Menu_Backpack;
+        public InputAction @MenuSwitchPagePlus => m_Wrapper.m_Menu_MenuSwitchPagePlus;
+        public InputAction @MenuSwitchPageMinus => m_Wrapper.m_Menu_MenuSwitchPageMinus;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -761,6 +805,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Backpack.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnBackpack;
                 @Backpack.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnBackpack;
                 @Backpack.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnBackpack;
+                @MenuSwitchPagePlus.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSwitchPagePlus;
+                @MenuSwitchPagePlus.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSwitchPagePlus;
+                @MenuSwitchPagePlus.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSwitchPagePlus;
+                @MenuSwitchPageMinus.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSwitchPageMinus;
+                @MenuSwitchPageMinus.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSwitchPageMinus;
+                @MenuSwitchPageMinus.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuSwitchPageMinus;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -786,6 +836,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Backpack.started += instance.OnBackpack;
                 @Backpack.performed += instance.OnBackpack;
                 @Backpack.canceled += instance.OnBackpack;
+                @MenuSwitchPagePlus.started += instance.OnMenuSwitchPagePlus;
+                @MenuSwitchPagePlus.performed += instance.OnMenuSwitchPagePlus;
+                @MenuSwitchPagePlus.canceled += instance.OnMenuSwitchPagePlus;
+                @MenuSwitchPageMinus.started += instance.OnMenuSwitchPageMinus;
+                @MenuSwitchPageMinus.performed += instance.OnMenuSwitchPageMinus;
+                @MenuSwitchPageMinus.canceled += instance.OnMenuSwitchPageMinus;
             }
         }
     }
@@ -813,5 +869,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnMenuConfirm(InputAction.CallbackContext context);
         void OnBackpack(InputAction.CallbackContext context);
+        void OnMenuSwitchPagePlus(InputAction.CallbackContext context);
+        void OnMenuSwitchPageMinus(InputAction.CallbackContext context);
     }
 }

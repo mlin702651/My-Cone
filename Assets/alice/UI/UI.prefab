@@ -592,7 +592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4115329404225206285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1199,9 +1199,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMagicImage: {fileID: 2016798209746359630}
-  magicAccumulate: {fileID: 21300000, guid: 6e76e34e380f303488ceeeca3b4878e2, type: 3}
+  magicAccumulate: {fileID: 21300000, guid: 6c606fc6462c2e5488ef015029d9fbfc, type: 3}
   magicBubble: {fileID: 21300000, guid: 03a3e53ed74b7524da66f7dbbeb158c8, type: 3}
-  magicBomb: {fileID: 21300000, guid: 833df4b435a74a746a172c0077b7d4ae, type: 3}
+  magicBomb: {fileID: 21300000, guid: 70407e83ba00e7a4c8002ce665248a03, type: 3}
+  magicBombImages:
+  - {fileID: 21300000, guid: b7c98844ca6b76b4390daba3d774ca4b, type: 3}
+  - {fileID: 21300000, guid: 460074f4898bd6a41a0c27cb7830427b, type: 3}
+  - {fileID: 21300000, guid: c64796b32a1428e4d8ca966e2a817a30, type: 3}
+  - {fileID: 21300000, guid: 2552e5b2c20552e4294e53c407c35ac8, type: 3}
+  - {fileID: 21300000, guid: e7a8930a4379fa34ebe0332f8b58e003, type: 3}
+  - {fileID: 21300000, guid: 70407e83ba00e7a4c8002ce665248a03, type: 3}
   accumulateAttackCD: {fileID: 819639982475203689}
   isAccumulateAttack: 0
   recoverAccumulateAttack: 0
@@ -1213,7 +1220,6 @@ MonoBehaviour:
   bombAttackCDCircleDecreaseTime: 0.5
   bombAttackCDCircleRecoverTime: 2.5
   bubbleAttackCD: {fileID: 8199210497337683415}
-  currentBombLeft: {fileID: 6131730449900327589}
 --- !u!114 &4440427740909083947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4105,7 +4111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e76e34e380f303488ceeeca3b4878e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c606fc6462c2e5488ef015029d9fbfc, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -15,6 +15,7 @@ public class InventoryUI : MonoBehaviour
         InventoryManager.instance.onItemAddCallBack += UpdateInventoryAdd; 
         InventoryManager.instance.onItemRemoveCallBack += UpdateInventoryRemove; 
         InventoryManager.instance.onSelectionChangeCallBack += UpdateInventorySelection; 
+        InventoryManager.instance.getCurrentItemCallBack += GetSelectedItem; 
         InventoryManager.instance.onSelectionResetCallBack += ResetInventoryUI; 
         //只要onItemAddCallBack被呼叫 就會執行UpdateInventoryAdd
     }
@@ -83,5 +84,9 @@ public class InventoryUI : MonoBehaviour
     private int GetRemainder(ItemBase newItem){
         var itemCount = InventoryManager.instance.inventory.Count(x => x== newItem); //傳回背包裡 這種newItem的數量
         return itemCount % newItem.maxStackSize;
+    }
+
+    private ItemBase GetSelectedItem(int newSelection){
+        return slots[newSelection].slotItem;
     }
 }

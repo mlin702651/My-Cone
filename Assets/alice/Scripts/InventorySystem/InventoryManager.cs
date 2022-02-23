@@ -15,7 +15,10 @@ public class InventoryManager : MonoBehaviour
     public delegate void OnItemRemoveCallBack(ItemBase item);
     public OnItemRemoveCallBack onItemRemoveCallBack;
     public delegate void OnSelectionChangeCallBack(int newSelection, int currentSelection);
+    //public delegate void OnSelectionChangeCallBack(int currentSelection);
     public OnSelectionChangeCallBack onSelectionChangeCallBack;
+    public delegate ItemBase GetcurrentItemCallBack(int newSelection);
+    public GetcurrentItemCallBack getCurrentItemCallBack;
     public delegate void OnSelectionResetCallBack(int currentSelection);
     public OnSelectionResetCallBack onSelectionResetCallBack;
 
@@ -140,7 +143,8 @@ public class InventoryManager : MonoBehaviour
 
     void UpdateSelection(){
         onSelectionChangeCallBack.Invoke(newSelection,currentSelection);
-        currentSelectedItem = inventory[newSelection];
+        currentSelectedItem = getCurrentItemCallBack.Invoke(newSelection);
+        //currentSelectedItem = inventory[newSelection];
         selectedItemImage.overrideSprite = currentSelectedItem.itemIcon;
         selectedItemName.text = currentSelectedItem.itemName;
         selectedItemDescription.text = currentSelectedItem.itemDescription;

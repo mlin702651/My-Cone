@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
-    public ItemBase slotItem;
+    [HideInInspector]public ItemBase slotItem;
     public Image selectedFrame;
+    public Text amount;
     [SerializeField] private Color hoverColor;
     [SerializeField] private Color originalColor;
     public void AddItem(ItemBase newitem){
@@ -17,6 +18,7 @@ public class InventorySlot : MonoBehaviour
 
     public void RemoveItem(){
         icon.overrideSprite = null;
+        amount.text = "";
         slotItem = null;
     }
 

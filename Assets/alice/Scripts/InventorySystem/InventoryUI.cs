@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -34,12 +35,35 @@ public class InventoryUI : MonoBehaviour
         return null;
     }
     public void UpdateInventoryAdd(ItemBase item){
-        slots[(int)GetNextEmptySlot()].AddItem(item);
-        Debug.Log("UIAdditem");
+        var remainder = GetRemainder(item);
+
+        if(remainder == 0){
+            remainder = item.maxStackSize;
+        }
+
+        if(remainder ==1){
+            slots[(int)GetNextEmptySlot()].AddItem(item);
+        }
+        else{
+            slots[(int)GetSameSlot(item)].amount.text = remainder.ToString();
+        }
+
+        //Debug.Log("UIAdditem");
     }
 
     public void UpdateInventoryRemove(ItemBase item){
-        slots[(int)GetSameSlot(item)].RemoveItem();
+        var remainder = GetRemainder(item);
+
+        if(remainder == 0){
+            remainder = item.maxStackSize;
+        }
+        if(remainder == item.maxStackSize){
+            slots[(int)GetSameSlot(item)].amount.text = "";
+            slots[(int)GetSameSlot(item)].RemoveItem();
+        }
+        else{
+            slots[(int)GetSameSlot(item)].amount.text = remainder.ToString();
+        }
     }
     public void UpdateInventorySelection(int newSelection,int currentSelection){
         slots[currentSelection].UpdateFrame(false);
@@ -51,12 +75,13 @@ public class InventoryUI : MonoBehaviour
         // }
         
     }
-    void OnDisable()
-    {
-        Debug.Log("PrintOnDisable: script was disabled");
-    }
-
+    
     public void ResetInventoryUI(int currentSelection){
         slots[currentSelection].UpdateFrame(false);
+    }
+
+    private int GetRemainder(ItemBase newItem){
+        var itemCount = InventoryManager.instance.inventory.Count(x => x== newItem); //傳回背包裡 這種newItem的數量
+        return itemCount % newItem.maxStackSize;
     }
 }

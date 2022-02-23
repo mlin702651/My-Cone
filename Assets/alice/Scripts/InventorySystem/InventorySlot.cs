@@ -7,7 +7,9 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public ItemBase slotItem;
-    public GameObject selectedFrame;
+    public Image selectedFrame;
+    [SerializeField] private Color hoverColor;
+    [SerializeField] private Color originalColor;
     public void AddItem(ItemBase newitem){
         icon.overrideSprite = newitem.itemIcon;
         slotItem = newitem;
@@ -19,6 +21,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     public void UpdateFrame(bool isActive){
-        selectedFrame.SetActive(isActive);
+        if(isActive)selectedFrame.color = hoverColor;
+        else selectedFrame.color = originalColor;
     }
 }

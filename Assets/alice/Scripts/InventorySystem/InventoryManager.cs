@@ -110,6 +110,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     void HandleSelection(){
+        if(currentMenuPage!=0) return;
         if(InputSystem.instance.MenuSelectDownPressDown){ //按往下的鈕
             InputSystem.instance.MenuSelectDownPressDown = false;
             Debug.Log("down");

@@ -13,7 +13,7 @@ public class PlayerGroundedState : PlayerBaseState
     public override void EnterState(){
         Ctx.GravityMovementY = -9.8f;
         Ctx.AppliedMovementY = -9.8f;
-        Debug.Log("Start Grounded");
+        //Debug.Log("Start Grounded");
     }
     public override void UpdateState(){
         CheckSwitchStates();

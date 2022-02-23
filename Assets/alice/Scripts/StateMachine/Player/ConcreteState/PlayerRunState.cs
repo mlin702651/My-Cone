@@ -8,7 +8,7 @@ public class PlayerRunState : PlayerBaseState
     :base (currentContext, playerStateFactory){} //把這個傳去base state
     public override void EnterState(){
         //ChangeAnimationState(Ctx.AnimationRun);
-        Debug.Log("Start Run");
+        //Debug.Log("Start Run");
 
     }
     public override void UpdateState(){

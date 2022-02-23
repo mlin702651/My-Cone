@@ -52,8 +52,8 @@ public class Interactable : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        interactHint.DOFade(1,0.5f);
         if(other.tag == "Player"){
+            interactHint.DOFade(1,0.5f);
             canInteract = true;
         }
     }

@@ -11,6 +11,9 @@ public class InventorySlot : MonoBehaviour
     public Text amount;
     [SerializeField] private Color hoverColor;
     [SerializeField] private Color originalColor;
+    [SerializeField] private GameObject equipWindow;
+
+    public bool ifSelectEquip = true;
     public void AddItem(ItemBase newitem){
         icon.overrideSprite = newitem.itemIcon;
         slotItem = newitem;
@@ -25,5 +28,27 @@ public class InventorySlot : MonoBehaviour
     public void UpdateFrame(bool isActive){
         if(isActive)selectedFrame.color = hoverColor;
         else selectedFrame.color = originalColor;
+    }
+    public void OpenEquipWindow(){
+        if(slotItem is HatProp){
+            equipWindow.SetActive(true);
+            InventoryManager.instance.inEquipItem = true;
+
+        }
+    }
+
+    public void SelectConfirmButton(){
+
+    }
+    public void EquipItem(){
+        if(ifSelectEquip){
+            HatProp hatProp = slotItem as HatProp;
+            //hatProp.itemEvent.Invoke();
+            Debug.Log(slotItem.itemName + "Equiped!");
+        } 
+        
+        equipWindow.SetActive(false);
+        InventoryManager.instance.inEquipItem = false;
+
     }
 }

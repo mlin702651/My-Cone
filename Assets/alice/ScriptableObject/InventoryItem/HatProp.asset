@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e5a6a18c045d94cafc9727f681b8f5, type: 3}
+  m_Name: HatProp
+  m_EditorClassIdentifier: 
+  itemName: "\u53EF\u611B\u7684\u5E3D\u5B50"
+  itemDescription: "\u4E00\u9802\u5F88\u53EF\u611B\u7684\u5E3D\u5B50"
+  itemExtraDescription: ...
+  maxStackSize: 1
+  itemIcon: {fileID: 21300000, guid: 698742a17fe73d441b6e1ac2b5372e3b, type: 3}
+  itemPrefab: {fileID: 0}
+  itemEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a9d2df472a9687c41ba8b8c194989f91, type: 2}
+        m_MethodName: TestEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

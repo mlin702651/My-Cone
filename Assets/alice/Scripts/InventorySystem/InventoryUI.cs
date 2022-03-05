@@ -17,6 +17,8 @@ public class InventoryUI : MonoBehaviour
         InventoryManager.instance.onSelectionChangeCallBack += UpdateInventorySelection; 
         InventoryManager.instance.getCurrentItemCallBack += GetSelectedItem; 
         InventoryManager.instance.onSelectionResetCallBack += ResetInventoryUI; 
+        InventoryManager.instance.onEquipMenuCallBack += OpenEquipMenu; 
+        InventoryManager.instance.onEquipItemCallBack += CheckEquipItem; 
         //只要onItemAddCallBack被呼叫 就會執行UpdateInventoryAdd
     }
     private int? GetNextEmptySlot(){
@@ -44,6 +46,12 @@ public class InventoryUI : MonoBehaviour
 
         if(remainder ==1){
             slots[(int)GetNextEmptySlot()].AddItem(item);
+
+            if(item is HatProp){ //如果是帽子幫她註冊一個可以戴帽子的事件
+                HatProp hatProp = item as HatProp;
+                slots[(int)GetSameSlot(item)].GetComponent<UnityItemEventHandler>().unityEvent = hatProp.itemEvent;
+            }
+
         }
         else{
             slots[(int)GetSameSlot(item)].amount.text = remainder.ToString();
@@ -88,5 +96,13 @@ public class InventoryUI : MonoBehaviour
 
     private ItemBase GetSelectedItem(int newSelection){
         return slots[newSelection].slotItem;
+    }
+
+    private void OpenEquipMenu(int currentSelection){
+        slots[currentSelection].OpenEquipWindow();
+    }
+
+    private void CheckEquipItem(int currentSelection){
+        slots[currentSelection].EquipItem();
     }
 }

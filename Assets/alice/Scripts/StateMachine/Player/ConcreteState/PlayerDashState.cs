@@ -7,7 +7,7 @@ public class PlayerDashState : PlayerBaseState
     public PlayerDashState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     :base (currentContext, playerStateFactory){} //把這個傳去base state
     public override void EnterState(){
-        Debug.Log("Start Dash");
+        //Debug.Log("Start Dash");
         //InputSystem.instance.IsDashPressed = false;
         if(!Ctx.IsRunning&&!Ctx.IsWalking){
             FinishedDash();

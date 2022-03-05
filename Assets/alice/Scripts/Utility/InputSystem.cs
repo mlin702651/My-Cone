@@ -61,12 +61,21 @@ public class InputSystem : MonoBehaviour
     #region Menu
 
         public bool MenuPressDown { get; set; }
+        public bool BackpackPressDown { get; set; }
         public bool MenuSelectUpPressDown { get { return _menuSelectUpPressDown; } set { _menuSelectUpPressDown = value; } }
+        public bool MenuSelectDownPressDown { get { return _menuSelectDownPressDown; } set { _menuSelectDownPressDown = value; } }
+        public bool MenuSelectRightPressDown { get { return _menuSelectRightPressDown; } set { _menuSelectRightPressDown = value; } }
+        public bool MenuSelectLeftPressDown { get { return _menuSelectLeftPressDown; } set { _menuSelectLeftPressDown = value; } }
+        public bool MenuSwitchPageMinusPressDown { get { return _menuSwitchPageMinusPressDown; } set { _menuSwitchPageMinusPressDown = value; } }
+        public bool MenuSwitchPagePlusPressDown { get { return _menuSwitchPagePlusPressDown; } set { _menuSwitchPagePlusPressDown = value; } }
+        public bool MenuConfirmPressDown { get { return _menuConfirmPressDown; } set { _menuConfirmPressDown = value; } }
         private bool _menuSelectUpPressDown;
         private bool _menuSelectDownPressDown;
-        public bool MenuSelectDownPressDown { get { return _menuSelectDownPressDown; } set { _menuSelectDownPressDown = value; } }
+        private bool _menuSelectRightPressDown;
+        private bool _menuSelectLeftPressDown;
+        private bool _menuSwitchPagePlusPressDown;
+        private bool _menuSwitchPageMinusPressDown;
         private bool _menuConfirmPressDown;
-        public bool MenuConfirmPressDown { get { return _menuConfirmPressDown; } set { _menuConfirmPressDown = value; } }
 
     #endregion
 
@@ -85,6 +94,9 @@ public class InputSystem : MonoBehaviour
         //選單開啟
         controls.Menu.Menu.performed += ctx => MenuStart();
         controls.Menu.Menu.canceled += ctx => MenuEnd();
+        //背包開啟
+        controls.Menu.Backpack.performed += ctx => BackpackStart();
+        controls.Menu.Backpack.canceled += ctx => BackpackEnd();
         //選單上下
         controls.Menu.MenuSelectUp.started += ctx => SetPressTrue(ref _menuSelectUpPressDown);
         controls.Menu.MenuSelectUp.performed += ctx => SetPressTrue(ref _menuSelectUpPressDown);
@@ -92,6 +104,18 @@ public class InputSystem : MonoBehaviour
         controls.Menu.MenuSelectDown.started += ctx => SetPressTrue(ref _menuSelectDownPressDown);
         controls.Menu.MenuSelectDown.performed += ctx => SetPressTrue(ref _menuSelectDownPressDown);
         controls.Menu.MenuSelectDown.canceled += ctx => SetPressFalse(ref _menuSelectDownPressDown);
+        controls.Menu.MenuSelectRight.started += ctx => SetPressTrue(  ref _menuSelectRightPressDown);
+        controls.Menu.MenuSelectRight.performed += ctx => SetPressTrue(ref _menuSelectRightPressDown);
+        controls.Menu.MenuSelectRight.canceled += ctx => SetPressFalse(ref _menuSelectRightPressDown);
+        controls.Menu.MenuSelectLeft.started += ctx => SetPressTrue(  ref _menuSelectLeftPressDown);
+        controls.Menu.MenuSelectLeft.performed += ctx => SetPressTrue(ref _menuSelectLeftPressDown);
+        controls.Menu.MenuSelectLeft.canceled += ctx => SetPressFalse(ref _menuSelectLeftPressDown);
+        controls.Menu.MenuSwitchPagePlus.started += ctx => SetPressTrue(  ref _menuSwitchPagePlusPressDown);
+        controls.Menu.MenuSwitchPagePlus.performed += ctx => SetPressTrue(ref _menuSwitchPagePlusPressDown);
+        controls.Menu.MenuSwitchPagePlus.canceled += ctx => SetPressFalse(ref _menuSwitchPagePlusPressDown);
+        controls.Menu.MenuSwitchPageMinus.started += ctx => SetPressTrue(  ref _menuSwitchPageMinusPressDown);
+        controls.Menu.MenuSwitchPageMinus.performed += ctx => SetPressTrue(ref _menuSwitchPageMinusPressDown);
+        controls.Menu.MenuSwitchPageMinus.canceled += ctx => SetPressFalse(ref _menuSwitchPageMinusPressDown);
         //選單確認
         controls.Menu.MenuConfirm.started += ctx => SetPressTrue(ref _menuConfirmPressDown);
         controls.Menu.MenuConfirm.performed += ctx => SetPressTrue(ref _menuConfirmPressDown);
@@ -162,6 +186,17 @@ public class InputSystem : MonoBehaviour
     void MenuEnd()
     {
         MenuPressDown = false;
+    }
+    void BackpackStart()
+    {
+        BackpackPressDown = true;
+        
+        //Debug.Log("Backpack open");
+    }
+
+    void BackpackEnd()
+    {
+        BackpackPressDown = false;
     }
 
 

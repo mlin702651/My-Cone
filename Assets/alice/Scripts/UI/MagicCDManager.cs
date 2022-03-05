@@ -9,6 +9,7 @@ public class MagicCDManager : MonoBehaviour
     [SerializeField]private Sprite magicAccumulate;
     [SerializeField]private Sprite magicBubble;
     [SerializeField]private Sprite magicBomb;
+    [SerializeField] private Sprite[] magicBombImages;
     
     [Header("Accumulate Attack")]
     [SerializeField]private Image accumulateAttackCD;
@@ -27,8 +28,9 @@ public class MagicCDManager : MonoBehaviour
     public bool RecoverBombAttack {get{return recoverBombAttack;}}
     [SerializeField]private float bombAttackCDCircleDecreaseTime = 2f;
     [SerializeField]private float bombAttackCDCircleRecoverTime = 3f;
+    private int currentBombLeft = 5;
 
-    [Header("Bomb Attack")]
+    [Header("Cool Down")]
     [SerializeField]private Image bubbleAttackCD;
     float CDCircleFullValue = 1f; // the goal
     float CDCircleClearValue = 0f; // animation start value
@@ -39,7 +41,7 @@ public class MagicCDManager : MonoBehaviour
     float bombAttackCDTimer = 0f;
     float bombAttackCDFulltimer = 0f;
 
-    [SerializeField]private Text currentBombLeft;
+    //[SerializeField]private Text currentBombLeft;
     
     public static MagicCDManager instance;
     private void Awake(){
@@ -109,7 +111,9 @@ public class MagicCDManager : MonoBehaviour
     }
 
     public void SetBombLeftAmount(int currentBombCount){
-        currentBombLeft.text = currentBombCount.ToString();
+        //currentBombLeft.text = currentBombCount.ToString();
+        currentMagicImage.sprite = magicBombImages[currentBombCount];
+        currentBombLeft = currentBombCount;
     }
 
     public void SetCurrentMagic(int magicStatus){
@@ -119,21 +123,22 @@ public class MagicCDManager : MonoBehaviour
             accumulateAttackCD.enabled = true;
             bubbleAttackCD.enabled = false;
             bombAttackCD.enabled = false;
-            currentBombLeft.enabled = false;
+            //currentBombLeft.enabled = false;
                 break;
             case 2:
             currentMagicImage.sprite = magicBubble;
             accumulateAttackCD.enabled = false;
             bubbleAttackCD.enabled = true;
             bombAttackCD.enabled = false;
-            currentBombLeft.enabled = false;
+            //currentBombLeft.enabled = false;
                 break;
             case 3:
-            currentMagicImage.sprite = magicBomb;
+            //if(!recoverBombAttack&&!isBombAttack) currentMagicImage.sprite = magicBombImages[5];
+            currentMagicImage.sprite = magicBombImages[currentBombLeft];
             accumulateAttackCD.enabled = false;
             bubbleAttackCD.enabled = false;
             bombAttackCD.enabled = true;
-            currentBombLeft.enabled = true;
+            //currentBombLeft.enabled = true;
                 break;
                 
             default:

@@ -423,6 +423,30 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Backpack",
+                    "type": "Button",
+                    "id": "806537c8-3fe8-4264-9038-7cf5f5a9f06f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MenuSwitchPagePlus",
+                    "type": "Button",
+                    "id": "fb34d3e4-73e5-452e-aa01-25246129572a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MenuSwitchPageMinus",
+                    "type": "Button",
+                    "id": "71dfc9f0-f18e-43a6-afea-2ffc871bc970",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -489,6 +513,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "MenuConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "424094d8-5c82-4633-a065-0738f9b43750",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Backpack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9b478b7-49b1-4ff2-a24f-b91b5aa378b3",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuSwitchPagePlus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5596815a-9a52-4fdf-a1db-7807541bed96",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuSwitchPageMinus",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

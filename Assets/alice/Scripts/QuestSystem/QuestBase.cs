@@ -9,6 +9,8 @@ public class QuestBase : ScriptableObject
     public string questDescription;
     [TextArea(5,10)]
     public string questDetail;
+    [TextArea(2,10)]
+    public string questExtraDetail;
 
     public int[] CurrentAmount {get; set;}
     public int[] RequiredAmount {get; set;}
@@ -37,7 +39,7 @@ public class QuestBase : ScriptableObject
     public virtual void InitializedQuest() {
         questStatus.IsCompleted = false;
         CurrentAmount = new int[RequiredAmount.Length];
-        MenuManager.instance.AddQuestToList(this);
+        QuestMenuManager.instance.AddQuestToList(this);
         questStatus.IsInitialized = true;
     }
     public void Evaluate(){

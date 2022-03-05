@@ -16,7 +16,7 @@ public class PlayerShootState : PlayerBaseState
     public override void EnterState(){
         Ctx.GravityMovementY = -3f;
         Ctx.AppliedMovementY = -3f;
-        Debug.Log("Start Shoot");
+        //Debug.Log("Start Shoot");
         
         switch(Ctx.CurrentMagic){
             case 1:

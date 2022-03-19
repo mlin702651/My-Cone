@@ -24,8 +24,13 @@ public class InventoryManager : MonoBehaviour
 
     public delegate void OnMenuPageChangeCallBack(int newMenuPage);
     public OnMenuPageChangeCallBack onMenuPageChangeCallBack;
+    public delegate void OnEquipMenuCallBack(int currentSelection);
+    public OnEquipMenuCallBack onEquipMenuCallBack;
+    public delegate void OnEquipItemCallBack(int currentSelection);
+    public OnEquipItemCallBack onEquipItemCallBack;
 
     public bool inBackpack;
+    public bool inEquipItem = false;
     public int currentMenuPage = 0;
 
     //selection
@@ -114,6 +119,26 @@ public class InventoryManager : MonoBehaviour
 
     void HandleSelection(){
         if(currentMenuPage!=0) return;
+        
+        if(inEquipItem) {
+            if(InputSystem.instance.MenuConfirmPressDown){
+                InputSystem.instance.MenuConfirmPressDown = false;
+                CheckEquipItem();
+            }
+            else if(InputSystem.instance.MenuSelectDownPressDown){ //按往下的鈕
+                InputSystem.instance.MenuSelectDownPressDown = false;
+                //要從裝備移到取消 或相反
+            }
+            else if(InputSystem.instance.MenuSelectUpPressDown){
+                InputSystem.instance.MenuSelectUpPressDown = false;
+                //要從裝備移到取消 或相反
+            }
+            return;//如果在選擇使用裝備不能移到下一個
+        }
+        if(InputSystem.instance.MenuConfirmPressDown){
+            InputSystem.instance.MenuConfirmPressDown = false;
+            OpenEquipPage();
+        }
         if(InputSystem.instance.MenuSelectDownPressDown){ //按往下的鈕
             InputSystem.instance.MenuSelectDownPressDown = false;
             Debug.Log("down");
@@ -138,10 +163,12 @@ public class InventoryManager : MonoBehaviour
             newSelection = ((currentSelection-1)>=0)?currentSelection-1:currentSelection; //如果有上一排 選上面那個
             UpdateSelection();
         }
+
         
     }
 
     void UpdateSelection(){
+        if(inventory.Count <=0) return;
         onSelectionChangeCallBack.Invoke(newSelection,currentSelection);
         currentSelectedItem = getCurrentItemCallBack.Invoke(newSelection);
         //currentSelectedItem = inventory[newSelection];
@@ -166,9 +193,20 @@ public class InventoryManager : MonoBehaviour
             Debug.Log(currentMenuPage);
         }
     }
+    void OpenEquipPage(){
+        //inEquipItem = true;
+        onEquipMenuCallBack.Invoke(currentSelection);
+    }
+    void CheckEquipItem(){
+        onEquipItemCallBack.Invoke(currentSelection);
+    }
+
+    void ClosedEquipPage(){
+        //inEquipItem = false;
+    }
 
     void CheckOpenMenu(int newMenuPage){
-
+        //???
     }
 
 

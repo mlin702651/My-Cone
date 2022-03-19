@@ -13,6 +13,7 @@ public class MagicCDManager : MonoBehaviour
     
     [Header("Accumulate Attack")]
     [SerializeField]private Image accumulateAttackCD;
+    [SerializeField]private Image accumulateAttackCDGray;
     [SerializeField]private bool isAccumulateAttack;
     [SerializeField]private bool recoverAccumulateAttack = false;
     public bool IsAccumulateAttack {get{return isAccumulateAttack;}}
@@ -22,6 +23,7 @@ public class MagicCDManager : MonoBehaviour
     [Header("Bomb Attack")]
 
     [SerializeField]private Image bombAttackCD;
+    [SerializeField]private Image bombAttackCDGray;
     [SerializeField]private bool isBombAttack;
     [SerializeField]private bool recoverBombAttack = false;
     public bool IsBombAttack {get{return isBombAttack;}}
@@ -61,7 +63,7 @@ public class MagicCDManager : MonoBehaviour
     void Update()
     {
         if(isAccumulateAttack){
-            ClearCDCircle(accumulateAttackCD,ref accumulateAttackCDTimer,accumulateAttackCDCircleDecreaseTime,ref accumulateAttackCDCircleDisplayValue);
+            ClearCDCircle(accumulateAttackCD,accumulateAttackCDGray,ref accumulateAttackCDTimer,accumulateAttackCDCircleDecreaseTime,ref accumulateAttackCDCircleDisplayValue);
             if(accumulateAttackCDCircleDisplayValue<=0) {
                 isAccumulateAttack = false;
                 accumulateAttackCDTimer = 0;
@@ -69,14 +71,14 @@ public class MagicCDManager : MonoBehaviour
             }
         }
         if(recoverAccumulateAttack){
-            FullCDCircle(accumulateAttackCD,ref accumulateAttackCDTimer,accumulateAttackCDCircleRecoverTime,ref accumulateAttackCDCircleDisplayValue);
+            FullCDCircle(accumulateAttackCD,accumulateAttackCDGray,ref accumulateAttackCDTimer,accumulateAttackCDCircleRecoverTime,ref accumulateAttackCDCircleDisplayValue);
             if(accumulateAttackCDCircleDisplayValue>=1){
                 recoverAccumulateAttack = false;
                 accumulateAttackCDTimer = 0;
             }
         }
         if(isBombAttack){
-            ClearCDCircle(bombAttackCD,ref bombAttackCDTimer,bombAttackCDCircleDecreaseTime,ref bombAttackCDCircleDisplayValue);
+            ClearCDCircle(bombAttackCD,bombAttackCDGray,ref bombAttackCDTimer,bombAttackCDCircleDecreaseTime,ref bombAttackCDCircleDisplayValue);
             if(bombAttackCDCircleDisplayValue<=0) {
                 isBombAttack = false;
                 bombAttackCDTimer = 0;
@@ -84,7 +86,7 @@ public class MagicCDManager : MonoBehaviour
             }
         }
         if(recoverBombAttack){
-            FullCDCircle(bombAttackCD,ref bombAttackCDTimer,bombAttackCDCircleRecoverTime,ref bombAttackCDCircleDisplayValue);
+            FullCDCircle(bombAttackCD,bombAttackCDGray,ref bombAttackCDTimer,bombAttackCDCircleRecoverTime,ref bombAttackCDCircleDisplayValue);
             if(bombAttackCDCircleDisplayValue>=1){
                 recoverBombAttack = false;
                 bombAttackCDTimer = 0;
@@ -102,6 +104,18 @@ public class MagicCDManager : MonoBehaviour
         timer += (Time.deltaTime/duration);
         displayValue = Mathf.Lerp( CDCircleClearValue, CDCircleFullValue, timer);
         circle.fillAmount = displayValue;
+    }
+    void ClearCDCircle(Image circle,Image circle2,ref float timer,float duration,ref float displayValue ){
+        timer += (Time.deltaTime/duration);
+        displayValue = Mathf.Lerp( CDCircleFullValue, CDCircleClearValue, timer);
+        circle.fillAmount = displayValue;
+        circle2.fillAmount = 1;
+    }
+    void FullCDCircle(Image circle,Image circle2,ref float timer,float duration,ref float displayValue){
+        timer += (Time.deltaTime/duration);
+        displayValue = Mathf.Lerp( CDCircleClearValue, CDCircleFullValue, timer);
+        circle.fillAmount = displayValue;
+        circle2.fillAmount = 1-displayValue;
     }
     public void StartAccumulateCD(){
         isAccumulateAttack = true;
@@ -121,23 +135,29 @@ public class MagicCDManager : MonoBehaviour
             case 1:
             currentMagicImage.sprite = magicAccumulate;
             accumulateAttackCD.enabled = true;
+            accumulateAttackCDGray.enabled = true;
             bubbleAttackCD.enabled = false;
             bombAttackCD.enabled = false;
+            bombAttackCDGray.enabled = false;
             //currentBombLeft.enabled = false;
                 break;
             case 2:
             currentMagicImage.sprite = magicBubble;
             accumulateAttackCD.enabled = false;
+            accumulateAttackCDGray.enabled = false;
             bubbleAttackCD.enabled = true;
             bombAttackCD.enabled = false;
+            bombAttackCDGray.enabled = false;
             //currentBombLeft.enabled = false;
                 break;
             case 3:
             //if(!recoverBombAttack&&!isBombAttack) currentMagicImage.sprite = magicBombImages[5];
             currentMagicImage.sprite = magicBombImages[currentBombLeft];
             accumulateAttackCD.enabled = false;
+            accumulateAttackCDGray.enabled = false;
             bubbleAttackCD.enabled = false;
             bombAttackCD.enabled = true;
+            bombAttackCDGray.enabled = true;
             //currentBombLeft.enabled = true;
                 break;
                 

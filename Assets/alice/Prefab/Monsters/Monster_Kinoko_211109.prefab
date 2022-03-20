@@ -121,6 +121,9 @@ MonoBehaviour:
   kinokoHealthText: {fileID: 4007045019139073340}
   rotateDamp: 10
   audio: {fileID: 5289235499126413257}
+  stepSound: {fileID: 11400000, guid: f591deadecd70bf46bf3dcbbae356d2f, type: 2}
+  runSound: {fileID: 11400000, guid: b22760d912a78ef4cb911393b8263963, type: 2}
+  hitSound: {fileID: 11400000, guid: 72b07cdb157ae7d49a95edc3ab0df336, type: 2}
   run: {fileID: 8300000, guid: 78b6cca1805affa4fae4a5af9f97354a, type: 3}
   hit: {fileID: 8300000, guid: b8c2cb4eac4627a438dcb7e3f06a5b7a, type: 3}
   step: {fileID: 8300000, guid: efa5cba880c26194ba39175d522afc3f, type: 3}
@@ -859,7 +862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2866161097828684264
 RectTransform:
   m_ObjectHideFlags: 0

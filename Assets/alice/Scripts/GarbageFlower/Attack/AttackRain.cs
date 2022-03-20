@@ -40,7 +40,7 @@ class AttackRain : CAttack
     }
     public override void OnCollisionEnter(Collision other) {
             Debug.Log("collide");
-            testPooler.SpawnFromPool("RainExplode",transform.position,transform.eulerAngles);
+            //testPooler.SpawnFromPool("RainExplode",transform.position,transform.eulerAngles);
             gameObject.SetActive(false);
 
         

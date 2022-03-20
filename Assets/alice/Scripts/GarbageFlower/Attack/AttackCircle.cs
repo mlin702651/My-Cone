@@ -17,12 +17,12 @@ class AttackCircle : CAttack
         _fBorntimer = 0f;
         _fBornTime = BornTime;
         _fForwardSpeed = ForwardSpeed;
+        transform.DOScale(FinalScale,BornTime).SetEase(Ease);
         
     }
     void Update(){
         _fBorntimer += Time.deltaTime;
         //transform.localScale += Scale;
-        transform.DOScale(FinalScale,BornTime).SetEase(Ease);
         //改成sin 0-pi/2 3s
         SetAttackInvisible(ref _fBorntimer,_fBornTime);
     }

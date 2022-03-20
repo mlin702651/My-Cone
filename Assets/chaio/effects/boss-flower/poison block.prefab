@@ -5256,6 +5256,7 @@ GameObject:
   - component: {fileID: 8927450290180574254}
   - component: {fileID: 8927450290180574253}
   - component: {fileID: 8927450290180574255}
+  - component: {fileID: 2462922709269626776}
   m_Layer: 0
   m_Name: poison block
   m_TagString: Untagged
@@ -5324,6 +5325,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp1: {fileID: 7732857756700284577, guid: be962ba59be3084449bc6055c38ecfc0, type: 3}
+--- !u!114 &2462922709269626776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927450290180574251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d0433c722a0a04c8e94b1447b0d1de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BornTime: 10
+  ForwardSpeed: 10
+  StartHeight: 5
+  AttackRange: 10
+  ClearRange: 4
+  _targetLocation: {x: 0, y: -1, z: 0}
+  _fMoveDuration: 1.5
+  _moveEase: 27
 --- !u!1 &8927450290466448255
 GameObject:
   m_ObjectHideFlags: 0

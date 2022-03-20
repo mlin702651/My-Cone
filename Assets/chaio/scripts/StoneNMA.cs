@@ -276,7 +276,7 @@ public class StoneNMA : MonoBehaviour
         animator_small.SetBool("leaveMain", false);
         animator_small.SetBool("leaveMain", false);
         animator_small.SetBool("dead", true);
-        transform.DOScale(0.1f, 1);
+        transform.DOScale(0.01f, 1);
         isThrow = false;
         isOnTheGround = false;
     }

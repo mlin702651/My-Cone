@@ -53,7 +53,7 @@ public class BigStone : MonoBehaviour
         }
         if(timer>1.9f){
             //gameObject.SetActive(false);
-            transform.DOScale(0.1f,0.5f);
+            transform.DOScale(0.01f,0.5f);
             isDead=true;
         }
 
@@ -61,7 +61,7 @@ public class BigStone : MonoBehaviour
             if(damage>=35){
                 teleport=true;
                 damage=0;
-                transform.DOScale(0.1f,0.3f);
+                transform.DOScale(0.01f,0.3f);
                 //Instantiate(teleportParticle,transform);
                 //teleportParticle.transform.parent=teleportParticleParent.transform;
                 FunctionTimer.Create(()=>Enlarge(),0.5f);//好讚的東西

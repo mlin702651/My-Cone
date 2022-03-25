@@ -13,6 +13,7 @@ class AttackCube : CAttack {
 
     void Update(){
         _fBorntimer += Time.deltaTime;
+        _fForwardSpeed += Time.deltaTime*3;
         transform.Translate(transform.forward * _fForwardSpeed * Time.deltaTime);
         SetAttackInvisible(ref _fBorntimer,_fBornTime);
     }

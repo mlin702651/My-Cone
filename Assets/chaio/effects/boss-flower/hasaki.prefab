@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8526015901377588999}
+  - component: {fileID: -8399888131402819536}
   m_Layer: 0
   m_Name: hasaki
   m_TagString: Untagged
@@ -32,6 +33,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8399888131402819536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105338629965205113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527d34500641d75418d64658af767b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BornTime: 5
+  ForwardSpeed: 10
+  BornScale: {x: 1.5, y: 1, z: 1.5}
+  Scale: {x: 0.01, y: 0, z: 0.01}
+  FinalScale: {x: 8, y: 1, z: 8}
+  Ease: 4
 --- !u!1001 &3816553115884018883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,6 +132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hasaki-v2 out
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 01d09bfc337decc4ebd20c2b5916358a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01d09bfc337decc4ebd20c2b5916358a, type: 3}
@@ -208,6 +232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hasaki-v2 in
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 01d09bfc337decc4ebd20c2b5916358a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01d09bfc337decc4ebd20c2b5916358a, type: 3}

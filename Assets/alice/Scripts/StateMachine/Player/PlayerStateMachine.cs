@@ -126,6 +126,15 @@ public class PlayerStateMachine : MonoBehaviour
         public int AnimationDash{get{return animationDash;}}
         public int AnimationDashInAir{get{return animationDashInAir;}}
     #endregion
+    #region Slide
+        [SerializeField]private float _slideSpeed = 4.0f;
+        private bool _isSliding = false;
+        public bool IsSliding {get{return _isSliding;} set{_isSliding = value;}}
+        public float SlideSpeed{get{return _slideSpeed;}}
+        public int AnimationSlide{get{return animationSlide;}}
+        public int AnimationSlideStart{get{return animationSlideStart;}}
+
+    #endregion
     #region Animation
         Animator _animator;
         private int currentAnimationState;
@@ -153,6 +162,7 @@ public class PlayerStateMachine : MonoBehaviour
         private int animationEndMagicBombWalk;
         private int animationEndMagicBombRun;
         private int animationSlide;
+        private int animationSlideStart;
         private int animationStayInAir;
     #endregion
     
@@ -247,6 +257,7 @@ public class PlayerStateMachine : MonoBehaviour
         animationDashInAirLevel2 = Animator.StringToHash("Player_DashInAirLevel2");
         animationTalk = Animator.StringToHash("Player_Talk");
         animationSlide = Animator.StringToHash("Player_Slide");
+        animationSlideStart = Animator.StringToHash("Player_SlideStart");
         animationStartMagicConch = Animator.StringToHash("Player_StartMagicConch");
         animationHoldMagicConch = Animator.StringToHash("Player_HoldMagicConch");
         animationEndMagicConch = Animator.StringToHash("Player_EndMagicConch");
@@ -319,6 +330,15 @@ public class PlayerStateMachine : MonoBehaviour
         if(InputSystem.instance.IsDashPressed){
             InputSystem.instance.IsDashPressed = false;
             _isDashing = true;
+        }
+        if(InputSystem.instance.IsSlidePressed){
+            _isSliding = true;
+            //print("slide is true");
+        }
+        else if(!InputSystem.instance.IsSlidePressed){
+            _isSliding = false;
+            //print("slide is false");
+
         }
         if(_currentMovement.magnitude>0.7){
             _isRunning = true;

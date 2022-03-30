@@ -9,7 +9,7 @@ public class PlayerIdleState :PlayerBaseState
     public override void EnterState(){
         
         
-        //Debug.Log("Start Idle");
+        Debug.Log("Start Idle");
         
     }
     public override void UpdateState(){
@@ -25,6 +25,9 @@ public class PlayerIdleState :PlayerBaseState
     public override void CheckSwitchStates(){
         if(Ctx.CurrentAnimationState == Ctx.AnimationStartMagicConch || Ctx.CurrentAnimationState == Ctx.AnimationStartMagicBubble ){
             return;
+        }
+        if(Ctx.IsSliding&&!Ctx.CharacterController.isGrounded){
+            SwitchState(Factory.Slide());
         }
         
         if(Ctx.IsDashing){

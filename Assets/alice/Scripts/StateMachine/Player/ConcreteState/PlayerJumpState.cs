@@ -11,7 +11,7 @@ public class PlayerJumpState : PlayerBaseState
     } //把這個傳去base state
     public override void EnterState(){
         HandleJump();
-        //Debug.Log("Start Jump");
+        Debug.Log("Start Jump");
 
     }
     public override void UpdateState(){
@@ -27,14 +27,19 @@ public class PlayerJumpState : PlayerBaseState
     public override void CheckSwitchStates(){
         
         if(Ctx.CharacterController.isGrounded){
+
             SwitchState(Factory.Grounded());
         }
-        if(InputSystem.instance.IsShootPressed){
+        if(InputSystem.instance.IsShootPressed&&Ctx.IsSliding == false){
             SwitchState(Factory.Shoot());
+
         }
     }
     public override void InitializedSubState(){
-        if(Ctx.IsDashing){
+        if(Ctx.IsSliding){
+            SetSubState(Factory.Slide());
+        }
+        else if(Ctx.IsDashing){
             SetSubState(Factory.Dash());
         }
         else if(Ctx.IsRunning){
@@ -53,7 +58,7 @@ public class PlayerJumpState : PlayerBaseState
         
         
         
-        ChangeAnimationState(Ctx.AnimationJumpStart);
+        if(!Ctx.IsSliding)ChangeAnimationState(Ctx.AnimationJumpStart);
         InputSystem.instance.IsJumpPressed = false;
             Ctx.IsJumping = true;
             Ctx.CanSecondJump = true;
@@ -65,7 +70,8 @@ public class PlayerJumpState : PlayerBaseState
         Ctx.IsFalling = Ctx.GravityMovementY <= -3.7 && !Ctx.CharacterController.isGrounded; //|| !InputSystem.instance.isJumpPressed)
         
         
-        if(Ctx.IsFalling){
+        if(Ctx.IsSliding) return;
+        if(Ctx.IsFalling&&!Ctx.IsSliding){
             if(!Ctx.IsDashing)ChangeAnimationState(Ctx.AnimationJumpEnd);
             float previousYVelocity = Ctx.GravityMovementY;
             Ctx.GravityMovementY = Ctx.GravityMovementY + (Ctx.Gravity* Ctx.FallMultiplier * Time.deltaTime);

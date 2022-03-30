@@ -105,6 +105,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Slide"",
+                    ""type"": ""Button"",
+                    ""id"": ""11123e53-9705-4c31-96a6-cbf222d89239"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -123,17 +131,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""aaf3c89b-23ab-4d2f-af39-889b8a364af8"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""879ec89b-8c1a-40ff-bc0c-9a4cece2055d"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -382,6 +379,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""AimCameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2acabf78-e341-4fca-b82e-a0266b4afcc5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a85ee33b-cae6-4ca6-8b9f-d8d65ad32761"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -580,6 +599,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_player_Dash = m_player.FindAction("Dash", throwIfNotFound: true);
         m_player_Talk = m_player.FindAction("Talk", throwIfNotFound: true);
         m_player_AimCameraMove = m_player.FindAction("AimCameraMove", throwIfNotFound: true);
+        m_player_Slide = m_player.FindAction("Slide", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_MenuSelectRight = m_Menu.FindAction("MenuSelectRight", throwIfNotFound: true);
@@ -651,6 +671,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_player_Dash;
     private readonly InputAction m_player_Talk;
     private readonly InputAction m_player_AimCameraMove;
+    private readonly InputAction m_player_Slide;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -666,6 +687,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_player_Dash;
         public InputAction @Talk => m_Wrapper.m_player_Talk;
         public InputAction @AimCameraMove => m_Wrapper.m_player_AimCameraMove;
+        public InputAction @Slide => m_Wrapper.m_player_Slide;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -708,6 +730,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @AimCameraMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimCameraMove;
                 @AimCameraMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimCameraMove;
                 @AimCameraMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimCameraMove;
+                @Slide.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlide;
+                @Slide.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlide;
+                @Slide.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlide;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -745,6 +770,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @AimCameraMove.started += instance.OnAimCameraMove;
                 @AimCameraMove.performed += instance.OnAimCameraMove;
                 @AimCameraMove.canceled += instance.OnAimCameraMove;
+                @Slide.started += instance.OnSlide;
+                @Slide.performed += instance.OnSlide;
+                @Slide.canceled += instance.OnSlide;
             }
         }
     }
@@ -859,6 +887,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnTalk(InputAction.CallbackContext context);
         void OnAimCameraMove(InputAction.CallbackContext context);
+        void OnSlide(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

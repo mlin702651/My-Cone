@@ -8,7 +8,7 @@ public class PlayerWalkState : PlayerBaseState
     :base (currentContext, playerStateFactory){} //把這個傳去base state
     public override void EnterState(){
         //ChangeAnimationState(Ctx.AnimationWalk);
-        //Debug.Log("Start Walk");
+        Debug.Log("Start Walk");
     }
     public override void UpdateState(){
         CheckSwitchStates();
@@ -45,6 +45,9 @@ public class PlayerWalkState : PlayerBaseState
     public override void ExitState(){}
     public override void CheckSwitchStates(){
         
+        if(Ctx.IsSliding&&!Ctx.CharacterController.isGrounded){
+            SwitchState(Factory.Slide());
+        }
         if(Ctx.IsDashing){
             SwitchState(Factory.Dash());
         }

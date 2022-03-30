@@ -53,6 +53,9 @@ public class PlayerRunState : PlayerBaseState
     public override void ExitState(){}
     public override void CheckSwitchStates(){
         
+        if(Ctx.IsSliding&&!Ctx.CharacterController.isGrounded){
+            SwitchState(Factory.Slide());
+        }
         if(Ctx.IsDashing){
             SwitchState(Factory.Dash());
         }

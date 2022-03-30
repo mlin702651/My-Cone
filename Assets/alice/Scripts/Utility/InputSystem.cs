@@ -58,6 +58,10 @@ public class InputSystem : MonoBehaviour
         bool _isDashPressed;
         public bool IsDashPressed { get { return _isDashPressed; } set { _isDashPressed = value; } }
     #endregion
+    #region Slide
+        bool _isSlidePressed;
+        public bool IsSlidePressed { get { return _isSlidePressed; }}
+    #endregion
     #region Menu
 
         public bool MenuPressDown { get; set; }
@@ -152,8 +156,12 @@ public class InputSystem : MonoBehaviour
         //射擊
         controls.player.Shoot.started += ctx => ShootStart();
         controls.player.Shoot.canceled += ctx => ShootCanceled();
-        //切換魔法
 
+        //滑翔
+        controls.player.Slide.started += ctx => SlideStart();
+        controls.player.Slide.canceled += ctx => SlideCanceled();
+
+        //切換魔法
         controls.player.SwitchWeaponPlus.started += ctx => PlusMagicStart();
         controls.player.SwitchWeaponPlus.canceled += ctx => PlusMagicCanceled();
         controls.player.SwitchWeaponLess.started += ctx => MinusMagicStart();
@@ -285,6 +293,16 @@ public class InputSystem : MonoBehaviour
     }
     void DashComplete()
     {
+    }
+
+    void SlideStart(){
+        _isSlidePressed = true;
+        //print("slide press");
+    }
+
+    void SlideCanceled(){
+        _isSlidePressed = false;
+        //print("slide canceled");
     }
 
     void ShootStart()

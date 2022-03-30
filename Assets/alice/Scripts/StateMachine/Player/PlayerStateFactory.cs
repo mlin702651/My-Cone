@@ -30,6 +30,9 @@ public class PlayerStateFactory
     public PlayerBaseState Dash(){
         return new PlayerDashState(_context, this);
     }
+    public PlayerBaseState Slide(){
+        return new PlayerSlideState(_context, this);
+    }
 }
 
 /*

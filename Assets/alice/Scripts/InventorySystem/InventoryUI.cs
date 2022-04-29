@@ -45,8 +45,8 @@ public class InventoryUI : MonoBehaviour
         }
 
         if(remainder ==1){
+            print("add slot");
             slots[(int)GetNextEmptySlot()].AddItem(item);
-
             if(item is HatProp){ //如果是帽子幫她註冊一個可以戴帽子的事件
                 HatProp hatProp = item as HatProp;
                 slots[(int)GetSameSlot(item)].GetComponent<UnityItemEventHandler>().unityEvent = hatProp.itemEvent;

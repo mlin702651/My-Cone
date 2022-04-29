@@ -8,10 +8,12 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public List<ItemBase> inventory = new List<ItemBase>();
+    public List<ItemBase> collection = new List<ItemBase>();
 
     //Delegate: only trigger when sth happen.
     public delegate void OnItemAddCallBack(ItemBase item);
     public OnItemAddCallBack onItemAddCallBack;
+    public OnItemAddCallBack onCollectionAddCallBack;
     public delegate void OnItemRemoveCallBack(ItemBase item);
     public OnItemRemoveCallBack onItemRemoveCallBack;
     public delegate void OnSelectionChangeCallBack(int newSelection, int currentSelection);
@@ -58,12 +60,20 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(ItemBase item){
         Debug.Log("add");
-        inventory.Add(item);
-        if(onItemAddCallBack != null) {
-            onItemAddCallBack.Invoke(item);
-            
+        if(item is CollectProp){
+            if(!collection.Contains(item)){
+                collection.Add(item);
+                onCollectionAddCallBack?.Invoke(item);
+            }
         }
-        //ResetBackpack();
+        else{
+            inventory.Add(item);
+            if(onItemAddCallBack != null) {
+                onItemAddCallBack.Invoke(item);
+                
+            }
+            //ResetBackpack();
+        }
     }
 
     public void RemoveItem(ItemBase item){

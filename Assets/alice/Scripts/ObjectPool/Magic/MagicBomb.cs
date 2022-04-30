@@ -18,7 +18,8 @@ public class MagicBomb : CMagic
         SetAttackInvisible(ref _fBorntimer,_fBornTime);
 
         if(_fBorntimer>=3.2f && !_isSmoke){
-            ObjectPooler.Instance.SpawnFromPool("MagicBombSmoke",transform.position,transform.eulerAngles);
+            //ObjectPooler.Instance.SpawnFromPool("MagicBombSmoke",transform.position,transform.eulerAngles);
+            ObjectPooler.Instance.SpawnFromPool("MagicBombSmoke",transform.position+new Vector3(0,0.2f,0),new Vector3(90.0f,0,0));
             _isSmoke = true;
         }
     }

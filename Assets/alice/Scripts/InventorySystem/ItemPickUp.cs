@@ -9,6 +9,7 @@ public class ItemPickUp : Interactable
     public override void Interact()
     {
         InventoryManager.instance.AddItem(item);
+        if(item is CollectProp) return;
         Destroy(gameObject);
     }
 }

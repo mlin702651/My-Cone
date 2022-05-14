@@ -30,7 +30,8 @@ public class Teleport : MonoBehaviour
             currentStageRespawnPoint.SetValue(changeRespawnPoint.respawnPosition,changeRespawnPoint.respawnRotation);
             //currentStageRespawnPoint.respawnPosition = changeRespawnPoint.respawnPosition;
             //currentStageRespawnPoint.respawnRotation = changeRespawnPoint.respawnRotation;
-            MySceneManager.instance.EndThisScene(targetScene.name);
+            //MySceneManager.instance.EndThisScene(targetScene.name);
+            WoomiSceneManager.instance.LoadScene(targetScene.name);
         }
     }
 

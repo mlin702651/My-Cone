@@ -28,7 +28,8 @@ public class StartMenuManager : MonoBehaviour
         if(currentSelection==0 && InputSystem.instance.MenuConfirmPressDown){
             InputSystem.instance.MenuConfirmPressDown = false;
             Debug.Log("ChangeScene");
-            MySceneManager.instance.EndThisScene("MushroomPlaza");
+            //MySceneManager.instance.EndThisScene("MushroomPlaza");
+            WoomiSceneManager.instance.LoadScene("island");
         }
     }
 

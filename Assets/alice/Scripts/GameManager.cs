@@ -10,15 +10,38 @@ public class GameManager : MonoBehaviour
         if(instance== null){
             instance = this;
         }
+        else{
+            Destroy(gameObject);
 
-        allDialogueTriggers = FindObjectsOfType<DialogueTrigger>();
+        }
+
+        DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
+        foreach (var trigger in triggers)
+        {
+            allDialogueTriggers.Add(trigger);
+        }
+        //allDialogueTriggers = FindObjectsOfType<DialogueTrigger>();
         
     }
 
-    public DialogueTrigger[] allDialogueTriggers;
+    public void UpdateTrigger(){
+        DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
+        foreach (var trigger in triggers)
+        {
+            if(!allDialogueTriggers.Contains(trigger)){
+                allDialogueTriggers.Add(trigger);
+            }
+        }
+    }
+
+    //public DialogueTrigger[] allDialogueTriggers;
+    public List<DialogueTrigger> allDialogueTriggers = new List<DialogueTrigger>();
 
     public delegate void OnEnemyDeathCallBack(MonsterProfile monsterProfile);
     public OnEnemyDeathCallBack onEnemyDeathCallBack;
+
+    public delegate void OnPlayerArrivedCallBack(string sceneName);
+    public OnPlayerArrivedCallBack onPlayerArrivedCallBack;
 
     public void PlayAudio(){
         if(!clearSound.isPlaying){

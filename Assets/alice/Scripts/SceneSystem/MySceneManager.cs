@@ -9,7 +9,8 @@ public class MySceneManager : MonoBehaviour
     public static MySceneManager instance;
     private void Awake(){
         if(instance!= null){
-             Debug.LogWarning("fix this: " + gameObject.name);
+             //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
         }
         else instance = this;
         // 切換場景不會被刪除

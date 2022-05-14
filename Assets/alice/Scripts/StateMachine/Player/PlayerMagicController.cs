@@ -15,7 +15,8 @@ public class PlayerMagicController : MonoBehaviour
     
     private void Awake(){
         if(instance != null){
-            Debug.LogWarning("fix this: " + gameObject.name);
+            //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
         }
         else instance = this;
     }
@@ -27,18 +28,18 @@ public class PlayerMagicController : MonoBehaviour
     }
     
     public void MagicConchStart(){
-        AudioManager.instance.PlaySound("magicConchAccumulate");
+        //AudioManager.instance.PlaySound("magicConchAccumulate");
         _magicPooler.SpawnFromPool("MagicConchStart",_firePoint.transform.position,_firePoint.transform.eulerAngles);
         _magicPooler.MakeChild("MagicConchStart", ref _firePoint);
     }
 
     public void CanceledMagicConch(){
-        AudioManager.instance.StopSound("magicConchAccumulate");
+        //AudioManager.instance.StopSound("magicConchAccumulate");
         _magicPooler.DisableObject("MagicConchStart");
     }
 
     public void MagicConchFinished(){
-        AudioManager.instance.PlaySound("magicConchShoot");
+        //AudioManager.instance.PlaySound("magicConchShoot");
         _magicPooler.SpawnFromPool("MagicConchFlash",_firePoint.transform.position,_firePoint.transform.eulerAngles);
         _magicPooler.SpawnFromPool("MagicConchBullet",_firePoint.transform.position,_firePoint.transform.eulerAngles);
 
@@ -49,7 +50,7 @@ public class PlayerMagicController : MonoBehaviour
     }
 
     public void MagicBubbleStart(){
-        AudioManager.instance.PlaySound("magicBubbleShoot");
+        //AudioManager.instance.PlaySound("magicBubbleShoot");
         _magicPooler.SpawnFromPool("MagicBubbleBullet",_firePoint.transform.position,_firePoint.transform.eulerAngles);
         _magicPooler.SpawnFromPool("MagicBubbleFlash",_firePoint.transform.position,_firePoint.transform.eulerAngles);
         _magicPooler.MakeChild("MagicBubbleFlash", ref _firePoint);

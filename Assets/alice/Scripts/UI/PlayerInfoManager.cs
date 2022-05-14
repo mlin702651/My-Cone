@@ -34,7 +34,8 @@ public class PlayerInfoManager : MonoBehaviour
     public static PlayerInfoManager instance;
     private void Awake(){
         if(instance != null){
-            Debug.LogWarning("fix this: " + gameObject.name);
+            //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
         }
         else instance = this;
     }

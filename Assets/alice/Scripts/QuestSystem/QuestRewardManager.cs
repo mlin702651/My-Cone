@@ -8,7 +8,8 @@ public class QuestRewardManager : MonoBehaviour
     public static QuestRewardManager instance;
     private void Awake(){
         if(instance != null){
-            Debug.LogWarning("fix this: " + gameObject.name);
+            //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
         }
         else instance = this;
     }

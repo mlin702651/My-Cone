@@ -42,7 +42,7 @@ public class QuestBase : ScriptableObject
         QuestMenuManager.instance.AddQuestToList(this);
         questStatus.IsInitialized = true;
     }
-    public void Evaluate(){
+    public virtual void Evaluate(){
         for(int i = 0; i < RequiredAmount.Length; i++){
             if(CurrentAmount[i] < RequiredAmount[i]){
                 return;//只要有人沒達成就結束(退回?)

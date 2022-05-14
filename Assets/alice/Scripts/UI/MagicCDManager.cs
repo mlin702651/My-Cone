@@ -48,7 +48,8 @@ public class MagicCDManager : MonoBehaviour
     public static MagicCDManager instance;
     private void Awake(){
         if(instance != null){
-            Debug.LogWarning("fix this: " + gameObject.name);
+            //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
         }
         else instance = this;
     }

@@ -7,7 +7,7 @@ public class JumpingKinoko : MonoBehaviour
     float mass = 3.0f; // defines the character mass
     [SerializeField]float jumpingForce = 100.0f; // defines the character mass
     Vector3 impact = Vector3.zero;
-    [SerializeField]private CharacterController character;
+    private CharacterController character;
  
   
  
@@ -19,12 +19,16 @@ public class JumpingKinoko : MonoBehaviour
  }
  private void Update() {
      // apply the impact force:
+   if(character== null) return;
    if (impact.magnitude > 0.2) character.Move(impact * Time.deltaTime);
    // consumes the impact energy each cycle:
    impact = Vector3.Lerp(impact, Vector3.zero, 5*Time.deltaTime);
  }
  
  private void OnTriggerEnter(Collider other) {
+   if(other.tag == "Player"){
+     character = other.gameObject.GetComponent<CharacterController>();
+   }
      AddImpact(new Vector3(0,1,0), jumpingForce);
      Debug.Log("enter jump");
  }

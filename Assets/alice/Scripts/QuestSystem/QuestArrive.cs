@@ -25,6 +25,11 @@ public class QuestArrive : QuestBase
         base.InitializedQuest();
     }
 
+    public override void Evaluate(){
+        base.Evaluate();
+        GameManager.instance.onPlayerArrivedCallBack -= ArriveGoal;
+    }
+
 
     private void ArriveGoal(string newSceneName){
         for(int i = 0; i < objectives.Length; i++){
@@ -33,8 +38,10 @@ public class QuestArrive : QuestBase
                 //更新給UI
                 QuestManager.instance.UpdateQuestTracker(this.GetObjectiveList());
                 Debug.Log("Player arrived" + objectives[i].sceneShowName);
+                questStatus.IsCompleted = true;
             }
         }
+        
         Evaluate();
     }
 

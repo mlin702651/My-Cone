@@ -29,6 +29,7 @@ public class ObjectPooler : MonoBehaviour {
 
             for(int i = 0; i<pool.size; i++){ //把每個物件加到queue裡
                 GameObject obj = Instantiate(pool.prefab);
+                DontDestroyOnLoad(obj);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

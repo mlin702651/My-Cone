@@ -89,7 +89,8 @@ public class InputSystem : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("fix this: " + gameObject.name);
+            //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
         }
         else instance = this;
 
@@ -180,6 +181,9 @@ public class InputSystem : MonoBehaviour
     }
     void OnDisable()
     {
+        if(controls==null){
+            return;
+        }
         controls.player.Disable();
         controls.Menu.Disable();
     }

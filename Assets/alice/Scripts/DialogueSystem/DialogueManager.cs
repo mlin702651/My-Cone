@@ -131,7 +131,8 @@ public class DialogueManager : MonoBehaviour {
     public static DialogueManager instance;
     private void Awake(){
         if(instance != null){
-            Debug.LogWarning("fix this: " + gameObject.name);
+            //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
         }
         else instance = this;
     }
@@ -269,6 +270,7 @@ public class DialogueManager : MonoBehaviour {
     private void SetRewards(){
         if(CompletedQuestReady){
             //任務完成
+            Debug.Log("mission complete");
             CompletedQuest.questStatus.IsCompleted = true;
             QuestRewardManager.instance.SetRewardUI(CompletedQuest);
             QuestManager.instance.ClearCompletedQuest();

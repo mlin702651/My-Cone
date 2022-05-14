@@ -510,5 +510,11 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else PlayerInfoManager.instance.StartSetSpiritAmount(originSpirit,spiritAmount);
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "bla"){
+            SetPlayerHealth(-10);
+        }
+    }
     
 }

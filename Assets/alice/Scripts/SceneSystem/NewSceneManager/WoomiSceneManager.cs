@@ -23,6 +23,7 @@ public class WoomiSceneManager : MonoBehaviour
         var scene = SceneManager.LoadSceneAsync(newSceneName);
         scene.allowSceneActivation = false;
 
+
         loadingCanvas.SetActive(true);
 
         do{
@@ -34,5 +35,7 @@ public class WoomiSceneManager : MonoBehaviour
         scene.allowSceneActivation = true;
         await Task.Delay(3000);
         loadingCanvas.SetActive(false);
+        await Task.Delay(1000);
+        GameManager.instance.onPlayerArrivedCallBack?.Invoke(newSceneName);
     }
 }

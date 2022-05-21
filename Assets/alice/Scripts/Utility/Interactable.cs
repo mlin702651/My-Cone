@@ -11,7 +11,6 @@ public class Interactable : MonoBehaviour
     [SerializeField] private float interactRange = 1.5f;
     [SerializeField]private Image interactHint;
     private bool canInteract;
-   
 
     Controls controls;
     private bool ConversationPress = false;
@@ -53,8 +52,9 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player"){
-            interactHint.DOFade(1,0.5f);//換成ui顯示
-            
+            //interactHint.DOFade(1,0.5f);//換成ui顯示
+            Debug.Log("NPCTalk");
+            UIGuide.instance.uiNPCTalk.SetActive(true);
             canInteract = true;
         }
     }
@@ -65,7 +65,8 @@ public class Interactable : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        interactHint.DOFade(0,0.3f);//換成ui顯示
+       // interactHint.DOFade(0,0.3f);//換成ui顯示
+        UIGuide.instance.uiNPCTalk.SetActive(false);
         canInteract = false;
     }
 

@@ -8,8 +8,13 @@ public class Teleport : MonoBehaviour
 {
     [SerializeField] private float interactRange = 1.5f;
     [SerializeField] private Object targetScene; 
-    [SerializeField]RespawnPoint currentStageRespawnPoint;
-    [SerializeField]RespawnPoint changeRespawnPoint;
+    [SerializeField]RespawnPoint nextRespawnPoint;
+    // [SerializeField]RespawnPoint currentStageRespawnPoint;
+    // [SerializeField]RespawnPoint changeRespawnPoint;
+
+    //public delegate void TeleportDelegate(RespawnPoint newResoawnPoint);
+    //public static event TeleportDelegate onSceneChange;
+
     private bool canInteract;
     
     
@@ -27,11 +32,13 @@ public class Teleport : MonoBehaviour
     {
         if(canInteract){
             canInteract = false;
-            currentStageRespawnPoint.SetValue(changeRespawnPoint.respawnPosition,changeRespawnPoint.respawnRotation);
+            //currentStageRespawnPoint.SetValue(changeRespawnPoint.respawnPosition,changeRespawnPoint.respawnRotation);
             //currentStageRespawnPoint.respawnPosition = changeRespawnPoint.respawnPosition;
             //currentStageRespawnPoint.respawnRotation = changeRespawnPoint.respawnRotation;
             //MySceneManager.instance.EndThisScene(targetScene.name);
-            WoomiSceneManager.instance.LoadScene(targetScene.name);
+            //onSceneChange?.Invoke(nextRespawnPoint);
+            Debug.Log(nextRespawnPoint);
+            WoomiSceneManager.instance.LoadScene(targetScene.name,nextRespawnPoint);
         }
     }
 

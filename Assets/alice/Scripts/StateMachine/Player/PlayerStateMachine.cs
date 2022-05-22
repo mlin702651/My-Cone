@@ -8,8 +8,7 @@ public class PlayerStateMachine : MonoBehaviour
     #region Player
         CharacterController _characterController;
         [Header("Interact with rigid body")]
-        [SerializeField] float _pushPower = 2.0F;
-        [SerializeField]RespawnPoint currentRespawnPoint;
+        //[SerializeField] float _pushPower = 2.0F;
         [SerializeField] bool minusTest = false;
         [SerializeField] bool addTest = false;
         private int health = 100;
@@ -282,10 +281,13 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _currentMagic = PlayerMagicDic["Magic1"];
         //set player position
-        Debug.Log(currentRespawnPoint.respawnPosition);
-        transform.position = currentRespawnPoint.respawnPosition;
-        transform.rotation = currentRespawnPoint.respawnRotation;
-        Debug.Log("reset!!");
+        //Debug.Log(currentRespawnPoint.respawnPosition);
+        //transform.position = currentRespawnPoint.respawnPosition;
+        //transform.rotation = currentRespawnPoint.respawnRotation;
+        //Debug.Log("reset!!");
+    }
+
+    private void OnDestroy() {
     }
 
     // Update is called once per frame
@@ -305,6 +307,10 @@ public class PlayerStateMachine : MonoBehaviour
             SetSpiritAmount(50);
         }
 #endregion
+
+        if(GameManager.instance.isChangingScene){
+            return;
+        }
 
         
         if(FreezeCheck()) return;

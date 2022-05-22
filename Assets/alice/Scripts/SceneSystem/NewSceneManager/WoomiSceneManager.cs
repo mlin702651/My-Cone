@@ -8,6 +8,8 @@ public class WoomiSceneManager : MonoBehaviour
 {
     public static WoomiSceneManager instance;
     [SerializeField]private GameObject loadingCanvas;
+    public delegate void SceneManagerDelegate(RespawnPoint newResoawnPoint);
+    public static event SceneManagerDelegate onSceneChange;
     private void Awake() {
         if(instance== null){
             instance = this;
@@ -19,7 +21,7 @@ public class WoomiSceneManager : MonoBehaviour
         }
     }
 
-    public async void LoadScene(string newSceneName){
+    public async void LoadScene(string newSceneName, RespawnPoint newRespawnPoint){
         var scene = SceneManager.LoadSceneAsync(newSceneName);
         scene.allowSceneActivation = false;
 
@@ -30,12 +32,17 @@ public class WoomiSceneManager : MonoBehaviour
             await Task.Delay(300);
             //progressbar.fillAmount = scene.progress;
         }while(scene.progress < 0.9f);
+        Debug.Log(newRespawnPoint);
 
+        if(newRespawnPoint!=null){
+            GameManager.instance.ResetPlayerRespwan(newRespawnPoint);
+        }
         await Task.Delay(100);
         scene.allowSceneActivation = true;
         await Task.Delay(3000);
         loadingCanvas.SetActive(false);
         await Task.Delay(1000);
         GameManager.instance.onPlayerArrivedCallBack?.Invoke(newSceneName);
+        //GameManager.instance.ResetPlayer();
     }
 }

@@ -29,7 +29,7 @@ public class StartMenuManager : MonoBehaviour
             InputSystem.instance.MenuConfirmPressDown = false;
             Debug.Log("ChangeScene");
             //MySceneManager.instance.EndThisScene("MushroomPlaza");
-            WoomiSceneManager.instance.LoadScene("island");
+            WoomiSceneManager.instance.LoadScene("island",null);
         }
     }
 

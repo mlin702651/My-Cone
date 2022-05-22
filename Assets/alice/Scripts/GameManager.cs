@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField]AudioSource clearSound;
+    [SerializeField]PlayerStateMachine player;
+    public bool isChangingScene;
     private void Awake(){
         if(instance== null){
             instance = this;
@@ -22,6 +24,20 @@ public class GameManager : MonoBehaviour
         }
         //allDialogueTriggers = FindObjectsOfType<DialogueTrigger>();
         
+    }
+
+    public void ResetPlayerRespwan(RespawnPoint respawnPoint){
+        isChangingScene = true;
+        player = FindObjectOfType<PlayerStateMachine>();
+        player.transform.position = new Vector3(respawnPoint.respawnPosition.x,respawnPoint.respawnPosition.y,respawnPoint.respawnPosition.z);
+        player.transform.rotation = respawnPoint.respawnRotation;
+        StartCoroutine(EndChangeScene());
+    }
+
+    private IEnumerator EndChangeScene(){
+        yield return new WaitForSeconds(3f);
+        instance.isChangingScene = false;
+        yield return null;
     }
 
     public void UpdateTrigger(){

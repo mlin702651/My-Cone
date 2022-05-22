@@ -9,8 +9,8 @@ public class Interactable : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private float interactRange = 1.5f;
-    [SerializeField]private Image interactHint;
-    private bool canInteract;
+    //[SerializeField]private Image interactHint;
+    protected bool canInteract;
 
     Controls controls;
     private bool ConversationPress = false;
@@ -36,11 +36,11 @@ public class Interactable : MonoBehaviour
         CapsuleCollider capsuleCollider = gameObject.AddComponent(typeof(CapsuleCollider)) as CapsuleCollider;
         capsuleCollider.radius = interactRange;
         capsuleCollider.isTrigger = true;
-        interactHint.DOFade(0,0f);
+        //interactHint.DOFade(0,0f);
 
     }
 
-    private void Update() {
+    public virtual void Update() {
         if(canInteract){
             if(ConversationPress){
                 canInteract = false;
@@ -50,9 +50,10 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
+    public virtual void OnTriggerEnter(Collider other) {
         if(other.tag == "Player"){
             //interactHint.DOFade(1,0.5f);//換成ui顯示
+            Debug.Log(other.name);
             Debug.Log("NPCTalk");
             UIGuide.instance.uiNPCTalk.SetActive(true);
             canInteract = true;
@@ -64,7 +65,7 @@ public class Interactable : MonoBehaviour
         
     }
 
-    private void OnTriggerExit(Collider other) {
+    public virtual void OnTriggerExit(Collider other) {
        // interactHint.DOFade(0,0.3f);//換成ui顯示
         UIGuide.instance.uiNPCTalk.SetActive(false);
         canInteract = false;

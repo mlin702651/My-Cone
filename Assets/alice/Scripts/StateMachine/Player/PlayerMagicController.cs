@@ -57,7 +57,7 @@ public class PlayerMagicController : MonoBehaviour
     }
 
     public void MagicBombStart(){
-        AudioManager.instance.PlaySound("magicBombShoot");
+        //AudioManager.instance.PlaySound("magicBombShoot");
         _magicPooler.SpawnFromPool("MagicBomb",_firePoint.transform.position-new Vector3(0,0.4f,0),_firePoint.transform.eulerAngles);
         
     }

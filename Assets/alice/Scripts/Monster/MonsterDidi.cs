@@ -55,6 +55,7 @@ public class MonsterDidi : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _agent.baseOffset = underGroundOffset;
         ChangeAnimationState(animationIdle);
+        Player = GameManager.instance.Player.gameObject;
     }
 
     // Update is called once per frame

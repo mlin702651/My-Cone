@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine; 
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField]AudioSource clearSound;
-    [SerializeField]PlayerStateMachine player;
+    public PlayerStateMachine Player;
+    public CinemachineFreeLook FreeLookCam;
     public bool isChangingScene;
     private void Awake(){
         if(instance== null){
@@ -28,9 +30,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetPlayerRespwan(RespawnPoint respawnPoint){
         isChangingScene = true;
-        player = FindObjectOfType<PlayerStateMachine>();
-        player.transform.position = new Vector3(respawnPoint.respawnPosition.x,respawnPoint.respawnPosition.y,respawnPoint.respawnPosition.z);
-        player.transform.rotation = respawnPoint.respawnRotation;
+        Player = FindObjectOfType<PlayerStateMachine>();
+        Player.transform.position = new Vector3(respawnPoint.respawnPosition.x,respawnPoint.respawnPosition.y,respawnPoint.respawnPosition.z);
+        Player.transform.rotation = respawnPoint.respawnRotation;
         StartCoroutine(EndChangeScene());
     }
 

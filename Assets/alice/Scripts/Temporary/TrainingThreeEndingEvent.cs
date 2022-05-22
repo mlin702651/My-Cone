@@ -19,7 +19,7 @@ public class TrainingThreeEndingEvent : MonoBehaviour
     bool canShake = false;
     bool startVideo = false;
     bool endVideo = false;
-    [SerializeField] CinemachineFreeLook freeLookCam;
+    CinemachineFreeLook freeLookCam;
     [SerializeField] float cameraShakeDuration = 2;
     [SerializeField]DialogueBase cameraEndDialogue;
     [SerializeField]DialogueBase videoEndDialogue;
@@ -33,6 +33,7 @@ public class TrainingThreeEndingEvent : MonoBehaviour
     void Start()
     {
         //StartVideo();
+        freeLookCam = GameManager.instance.FreeLookCam;
     }
 
     // Update is called once per frame
@@ -67,6 +68,7 @@ public class TrainingThreeEndingEvent : MonoBehaviour
     }
 
     public void ShakeCamera(float intensity , float time){
+        freeLookCam = GameManager.instance.FreeLookCam;
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = 
         freeLookCam.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;

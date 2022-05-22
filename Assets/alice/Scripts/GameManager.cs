@@ -42,11 +42,12 @@ public class GameManager : MonoBehaviour
 
     public void UpdateTrigger(){
         DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
+        allDialogueTriggers.Clear();
         foreach (var trigger in triggers)
         {
-            if(!allDialogueTriggers.Contains(trigger)){
+            //if(!allDialogueTriggers.Contains(trigger)){
                 allDialogueTriggers.Add(trigger);
-            }
+            //}
         }
     }
 

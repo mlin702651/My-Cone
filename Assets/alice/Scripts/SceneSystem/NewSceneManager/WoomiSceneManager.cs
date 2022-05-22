@@ -43,6 +43,7 @@ public class WoomiSceneManager : MonoBehaviour
         loadingCanvas.SetActive(false);
         await Task.Delay(1000);
         GameManager.instance.onPlayerArrivedCallBack?.Invoke(newSceneName);
+        GameManager.instance.UpdateTrigger();
         //GameManager.instance.ResetPlayer();
     }
 }

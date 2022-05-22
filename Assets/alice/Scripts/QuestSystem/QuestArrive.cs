@@ -26,12 +26,20 @@ public class QuestArrive : QuestBase
     }
 
     public override void Evaluate(){
-        base.Evaluate();
+        if(CurrentAmount[0] < RequiredAmount[0]){
+            return;//只要有人沒達成就結束(退回?)
+        }
+        Debug.Log("Quest is complete!");
+        GameManager.instance.PlayAudio();
+
+        DialogueManager.instance.CompletedQuest = this;
+        Debug.Log("Arrived.");
         GameManager.instance.onPlayerArrivedCallBack -= ArriveGoal;
     }
 
 
     private void ArriveGoal(string newSceneName){
+        Debug.Log("Arrive?");
         for(int i = 0; i < objectives.Length; i++){
             if(newSceneName == objectives[i].scene.name){
                 CurrentAmount[i]++;

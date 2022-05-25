@@ -9,7 +9,7 @@ public class BigStone : MonoBehaviour
 {
     NavMeshAgent navMeshAgent=null;
     [SerializeField]bool canHurt=false;
-    [SerializeField]private Transform Player;
+    private Transform Player;
     [Range(0,100),SerializeField] private int Hp = 100;
     [SerializeField] Slider slider;
     bool isDead=false;
@@ -40,6 +40,7 @@ public class BigStone : MonoBehaviour
         navMeshAgent=GetComponent<NavMeshAgent>(); 
         // OriginPosition = transform.position;
         // print(OriginPosition);
+        Player = FindObjectOfType<PlayerStateMachine>().gameObject.transform;
     }
 
     // Update is called once per frame
@@ -71,6 +72,7 @@ public class BigStone : MonoBehaviour
             }
         }
         slider.value = Hp;
+        Player = FindObjectOfType<PlayerStateMachine>().gameObject.transform;
         navMeshAgent.SetDestination(Player.transform.position);
 
         if(canHurt){

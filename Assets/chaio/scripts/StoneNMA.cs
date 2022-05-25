@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using Cinemachine;
 public class StoneNMA : MonoBehaviour
 {
+    public MonsterProfile monsterProfile;
+    
     NavMeshAgent navMeshAgent = null;
     [SerializeField] private Animator animator_small;
     [SerializeField] private StoneMode stoneMode = StoneMode.aroundMain;
@@ -14,7 +16,7 @@ public class StoneNMA : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] private Text healthText;
     [SerializeField] Transform straightTarget;
-    [SerializeField] Transform player;
+    Transform player;
     [SerializeField] private GameObject particleHit;
     [SerializeField] private GameObject particleRev;
     [SerializeField] string scr = "CinemachineDollyCart";//dolly track的腳本名子
@@ -30,6 +32,7 @@ public class StoneNMA : MonoBehaviour
     [SerializeField] bool isCoolDown = false;
     [SerializeField] bool isTimerOn = false;
     [SerializeField] bool isTurnning = false;
+    [SerializeField] bool isCount = false;
     //範圍
     [Header("Value")]
     [SerializeField] float hitRange = 5;
@@ -62,6 +65,7 @@ public class StoneNMA : MonoBehaviour
         dollyCart = GetComponent<CinemachineDollyCart>();
         bulletClone = Instantiate(bullet);
         bulletClone.SetActive(false);
+        player = FindObjectOfType<PlayerStateMachine>().gameObject.transform;
     }
 
     // Update is called once per frame
@@ -76,6 +80,7 @@ public class StoneNMA : MonoBehaviour
             healthText.text = Hp.ToString();
         }
         slider.value = Hp;
+        player = FindObjectOfType<PlayerStateMachine>().gameObject.transform;
         toPlayerDistance = Vector3.Distance(player.position, transform.position);
         switch (stoneMode)
         {
@@ -264,6 +269,11 @@ public class StoneNMA : MonoBehaviour
             if (Hp <= 0)
             {
                 isDead = true;
+                if(!isCount && monsterProfile!=null){
+                    isCount = true;
+                    if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
+                }
+
             }
         }
     }

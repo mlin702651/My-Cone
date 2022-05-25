@@ -42,7 +42,7 @@ public class QuestManager : MonoBehaviour
         //這邊在寫個任務UI跑進來淡出的動畫
     }
     public void UpdateQuestTracker(string newDescription){
-        questDescription.text = CurrentQuest.questDescription + "\n" + newDescription;
+        questDescription.text = newDescription;
     }
 
     public void ClearCompletedQuest(){

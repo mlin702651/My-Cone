@@ -9,20 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054633284ae825843b36c6aa35de1c5a, type: 3}
-  m_Name: "1-2_\u6253\u5012\u773C\u524D\u7684\u6B9E\u77F3\u7FA4\u602A\u7269"
+  m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
+  m_Name: "1-3_\u62B5\u9054\u9ECE\u660E\u4E4B\u6CC9"
   m_EditorClassIdentifier: 
-  questName: "\u6253\u5012\u773C\u524D\u7684\u6B9E\u77F3\u7FA4\u602A\u7269"
+  questName: "\u524D\u5F80\u9ECE\u660E\u4E4B\u6CC9"
   questDescription: 
   questDetail: 
   questExtraDetail: 
   NPCTurnIn: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
-  completedQuestDialogue: {fileID: 11400000, guid: 2427beff6f05e484f8d6554cd77d6202,
+  completedQuestDialogue: {fileID: 11400000, guid: cbae80913324ec745b28ad4a91579c2d,
     type: 2}
   rewards:
     itemRewardNames: []
     experienceReward: 0
     spiritReward: 0
   objectives:
-  - requiredMonster: {fileID: 11400000, guid: d47776fd1f02a8a4c9f471faab81e2db, type: 2}
-    requiredAmount: 5
+  - scene: {fileID: 102900000, guid: 451f22f38a944bf49a3136d71eac08be, type: 3}
+    sceneShowName: "\u9ECE\u660E\u4E4B\u6CC9"
+    requiredAmount: 1

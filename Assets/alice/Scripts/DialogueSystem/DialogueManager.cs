@@ -258,10 +258,10 @@ public class DialogueManager : MonoBehaviour {
         DequeueDialogue();//輸出第一句話
     }
     public void EndDialogue(){
+        SetRewards();
         CheckIfDialogueQuest();
         CheckIfDialogueEvent();
         CheckIfDialogueVideo();
-        SetRewards();
         Debug.Log("End of conversation");
         dialogueBox.DOAnchorPosY(-315,DialogueOutTime,true).SetEase(DialogueEaseOut);
         //FindObjectOfType<WoomiMovement>().SetTalkingStatus(false);

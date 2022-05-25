@@ -6,6 +6,13 @@ public class CQuestFinishedTrigger : MonoBehaviour
 {
     [SerializeField]private QuestBase finishedQuest;
     private bool isTrigger = false;
+    private void Start() {
+        if(finishedQuest.questStatus.IsCompleted== true){
+            isTrigger = true;
+            QuestTriggerEvent();
+            
+        }
+    }
     
     void Update()
     {

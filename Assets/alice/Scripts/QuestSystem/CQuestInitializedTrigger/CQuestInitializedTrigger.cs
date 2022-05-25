@@ -7,6 +7,13 @@ public class CQuestInitializedTrigger : MonoBehaviour
     [SerializeField]private QuestBase InitialedQuest;
     private bool isTrigger = false;
     
+    void Start(){
+        if(InitialedQuest.questStatus.IsInitialized== true){
+            isTrigger = true;
+            QuestTriggerEvent();
+            
+        }
+    }
     void Update()
     {
         if(isTrigger) return;

@@ -50,6 +50,7 @@ public class KiraKiraRock : MonoBehaviour
             ContactPoint contactPoint=other.contacts[0];
             Vector3 appearDir=Vector3.Reflect(transform.position,contactPoint.normal);
             copyKiraRock=Instantiate(awardKiraRock, contactPoint.point,Quaternion.FromToRotation(Vector3.up, contactPoint.normal));
+            //contactPoint.point+ contactPoint.normal*0.5 加一個法線不要擠到
             }
         }
         else{

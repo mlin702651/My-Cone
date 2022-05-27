@@ -58,6 +58,9 @@ public class InventoryManager : MonoBehaviour
         backpackUI.SetActive(false);
         onMenuPageChangeCallBack += CheckOpenMenu; 
     }
+    private void OnDestroy() {
+        onMenuPageChangeCallBack -= CheckOpenMenu; 
+    }
 
     public void AddItem(ItemBase item){
         Debug.Log("add");

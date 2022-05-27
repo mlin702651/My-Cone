@@ -39,6 +39,7 @@ public class QuestManager : MonoBehaviour
         CurrentQuestDialogueTrigger.hasActiveQuest = false;
 
         Debug.Log("接受任務---" + questName.text + " : " + questDescription.text);
+        GameManager.instance.AddQuest(newQuest);
         //這邊在寫個任務UI跑進來淡出的動畫
     }
     public void UpdateQuestTracker(string newDescription){

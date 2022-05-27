@@ -24,6 +24,14 @@ public class QuestMenuManager : MonoBehaviour
     public Transform questHolder;
     public GameObject questSelectionPrefab;
 
+    [System.Serializable]
+    private class QuestChild{
+        public QuestBase childQuest;
+        public GameObject childObj;
+    }
+
+    private List<QuestChild> questChildren = new List<QuestChild>();
+
     public bool inMenu;
 
     [SerializeField]private Color transparentColor;
@@ -32,6 +40,8 @@ public class QuestMenuManager : MonoBehaviour
     //update UI qhen open
     private QuestBase LastDisplayQuest;
     private int currentSelectedQuest = 0;
+
+    private QuestChild tempChild;
 
     
     private void Start() {
@@ -117,9 +127,34 @@ public class QuestMenuManager : MonoBehaviour
 
         questSelection.GetComponent<QuestSelection>().SetQuest(newQuest);
         UpdateQuestUI(newQuest,newQuest.GetObjectiveList());
+
+        QuestChild newChild = new QuestChild();
+        newChild.childQuest = newQuest;
+        newChild.childObj = questSelection;
+        questChildren.Add(newChild);
         
         //questSelectionPrefab.Text.text = newQuest.questName;
         //questSelectionPrefab.GetComponent<Text>().text = newQuest.questName;
+    }
+
+    public void RemoveQuestFromList(QuestBase questToRemove){
+        if(questChildren==null) return;
+        print(questChildren);
+        foreach (var child in questChildren)
+        {
+            if(child.childQuest == questToRemove){
+                tempChild = child;
+            }
+        }
+        var tempObj = tempChild.childObj;
+        questChildren.Remove(tempChild);
+        Destroy(tempObj);
+
+        questName.text = "任務列表";
+        questDetail.text = "";
+        questExtraDetail.text = "";
+        questObjective.text = "";
+        questClient.text = "";
     }
 
     public void CheckOpenMenu(int newMenuPage){

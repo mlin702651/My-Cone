@@ -35,6 +35,7 @@ public class QuestArrive : QuestBase
         DialogueManager.instance.CompletedQuest = this;
         Debug.Log("Arrived.");
         GameManager.instance.onPlayerArrivedCallBack -= ArriveGoal;
+        QuestMenuManager.instance.RemoveQuestFromList(this);
     }
 
 

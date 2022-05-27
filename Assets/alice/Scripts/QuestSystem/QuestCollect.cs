@@ -20,13 +20,13 @@ public class QuestCollect : QuestBase
             RequiredAmount[i] = objectives[i].requiredAmount;
         }
 
-        GameManager.instance.onEnemyDeathCallBack += MonsterDeath;
+        GameManager.instance.onPlayerCollectCallBack += ItemCollect;
         base.InitializedQuest();
     }
 
-    private void MonsterDeath(MonsterProfile slaintMonster){
+    private void ItemCollect(CollectableProfile collectable){
         for(int i = 0; i < objectives.Length; i++){
-            if(slaintMonster == objectives[i].requiredCollectable){
+            if(collectable == objectives[i].requiredCollectable){
                 CurrentAmount[i]++;
                 //更新給UI
                 //QuestManager.instance.UpdateQuestTracker($"{questDescription + "    " + CurrentAmount[i] + "/" + RequiredAmount[i]}");

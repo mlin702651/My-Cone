@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
+  m_Name: "1-1-1_\u62B5\u9054\u8A13\u7DF4\u5834"
+  m_EditorClassIdentifier: 
+  questName: "\u62B5\u9054\u8A13\u7DF4\u5834"
+  questDescription: 
+  questDetail: vvvvv
+  questExtraDetail: vvvv
+  NPCTurnIn: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
+  completedQuestDialogue: {fileID: 11400000, guid: b38af22b3034f5b40a867bb8a3aae5b5,
+    type: 2}
+  rewards:
+    itemRewardNames: []
+    experienceReward: 0
+    spiritReward: 0
+  objectives:
+  - scene: {fileID: 102900000, guid: d1878f817e82c9b4b8a7a3c3f4c1082f, type: 3}
+    sceneName: training01
+    sceneShowName: "\u8A13\u7DF4\u5834\u4E00"
+    requiredAmount: 1

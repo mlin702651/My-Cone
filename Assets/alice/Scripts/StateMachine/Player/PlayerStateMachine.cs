@@ -500,6 +500,8 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
     void Die(){
+        health = 100;
+        PlayerInfoManager.instance.StartSetPlayerHealth(0,health);
         WoomiSceneManager.instance.ReloadScene();
     }
     void SetCrystalAmount(int modifyAmount){

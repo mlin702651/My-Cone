@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueAutoTrigger : Interactable
+public class DialogueAutoTrigger : QuestDialogueTrigger
 {
     
     [SerializeField]private DialogueBase dialogueBase;
@@ -24,8 +24,15 @@ public class DialogueAutoTrigger : Interactable
     }
     public override void Interact(){
         
-        DialogueManager.instance.EnqueueDialogue(dialogueBase);
-        DialogueManager.instance.StartDialogue();
+        if(hasActiveQuest){
+            DialogueManager.instance.EnqueueDialogue(dialogueBase);
+            DialogueManager.instance.StartDialogue();
+            QuestManager.instance.CurrentQuestDialogueTrigger = this;
+        }    
+        else{
+            DialogueManager.instance.EnqueueDialogue(dialogueBase);
+            DialogueManager.instance.StartDialogue();
+        }
 
     }
 

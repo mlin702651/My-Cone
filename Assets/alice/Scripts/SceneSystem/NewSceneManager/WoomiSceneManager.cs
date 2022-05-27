@@ -61,7 +61,11 @@ public class WoomiSceneManager : MonoBehaviour
 
         await Task.Delay(100);
         scene.allowSceneActivation = true;
+        await Task.Delay(1000);
+        GameManager.instance.ReloadScene();
+        GameManager.instance.UpdateTrigger();
         await Task.Delay(3000);
         loadingCanvas.SetActive(false);
+        
     }
 }

@@ -8,6 +8,7 @@ public class QuestArrive : QuestBase
    [System.Serializable]
     public class Objective{
         public Object scene;
+        public string sceneName;
         public string sceneShowName;
         public int requiredAmount;
     }
@@ -41,7 +42,7 @@ public class QuestArrive : QuestBase
     private void ArriveGoal(string newSceneName){
         Debug.Log("Arrive?");
         for(int i = 0; i < objectives.Length; i++){
-            if(newSceneName == objectives[i].scene.name){
+            if(newSceneName == objectives[i].sceneName){
                 CurrentAmount[i]++;
                 //更新給UI
                 QuestManager.instance.UpdateQuestTracker(this.GetObjectiveList());

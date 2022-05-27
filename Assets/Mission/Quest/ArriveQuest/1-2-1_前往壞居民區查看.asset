@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
+  m_Name: "1-2-1_\u524D\u5F80\u58DE\u5C45\u6C11\u5340\u67E5\u770B"
+  m_EditorClassIdentifier: 
+  questName: "\u524D\u5F80\u83C7\u83C7\u5EE3\u5834"
+  questDescription: 
+  questDetail: 
+  questExtraDetail: 
+  NPCTurnIn: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
+  completedQuestDialogue: {fileID: 11400000, guid: f9cddc7f8bb86604795801467669d8e3,
+    type: 2}
+  rewards:
+    itemRewardNames: []
+    experienceReward: 0
+    spiritReward: 0
+  objectives:
+  - scene: {fileID: 102900000, guid: 4111adbd63f13fa418fa6b24a766b765, type: 3}
+    sceneName: MushroomPlazaPurple
+    sceneShowName: "\u83C7\u83C7\u5EE3\u5834"
+    requiredAmount: 1

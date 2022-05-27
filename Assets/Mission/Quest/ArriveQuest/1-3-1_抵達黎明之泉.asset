@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
-  m_Name: "1-2_\u524D\u5F80\u58DE\u5C45\u6C11\u5340\u67E5\u770B"
+  m_Name: "1-3-1_\u62B5\u9054\u9ECE\u660E\u4E4B\u6CC9"
   m_EditorClassIdentifier: 
-  questName: "\u524D\u5F80\u83C7\u83C7\u5EE3\u5834"
+  questName: "\u524D\u5F80\u9ECE\u660E\u4E4B\u6CC9"
   questDescription: 
   questDetail: 
   questExtraDetail: 
   NPCTurnIn: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
-  completedQuestDialogue: {fileID: 11400000, guid: f9cddc7f8bb86604795801467669d8e3,
+  completedQuestDialogue: {fileID: 11400000, guid: cbae80913324ec745b28ad4a91579c2d,
     type: 2}
   rewards:
     itemRewardNames: []
     experienceReward: 0
     spiritReward: 0
   objectives:
-  - scene: {fileID: 102900000, guid: 4111adbd63f13fa418fa6b24a766b765, type: 3}
-    sceneShowName: "\u83C7\u83C7\u5EE3\u5834"
+  - scene: {fileID: 102900000, guid: 451f22f38a944bf49a3136d71eac08be, type: 3}
+    sceneName: DaybreakSpring
+    sceneShowName: "\u9ECE\u660E\u4E4B\u6CC9"
     requiredAmount: 1

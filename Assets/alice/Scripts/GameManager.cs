@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerStateMachine Player;
     public CinemachineFreeLook FreeLookCam;
     public bool isChangingScene;
+    private RespawnPoint currentRespawnPoint;
     private void Awake(){
         if(instance== null){
             instance = this;
@@ -33,7 +34,14 @@ public class GameManager : MonoBehaviour
         Player = FindObjectOfType<PlayerStateMachine>();
         Player.transform.position = new Vector3(respawnPoint.respawnPosition.x,respawnPoint.respawnPosition.y,respawnPoint.respawnPosition.z);
         Player.transform.rotation = respawnPoint.respawnRotation;
+        currentRespawnPoint = respawnPoint;
         StartCoroutine(EndChangeScene());
+    }
+
+    public void ReloadScene(){
+        Player = FindObjectOfType<PlayerStateMachine>();
+        Player.transform.position = new Vector3(currentRespawnPoint.respawnPosition.x,currentRespawnPoint.respawnPosition.y,currentRespawnPoint.respawnPosition.z);
+        Player.transform.rotation = currentRespawnPoint.respawnRotation;
     }
 
     private IEnumerator EndChangeScene(){

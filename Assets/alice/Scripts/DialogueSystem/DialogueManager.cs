@@ -253,6 +253,7 @@ public class DialogueManager : MonoBehaviour {
     public void StartDialogue(){
         //UI上升的動畫
         dialogueBox.DOAnchorPosY(-160,DialogueInTime,true).SetEase(DialogueEaseIn);
+        UIGuide.instance.uiNPCTalk.SetActive(false);
         //讓主角不能動
         //FindObjectOfType<WoomiMovement>().SetTalkingStatus(true);
         DequeueDialogue();//輸出第一句話

@@ -652,7 +652,6 @@ GameObject:
   - component: {fileID: 5667106790371321709}
   - component: {fileID: 5273472054928343171}
   - component: {fileID: 5273472054928343170}
-  - component: {fileID: 5273472054928343173}
   m_Layer: 0
   m_Name: Dan 1
   m_TagString: Untagged
@@ -711,23 +710,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5273472054928343173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5039047724934708695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f4a0ecfa5877d4f8bf7c2971da5a8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactRange: 1.83
-  targetNPC: {fileID: 11400000, guid: 30e455a83f3f2274a9faeaa3e518d198, type: 2}
-  dialogueBases: []
-  index: 0
-  nextDialogueInteract: 0
 --- !u!1 &5355079342730244268
 GameObject:
   m_ObjectHideFlags: 0

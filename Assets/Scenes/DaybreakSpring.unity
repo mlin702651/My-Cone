@@ -5901,7 +5901,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 1.5
-  targetScene: {fileID: 102900000, guid: 8d9caa3e42d333f448f2d0eb1baa267a, type: 3}
   targetSceneName: Forest
   nextRespawnPoint: {fileID: 11400000, guid: 5d79cbf9eac8fd84aaca18c915058658, type: 2}
 --- !u!4 &412205234 stripped
@@ -9433,12 +9432,12 @@ PrefabInstance:
     - target: {fileID: 4431126080828947876, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.025761936
+      value: 0.025761938
       objectReference: {fileID: 0}
     - target: {fileID: 4431126080828947876, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.09846709
+      value: -0.0984671
       objectReference: {fileID: 0}
     - target: {fileID: 4431126080828947876, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -9808,7 +9807,7 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.010897523
+      value: 0.0108975265
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -9828,7 +9827,7 @@ PrefabInstance:
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98180896
+      value: 0.9818089
       objectReference: {fileID: 0}
     - target: {fileID: 7618961568162339219, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -22069,6 +22068,31 @@ PrefabInstance:
       propertyPath: teleportPoint.Array.data[2]
       value: 
       objectReference: {fileID: 1239985311}
+    - target: {fileID: 2486065556115965454, guid: 3b1138d84e45fe845a4333edfa452589,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486065556343975073, guid: 3b1138d84e45fe845a4333edfa452589,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486065556526152190, guid: 3b1138d84e45fe845a4333edfa452589,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486065556692146100, guid: 3b1138d84e45fe845a4333edfa452589,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486065557011091271, guid: 3b1138d84e45fe845a4333edfa452589,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3011667759895420084, guid: 3b1138d84e45fe845a4333edfa452589,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23130,16 +23154,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1974287942}
     m_Modifications:
+    - target: {fileID: 3529171208345140325, guid: 4727d3e8c662763409eea9baba401cf4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
     - target: {fileID: 3529171209240460711, guid: 4727d3e8c662763409eea9baba401cf4,
+        type: 3}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 848102652}
+    - target: {fileID: 3529171209240460712, guid: 4727d3e8c662763409eea9baba401cf4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529171209256635424, guid: 4727d3e8c662763409eea9baba401cf4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529171209256635487, guid: 4727d3e8c662763409eea9baba401cf4,
+        type: 3}
+      propertyPath: TriggerModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529171209501260958, guid: 4727d3e8c662763409eea9baba401cf4,
         type: 3}
       propertyPath: TriggerModule.collisionShape0
       value: 
       objectReference: {fileID: 848102652}
     - target: {fileID: 3529171209501260958, guid: 4727d3e8c662763409eea9baba401cf4,
         type: 3}
-      propertyPath: TriggerModule.collisionShape0
-      value: 
-      objectReference: {fileID: 848102652}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529171209501261667, guid: 4727d3e8c662763409eea9baba401cf4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stone_Attack
+      objectReference: {fileID: 0}
     - target: {fileID: 3529171210349061116, guid: 4727d3e8c662763409eea9baba401cf4,
         type: 3}
       propertyPath: m_Name
@@ -23148,7 +23202,7 @@ PrefabInstance:
     - target: {fileID: 3529171210349061116, guid: 4727d3e8c662763409eea9baba401cf4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3529171210349061117, guid: 4727d3e8c662763409eea9baba401cf4,
         type: 3}
@@ -23205,8 +23259,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -4555232865647605602, guid: 4727d3e8c662763409eea9baba401cf4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4727d3e8c662763409eea9baba401cf4, type: 3}
 --- !u!224 &2028640648 stripped
 RectTransform:

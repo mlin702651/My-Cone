@@ -19143,14 +19143,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3529171210349061117}
-  - component: {fileID: -4555232865647605602}
   m_Layer: 0
   m_Name: smallAttack-Ball
-  m_TagString: Untagged
+  m_TagString: Stone_Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3529171210349061117
 Transform:
   m_ObjectHideFlags: 0
@@ -19167,16 +19166,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4555232865647605602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3529171210349061116}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a4691393d3b2d848b542c50fb68dc54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.1

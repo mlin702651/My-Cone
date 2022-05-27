@@ -43,7 +43,7 @@ public class QuestCollect : QuestBase
 
         for (int i = 0; i < objectives.Length; i++)
         {
-            tempObjectiveList += $"已完成{"    ( " + CurrentAmount[i] + " / " + RequiredAmount[i]+ " ) 隻" + objectives[i].requiredCollectable.collectableName} \n";
+            tempObjectiveList += $"已收集{"    ( " + CurrentAmount[i] + " / " + RequiredAmount[i]+ " ) 隻" + objectives[i].requiredCollectable.collectableName} \n";
         }
 
         return tempObjectiveList;

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d157e14fcec888b4eb7e1a6927541e48, type: 3}
+  m_Name: "1-4-2_\u627E\u56DE\u6885\u68EE\u5F04\u4E1F\u7684\u98DF\u8B5C"
+  m_EditorClassIdentifier: 
+  questName: "\u98DF\u8B5C\u5931\u8E64\u8A18"
+  questDescription: 
+  questDetail: 
+  questExtraDetail: 
+  NPCTurnIn: {fileID: 11400000, guid: d99ee37e792832443a1115b28f7c99a7, type: 2}
+  completedQuestDialogue: {fileID: 11400000, guid: b817d4f0a8e2e2f41a8bafd2742e9a49,
+    type: 2}
+  rewards:
+    itemRewardNames: []
+    experienceReward: 0
+    spiritReward: 0
+  objectives:
+  - requiredCollectable: {fileID: 11400000, guid: cfb3f7bc14603a94092aa0368ccb55de,
+      type: 2}
+    requiredAmount: 1

@@ -7,7 +7,6 @@ public class QuestArrive : QuestBase
 {
    [System.Serializable]
     public class Objective{
-        public Object scene;
         public string sceneName;
         public string sceneShowName;
         public int requiredAmount;

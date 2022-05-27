@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8996,7 +8996,7 @@ PrefabInstance:
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.16981763
+      value: -0.1698176
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -15452,7 +15452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 1.5
-  targetScene: {fileID: 102900000, guid: d1878f817e82c9b4b8a7a3c3f4c1082f, type: 3}
   targetSceneName: training01
   nextRespawnPoint: {fileID: 11400000, guid: 7752ea4f0e36655488fa113cf0a0e3fc, type: 2}
 --- !u!1 &1002906315 stripped
@@ -15816,7 +15815,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 1.5
-  targetScene: {fileID: 102900000, guid: 451f22f38a944bf49a3136d71eac08be, type: 3}
   targetSceneName: DaybreakSpring
   nextRespawnPoint: {fileID: 11400000, guid: 9dd3e26636e8d02449d5101ecdad160a, type: 2}
 --- !u!1 &1100527300 stripped
@@ -15838,7 +15836,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 1.5
-  targetScene: {fileID: 102900000, guid: 8d9caa3e42d333f448f2d0eb1baa267a, type: 3}
   targetSceneName: island
   nextRespawnPoint: {fileID: 11400000, guid: 7a6f43048b52f704198e653bd0451a9a, type: 2}
 --- !u!1 &1117006477

@@ -46,4 +46,22 @@ public class WoomiSceneManager : MonoBehaviour
         GameManager.instance.UpdateTrigger();
         //GameManager.instance.ResetPlayer();
     }
+
+    public async void ReloadScene(){
+        string sceneToReload = SceneManager.GetActiveScene().name;
+        var scene = SceneManager.LoadSceneAsync(sceneToReload);
+        scene.allowSceneActivation = false;
+
+        loadingCanvas.SetActive(true);
+
+        do{
+            await Task.Delay(300);
+            //progressbar.fillAmount = scene.progress;
+        }while(scene.progress < 0.9f);
+
+        await Task.Delay(100);
+        scene.allowSceneActivation = true;
+        await Task.Delay(3000);
+        loadingCanvas.SetActive(false);
+    }
 }

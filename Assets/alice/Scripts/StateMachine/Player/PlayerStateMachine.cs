@@ -494,6 +494,13 @@ public class PlayerStateMachine : MonoBehaviour
         //else if(health <=0) player is dead;
 
         PlayerInfoManager.instance.StartSetPlayerHealth(originHealth,health);
+
+        if(health<=0){
+            Die();
+        }
+    }
+    void Die(){
+        WoomiSceneManager.instance.ReloadScene();
     }
     void SetCrystalAmount(int modifyAmount){
         int originCrystal = crystalAmount;
@@ -518,8 +525,11 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.tag == "bla"){
-            SetPlayerHealth(-10);
+        if(other.tag == "Stone_Attack"){
+            SetPlayerHealth(-5);
+        }
+        else if(other.tag == "BigStone_Attack"){
+            SetPlayerHealth(-15);
         }
     }
     

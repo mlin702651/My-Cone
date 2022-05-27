@@ -5902,7 +5902,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 1.5
   targetScene: {fileID: 102900000, guid: 8d9caa3e42d333f448f2d0eb1baa267a, type: 3}
-  nextRespawnPoint: {fileID: 0}
+  targetSceneName: Forest
+  nextRespawnPoint: {fileID: 11400000, guid: 5d79cbf9eac8fd84aaca18c915058658, type: 2}
 --- !u!4 &412205234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b148955efdc7a894ca7c3035c871d7cb,
@@ -9582,7 +9583,7 @@ PrefabInstance:
     - target: {fileID: 6052800791853761605, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6144323021561916500, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -9707,7 +9708,7 @@ PrefabInstance:
     - target: {fileID: 7539579871095955993, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}

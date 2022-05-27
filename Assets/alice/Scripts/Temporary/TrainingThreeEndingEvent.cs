@@ -62,7 +62,7 @@ public class TrainingThreeEndingEvent : MonoBehaviour
         legendVideoCanvas.SetActive(true);
         legendVideo.SetActive(true);
         startVideo = true;
-        FunctionTimer.Create(()=> EndVideo(), 3f);
+        FunctionTimer.Create(()=> EndVideo(), 2f);
         DialogueManager.instance.inDialogue = true;
 
     }

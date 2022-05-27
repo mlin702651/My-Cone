@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1448,17 +1448,17 @@ PrefabInstance:
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.074230306
+      value: -0.074230224
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0022891772
+      value: 0.0022891709
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99668396
+      value: -0.996684
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -3201,6 +3201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 2.16
   targetScene: {fileID: 102900000, guid: 61ca9d84f80a4f7459d061f764e211ad, type: 3}
+  targetSceneName: Forest
   nextRespawnPoint: {fileID: 11400000, guid: cb4e3e901df54a14dbd6b1aa03b3872e, type: 2}
 --- !u!1001 &445830385
 PrefabInstance:
@@ -5484,6 +5485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 1.5
   targetScene: {fileID: 102900000, guid: c7b9e682cf7c9af4d99e546bca8ff416, type: 3}
+  targetSceneName: MushroomPlaza
   nextRespawnPoint: {fileID: 11400000, guid: 0f56d4768a7b75b45b70b73bcf48cfd6, type: 2}
 --- !u!1001 &827016522
 PrefabInstance:
@@ -8425,6 +8427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 1.5
   targetScene: {fileID: 102900000, guid: 4111adbd63f13fa418fa6b24a766b765, type: 3}
+  targetSceneName: 
   nextRespawnPoint: {fileID: 11400000, guid: 0f56d4768a7b75b45b70b73bcf48cfd6, type: 2}
 --- !u!4 &1137022614 stripped
 Transform:
@@ -10847,6 +10850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 2.27
   targetScene: {fileID: 102900000, guid: d1878f817e82c9b4b8a7a3c3f4c1082f, type: 3}
+  targetSceneName: training01
   nextRespawnPoint: {fileID: 11400000, guid: 7752ea4f0e36655488fa113cf0a0e3fc, type: 2}
 --- !u!1 &1485100125
 GameObject:

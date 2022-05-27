@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private float interactRange = 1.5f;
-    [SerializeField] private Object targetScene; 
+    [SerializeField] private string targetSceneName; 
     [SerializeField]RespawnPoint nextRespawnPoint;
     // [SerializeField]RespawnPoint currentStageRespawnPoint;
     // [SerializeField]RespawnPoint changeRespawnPoint;
@@ -38,7 +38,8 @@ public class Teleport : MonoBehaviour
             //MySceneManager.instance.EndThisScene(targetScene.name);
             //onSceneChange?.Invoke(nextRespawnPoint);
             Debug.Log(nextRespawnPoint);
-            WoomiSceneManager.instance.LoadScene(targetScene.name,nextRespawnPoint);
+            //WoomiSceneManager.instance.LoadScene(targetScene.name,nextRespawnPoint);
+            WoomiSceneManager.instance.LoadScene(targetSceneName,nextRespawnPoint);
         }
     }
 

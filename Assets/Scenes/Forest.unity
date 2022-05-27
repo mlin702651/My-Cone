@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.53498584, g: 0.6632501, b: 0.7576988, a: 1}
+  m_IndirectSpecularColor: {r: 0.53504324, g: 0.6691636, b: 0.8940766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9160,7 +9160,7 @@ PrefabInstance:
     - target: {fileID: 6052800791853761605, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6144323021561916500, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -9285,7 +9285,7 @@ PrefabInstance:
     - target: {fileID: 7539579871095955993, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -9295,12 +9295,12 @@ PrefabInstance:
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.1698176
+      value: -0.16981757
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.011510197
+      value: 0.011510195
       objectReference: {fileID: 0}
     - target: {fileID: 7618961566907501341, guid: ac493d34a5e248d42aa6c9f7f6ddc9dc,
         type: 3}
@@ -17020,6 +17020,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6290567955574384053, guid: d1ac083c5d7a15741895e43b34d828f9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.4556627
+      objectReference: {fileID: 0}
     - target: {fileID: -4351752885937512359, guid: d1ac083c5d7a15741895e43b34d828f9,
         type: 3}
       propertyPath: m_Enabled
@@ -17044,6 +17049,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832268058981196760, guid: d1ac083c5d7a15741895e43b34d828f9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.39
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ac083c5d7a15741895e43b34d828f9, type: 3}
@@ -17186,7 +17196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockParticle: {fileID: 209527001}
-  awardKiraRock: {fileID: 5711228840676931551, guid: 493354d5f600c5f46b5cf831f7a10df6,
+  awardKiraRock: {fileID: 5711228840676931551, guid: afa5e187353005b46afe8bee9ec3551a,
     type: 3}
   copyKiraRock: {fileID: 0}
   itemQuantity: 10
@@ -17220,7 +17230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockParticle: {fileID: 209527001}
-  awardKiraRock: {fileID: 5711228840676931551, guid: 493354d5f600c5f46b5cf831f7a10df6,
+  awardKiraRock: {fileID: 5711228840676931551, guid: 872c8e69c2e88f64c810b5427fe33fe0,
     type: 3}
   copyKiraRock: {fileID: 0}
   itemQuantity: 10
@@ -17254,7 +17264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockParticle: {fileID: 209527001}
-  awardKiraRock: {fileID: 5711228840676931551, guid: 493354d5f600c5f46b5cf831f7a10df6,
+  awardKiraRock: {fileID: 5711228840676931551, guid: 872c8e69c2e88f64c810b5427fe33fe0,
     type: 3}
   copyKiraRock: {fileID: 0}
   itemQuantity: 10
@@ -17271,7 +17281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockParticle: {fileID: 209527001}
-  awardKiraRock: {fileID: 5711228840676931551, guid: 493354d5f600c5f46b5cf831f7a10df6,
+  awardKiraRock: {fileID: 5711228840676931551, guid: afa5e187353005b46afe8bee9ec3551a,
     type: 3}
   copyKiraRock: {fileID: 0}
   itemQuantity: 10

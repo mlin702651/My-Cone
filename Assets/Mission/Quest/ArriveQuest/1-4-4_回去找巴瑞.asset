@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
+  m_Name: "1-4-4_\u56DE\u53BB\u627E\u5DF4\u745E"
+  m_EditorClassIdentifier: 
+  questName: "\u5DF4\u745E\u7684\u7B1B\u5B50"
+  questDescription: 
+  questDetail: 
+  questExtraDetail: 
+  NPCTurnIn: {fileID: 11400000, guid: 9e95818ef0bc3924d8449ef781b30dd4, type: 2}
+  completedQuestDialogue: {fileID: 11400000, guid: b8a6caf734dfe764096df794e1378856,
+    type: 2}
+  rewards:
+    itemRewardNames: []
+    experienceReward: 0
+    spiritReward: 0
+  objectives:
+  - sceneName: Barry
+    questShowName: "\u5DF4\u745E\u65C1\u908A"
+    requiredAmount: 1

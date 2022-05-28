@@ -115,7 +115,7 @@ public class PlayerShootState : PlayerBaseState
         if(Ctx.HoldingTime <= Ctx.MagicConchMaxHoldingTime&& Ctx.HoldingTime >= Ctx.MagicConchMinHoldingTime){
             Ctx.HoldingTime = 0;
             FinishedMagicConch();
-            Debug.Log("shoot!");
+            //Debug.Log("shoot!");
         }
         else CanceledMagicConch();
 
@@ -195,13 +195,13 @@ public class PlayerShootState : PlayerBaseState
     }
 
     void HoldMagicBomb(){
-        Debug.Log("Hold bomb");
+        //Debug.Log("Hold bomb");
         ChangeAnimationState(Ctx.AnimationEndMagicBomb);
         FunctionTimer.Create(()=> FinishedMagicBomb(),Ctx.Animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
     void FinishedMagicBomb(){
-        Debug.Log("Finished bomb");
+        //Debug.Log("Finished bomb");
         Ctx.IsShooting = false;
         
 

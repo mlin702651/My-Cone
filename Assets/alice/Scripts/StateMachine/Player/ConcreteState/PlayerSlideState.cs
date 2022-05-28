@@ -8,7 +8,7 @@ public class PlayerSlideState : PlayerBaseState
     :base (currentContext, playerStateFactory){} //把這個傳去base state
     public override void EnterState(){
         ChangeAnimationState(Ctx.AnimationSlideStart);
-        Debug.Log("Start Slide");
+        //Debug.Log("Start Slide");
 
     }
 
@@ -43,7 +43,7 @@ public class PlayerSlideState : PlayerBaseState
         Debug.Log(Ctx.IsSliding);
         if(!Ctx.IsSliding){
             SwitchState(Factory.Idle());
-            Debug.Log("slide to idle");
+            //Debug.Log("slide to idle");
         }
         // if(Ctx.IsDashing){
         //     SwitchState(Factory.Dash());

@@ -171,21 +171,18 @@ public class DialogueManager : MonoBehaviour {
                 Debug.Log("has Quest!");
                 dialogueQuest.quest.Evaluate();
                 if(DialogueManager.instance.CompletedQuest==dialogueQuest.quest){
-                    dialogueSets.Clear();
                     foreach(DialogueBase.DialogueSet dialogueSet in dialogueQuest.quest.completedQuestDialogue.dialogueSet){
                         dialogueSets.Enqueue(dialogueSet);
-
                     }
+                    CompletedQuestReady = true;
+                    dialogueQuest.quest.questStatus.IsCompleted = true;
                     return;
                 }
             }
         }
-        //else{
-        dialogueSets.Clear();
         foreach(DialogueBase.DialogueSet dialogueSet in dialogueBase.dialogueSet){
             dialogueSets.Enqueue(dialogueSet);
         }
-        //}
         
     }
 

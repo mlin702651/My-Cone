@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
   m_Name: "1-3-3_\u9226\u6ECB\u6ECB\u6ECB\u5F8C\u56DE\u6751\u5B50"
   m_EditorClassIdentifier: 
-  questName: "\u8FD4\u56DE\u83C7\u83C7\u5EE3\u5834"
+  questName: "\u8ABF\u67E5\u5927\u5634\u6E2F"
   questDescription: 
   questDetail: 
   questExtraDetail: 
@@ -24,7 +24,6 @@ MonoBehaviour:
     experienceReward: 0
     spiritReward: 0
   objectives:
-  - scene: {fileID: 102900000, guid: c7b9e682cf7c9af4d99e546bca8ff416, type: 3}
-    sceneName: Door
-    sceneShowName: "\u83C7\u83C7\u5EE3\u5834"
+  - sceneName: Door
+    questShowName: "\u5927\u5634\u6E2F\u9580\u53E3"
     requiredAmount: 1

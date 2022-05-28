@@ -11,7 +11,11 @@ public class QuestDialogueTrigger : DialogueTrigger
 
     public override void Interact()
     {
-        if(hasActiveQuest){
+        if(dialogueQuests[0].quest.questStatus.IsCompleted){
+            DialogueManager.instance.EnqueueDialogue(dialogueBases[0]);
+            DialogueManager.instance.StartDialogue();
+        }
+        else if(hasActiveQuest){
             DialogueManager.instance.EnqueueDialogue(dialogueQuests[QuestIndex]);
             DialogueManager.instance.StartDialogue();
             QuestManager.instance.CurrentQuestDialogueTrigger = this;

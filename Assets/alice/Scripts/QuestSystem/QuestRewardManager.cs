@@ -28,9 +28,14 @@ public class QuestRewardManager : MonoBehaviour
         questRewardUI.SetActive(true); //這邊記得改成dotween animation
         
         questName.text = questBase.questName;
-        questRewardNames.text = "獲得 : ";
-        for(int i=0; i < questBase.rewards.itemRewardNames.Length ; i++){ //
-            questRewardNames.text += questBase.rewards .itemRewardNames[i] + " ";
+        if(questBase.rewards.itemRewardNames.Length!=0){
+            questRewardNames.text = "獲得 : ";
+            for(int i=0; i < questBase.rewards.itemRewardNames.Length ; i++){ //
+                questRewardNames.text += questBase.rewards .itemRewardNames[i] + " ";
+            }
+        }
+        else{
+            questRewardNames.text = "";
         }
         Debug.Log("questReward = " + questRewardNames.text);
 

@@ -37,7 +37,7 @@ public class QuestBase : ScriptableObject
     }
     
     public virtual void InitializedQuest() {
-        questStatus.IsCompleted = false;
+        //questStatus.IsCompleted = false;
         CurrentAmount = new int[RequiredAmount.Length];
         QuestMenuManager.instance.AddQuestToList(this);
         questStatus.IsInitialized = true;

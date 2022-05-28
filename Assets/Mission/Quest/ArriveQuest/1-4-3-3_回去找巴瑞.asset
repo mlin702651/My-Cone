@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
-  m_Name: "1-4-3_\u627E\u5230\u96F7\u8499"
+  m_Name: "1-4-3-3_\u56DE\u53BB\u627E\u5DF4\u745E"
   m_EditorClassIdentifier: 
   questName: "\u5DF4\u745E\u7684\u7B1B\u5B50"
-  questDescription: 
   questDetail: 
   questExtraDetail: 
-  NPCTurnIn: {fileID: 11400000, guid: af374625a569c8d46bd519fbe08e2c39, type: 2}
-  completedQuestDialogue: {fileID: 11400000, guid: d1c8140be2564104088e18ff0a07521d,
+  NPCTurnIn: {fileID: 11400000, guid: 9e95818ef0bc3924d8449ef781b30dd4, type: 2}
+  completedQuestDialogue: {fileID: 11400000, guid: b8a6caf734dfe764096df794e1378856,
     type: 2}
   rewards:
-    itemRewardNames: []
+    rewardProps: []
     experienceReward: 0
     spiritReward: 0
   objectives:
-  - sceneName: Ramon
-    questShowName: "\u96F7\u8499\u8EAB\u908A"
+  - sceneName: Barry
+    questShowName: "\u5DF4\u745E\u65C1\u908A"
     requiredAmount: 1

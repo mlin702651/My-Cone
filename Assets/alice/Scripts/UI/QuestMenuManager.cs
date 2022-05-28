@@ -146,6 +146,16 @@ public class QuestMenuManager : MonoBehaviour
                 tempChild = child;
             }
         }
+        // if(questToRemove is QuestCollect){
+        //     var collectQuest = questToRemove as QuestCollect;
+        //     foreach (var objective in collectQuest.objectives)
+        //     {
+        //         for (int i = 0; i < objective.requiredAmount; i++)
+        //         {
+        //             InventoryManager.instance.RemoveItem(objective.requiredQuestProp);
+        //         }
+        //     }
+        // }
         var tempObj = tempChild.childObj;
         questChildren.Remove(tempChild);
         Destroy(tempObj);

@@ -5,8 +5,7 @@ using UnityEngine;
 public class QuestBase : ScriptableObject
 {
     public string questName;
-    [TextArea(2,10)]
-    public string questDescription;
+
     [TextArea(5,10)]
     public string questDetail;
     [TextArea(2,10)]
@@ -26,7 +25,7 @@ public class QuestBase : ScriptableObject
     [System.Serializable]
     public class Rewards{
 
-        public string[] itemRewardNames; //可以自己定義物品 做成scriptable object
+        public RewardProp[] rewardProps; 
         public int experienceReward;
         public int spiritReward;
     }

@@ -7,7 +7,7 @@ public class QuestCollect : QuestBase
 {
     [System.Serializable]
     public class Objective{
-        public CollectableProfile requiredCollectable;
+        public QuestProp requiredQuestProp;
         public int requiredAmount;
     }
     public Objective[] objectives;
@@ -24,9 +24,9 @@ public class QuestCollect : QuestBase
         base.InitializedQuest();
     }
 
-    private void ItemCollect(CollectableProfile collectable){
+    private void ItemCollect(QuestProp questProp){
         for(int i = 0; i < objectives.Length; i++){
-            if(collectable == objectives[i].requiredCollectable){
+            if(questProp == objectives[i].requiredQuestProp){
                 CurrentAmount[i]++;
                 //更新給UI
                 //QuestManager.instance.UpdateQuestTracker($"{questDescription + "    " + CurrentAmount[i] + "/" + RequiredAmount[i]}");
@@ -37,13 +37,37 @@ public class QuestCollect : QuestBase
         Evaluate();
     }
 
+    public override void Evaluate()
+    {
+        for(int i = 0; i < RequiredAmount.Length; i++){
+            if(CurrentAmount[i] < RequiredAmount[i]){
+                return;//只要有人沒達成就結束(退回?)
+            }
+        }
+        Debug.Log("Quest is complete!");
+        GameManager.instance.PlayAudio();
+
+        for(int i=0; i < GameManager.instance.allDialogueTriggers.Count; i++){
+
+            if(GameManager.instance.allDialogueTriggers[i].targetNPC == NPCTurnIn){
+
+                GameManager.instance.allDialogueTriggers[i].HasCompletedQuest = true;
+                GameManager.instance.allDialogueTriggers[i].CompletedQuestDialogue = completedQuestDialogue;
+                break;
+            }
+        }
+        //IsCompleted = true;
+        DialogueManager.instance.CompletedQuest = this;
+        GameManager.instance.onPlayerCollectCallBack -= ItemCollect;
+    }
+
     public override string GetObjectiveList(){
         
         string tempObjectiveList = "";
 
         for (int i = 0; i < objectives.Length; i++)
         {
-            tempObjectiveList += $"已收集{"    ( " + CurrentAmount[i] + " / " + RequiredAmount[i]+ " ) 隻" + objectives[i].requiredCollectable.collectableName} \n";
+            tempObjectiveList += $"已收集{"    ( " + CurrentAmount[i] + " / " + RequiredAmount[i]+ " ) " + objectives[i].requiredQuestProp.itemName} \n";
         }
 
         return tempObjectiveList;

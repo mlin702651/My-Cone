@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public delegate void OnPlayerArrivedCallBack(string sceneName);
     public OnPlayerArrivedCallBack onPlayerArrivedCallBack;
-    public delegate void OnPlayerCollectCallBack(CollectableProfile collectableProfile);
+    public delegate void OnPlayerCollectCallBack(QuestProp questProp);
     public OnPlayerCollectCallBack onPlayerCollectCallBack;
 
     public void PlayAudio(){

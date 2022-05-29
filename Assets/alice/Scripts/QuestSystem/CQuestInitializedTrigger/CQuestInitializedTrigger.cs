@@ -14,7 +14,7 @@ public class CQuestInitializedTrigger : MonoBehaviour
             
         }
     }
-    void Update()
+    public virtual void Update()
     {
         if(isTrigger) return;
         if(InitialedQuest.questStatus.IsInitialized== true){

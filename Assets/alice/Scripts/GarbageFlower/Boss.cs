@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]private MonsterProfile monsterProfile;
+    [SerializeField]private GameObject islandTeleport;
     [SerializeField]private TempObjectPooler attackPooler;
     [Range(1,3),SerializeField] private int _iAttackType = 1;
     [SerializeField] private bool _bIsAngry = false;
     private float protectHealth = 100;
     [SerializeField]private Image protectHealthUI;
     private float health = 100;
+    private bool isDead;
     [SerializeField]private Image healthUI;
 
     private bool _bAngryTimer = false;
@@ -122,6 +125,7 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(isDead) return;
         
         targetPlayer = FindObjectOfType<PlayerStateMachine>().gameObject;
         transform.LookAt(new Vector3(targetPlayer.transform.position.x,transform.position.y,targetPlayer.transform.position.z));
@@ -279,6 +283,9 @@ public class Boss : MonoBehaviour
     }
 
     private void Dead(){
+        isDead = true;
+        islandTeleport.SetActive(true);
+        if(GameManager.instance.onEnemyDeathCallBack != null) GameManager.instance.onEnemyDeathCallBack.Invoke(monsterProfile); //死掉的時候會傳怪物資訊過去
         Destroy(gameObject);
     }
 

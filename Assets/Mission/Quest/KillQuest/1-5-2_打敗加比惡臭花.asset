@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054633284ae825843b36c6aa35de1c5a, type: 3}
+  m_Name: "1-5-2_\u6253\u6557\u52A0\u6BD4\u60E1\u81ED\u82B1"
+  m_EditorClassIdentifier: 
+  questName: "\u6253\u6557\u90AA\u60E1\u6839\u6E90"
+  questDetail: "\u90AA\u60E1\u6839\u6E90\u4F3C\u4E4E\u5165\u4FB5\u4E86\u5927\u5634\u6E2F\uFF0C\u8089\u773C\u6240\u898B\u5468\u570D\u90FD\u662F\u6FC3\u9727\u3002\n\u6253\u6557\u90AA\u60E1\u6839\u6E90\u60F3\u5FC5\u5C31\u80FD\u8B93\u6D77\u83C7\u83C7\u5CF6\u6062\u5FA9\u539F\u72C0\u4E86\u5427!"
+  questExtraDetail: 
+  NPCTurnIn: {fileID: 11400000, guid: e7544553bdcf4df469be53a229d6a96b, type: 2}
+  completedQuestDialogue: {fileID: 11400000, guid: 21b4a21337281984cadc0df9a94f0068,
+    type: 2}
+  rewards:
+    rewardProps: []
+    experienceReward: 0
+    spiritReward: 0
+  objectives:
+  - requiredMonster: {fileID: 11400000, guid: 3421975c6e0d7d541bf6cd22d1329daf, type: 2}
+    requiredAmount: 1

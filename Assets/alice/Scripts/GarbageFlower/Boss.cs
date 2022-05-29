@@ -117,6 +117,7 @@ public class Boss : MonoBehaviour
     void FixedUpdate()
     {
         
+        targetPlayer = FindObjectOfType<PlayerStateMachine>().gameObject;
         transform.LookAt(new Vector3(targetPlayer.transform.position.x,transform.position.y,targetPlayer.transform.position.z));
         
         // _iAttackType = 1;

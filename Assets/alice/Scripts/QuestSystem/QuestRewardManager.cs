@@ -15,6 +15,7 @@ public class QuestRewardManager : MonoBehaviour
     }
     
     public GameObject questRewardUI; 
+    [SerializeField]private ParticleSystem questRewardEffect;
     public Text questName;
     public Text questRewardNames;
 
@@ -26,6 +27,7 @@ public class QuestRewardManager : MonoBehaviour
         
         ifQuestRewardStart = true;
         questRewardUI.SetActive(true); //這邊記得改成dotween animation
+        questRewardEffect.Play();
         
         questName.text = questBase.questName;
         if(questBase.rewards.rewardProps.Length!=0){

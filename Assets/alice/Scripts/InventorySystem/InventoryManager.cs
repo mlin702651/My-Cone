@@ -80,6 +80,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void UpdateInventory(){
+        foreach (var item in collection)
+        {
+            onItemRemoveCallBack?.Invoke(item);
+        }
+        foreach (var item in collection)
+        {
+            onItemAddCallBack?.Invoke(item);
+        }
+    }
+
     public void RemoveItem(ItemBase item){
         inventory.Remove(item);
         if(onItemRemoveCallBack != null){
@@ -114,7 +125,7 @@ public class InventoryManager : MonoBehaviour
     void ResetBackpack(){
         currentMenuPage = 0; //打開第一頁都會是背包 之後應該要包到外面去
 
-        onSelectionResetCallBack.Invoke(currentSelection);
+        onSelectionResetCallBack?.Invoke(currentSelection);
         currentSelection = 0;
         newSelection = 0;
         if(inventory.Count>=1){ //背包不是空的就預設第一個物品
@@ -122,7 +133,7 @@ public class InventoryManager : MonoBehaviour
             selectedItemImage.overrideSprite = currentSelectedItem.itemIcon;
             selectedItemName.text = currentSelectedItem.itemName;
             selectedItemDescription.text = currentSelectedItem.itemDescription;
-            onSelectionChangeCallBack.Invoke(newSelection,currentSelection);
+            onSelectionChangeCallBack?.Invoke(newSelection,currentSelection);
         }
         else{
             selectedItemImage.overrideSprite = null;

@@ -155,7 +155,9 @@ public class QuestMenuManager : MonoBehaviour
         //             InventoryManager.instance.RemoveItem(objective.requiredQuestProp);
         //         }
         //     }
+        //     InventoryManager.instance.UpdateInventory();
         // }
+
         var tempObj = tempChild.childObj;
         questChildren.Remove(tempChild);
         Destroy(tempObj);

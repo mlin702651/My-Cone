@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public CinemachineFreeLook FreeLookCam;
     public bool isChangingScene;
     private RespawnPoint currentRespawnPoint;
+
+    private List<QuestBase> currentQuests = new List<QuestBase>();
     private void Awake(){
         if(instance== null){
             instance = this;
@@ -61,6 +63,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddQuest(QuestBase newQuest){
+        currentQuests.Add(newQuest);
+    }
+    public bool HaveQuest(QuestBase checkQuest){
+        if(currentQuests.Contains(checkQuest)){
+            return true;
+        }
+        return false;
+    }
+
     //public DialogueTrigger[] allDialogueTriggers;
     public List<DialogueTrigger> allDialogueTriggers = new List<DialogueTrigger>();
 
@@ -69,11 +81,13 @@ public class GameManager : MonoBehaviour
 
     public delegate void OnPlayerArrivedCallBack(string sceneName);
     public OnPlayerArrivedCallBack onPlayerArrivedCallBack;
+    public delegate void OnPlayerCollectCallBack(QuestProp questProp);
+    public OnPlayerCollectCallBack onPlayerCollectCallBack;
 
     public void PlayAudio(){
         if(!clearSound.isPlaying){
                     clearSound.Play();
-                }
+        }
     }
     
 }

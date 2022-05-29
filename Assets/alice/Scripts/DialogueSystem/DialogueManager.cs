@@ -165,9 +165,25 @@ public class DialogueManager : MonoBehaviour {
         currentDialogue = dialogueBase;
         inDialogue = true;
 
+        if(dialogueBase is DialogueQuest){
+            var dialogueQuest = dialogueBase as DialogueQuest;
+            if(GameManager.instance.HaveQuest(dialogueQuest.quest)&& dialogueQuest.quest.questStatus.IsInitialized){
+                Debug.Log("has Quest!");
+                dialogueQuest.quest.Evaluate();
+                if(DialogueManager.instance.CompletedQuest==dialogueQuest.quest){
+                    foreach(DialogueBase.DialogueSet dialogueSet in dialogueQuest.quest.completedQuestDialogue.dialogueSet){
+                        dialogueSets.Enqueue(dialogueSet);
+                    }
+                    CompletedQuestReady = true;
+                    dialogueQuest.quest.questStatus.IsCompleted = true;
+                    return;
+                }
+            }
+        }
         foreach(DialogueBase.DialogueSet dialogueSet in dialogueBase.dialogueSet){
             dialogueSets.Enqueue(dialogueSet);
         }
+        
     }
 
     public void DequeueDialogue(){
@@ -232,6 +248,9 @@ public class DialogueManager : MonoBehaviour {
     private void CheckIfDialogueQuest(){ //可能可以寫成check dialogue type 如果我們有選項的話啦
         if(currentDialogue is DialogueQuest){
             DialogueQuest dialogueQuest = currentDialogue as DialogueQuest;
+            if(GameManager.instance.HaveQuest(dialogueQuest.quest)){
+                return;
+            }
             QuestManager.instance.InitiateQuest(dialogueQuest.quest);
         }
     }
@@ -276,6 +295,8 @@ public class DialogueManager : MonoBehaviour {
             QuestRewardManager.instance.SetRewardUI(CompletedQuest);
             QuestManager.instance.ClearCompletedQuest();
             CompletedQuestReady = false;
+            QuestMenuManager.instance.RemoveQuestFromList(CompletedQuest);
+
         }
     }
     #endregion

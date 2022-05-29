@@ -11,7 +11,7 @@ public class PlayerJumpState : PlayerBaseState
     } //把這個傳去base state
     public override void EnterState(){
         HandleJump();
-        Debug.Log("Start Jump");
+        //Debug.Log("Start Jump");
 
     }
     public override void UpdateState(){
@@ -93,7 +93,7 @@ public class PlayerJumpState : PlayerBaseState
             Ctx.IsSecondJumping = true;
             Ctx.GravityMovementY = Ctx.InitialSecondJumpVelocity; 
             Ctx.AppliedMovementY = Ctx.InitialSecondJumpVelocity; 
-            Debug.Log("Start jump 2!");
+            //Debug.Log("Start jump 2!");
         }
         else if(Ctx.CharacterController.isGrounded){
             Ctx.CanSecondJump = false;

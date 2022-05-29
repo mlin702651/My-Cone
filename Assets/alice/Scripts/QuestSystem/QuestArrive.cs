@@ -8,7 +8,7 @@ public class QuestArrive : QuestBase
    [System.Serializable]
     public class Objective{
         public string sceneName;
-        public string sceneShowName;
+        public string questShowName;
         public int requiredAmount;
     }
     public Objective[] objectives;
@@ -31,10 +31,15 @@ public class QuestArrive : QuestBase
         }
         Debug.Log("Quest is complete!");
         GameManager.instance.PlayAudio();
+        questStatus.IsCompleted = true;
 
         DialogueManager.instance.CompletedQuest = this;
         Debug.Log("Arrived.");
         GameManager.instance.onPlayerArrivedCallBack -= ArriveGoal;
+
+        QuestRewardManager.instance.SetRewardUI(this);
+        QuestManager.instance.ClearCompletedQuest();
+        QuestMenuManager.instance.RemoveQuestFromList(this);
     }
 
 
@@ -45,7 +50,7 @@ public class QuestArrive : QuestBase
                 CurrentAmount[i]++;
                 //更新給UI
                 QuestManager.instance.UpdateQuestTracker(this.GetObjectiveList());
-                Debug.Log("Player arrived" + objectives[i].sceneShowName);
+                Debug.Log("Player arrived" + objectives[i].questShowName);
                 questStatus.IsCompleted = true;
             }
         }
@@ -59,7 +64,7 @@ public class QuestArrive : QuestBase
 
         for (int i = 0; i < objectives.Length; i++)
         {
-            tempObjectiveList += $"前往{"" + objectives[i].sceneShowName + "     (" + CurrentAmount[i] + " / " + RequiredAmount[i]+ " )"} \n";
+            tempObjectiveList += $"前往{"" + objectives[i].questShowName} \n";
         }
 
         return tempObjectiveList;

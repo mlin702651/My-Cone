@@ -9,22 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7dcbfe2ed143654eacd24f22b760e3e, type: 3}
-  m_Name: "1-4-3_\u627E\u5230\u96F7\u8499"
+  m_Script: {fileID: 11500000, guid: d157e14fcec888b4eb7e1a6927541e48, type: 3}
+  m_Name: "1-4-3-2_\u6536\u96C6\u8611\u83C7"
   m_EditorClassIdentifier: 
-  questName: 
-  questDescription: 
+  questName: "\u63A1\u4E0D\u5B8C\u7684\u9999\u83C7"
   questDetail: 
   questExtraDetail: 
   NPCTurnIn: {fileID: 11400000, guid: af374625a569c8d46bd519fbe08e2c39, type: 2}
-  completedQuestDialogue: {fileID: 11400000, guid: d1c8140be2564104088e18ff0a07521d,
+  completedQuestDialogue: {fileID: 11400000, guid: 813f12451fb487146bd077687b0ac09f,
     type: 2}
   rewards:
-    itemRewardNames: []
+    rewardProps: []
     experienceReward: 0
     spiritReward: 0
   objectives:
-  - scene: {fileID: 0}
-    sceneName: Forest
-    sceneShowName: "\u83C7\u4E4B\u68EE"
-    requiredAmount: 1
+  - requiredQuestProp: {fileID: 11400000, guid: ebdcc87d0a4f7414689adfcf974936ee,
+      type: 2}
+    requiredAmount: 5

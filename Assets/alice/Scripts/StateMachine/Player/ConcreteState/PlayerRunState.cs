@@ -34,7 +34,7 @@ public class PlayerRunState : PlayerBaseState
             ChangeAnimationState(Ctx.AnimationMagicBubbleRun);
         } 
         else if(Ctx.CurrentAnimationState == Ctx.AnimationEndMagicBomb){
-            Debug.Log("hi");
+            //Debug.Log("hi");
             ChangeAnimationState(Ctx.AnimationEndMagicBombRun);
             return;
         } 

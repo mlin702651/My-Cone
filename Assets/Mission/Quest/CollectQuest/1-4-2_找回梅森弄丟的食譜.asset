@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: "1-4-2_\u627E\u56DE\u6885\u68EE\u5F04\u4E1F\u7684\u98DF\u8B5C"
   m_EditorClassIdentifier: 
   questName: "\u98DF\u8B5C\u5931\u8E64\u8A18"
-  questDescription: 
-  questDetail: 
-  questExtraDetail: 
+  questDetail: detail
+  questExtraDetail: extra
   NPCTurnIn: {fileID: 11400000, guid: d99ee37e792832443a1115b28f7c99a7, type: 2}
   completedQuestDialogue: {fileID: 11400000, guid: b817d4f0a8e2e2f41a8bafd2742e9a49,
     type: 2}
   rewards:
-    itemRewardNames: []
+    rewardProps:
+    - {fileID: 11400000, guid: 12e9b999e5057374d87982b22033521b, type: 2}
     experienceReward: 0
     spiritReward: 0
   objectives:
-  - requiredCollectable: {fileID: 11400000, guid: cfb3f7bc14603a94092aa0368ccb55de,
+  - requiredQuestProp: {fileID: 11400000, guid: e56152ac771fcc04d93b4231936187b8,
       type: 2}
     requiredAmount: 1

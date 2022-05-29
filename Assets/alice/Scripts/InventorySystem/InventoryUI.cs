@@ -21,6 +21,16 @@ public class InventoryUI : MonoBehaviour
         InventoryManager.instance.onEquipItemCallBack += CheckEquipItem; 
         //只要onItemAddCallBack被呼叫 就會執行UpdateInventoryAdd
     }
+
+    private void OnDestroy() {
+        InventoryManager.instance.onItemAddCallBack -= UpdateInventoryAdd; 
+        InventoryManager.instance.onItemRemoveCallBack -= UpdateInventoryRemove; 
+        InventoryManager.instance.onSelectionChangeCallBack -= UpdateInventorySelection; 
+        InventoryManager.instance.getCurrentItemCallBack -= GetSelectedItem; 
+        InventoryManager.instance.onSelectionResetCallBack -= ResetInventoryUI; 
+        InventoryManager.instance.onEquipMenuCallBack -= OpenEquipMenu; 
+        InventoryManager.instance.onEquipItemCallBack -= CheckEquipItem; 
+    }
     private int? GetNextEmptySlot(){
         for (int i = 0; i < slots.Length; i++)
         {

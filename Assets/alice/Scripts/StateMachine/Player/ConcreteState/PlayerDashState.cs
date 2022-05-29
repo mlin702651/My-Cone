@@ -57,7 +57,7 @@ public class PlayerDashState : PlayerBaseState
     public override void InitializedSubState(){}
 
     void FinishedDash(){
-        Debug.Log("Finished dash");
+        //Debug.Log("Finished dash");
         Ctx.IsDashing = false;
         CheckSwitchStates();
     }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5711228840676931553}
   - component: {fileID: 5711228840676931550}
   - component: {fileID: 5711228840676931557}
+  - component: {fileID: 2935491740120045982}
   m_Layer: 0
   m_Name: rockPink
   m_TagString: Untagged
@@ -124,3 +125,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.32588655, y: 0.63004774, z: 0.52683526}
   m_Center: {x: -0.08025372, y: -0.042084783, z: -0.004991561}
+--- !u!114 &2935491740120045982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5711228840676931551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1a53f336428364fa76ddbc9121cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 1.5
+  item: {fileID: 11400000, guid: 2192f9fec65b1b04a902dcec2883a8a9, type: 2}
+  questProp: {fileID: 11400000, guid: 2192f9fec65b1b04a902dcec2883a8a9, type: 2}

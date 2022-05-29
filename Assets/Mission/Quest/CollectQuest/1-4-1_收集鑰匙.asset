@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d157e14fcec888b4eb7e1a6927541e48, type: 3}
   m_Name: "1-4-1_\u6536\u96C6\u9470\u5319"
   m_EditorClassIdentifier: 
-  questName: 
+  questName: "\u6253\u958B\u5927\u9580\u7684\u65B9\u6CD5"
   questDescription: 
   questDetail: 
   questExtraDetail: 
@@ -20,10 +20,9 @@ MonoBehaviour:
   completedQuestDialogue: {fileID: 11400000, guid: cbae80913324ec745b28ad4a91579c2d,
     type: 2}
   rewards:
-    itemRewardNames: []
+    rewardProps: []
     experienceReward: 0
     spiritReward: 0
   objectives:
-  - requiredCollectable: {fileID: 11400000, guid: 3c3ded210e345324a8ef7b7f99008d4c,
-      type: 2}
-    requiredAmount: 3
+  - requiredQuestProp: {fileID: 0}
+    requiredAmount: 1

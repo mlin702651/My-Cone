@@ -10,7 +10,7 @@ public class DialogueTrigger : Interactable
     public CharacterProfile targetNPC;
     [Header("Basic Dialogue Info")]
     
-    [SerializeField]private DialogueBase[] dialogueBases;
+    [SerializeField]protected DialogueBase[] dialogueBases;
     public int index = 0;
     public bool nextDialogueInteract;
     

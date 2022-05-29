@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]private TempObjectPooler attackPooler;
     [Range(1,3),SerializeField] private int _iAttackType = 1;
     [SerializeField] private bool _bIsAngry = false;
+    private float protectHealth = 100;
+    [SerializeField]private Image protectHealthUI;
+    private float health = 100;
+    [SerializeField]private Image healthUI;
+
     private bool _bAngryTimer = false;
     private float _fAngryTimer = 0;
     private float _fAttackAnimationTR = 0f;
@@ -163,6 +169,8 @@ public class Boss : MonoBehaviour
                 _fAngryTimer = 0;
                 _bAngryTimer = false;
                 _bIsAngry = false;
+                protectHealth = 100;
+                protectHealthUI.fillAmount = protectHealth/100;
                 ChangeAnimationState(animationIdle);
 
             }
@@ -247,12 +255,47 @@ public class Boss : MonoBehaviour
         }  
     }
 
+    private void HurtProtectHealth(float damage){
+        if(_bIsAngry) return;
+        protectHealth -= damage;
+        print(protectHealth);
+        protectHealthUI.fillAmount = protectHealth/100f;
+        if(protectHealth<=0){
+            protectHealth = 100;
+            _bIsAngry = true;
+            _bAngryTimer = true;
+        }
+    }
+
+    public void HurtRealHealth(float damage){
+        if(!_bIsAngry) return;
+        health -= (damage/2);
+        healthUI.fillAmount = health/100f;
+        if(health <= 0){
+            print("boss is dead");
+            transform.DOMoveY(-20,10f).OnComplete(Dead);;
+            //Destroy(gameObject);
+        }
+    }
+
+    private void Dead(){
+        Destroy(gameObject);
+    }
+
     
 
     private void OnTriggerEnter(Collider other) {
         if(other.tag =="Player_Magic1"){
-            _bIsAngry = true;
-            _bAngryTimer = true;
+            HurtProtectHealth(15);
+            //HurtRealHealth(15);
+        }
+        if(other.tag =="Player_Magic2"){
+            HurtProtectHealth(5);
+            //HurtRealHealth(5);
+        }
+        if(other.tag =="Player_Magic3"){
+            HurtProtectHealth(20);
+            //HurtRealHealth(10);
         }
        
 

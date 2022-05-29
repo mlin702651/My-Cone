@@ -11,7 +11,7 @@ public class CloseStone : MonoBehaviour
     // Update is called once per frame
 
     private void Start() {
-        StartCoroutine(IdontWantToFight());
+        //StartCoroutine(IdontWantToFight());
     }
     void Update()
     {

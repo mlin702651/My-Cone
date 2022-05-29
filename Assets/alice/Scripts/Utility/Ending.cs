@@ -19,7 +19,7 @@ public class Ending : MonoBehaviour
     }
 
     private IEnumerator BackToMenu(RespawnPoint respawnPoint){
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(73f);
         endingCanvas.SetActive(false);
         WoomiSceneManager.instance.LoadScene("StartScene",respawnPoint);
     }

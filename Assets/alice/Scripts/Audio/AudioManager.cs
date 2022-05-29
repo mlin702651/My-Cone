@@ -12,12 +12,6 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance != null){
-            //Debug.LogWarning("fix this: " + gameObject.name);
-            Destroy(gameObject);
-        }
-        else instance = this;
-        
         foreach(Sound s in sounds){
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.outputAudioMixerGroup = s.mixer;
@@ -27,6 +21,12 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+        if(instance != null){
+            //Debug.LogWarning("fix this: " + gameObject.name);
+            Destroy(gameObject);
+        }
+        else instance = this;
+        
     }
 
     void Start(){
@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
         //FunctionTimer.Create(()=>PlaySound(sounds[0]),0.5f);
         //FunctionTimer.Create(()=>StopSound(sounds[0]),5.0f);
     }
+    
 
     public void PlaySound(string name){
         Sound s = Array.Find(sounds, sound => sound.soundName == name);
@@ -41,6 +42,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound:" + name + "not found!");
             return;
         }
+        if(s.source==null) return;
         s.source.Play();
     }
 
@@ -79,6 +81,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound:" + soundToStopName + "not found!");
             return;
         }
+        if(s.source==null) return;
         s.source.Stop(); //source是一個AudioSource
     }
 

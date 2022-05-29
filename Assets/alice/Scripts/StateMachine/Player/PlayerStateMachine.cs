@@ -504,7 +504,7 @@ public class PlayerStateMachine : MonoBehaviour
         PlayerInfoManager.instance.StartSetPlayerHealth(0,health);
         WoomiSceneManager.instance.ReloadScene();
     }
-    void SetCrystalAmount(int modifyAmount){
+    public void SetCrystalAmount(int modifyAmount){
         int originCrystal = crystalAmount;
         crystalAmount += modifyAmount;
         if(crystalAmount<0) {
@@ -516,7 +516,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     }
 
-    void SetSpiritAmount(int modifyAmount){
+    public void SetSpiritAmount(int modifyAmount){
         int originSpirit = spiritAmount;
         spiritAmount += modifyAmount;
         if(spiritAmount<0) {

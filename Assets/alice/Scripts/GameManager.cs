@@ -34,8 +34,10 @@ public class GameManager : MonoBehaviour
     public void ResetPlayerRespwan(RespawnPoint respawnPoint){
         isChangingScene = true;
         Player = FindObjectOfType<PlayerStateMachine>();
-        Player.transform.position = new Vector3(respawnPoint.respawnPosition.x,respawnPoint.respawnPosition.y,respawnPoint.respawnPosition.z);
-        Player.transform.rotation = respawnPoint.respawnRotation;
+        if(Player!=null){
+            Player.transform.position = new Vector3(respawnPoint.respawnPosition.x,respawnPoint.respawnPosition.y,respawnPoint.respawnPosition.z);
+            Player.transform.rotation = respawnPoint.respawnRotation;
+        }
         currentRespawnPoint = respawnPoint;
         StartCoroutine(EndChangeScene());
     }

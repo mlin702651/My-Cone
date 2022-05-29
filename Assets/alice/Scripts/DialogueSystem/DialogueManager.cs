@@ -293,6 +293,9 @@ public class DialogueManager : MonoBehaviour {
             Debug.Log("mission complete");
             CompletedQuest.questStatus.IsCompleted = true;
             QuestRewardManager.instance.SetRewardUI(CompletedQuest);
+            var player = FindObjectOfType<PlayerStateMachine>();
+            player.SetCrystalAmount(CompletedQuest.rewards.experienceReward);
+            player.SetSpiritAmount(CompletedQuest.rewards.spiritReward);
             QuestManager.instance.ClearCompletedQuest();
             CompletedQuestReady = false;
             QuestMenuManager.instance.RemoveQuestFromList(CompletedQuest);

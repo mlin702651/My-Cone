@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class StartMenuManager : MonoBehaviour
 {
     [SerializeField]GameObject[] icons = new GameObject[4];
+    [SerializeField]RespawnPoint respawnPoint;
     private int currentSelection = 0;
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class StartMenuManager : MonoBehaviour
             InputSystem.instance.MenuConfirmPressDown = false;
             Debug.Log("ChangeScene");
             //MySceneManager.instance.EndThisScene("MushroomPlaza");
-            WoomiSceneManager.instance.LoadScene("island",null);
+            WoomiSceneManager.instance.LoadScene("island",respawnPoint);
         }
     }
 

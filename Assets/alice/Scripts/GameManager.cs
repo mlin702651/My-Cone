@@ -44,8 +44,10 @@ public class GameManager : MonoBehaviour
 
     public void ReloadScene(){
         Player = FindObjectOfType<PlayerStateMachine>();
-        Player.transform.position = new Vector3(currentRespawnPoint.respawnPosition.x,currentRespawnPoint.respawnPosition.y,currentRespawnPoint.respawnPosition.z);
-        Player.transform.rotation = currentRespawnPoint.respawnRotation;
+        if(Player!=null){
+            Player.transform.position = new Vector3(currentRespawnPoint.respawnPosition.x,currentRespawnPoint.respawnPosition.y,currentRespawnPoint.respawnPosition.z);
+            Player.transform.rotation = currentRespawnPoint.respawnRotation;
+        }
     }
 
     private IEnumerator EndChangeScene(){

@@ -533,6 +533,9 @@ public class PlayerStateMachine : MonoBehaviour
         else if(other.tag == "BigStone_Attack"){
             SetPlayerHealth(-15);
         }
+        else if(other.tag == "GarbageAttack"){
+            SetPlayerHealth(-15);
+        }
     }
     
 }

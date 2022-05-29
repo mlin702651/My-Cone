@@ -1,5 +1,137 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &351388829333259619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4200008168805616516}
+  - component: {fileID: 4691426454978560981}
+  m_Layer: 0
+  m_Name: Cube (6)
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4200008168805616516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351388829333259619}
+  m_LocalRotation: {x: -0, y: -0.8034068, z: -0, w: -0.5954307}
+  m_LocalPosition: {x: -3.52, y: 0, z: 1.2}
+  m_LocalScale: {x: 3.1919303, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: -253.087, z: 0}
+--- !u!65 &4691426454978560981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351388829333259619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &913470328484851276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7107746158668387097}
+  - component: {fileID: 3162796704296319145}
+  m_Layer: 0
+  m_Name: Cube (7)
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7107746158668387097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913470328484851276}
+  m_LocalRotation: {x: -0, y: -0.49748603, z: -0, w: -0.86747205}
+  m_LocalPosition: {x: -3.24, y: 0, z: -2.02}
+  m_LocalScale: {x: 3.5107172, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: -300.332, z: 0}
+--- !u!65 &3162796704296319145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913470328484851276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2833231765777369795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8533900782821777327}
+  - component: {fileID: 1539103584941602924}
+  m_Layer: 0
+  m_Name: Cube (3)
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8533900782821777327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833231765777369795}
+  m_LocalRotation: {x: -0, y: -0.8976077, z: -0, w: 0.44079515}
+  m_LocalPosition: {x: 3.32, y: 0, z: 2.01}
+  m_LocalScale: {x: 2.9007, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: -127.69101, z: 0}
+--- !u!65 &1539103584941602924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833231765777369795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3105338629965205113
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +144,7 @@ GameObject:
   - component: {fileID: -8399888131402819536}
   m_Layer: 0
   m_Name: hasaki
-  m_TagString: Untagged
+  m_TagString: GarbageAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,6 +162,14 @@ Transform:
   m_Children:
   - {fileID: 3710306025133325096}
   - {fileID: 8875149668709983015}
+  - {fileID: 7627509369849456303}
+  - {fileID: 5065571876440968942}
+  - {fileID: 4586869684965183975}
+  - {fileID: 8533900782821777327}
+  - {fileID: 1893684701222098478}
+  - {fileID: 4901244515513709511}
+  - {fileID: 4200008168805616516}
+  - {fileID: 7107746158668387097}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,6 +191,226 @@ MonoBehaviour:
   Scale: {x: 0.01, y: 0, z: 0.01}
   FinalScale: {x: 8, y: 1, z: 8}
   Ease: 4
+--- !u!1 &3318154613214736530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4901244515513709511}
+  - component: {fileID: 2077698494673952106}
+  m_Layer: 0
+  m_Name: Cube (5)
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4901244515513709511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318154613214736530}
+  m_LocalRotation: {x: -0, y: -0.96263224, z: -0, w: -0.27081206}
+  m_LocalPosition: {x: -1.64, y: 0, z: 3.24}
+  m_LocalScale: {x: 2.9007, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: -211.42499, z: 0}
+--- !u!65 &2077698494673952106
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318154613214736530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4183802422022795517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4586869684965183975}
+  - component: {fileID: 3318455704825716501}
+  m_Layer: 0
+  m_Name: Cube (2)
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4586869684965183975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4183802422022795517}
+  m_LocalRotation: {x: -0, y: -0.63794917, z: -0, w: 0.77007854}
+  m_LocalPosition: {x: 3.76, y: 0, z: -0.5}
+  m_LocalScale: {x: 2.9007, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: -79.27801, z: 0}
+--- !u!65 &3318455704825716501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4183802422022795517}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4606151603767938134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7627509369849456303}
+  - component: {fileID: 8646650919623861400}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7627509369849456303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606151603767938134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.57, y: 0, z: -3.75}
+  m_LocalScale: {x: 3.364232, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8646650919623861400
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606151603767938134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5186030462120974414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5065571876440968942}
+  - component: {fileID: 7088852168786139705}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5065571876440968942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5186030462120974414}
+  m_LocalRotation: {x: -0, y: -0.33865437, z: -0, w: 0.9409109}
+  m_LocalPosition: {x: 2.29, y: 0, z: -2.89}
+  m_LocalScale: {x: 2.9007, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -39.59, z: 0}
+--- !u!65 &7088852168786139705
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5186030462120974414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &9108509439414629544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1893684701222098478}
+  - component: {fileID: 5080478782653923552}
+  m_Layer: 0
+  m_Name: Cube (4)
+  m_TagString: GarbageAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1893684701222098478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108509439414629544}
+  m_LocalRotation: {x: -0, y: -0.99432033, z: -0, w: 0.10642876}
+  m_LocalPosition: {x: 1, y: 0, z: 3.57}
+  m_LocalScale: {x: 2.9007, y: 1, z: 0.27467}
+  m_Children: []
+  m_Father: {fileID: 8526015901377588999}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: -167.781, z: 0}
+--- !u!65 &5080478782653923552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108509439414629544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3816553115884018883
 PrefabInstance:
   m_ObjectHideFlags: 0
